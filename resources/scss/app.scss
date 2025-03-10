@@ -1,0 +1,19 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+
+$blue-afac: (
+    "blue-afac": #003764
+);
+
+$brown-afac: (
+    "brown-afac": #BC955C
+);
+
+$theme-colors: map-merge($theme-colors, $blue-afac );
+$theme-colors: map-merge($theme-colors, $brown-afac );
+
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+@import "bootstrap/scss/bootstrap";
