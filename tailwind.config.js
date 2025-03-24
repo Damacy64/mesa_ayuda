@@ -9,12 +9,18 @@ export default {
         './vendor/laravel/jetstream/**/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+        './resources/views/*.blade.php',
     ],
 
     theme: {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+            },
+            colors: {
+                'afac-blue': '#003764',
+                'afac-golden': '#BC955C',
+                'afac-gray': '#D9D9D9',
             },
         },
     },

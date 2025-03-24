@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('last_name_p');
             $table->string('last_name_m')->nullable();
             $table->string('sex');
-            $table->string('id_administrador');
+            $table->unsignedBigInteger('id_administrador');
             $table->string('id_location');
             $table->string('id_area');
             $table->string('employer_number');

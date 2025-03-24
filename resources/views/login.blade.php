@@ -11,40 +11,53 @@
 <body>
 
 
-    <div class="container-fluid">
-        <div class="row bg-blue-afac">
-            <div class="col-2">
-                <img src="https://testing-ventanillas.afac-avciv.com/images/isologo_AFAC_white.png"
-                    class="img-fluid w-75 h-60" alt="logo AFAC">
-            </div>
-            <div class="col-8 d-flex align-items-center justify-content-center">
-                <p class="text-center text-brown-afac fs-1">MESA DE AYUDA</p>
-            </div>
-        </div>
-    </div>
+    <!DOCTYPE html>
+    <html lang="es">
 
-    <div class="container mt-5">
-        <div class="row justify-content-center align-items-center">
-            <div class="col-4">
-                <form action="">
-                    <p class="">INGRESAR</p>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Correo electronico</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1"
-                            placeholder="nombre@ejemplo.com">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mesa de Ayuda - Ingreso</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+
+    <body class="bg-gray-100">
+
+        <div class="h-screen flex flex-col">
+            <!-- Encabezado con logo -->
+            <div class="bg-afac-blue text-white p-6 w-full flex flex-col items-center">
+                <img src="https://testing-ventanillas.afac-avciv.com/images/isologo_AFAC_white.png" alt="Logo" class="w-24 h-24 mb-2"> 
+                <h1 class="text-3xl text-afac-golden font-bold">MESA DE AYUDA</h1>
+            </div>
+    
+            <!-- Sección del formulario -->
+            <div class="flex-1 flex flex-col items-center justify-center px-4">
+                <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+                    <h2 class="text-lg font-semibold text-center">INGRESAR</h2>
+                    <form class="mt-4">
+                        <div class="text-left">
+                            <label class="block text-gray-700 font-medium">Correo electrónico</label>
+                            <input type="email" placeholder="usuario@dominio.com" class="bg-afac-gray w-full p-2 border rounded-lg mt-1">
+                        </div>
+                        <div class="text-left mt-4">
+                            <label class="block text-gray-700 font-medium">Contraseña</label>
+                            <input type="password" placeholder="********" class="bg-afac-gray w-full p-2 border rounded-lg mt-1">
+                        </div>
+                        <button class="bg-afac-blue text-white w-full py-2 rounded-lg mt-6 hover:bg-blue-800">INGRESAR</button>
+                    </form>
+                    <div class="mt-4 text-sm text-center">
+                        <a href="#" class="text-blue-600 hover:underline">¿Eres usuario nuevo? Regístrate</a>
                     </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="">
+                    <div class="mt-2 text-sm text-center">
+                        <a href="#" class="text-blue-600 hover:underline">¿Olvidaste tu contraseña? Recuperar</a>
                     </div>
-                    <div class="mb-3">
-                        <button type="submit" class="btn bg-blue-afac text-white mb-3">INGRESAR</button>
-                    </div>
-                </form>
-                <a href="#">¿Olvidaste tu contraseña?</a>
+                </div>
             </div>
         </div>
-    </div>
+    </body>
+
+    </html>
+
 </body>
 
 </html>
