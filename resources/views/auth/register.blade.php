@@ -1,60 +1,91 @@
-<x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
+<!DOCTYPE html>
+<html lang="en">
 
-        <x-validation-errors class="mb-4" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesa de Ayuda - Registro</title>
+    @vite(['resources/css/app.css'])
+</head>
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+<body>
 
-            <div>
-                <x-label for="name" value="{{ __('Name') }}" />
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            </div>
+    <div class="h-screen flex flex-col bg-white">
+        <x-header>REGISTRO USUARIO</x-header>
 
-            <div class="mt-4">
-                <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            </div>
+        <div class="flex-1 lg:flex flex-col lg:items-center justify-center px-4">
+            <div class="bg-white p-8 w-full max-w-md">
+                <form class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-4 grid-rows-4">
+                    <div>
+                        <x-label>Nombre(s)*</x-label>
+                        <x-input placeholder="Ingrese su nombre"></x-input>
+                    </div>
 
-            <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            </div>
+                    <div >
+                        <x-label>Apellido Paterno*</x-label>
+                        <x-input placeholder="Ingrese su apellido paterno"></x-input>
+                    </div>
 
-            <div class="mt-4">
-                <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
-            </div>
+                    <div>
+                        <x-label>Apellido Materno</x-label>
+                        <x-input placeholder="Ingrese su apellido materno"></x-input>
+                    </div>
 
-            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                <div class="mt-4">
-                    <x-label for="terms">
-                        <div class="flex items-center">
-                            <x-checkbox name="terms" id="terms" required />
+                    <div>
+                        <x-label>Sexo*</x-label>
+                        <x-select>
+                            masculino
+                        </x-select>
+                    </div>
 
-                            <div class="ms-2">
-                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Terms of Service').'</a>',
-                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Privacy Policy').'</a>',
-                                ]) !!}
-                            </div>
-                        </div>
-                    </x-label>
+                    <div>
+                        <x-label>Ubicacion*</x-label>
+                        <x-select>
+                            Piso 1
+                        </x-select>
+                    </div>
+
+                    <div>
+                        <x-label>Area*</x-label>
+                        <x-select>
+                            Desarrollo
+                        </x-select>
+                    </div>
+
+                    <div>
+                        <x-label>N° empleado*</x-label>
+                        <x-input></x-input>
+                    </div>
+
+                    <div class="md:col-span-1">
+                        <x-label>Correo electrónico*</x-label>
+                        <x-input type="email" placeholder="usuario@afac.gob.mx"></x-input>
+                    </div>
+
+                    <div class="md:col-span-1">
+                        <x-label>Confirmar Correo*</x-label>
+                        <x-input type="email" placeholder="usuario@afac.gob.mx"></x-input>
+                    </div>
+
+                    <div class="md:col-span-1">
+                        <x-label>Contraseña*</x-label>
+                        <x-input type="password" placeholder="**********"></x-input>
+                    </div>
+
+                    <div class="md:col-span-1">
+                        <x-label>Confirmar Contraseña*</x-label>
+                        <x-input type="password" placeholder="**********"></x-input>
+                    </div>      
+                </form>
+                <x-button>Registrar</x-button>
+                <div class="mt-4 text-sm text-center">
+                    <a href="#" class="text-blue-600 hover:underline">¿Eres usuario nuevo? Regístrate</a>
                 </div>
-            @endif
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ms-4">
-                    {{ __('Register') }}
-                </x-button>
+                <div class="mt-2 text-sm text-center">
+                    <a href="#" class="text-blue-600 hover:underline">¿Olvidaste tu contraseña? Recuperar</a>
+                </div>
             </div>
-        </form>
-    </x-authentication-card>
-</x-guest-layout>
+        </div>
+    </div>
+
+</body>

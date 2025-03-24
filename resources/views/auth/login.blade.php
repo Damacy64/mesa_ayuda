@@ -1,48 +1,42 @@
-<x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
+<!DOCTYPE html>
+<html lang="en">
 
-        <x-validation-errors class="mb-4" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesa de Ayuda - Ingreso</title>
+    @vite(['resources/css/app.css'])
+</head>
 
-        @session('status')
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ $value }}
+<body>
+
+    <div class="h-screen flex flex-col bg-white">
+        <x-header>MESA DE AYUDA</x-header>
+
+        <div class="flex-1 lg:flex flex-col lg:items-center justify-center px-4">
+            <div class="bg-white p-8 w-full max-w-md">
+                <h2 class="text-lg font-semibold text-center">INGRESAR</h2>
+                <form class="mt-4">
+                    <div class="text-left">
+                        <x-label>Correo electrónico</x-label>
+                        <x-input type="email" placeholder="usuario@afac.gob.mx"></x-input>
+                    </div>
+                    <div class="text-left mt-4">
+                        <x-label>Contraseña</x-label>
+                        <x-input type="password" placeholder="**********"></x-input>
+                    </div>
+                    <x-button>INGRESAR</x-button>
+                </form>
+                <div class="mt-4 text-sm text-center">
+                    <a href="#" class="text-blue-600 hover:underline">¿Eres usuario nuevo? Regístrate</a>
+                </div>
+                <div class="mt-2 text-sm text-center">
+                    <a href="#" class="text-blue-600 hover:underline">¿Olvidaste tu contraseña? Recuperar</a>
+                </div>
             </div>
-        @endsession
+        </div>
+    </div>
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
+</body>
 
-            <div>
-                <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            </div>
-
-            <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
-
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-checkbox id="remember_me" name="remember" />
-                    <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-button class="ms-4">
-                    {{ __('Log in') }}
-                </x-button>
-            </div>
-        </form>
-    </x-authentication-card>
-</x-guest-layout>
+</html>
