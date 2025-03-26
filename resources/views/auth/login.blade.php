@@ -27,11 +27,12 @@
                     </div>
                     <x-button>INGRESAR</x-button>
                 </form>
+
                 <div class="mt-4 text-sm text-center">
-                    <a href="#" class="text-blue-600 hover:underline">¿Eres usuario nuevo? Regístrate</a>
+                    <p>¿Eres usuario nuevo?<a href="/registro" class="text-afac-link hover:underline">Regístrate</a></p>
                 </div>
                 <div class="mt-2 text-sm text-center">
-                    <a href="#" class="text-blue-600 hover:underline">¿Olvidaste tu contraseña? Recuperar</a>
+                    <p>¿Olvidaste tu contraseña?<a href="" class="text-afac-link hover:underline">Recuperar</a></p>
                 </div>
             </div>
         </div>
