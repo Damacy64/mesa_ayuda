@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('disco_duro', function (Blueprint $table) {
-            $table->string('capacidad')->primary();
+        Schema::create('gender', function (Blueprint $table) {
+            $table->string('sexo')->primary();
             $table->timestamps();
         });
     }
@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('disco_duro');
+        Schema::dropIfExists('gender');
     }
 };

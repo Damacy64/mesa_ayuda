@@ -11,15 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('historial_tickets', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('id_ticket');
-            $table->dateTime('fecha_actualizacion');
-            $table->string('campo_modificado');
-            $table->string('estado_anterior');
-            $table->string('estado_nuevo');
+        Schema::create('status', function (Blueprint $table) {
+            $table->string('nombre')->primary();
             $table->timestamps();
-
         });
     }
 
@@ -28,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('historial_tickets');
+        Schema::dropIfExists('status');
     }
 };

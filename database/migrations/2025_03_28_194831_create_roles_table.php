@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('procesador', function (Blueprint $table) {
-            $table->string('nombre_procesador')->primary();
+        Schema::create('roles', function (Blueprint $table) {
+            $table->string('rol')->primary();
             $table->timestamps();
         });
     }
@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('procesador');
+        Schema::dropIfExists('roles');
     }
 };

@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sub_opciones', function (Blueprint $table) {
+        Schema::create('option', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_opc_categoria');
-            $table->string('nombre_opcion');
+            $table->string('nombre');
+            $table->morphs('opcion');
             $table->timestamps();
-            $table->foreign('id_opc_categoria')->references('id')->on('opciones_categoria')->onDelete('cascade');
         });
     }
 
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sub_opciones');
+        Schema::dropIfExists('option');
     }
 };

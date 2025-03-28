@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('administrador', function (Blueprint $table) {
+        Schema::create('history_tickets', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('last_name_p');
-            $table->string('last_name_m')->nullable();
-            $table->string('sex');
-            $table->string('number_employer');
-            $table->string('email');
-            $table->string('password');
+            $table->string('ticket_id');
+            $table->timestamp('fecha_actualizacion');
+            $table->string('campo_modificado');
+            $table->string('estado_anterior');
+            $table->string('estado_nuevo');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('administrador');
+        Schema::dropIfExists('history_tickets');
     }
 };

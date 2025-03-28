@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('marca', function (Blueprint $table) {
-            $table->string('marca_dispositivo')->primary();
+        Schema::create('location', function (Blueprint $table) {
+            $table->string('piso')->primary();
             $table->timestamps();
         });
     }
@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('marca');
+        Schema::dropIfExists('location');
     }
 };

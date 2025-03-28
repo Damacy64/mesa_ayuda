@@ -13,13 +13,11 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('names');
             $table->string('last_name_p');
             $table->string('last_name_m')->nullable();
-            $table->string('sex');
-            $table->unsignedBigInteger('id_administrador');
-            $table->string('id_location');
-            $table->string('id_area');
+            $table->string('sex_id');
+            $table->string('rol_id');
             $table->string('employer_number');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -28,9 +26,8 @@ return new class extends Migration
             $table->foreignId('current_team_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('id_administrador')->references('id')->on('administrador')->onDelete('cascade');
-            $table->foreign('id_location')->references('piso')->on('ubicacion')->onDelete('cascade');
-            $table->foreign('id_area')->references('departamento')->on('area')->onDelete('cascade');
+            $table->foreign('rol_id')->references('rol')->on('roles')->onDelete('cascade');
+            $table->foreign('sex_id')->references('sexo')->on('genero')->onDelete('cascade');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

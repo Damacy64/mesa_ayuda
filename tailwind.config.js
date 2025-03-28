@@ -18,6 +18,7 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
             colors: {
+                'afac-gray-low': '#95A8BE',
                 'afac-blue': '#003764',
                 'afac-golden': '#BC955C',
                 'afac-gray': '#D9D9D9',

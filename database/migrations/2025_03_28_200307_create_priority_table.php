@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('office', function (Blueprint $table) {
-            $table->string('version')->primary();
+        Schema::create('priority', function (Blueprint $table) {
+            $table->string('nombre')->primary();
             $table->timestamps();
         });
     }
@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('office');
+        Schema::dropIfExists('priority');
     }
 };

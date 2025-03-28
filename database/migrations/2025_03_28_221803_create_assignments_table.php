@@ -11,20 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('asignacion_equipo', function (Blueprint $table) {
+        Schema::create('assignments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_equipo');
-            $table->unsignedBigInteger('id_usuario');
+            $table->unsignedBigInteger('equipo_id');
+            $table->unsignedBigInteger('usuario_id');
             $table->date('fecha_asignacion');
-            $table->string('serie_monitor');
             $table->string('serie_teclado');
             $table->string('serie_mouse');
-            $table->string('direccion_ip');
+            $table->string('serie_monitor');
             $table->string('servicio_internet');
             $table->timestamps();
 
-            $table->foreign('id_equipo')->references('id')->on('equipo')->onDelete('cascade');
-            $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('equipo_id')->references('numero_serie')->on('equipo')->onDelete('cascade');
+            $table->foreignId('usuario_id')->constrained()->onDelete('cascade');
         });
     }
 
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('asignacion_equipo');
+        Schema::dropIfExists('assignments');
     }
 };

@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tipo_dispositivo', function (Blueprint $table) {
-            $table->string('tipo_dispositivo')->primary();
+        Schema::create('computer', function (Blueprint $table) {
+            $table->string('numero_serie');
+            $table->string('direccion_ip', 11);
             $table->timestamps();
         });
     }
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tipo_dispositivo');
+        Schema::dropIfExists('computer');
     }
 };
