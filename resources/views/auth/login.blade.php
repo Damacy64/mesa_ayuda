@@ -18,7 +18,7 @@
         <div class="p-8 mt-20 grid grid-cols-3 gap-4">
 
             <div class="flex flex-col justify-center items-center">
-                <h2 class="text-xl font-semibold text-afac-golden">BIENVENIDO</h2>
+                <h2 class="text-xl font-semibold text-afac-golden font-si">BIENVENIDO</h2>
             </div>
 
 

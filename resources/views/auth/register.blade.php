@@ -36,7 +36,9 @@
                 <div>
                     <x-label>Ubicación*</x-label>
                     <x-select>
-                        <option>Piso 3</option>
+                        @foreach ($datos as $dato)
+                            <option value="{{ $dato->piso }}">{{ $dato->piso}}</option>    
+                        @endforeach
                     </x-select>
                 </div>
                 <div>

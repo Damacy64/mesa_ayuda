@@ -12,4 +12,9 @@ class Location extends Model
     protected $fillable = [
         'piso',
     ];
+
+    public function obtenerDatos(){
+        $datos = Location::all();
+        return view('auth.register',compact('datos'));
+    }
 }
