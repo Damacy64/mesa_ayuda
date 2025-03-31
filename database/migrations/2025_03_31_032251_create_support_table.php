@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('support', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('empleado_id');
             $table->string('especialidad');
             $table->integer('carga_trabajo');
             $table->string('disponibilidad');
             $table->timestamps();
 
-            $table->foreignId('empleado_id')->constrained()->onDelete('cascade');
+            $table->foreignId('empleado_id')->nullable()->constrained('users')->onDelete('cascade');
         });
     }
 

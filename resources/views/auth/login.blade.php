@@ -9,35 +9,52 @@
 </head>
 
 <body>
-
     <div class="h-screen flex flex-col bg-white">
-        <x-header>MESA DE AYUDA</x-header>
 
-        <div class="flex-1 lg:flex flex-col lg:items-center justify-center px-4">
-            <div class="bg-white p-8 w-full max-w-md">
-                <h2 class="text-lg font-semibold text-center">INGRESAR</h2>
-                <form class="mt-4">
-                    <div class="text-left">
-                        <x-label>Correo electrónico</x-label>
-                        <x-input type="email" placeholder="usuario@afac.gob.mx"></x-input>
+        <x-header>
+            MESA DE AYUDA
+        </x-header>
+
+        <div class="p-8 mt-20 grid grid-cols-3 gap-4">
+
+            <div class="flex flex-col justify-center items-center">
+                <h2 class="text-xl font-semibold text-afac-golden">BIENVENIDO</h2>
+            </div>
+
+
+            <div class="flex flex-col items-center">
+                <form class="w-full max-w-sm">
+                    <div class="mb-4">
+                        <x-label>Correo Electrónico</x-label>
+                        <x-input type="email"></x-input>
                     </div>
-                    <div class="text-left mt-4">
+                    <div class="mb-4">
                         <x-label>Contraseña</x-label>
-                        <x-input type="password" placeholder="**********"></x-input>
+                        <x-input type="password"></x-input>
                     </div>
-                    <x-button>INGRESAR</x-button>
-                </form>
 
-                <div class="mt-4 text-sm text-center">
-                    <p>¿Eres usuario nuevo?<a href="/registro" class="text-afac-link hover:underline">Regístrate</a></p>
+                    <div class="flex justify-center">
+                        <x-button>INGRESAR</x-button>
+                    </div>
+                </form>
+            </div>
+
+
+            <div class="flex flex-col justify-center items-end">
+                <div class="text-center">
+                    <span class="block">¿Eres usuario nuevo?</span>
+                <a href="/registro"
+                        class="text-afac-link hover:underline mb-2">Regístrate</a>
                 </div>
-                <div class="mt-2 text-sm text-center">
-                    <p>¿Olvidaste tu contraseña?<a href="" class="text-afac-link hover:underline">Recuperar</a></p>
+                <div class="text-center">
+                    <span class="block">¿Olvidaste tu contraseña?</span>
+                    <a href="#"
+                        class="text-afac-link hover:underline">Recuperar</a>
                 </div>
+                
             </div>
         </div>
     </div>
-
 </body>
 
 </html>

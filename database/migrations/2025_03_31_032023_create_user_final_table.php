@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('area_id');
             $table->timestamps();
 
-            $table->foreign('ubicacion_id')->references('piso')->on('ubicacion')->onDelete('cascade');
+            $table->foreign('ubicacion_id')->references('piso')->on('location')->onDelete('cascade');
             $table->foreign('area_id')->references('departamento')->on('area')->onDelete('cascade');
         });
     }

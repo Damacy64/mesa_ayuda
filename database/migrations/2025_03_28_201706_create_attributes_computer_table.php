@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('attributes_computer', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('atributo_id')->constrained('atributos');
+            $table->foreignId('atributo_id')->nullable()->constrained('attributes')->onDelete('cascade');
             $table->morphs('equipo');
             $table->string('valor');
             $table->timestamps();

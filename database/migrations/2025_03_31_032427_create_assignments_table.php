@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use phpDocumentor\Reflection\Types\Nullable;
 
 return new class extends Migration
 {
@@ -13,8 +14,7 @@ return new class extends Migration
     {
         Schema::create('assignments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('equipo_id');
-            $table->unsignedBigInteger('usuario_id');
+            $table->string('equipo_id');
             $table->date('fecha_asignacion');
             $table->string('serie_teclado');
             $table->string('serie_mouse');
@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('servicio_internet');
             $table->timestamps();
 
-            $table->foreign('equipo_id')->references('numero_serie')->on('equipo')->onDelete('cascade');
-            $table->foreignId('usuario_id')->constrained()->onDelete('cascade');
+            $table->foreign('equipo_id')->references('numero_serie')->on('computer')->onDelete('cascade');
+            $table->foreignId('usuario_id')->nullable()->constrained('users')->onDelete('cascade');
         });
     }
 

@@ -8,84 +8,86 @@
     @vite(['resources/css/app.css'])
 </head>
 
-<body>
+<body class="bg-gray-100">
 
-    <div class="h-screen flex flex-col bg-white">
-        <x-header>REGISTRO USUARIO</x-header>
+    <x-header>
+        REGISTRO USUARIO
+    </x-header>
 
 
-        <form class="w-full max-w-screen-lg m-auto">
-            <div class="flex flex-wrap -mx-3 mb-6">
+    <div class="max-w-5xl mx-auto bg-white shadow-md rounded-lg p-8 mt-6">
+        <form>
+            <div class="grid grid-cols-3 gap-6">
 
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-6">
+                <div>
                     <x-label>Nombre(s)*</x-label>
-                    <x-input placeholder="Ingrese su nombre"></x-input>
+                    <x-input type="text"></x-input>
                 </div>
-
-                <div class="w-full md:w-1/2 px-3">
+                <div>
                     <x-label>Apellido Paterno*</x-label>
-                    <x-input placeholder="Ingrese su apellido paterno"></x-input>
+                    <x-input type="text"></x-input>
+                </div>
+                <div>
+                    <x-label>Apellido Materno*</x-label>
+                    <x-input type="text"></x-input>
                 </div>
 
-                <div class="w-full md:w-1/2 px-3">
-                    <x-label>Apellido Materno</x-label>
-                    <x-input placeholder="Ingrese su apellido materno"></x-input>
+
+                <div>
+                    <x-label>Ubicación*</x-label>
+                    <x-select>
+                        <option>Piso 3</option>
+                    </x-select>
+                </div>
+                <div>
+                    <x-label>Área*</x-label>
+                    <x-select>
+                        <option>Desarrollo Estratégico</option>
+                    </x-select>
+                </div>
+                <div>
+                    <x-label>N° empleado*</x-label>
+                    <x-input type="text"></x-input>
                 </div>
 
-                <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+
+                <div>
+                    <x-label>Correo Institucional*</x-label>
+                    <x-input type="email"></x-input>
+                </div>
+                <div>
+                    <x-label>Confirmar Correo*</x-label>
+                    <x-input type="email"></x-input>
+                </div>
+                <div>
                     <x-label>Sexo*</x-label>
                     <x-select>
-                        masculino
+                        <option>Masculino</option>
                     </x-select>
                 </div>
 
-                <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                    <x-label>Ubicacion*</x-label>
-                    <x-select>
-                        Piso 1
-                    </x-select>
-                </div>
 
-                <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                    <x-label>Area*</x-label>
-                    <x-select>
-                        Desarrollo
-                    </x-select>
-                </div>
-
-                <div class="w-full md:w-1/2 px-3">
-                    <x-label>N° empleado*</x-label>
-                    <x-input></x-input>
-                </div>
-
-                <div class="w-full md:w-1/2 px-3">
-                    <x-label>Correo electrónico*</x-label>
-                    <x-input type="email" placeholder="usuario@afac.gob.mx"></x-input>
-                </div>
-
-                <div class="w-full md:w-1/2 px-3">
-                    <x-label>Confirmar Correo*</x-label>
-                    <x-input type="email" placeholder="usuario@afac.gob.mx"></x-input>
-                </div>
-
-                <div class="w-full md:w-1/2 px-3">
+                <div>
                     <x-label>Contraseña*</x-label>
-                    <x-input type="password" placeholder="**********"></x-input>
+                    <x-input type="password"></x-input>
                 </div>
-
-                <div class="w-full md:w-1/2 px-3">
+                <div>
                     <x-label>Confirmar Contraseña*</x-label>
-                    <x-input type="password" placeholder="**********"></x-input>
+                    <x-input type="password"></x-input>
                 </div>
-                <x-button>Registrar</x-button>
+            </div>
+
+
+            <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
+                <p class="font-bold">RECUERDA</p>
+                <p class="text-sm">INTRODUCE UNA CONTRASEÑA PARA ESTE SISTEMA. RECUERDA QUE DEBE TENER AL MENOS 8 CARACTERES,INCLUYENDO AL MENOS UNA MAYÚSCULA, UNA MINÚSCULA, UN NÚMERO Y UN CARÁCTER ESPECIAL (#, *, !, @, $, %)</p>
+              </div>
+
+
+            <div class="flex justify-center mt-6">
+                <x-button>REGISTRAR</x-button>
             </div>
         </form>
-        <div class="mt-4 text-sm text-center">
-            <a href="" class="text-blue-600 hover:underline">¿Eres usuario nuevo? Regístrate</a>
-        </div>
-        <div class="mt-2 text-sm text-center">
-            <a href="#" class="text-blue-[#13A6DC]">¿Olvidaste tu contraseña? Recuperar</a>
-        </div>
     </div>
-
 </body>
+</html>
