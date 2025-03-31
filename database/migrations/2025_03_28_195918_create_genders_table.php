@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('area', function (Blueprint $table) {
-            $table->string('departamento')->primary();
+        Schema::create('genders', function (Blueprint $table) {
+            $table->string('sexo')->primary();
             $table->timestamps();
         });
     }
@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('area');
+        Schema::dropIfExists('genders');
     }
 };

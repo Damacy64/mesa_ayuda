@@ -8,14 +8,14 @@
     @vite(['resources/css/app.css'])
 </head>
 
-<body class="bg-gray-100">
+<body>
 
     <x-header>
         REGISTRO USUARIO
     </x-header>
 
 
-    <div class="max-w-5xl mx-auto bg-white shadow-md rounded-lg p-8 mt-6">
+    <div class="max-w-5xl mx-auto bg-white p-8 mt-6">
         <form>
             <div class="grid grid-cols-3 gap-6">
 
@@ -78,7 +78,7 @@
             </div>
 
 
-            <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
+            <div class=" mt-5 bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
                 <p class="font-bold">RECUERDA</p>
                 <p class="text-sm">INTRODUCE UNA CONTRASEÑA PARA ESTE SISTEMA. RECUERDA QUE DEBE TENER AL MENOS 8 CARACTERES,INCLUYENDO AL MENOS UNA MAYÚSCULA, UNA MINÚSCULA, UN NÚMERO Y UN CARÁCTER ESPECIAL (#, *, !, @, $, %)</p>
               </div>

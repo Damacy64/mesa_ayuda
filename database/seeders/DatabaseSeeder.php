@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Area;
+use App\Models\Gender;
+use App\Models\Location;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,10 +17,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        Gender::factory(3)->create();
+        Area::factory(6)->create();
+        Location::factory(8)->create();
     }
 }

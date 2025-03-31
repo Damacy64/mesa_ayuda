@@ -27,7 +27,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('rol_id')->references('rol')->on('roles')->onDelete('cascade');
-            $table->foreign('sex_id')->references('sexo')->on('gender')->onDelete('cascade');
+            $table->foreign('sex_id')->references('sexo')->on('genders')->onDelete('cascade');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
