@@ -1,6 +1,8 @@
 <x-guest-layout>
+
     <x-authentication-card>
         <x-slot name="logo">
+            <h1>Solicitud de Recuperación de Contraseña</h1>
             <x-authentication-card-logo />
         </x-slot>
 

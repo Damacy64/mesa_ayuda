@@ -48,7 +48,7 @@
                 </div>
                 <div class="text-center">
                     <span class="block">¿Olvidaste tu contraseña?</span>
-                    <a href="#"
+                    <a href="/forgot-password"
                         class="text-afac-link hover:underline">Recuperar</a>
                 </div>
                 

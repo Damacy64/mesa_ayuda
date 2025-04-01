@@ -1,4 +1,6 @@
 <x-guest-layout>
+
+    <x-header>RECUPERAR CONTRASEÑA</x-header>
     <x-authentication-card>
         <x-slot name="logo">
             <x-authentication-card-logo />
@@ -9,26 +11,26 @@
         <form method="POST" action="{{ route('password.update') }}">
             @csrf
 
-            <input type="hidden" name="token" value="{{ $request->route('token') }}">
-
+            {{-- <input type="hidden" name="token" value="{{ $request->route('token') }}"> --}}
+            {{-- :value="old('email', $request->email)" Esto va dentro del input--}}
             <div class="block">
                 <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus autocomplete="username" />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email"  required autofocus autocomplete="username" />
             </div>
 
             <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
+                <x-label for="password">Ingrese Contraseña Nueva</x-label>
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             </div>
 
             <div class="mt-4">
-                <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
+                <x-label for="password_confirmation">Confirmación de la Contraseña Nueva</x-label>
                 <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
 
-            <div class="flex items-center justify-end mt-4">
+            <div class="flex items-center justify-center mt-4">
                 <x-button>
-                    {{ __('Reset Password') }}
+                    GUARDAR
                 </x-button>
             </div>
         </form>

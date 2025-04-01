@@ -16,7 +16,8 @@
 
 
     <div class="max-w-5xl mx-auto bg-white p-8 mt-6">
-        <form>
+        <form method="">
+            @csrf
             <div class="grid grid-cols-3 gap-6">
 
                 <div>
@@ -36,15 +37,18 @@
                 <div>
                     <x-label>Ubicación*</x-label>
                     <x-select>
-                        @foreach ($datos as $dato)
-                            <option value="{{ $dato->piso }}">{{ $dato->piso}}</option>    
+                        <option>Seleccione Ubicacion</option>
+                        @foreach ($locations as $location)
+                            <option value="{{ $location->piso }}">{{ $location->piso}}</option>    
                         @endforeach
                     </x-select>
                 </div>
                 <div>
                     <x-label>Área*</x-label>
                     <x-select>
-                        <option>Desarrollo Estratégico</option>
+                        @foreach ($areas as $area)
+                            <option value="{{ $area->departamento }}">{{ $area->departamento}}</option>
+                        @endforeach
                     </x-select>
                 </div>
                 <div>
@@ -64,7 +68,9 @@
                 <div>
                     <x-label>Sexo*</x-label>
                     <x-select>
-                        <option>Masculino</option>
+                        @foreach ($generos as $genero)
+                            <option value="{{ $genero->sexo }}">{{ $genero->sexo}}</option>
+                        @endforeach
                     </x-select>
                 </div>
 
