@@ -7,7 +7,7 @@ use Laravel\Fortify\Http\Requests\LoginRequest;
 
 class LoginController extends Controller
 {
-    public function index(){
+    public function show(){
         return view('auth.login');
     }
 

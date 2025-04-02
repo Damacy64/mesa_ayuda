@@ -19,7 +19,7 @@ class LocationFactory extends Factory
     public function definition(): array
     {
         return [
-            'piso' => $this->faker->sentence(),
+            'piso' => $this->faker->word(),
         ];
     }
 }

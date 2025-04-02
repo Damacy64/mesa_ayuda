@@ -19,7 +19,7 @@ class GenderFactory extends Factory
     public function definition(): array
     {
         return [
-            'sexo' => $this->faker->sentence(),
+            'sexo' => $this->faker->word(),
         ];
     }
 }

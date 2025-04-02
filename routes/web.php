@@ -13,10 +13,13 @@ Route::get('/', function () {
 });
 
 
-Route::get('/login', [LoginController::class, 'index']);
-Route::get('/registro', [RegisterController::class, 'index']);
-Route::get('/forgot-password', [ForgotPasswordController::class, 'index']);
-Route::get('/reset-password', [ResetPasswordController::class, 'index']);
+Route::get('/login', [LoginController::class, 'show']);
+
+Route::get('/registro', [RegisterController::class, 'show']);
+Route::post('registro', [RegisterController::class, 'create']);
+
+Route::get('/forgot-password', [ForgotPasswordController::class, 'show']);
+Route::get('/reset-password', [ResetPasswordController::class, 'show']);
 
 //ruta para los select
 

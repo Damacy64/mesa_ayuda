@@ -16,27 +16,27 @@
 
 
     <div class="max-w-5xl mx-auto bg-white p-8 mt-6">
-        <form method="">
+        <form method="POST" action="/registro">
             @csrf
             <div class="grid grid-cols-3 gap-6">
 
                 <div>
                     <x-label>Nombre(s)*</x-label>
-                    <x-input type="text"></x-input>
+                    <x-input type="text" name="names"></x-input>
                 </div>
                 <div>
                     <x-label>Apellido Paterno*</x-label>
-                    <x-input type="text"></x-input>
+                    <x-input type="text" name="last_name_p"></x-input>
                 </div>
                 <div>
                     <x-label>Apellido Materno*</x-label>
-                    <x-input type="text"></x-input>
+                    <x-input type="text" name="last_name_m"></x-input>
                 </div>
 
 
                 <div>
                     <x-label>Ubicación*</x-label>
-                    <x-select>
+                    <x-select name="location">
                         <option>Seleccione Ubicacion</option>
                         @foreach ($locations as $location)
                             <option value="{{ $location->piso }}">{{ $location->piso}}</option>    
@@ -45,7 +45,7 @@
                 </div>
                 <div>
                     <x-label>Área*</x-label>
-                    <x-select>
+                    <x-select name="area">
                         @foreach ($areas as $area)
                             <option value="{{ $area->departamento }}">{{ $area->departamento}}</option>
                         @endforeach
@@ -53,13 +53,13 @@
                 </div>
                 <div>
                     <x-label>N° empleado*</x-label>
-                    <x-input type="text"></x-input>
+                    <x-input type="text" name="employer_number"></x-input>
                 </div>
 
 
                 <div>
                     <x-label>Correo Institucional*</x-label>
-                    <x-input type="email"></x-input>
+                    <x-input type="email" name="email"></x-input>
                 </div>
                 <div>
                     <x-label>Confirmar Correo*</x-label>
@@ -67,7 +67,7 @@
                 </div>
                 <div>
                     <x-label>Sexo*</x-label>
-                    <x-select>
+                    <x-select name="sex">
                         @foreach ($generos as $genero)
                             <option value="{{ $genero->sexo }}">{{ $genero->sexo}}</option>
                         @endforeach
@@ -77,7 +77,7 @@
 
                 <div>
                     <x-label>Contraseña*</x-label>
-                    <x-input type="password"></x-input>
+                    <x-input type="password" name="password"></x-input>
                 </div>
                 <div>
                     <x-label>Confirmar Contraseña*</x-label>
