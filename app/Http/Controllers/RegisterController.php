@@ -6,6 +6,7 @@ use App\Models\Area;
 use App\Models\Gender;
 use App\Models\Location;
 use App\Models\User;
+use App\Models\UserFinal;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
@@ -19,20 +20,23 @@ class RegisterController extends Controller
 
     public function create(Request $request){
         $user = new User();
-        $genero = new Gender();
+        $userF = new UserFinal();
 
         $user->names = $request->names;
         $user->last_name_p = $request->last_name_p;
         $user->last_name_m = $request->last_name_m;
-        $genero->sexo = $request->sex;
-        $user->sex_id = $genero->sexo;
+        $user->sex_id = $request->input('sex');
         $user->password = $request->password;
         $user->email = $request->email;
         $user->employer_number = $request->employer_number;
-        $user->rol_id = 1;
-
+        $user->rol_id = 'USUARIO';
         $user->save();
 
-        return redirect('/registro');
+        $userF->empleados_id = $user->id;
+        $userF->area_id = $request->input('area');
+        $userF->ubicacion_id = $request->input('location');
+        $userF->save();
+
+        return redirect('/login');
     }
 }

@@ -16,7 +16,7 @@ Route::get('/', function () {
 Route::get('/login', [LoginController::class, 'show']);
 
 Route::get('/registro', [RegisterController::class, 'show']);
-Route::post('registro', [RegisterController::class, 'create']);
+Route::post('/registro', [RegisterController::class, 'create']);
 
 Route::get('/forgot-password', [ForgotPasswordController::class, 'show']);
 Route::get('/reset-password', [ResetPasswordController::class, 'show']);

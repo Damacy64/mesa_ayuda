@@ -74,7 +74,6 @@
                     </x-select>
                 </div>
 
-
                 <div>
                     <x-label>Contraseña*</x-label>
                     <x-input type="password" name="password"></x-input>
