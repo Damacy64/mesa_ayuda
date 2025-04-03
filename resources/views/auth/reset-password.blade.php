@@ -11,11 +11,11 @@
         <form method="POST" action="{{ route('password.update') }}">
             @csrf
 
-            {{-- <input type="hidden" name="token" value="{{ $request->route('token') }}"> --}}
-            {{-- :value="old('email', $request->email)" Esto va dentro del input--}}
+            <input type="hidden" name="token" value="{{ $request->route('token') }}">
+
             <div class="block">
                 <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email"  required autofocus autocomplete="username" />
+                <x-input id="email" class="block mt-1 w-full" :value="old('email', $request->email)" type="email" name="email"  required autofocus autocomplete="username" />
             </div>
 
             <div class="mt-4">

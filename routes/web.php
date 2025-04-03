@@ -6,14 +6,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
 
-
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-Route::get('/login', [LoginController::class, 'show']);
+Route::get('/', [LoginController::class, 'show']);
 
 Route::get('/registro', [RegisterController::class, 'show']);
 Route::post('/registro', [RegisterController::class, 'create']);

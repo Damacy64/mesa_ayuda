@@ -29,7 +29,7 @@
                     <x-input type="text" name="last_name_p"></x-input>
                 </div>
                 <div>
-                    <x-label>Apellido Materno*</x-label>
+                    <x-label>Apellido Materno</x-label>
                     <x-input type="text" name="last_name_m"></x-input>
                 </div>
 
@@ -37,7 +37,6 @@
                 <div>
                     <x-label>Ubicación*</x-label>
                     <x-select name="location">
-                        <option>Seleccione Ubicacion</option>
                         @foreach ($locations as $location)
                             <option value="{{ $location->piso }}">{{ $location->piso}}</option>    
                         @endforeach
@@ -63,7 +62,7 @@
                 </div>
                 <div>
                     <x-label>Confirmar Correo*</x-label>
-                    <x-input type="email"></x-input>
+                    <x-input type="email" name="email_confirmation"></x-input>
                 </div>
                 <div>
                     <x-label>Sexo*</x-label>
@@ -80,7 +79,7 @@
                 </div>
                 <div>
                     <x-label>Confirmar Contraseña*</x-label>
-                    <x-input type="password"></x-input>
+                    <x-input type="password" name="password_confirmation"></x-input>
                 </div>
             </div>
 
