@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Laravel\Fortify\Http\Requests\LoginRequest;
 
@@ -12,6 +13,6 @@ class LoginController extends Controller
     }
 
     public function login(LoginRequest $request){
-        //$user = User::
+        $user = new User();
     }
 }

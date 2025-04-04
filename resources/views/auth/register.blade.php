@@ -22,15 +22,15 @@
 
                 <div>
                     <x-label>Nombre(s)*</x-label>
-                    <x-input type="text" name="names"></x-input>
+                    <x-input type="text" name="names" :value="old('names')"></x-input>
                 </div>
                 <div>
                     <x-label>Apellido Paterno*</x-label>
-                    <x-input type="text" name="last_name_p"></x-input>
+                    <x-input type="text" name="last_name_p" :value="old('last_name_p')"></x-input>
                 </div>
                 <div>
                     <x-label>Apellido Materno</x-label>
-                    <x-input type="text" name="last_name_m"></x-input>
+                    <x-input type="text" name="last_name_m" :value="old('last_name_m')"></x-input>
                 </div>
 
 
@@ -52,17 +52,17 @@
                 </div>
                 <div>
                     <x-label>N° empleado*</x-label>
-                    <x-input type="text" name="employer_number"></x-input>
+                    <x-input type="text" name="employer_number" :value="old('employer_number')"></x-input>
                 </div>
 
 
                 <div>
                     <x-label>Correo Institucional*</x-label>
-                    <x-input type="email" name="email"></x-input>
+                    <x-input type="email" name="email" :value="old('email')"></x-input>
                 </div>
                 <div>
                     <x-label>Confirmar Correo*</x-label>
-                    <x-input type="email" name="email_confirmation"></x-input>
+                    <x-input type="email" name="email_confirmation" :value="old('email_confirmation')"></x-input>
                 </div>
                 <div>
                     <x-label>Sexo*</x-label>
@@ -87,7 +87,8 @@
             <div class=" mt-5 bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
                 <p class="font-bold">RECUERDA</p>
                 <p class="text-sm">INTRODUCE UNA CONTRASEÑA PARA ESTE SISTEMA. RECUERDA QUE DEBE TENER AL MENOS 8 CARACTERES,INCLUYENDO AL MENOS UNA MAYÚSCULA, UNA MINÚSCULA, UN NÚMERO Y UN CARÁCTER ESPECIAL (#, *, !, @, $, %)</p>
-              </div>
+            </div>
+            <x-validation-errors></x-validation-errors>
 
 
             <div class="flex justify-center mt-6">

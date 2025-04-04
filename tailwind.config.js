@@ -21,7 +21,7 @@ export default {
                 'afac-gray-low': '#95A8BE',
                 'afac-blue': '#003764',
                 'afac-golden': '#BC955C',
-                'afac-gray': '#F5F5F5',
+                'afac-gray': '#D9D9D9',
                 'afac-link': '#13A6DC',
                 'afac-sky-blue': '#95A8BE',
             },

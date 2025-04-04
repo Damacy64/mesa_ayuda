@@ -19,7 +19,7 @@ class RegisterController extends Controller
         return view('auth.register', compact('locations','areas','generos'));
     }
 
-    public function create(Request $request){
+    public function create(RegisterRequest $request){
         $user = new User();
         $userF = new UserFinal();
 
