@@ -9,10 +9,10 @@
     @endsession
 
     <div class="h-screen flex flex-col bg-white">
-        <div class="p-8 mt-20 grid grid-cols-3 gap-4">
+        <div class="p-8 mt-40 grid grid-cols-3">
 
             <div class="flex flex-col justify-center items-center">
-                <h2 class="text-xl font-semibold text-afac-golden font-si">BIENVENIDO</h2>
+                <h2 class="text-6xl font-semibold text-afac-golden md:text-5x1">BIENVENIDO</h2>
             </div>
 
 
@@ -20,13 +20,12 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
 
-                    <div class="mb-4">
+                    <div class="my-8 p-4 wx-80">
                         <x-label for="email" value="{{ __('Correo electronico') }}" />
                         <x-input id="email" type="email" name="email" :value="old('email')"
                             required autofocus autocomplete="username" />
                     </div>
-
-                    <div class="mb-4">
+                    <div class="my-8 p-4 w-80">
                         <x-label for="password" value="{{ __('Contraseña') }}" />
                         <x-input id="password" type="password" name="password" required
                             autocomplete="current-password" />
@@ -40,27 +39,33 @@
                     </div> --}}
 
                     <div class="flex justify-center">
-                                                
+                        {{-- @if (Route::has('password.request'))
+                            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                href="{{ route('password.request') }}">
+                                {{ __('Forgot your password?') }}
+                            </a>
+                        @endif --}}
+                        
+                        
                         <x-button>
                             {{ __('INGRESAR') }}
                         </x-button>
                     </div>
                 </form>
-                <x-validation-errors class="mb-4" />
+                <x-validation-errors class="my-8" />
             </div>
 
-
-            <div class="flex flex-col justify-center items-end">
-                <div class="text-center">
-                    <span class="block">¿Eres usuario nuevo?</span>
-                    <a href="/registro" class="text-afac-link hover:underline mb-2">Regístrate</a>
+                    <div class="flex flex-col text-center justify-center items-stretch">
+                        <div class="my-10" >
+                            <span class="block">¿Eres usuario nuevo?</span>
+                            <a href="/registro" class="text-afac-link hover:underline mb-2">Regístrate</a>
+                        </div>
+                        <div class="my-10">
+                            <span class="block">¿Olvidaste tu contraseña?</span>
+                            <a href="/forgot-password" class="text-afac-link hover:underline mb-2">Recuperar</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="text-center">
-                    <span class="block">¿Olvidaste tu contraseña?</span>
-                    <a href="/forgot-password" class="text-afac-link hover:underline">Recuperar</a>
-                </div>
-
-            </div>
         </div>
     </div>
 </x-guest-layout>

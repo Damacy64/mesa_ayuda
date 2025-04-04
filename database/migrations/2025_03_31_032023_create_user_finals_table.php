@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('user_finals', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('empleados_id');
             $table->string('ubicacion_id');
             $table->string('area_id');
             $table->timestamps();
 
             $table->foreign('ubicacion_id')->references('piso')->on('locations')->onDelete('cascade');
             $table->foreign('area_id')->references('departamento')->on('areas')->onDelete('cascade');
+            $table->foreignId('empleado_id')->nullable()->constrained('users')->onDelete('cascade');
         });
     }
 

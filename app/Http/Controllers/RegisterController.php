@@ -33,7 +33,7 @@ class RegisterController extends Controller
         $user->rol_id = 'USUARIO';
         $user->save();
 
-        $userF->empleados_id = $user->id;
+        $userF->empleado_id = $user->id;
         $userF->area_id = $request->input('area');
         $userF->ubicacion_id = $request->input('location');
         $userF->save();

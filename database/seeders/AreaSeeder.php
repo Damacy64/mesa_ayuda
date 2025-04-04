@@ -11,6 +11,8 @@ class AreaSeeder extends Seeder
     {
         $areas = [
             ['departamento' => 'Recursos Humanos'],
+            ['departamento' => 'Desarrollo Estrategico'],
+            ['departamento' => 'Direccion General'],
             ['departamento' => 'Tecnología de la Información'],
             ['departamento' => 'Finanzas'],
             ['departamento' => 'Marketing'],

@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,7 +13,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
 
@@ -37,15 +39,14 @@ class User extends Authenticatable
         'password',
     ];
 
-    public function sexo():BelongsTo{
+    public function sexo(): BelongsTo
+    {
         return $this->belongsTo(Gender::class);
     }
-    public function area():BelongsTo{
+    public function area(): BelongsTo
+    {
         return $this->belongsTo(Area::class);
     }
-    // public function roles():BelongsTo{
-    //     return $this->belongsTo();
-    // }
     /**
      * The attributes that should be hidden for serialization.
      *
