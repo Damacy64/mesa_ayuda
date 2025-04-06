@@ -1,100 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-guest-layout>
+    <x-authentication-card>
+        <x-slot name="logo">
+            <x-authentication-card-logo />
+        </x-slot>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mesa de Ayuda - Registro</title>
-    @vite(['resources/css/app.css'])
-</head>
+        
 
-<body>
-
-    <x-header>
-        REGISTRO USUARIO
-    </x-header>
-
-
-    <div class="max-w-5xl mx-auto bg-white p-8 mt-6">
-        <form method="POST" action="/registro">
+        <form method="POST" action="{{ route('register') }}">
             @csrf
-            <div class="grid grid-cols-3 gap-6">
 
-                <div>
-                    <x-label>Nombre(s)*</x-label>
-                    <x-input type="text" name="names" :value="old('names')"></x-input>
-                </div>
-                <div>
-                    <x-label>Apellido Paterno*</x-label>
-                    <x-input type="text" name="last_name_p" :value="old('last_name_p')"></x-input>
-                </div>
-                <div>
-                    <x-label>Apellido Materno</x-label>
-                    <x-input type="text" name="last_name_m" :value="old('last_name_m')"></x-input>
-                </div>
-
-
-                <div>
-                    <x-label>Ubicación*</x-label>
-                    <x-select name="location">
-                        @foreach ($locations as $location)
-                            <option value="{{ $location->piso }}">{{ $location->piso}}</option>    
-                        @endforeach
-                    </x-select>
-                </div>
-                <div>
-                    <x-label>Área*</x-label>
-                    <x-select name="area">
-                        @foreach ($areas as $area)
-                            <option value="{{ $area->departamento }}">{{ $area->departamento}}</option>
-                        @endforeach
-                    </x-select>
-                </div>
-                <div>
-                    <x-label>N° empleado*</x-label>
-                    <x-input type="text" name="employer_number" :value="old('employer_number')"></x-input>
-                </div>
-
-
-                <div>
-                    <x-label>Correo Institucional*</x-label>
-                    <x-input type="email" name="email" :value="old('email')"></x-input>
-                </div>
-                <div>
-                    <x-label>Confirmar Correo*</x-label>
-                    <x-input type="email" name="email_confirmation" :value="old('email_confirmation')"></x-input>
-                </div>
-                <div>
-                    <x-label>Sexo*</x-label>
-                    <x-select name="sex">
-                        @foreach ($generos as $genero)
-                            <option value="{{ $genero->sexo }}">{{ $genero->sexo}}</option>
-                        @endforeach
-                    </x-select>
-                </div>
-
-                <div>
-                    <x-label>Contraseña*</x-label>
-                    <x-input type="password" name="password"></x-input>
-                </div>
-                <div>
-                    <x-label>Confirmar Contraseña*</x-label>
-                    <x-input type="password" name="password_confirmation"></x-input>
-                </div>
+            <div>
+                <x-label for="name" value="{{ __('Nombre(s)*') }}" />
+                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>
 
-
-            <div class=" mt-5 bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
-                <p class="font-bold">RECUERDA</p>
-                <p class="text-sm">INTRODUCE UNA CONTRASEÑA PARA ESTE SISTEMA. RECUERDA QUE DEBE TENER AL MENOS 8 CARACTERES,INCLUYENDO AL MENOS UNA MAYÚSCULA, UNA MINÚSCULA, UN NÚMERO Y UN CARÁCTER ESPECIAL (#, *, !, @, $, %)</p>
+            <div>
+                <x-label for="last_name_p" value="{{ __('Apellido Paterno*') }}" />
+                <x-input id="last_name_p" class="block mt-1 w-full" type="text" name="last_name_p" :value="old('last_name_p')" required autofocus autocomplete="last_name_p" />
             </div>
-            <x-validation-errors></x-validation-errors>
 
+            <div>
+                <x-label for="last_name_m" value="{{ __('Apellido Materno') }}" />
+                <x-input id="last_name_m" class="block mt-1 w-full" type="text" name="last_name_m" :value="old('last_name_m')" autofocus autocomplete="last_name_m" />
+            </div>
 
-            <div class="flex justify-center mt-6">
-                <x-button>REGISTRAR</x-button>
+            <livewire:register-select-location/>
+
+           <livewire:register-select-area/> 
+
+            <div>
+                <x-label for="employer_number" value="{{ __('N° empleado*') }}" />
+                <x-input id="employer_number" class="block mt-1 w-full" type="text" name="employer_number" :value="old('employer_number')" required autofocus autocomplete="employer_number" />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="email" value="{{ __('Correo institucional*') }}" />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+            </div>
+
+            <div>
+                <x-label for="email_confirmation" value="{{ __('Confirmar Correo') }}" />
+                <x-input id="email_confirmation" class="block mt-1 w-full" type="text" name="email_confirmation" :value="old('email_confirmation')" required autofocus autocomplete="email_confirmation" />
+            </div>
+
+            <livewire:register-select-sex/>
+
+            <div class="mt-4">
+                <x-label for="password" value="{{ __('Contraseña*') }}" />
+                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="password_confirmation" value="{{ __('Confirmar Contraseña') }}" />
+                <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+            </div>
+
+            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
+                <div class="mt-4">
+                    <x-label for="terms">
+                        <div class="flex items-center">
+                            <x-checkbox name="terms" id="terms" required />
+
+                            <div class="ms-2">
+                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
+                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Terms of Service').'</a>',
+                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Privacy Policy').'</a>',
+                                ]) !!}
+                            </div>
+                        </div>
+                    </x-label>
+                </div>
+            @endif
+            <x-validation-errors class="mb-4" />
+            <div class="flex items-center justify-end mt-4">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
+                    {{ __('Already registered?') }}
+                </a>
+
+                <x-button class="ms-4">
+                    {{ __('Register') }}
+                </x-button>
             </div>
         </form>
-    </div>
-</body>
-</html>
+    </x-authentication-card>
+</x-guest-layout>

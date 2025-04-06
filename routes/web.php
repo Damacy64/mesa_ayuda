@@ -6,15 +6,17 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [LoginController::class, 'show']);
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::get('/registro', [RegisterController::class, 'show']);
-Route::post('/registro', [RegisterController::class, 'create']);
+//Route::get('/registro', [RegisterController::class, 'show']);
+//Route::post('/registro', [RegisterController::class, 'create']);
 
-Route::get('/forgot-password', [ForgotPasswordController::class, 'show']);
-Route::get('/reset-password', [ResetPasswordController::class, 'show']);
+//Route::get('/forgot-password', [ForgotPasswordController::class, 'show']);
+//Route::get('/reset-password', [ResetPasswordController::class, 'show']);
 
-//ruta para los select
+
 
 Route::middleware([
     'auth:sanctum',

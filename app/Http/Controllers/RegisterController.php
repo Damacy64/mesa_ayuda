@@ -23,7 +23,7 @@ class RegisterController extends Controller
         $user = new User();
         $userF = new UserFinal();
 
-        $user->names = $request->names;
+        $user->names = $request->name;
         $user->last_name_p = $request->last_name_p;
         $user->last_name_m = $request->last_name_m;
         $user->sex_id = $request->input('sex');
