@@ -25,6 +25,9 @@ return new class extends Migration
             $table->timestamp('fecha_termino')->nullable();
             $table->timestamp('tiempo_resolucion')->nullable();
             $table->timestamps();
+
+            $table->foreign('usuario_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('tecnico_id')->references('id')->on('support')->onDelete('cascade');
         });
     }
 

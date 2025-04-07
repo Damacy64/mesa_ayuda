@@ -44,6 +44,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo(Gender::class);
     }
+    
     public function area(): BelongsTo
     {
         return $this->belongsTo(Area::class);

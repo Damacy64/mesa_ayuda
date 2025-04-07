@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class UserFinal extends Model
 {
     protected $fillable = [
-        'empleados_id',
         'ubicacion_id',
         'area_id',
+        'empleado_id',
     ];
 
     public function empleado():BelongsTo{

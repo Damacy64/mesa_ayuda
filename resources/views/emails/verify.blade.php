@@ -1,6 +1,6 @@
 <x-mail::message>
-<img src="https://testing-ventanillas.afac-avciv.com/images/logo.png" class="mx-4 w-24 h-24 mb-2">
-## ¡Bienvenido(a) al Sistema de Mesa de Ayuda AFAC!
+    <img src="https://citas-medicina.afac-avciv.com/images/logoafac.png" class="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';max-width:100%;margin:auto;"><br>
+# ¡Bienvenido(a) al Sistema de Mesa de Ayuda AFAC!
 
 ESTIMADO(A) {{ $name }}!
 
@@ -15,5 +15,5 @@ Si no creaste una cuenta, puedes ignorar este correo.
 
 AGENCIA FEDERAL DE AVIACION CIVIL,<br>
 Si esta teniendo problemas al hacer clic en el boton "Verificar correo electrónico",copie y pegue la URL de abajo en su navegador web:<br>
-{{ $url}}
+<a href="{{ $url }}">{{ $url }}</a>
 </x-mail::message>

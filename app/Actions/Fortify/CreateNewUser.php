@@ -44,7 +44,7 @@ class CreateNewUser implements CreatesNewUsers
             'password' => Hash::make($input['password']),
         ]);
 
-        UserFinal::create([
+        return UserFinal::create([
             'empleado_id' => $user->id,
             'area_id' => $input['area'],
             'ubicacion_id' => $input['location'],
