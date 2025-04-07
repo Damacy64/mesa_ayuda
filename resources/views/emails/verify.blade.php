@@ -14,6 +14,7 @@ Verificar correo electrónico
 Si no creaste una cuenta, puedes ignorar este correo.
 
 AGENCIA FEDERAL DE AVIACION CIVIL,<br>
+<br>
 Si esta teniendo problemas al hacer clic en el boton "Verificar correo electrónico",copie y pegue la URL de abajo en su navegador web:<br>
 <a href="{{ $url }}">{{ $url }}</a>
 </x-mail::message>

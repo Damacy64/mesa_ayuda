@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id('folio');
-            $table->string('usuario_id');
+            //$table->unsignedBigInteger('usuario_id');
             $table->string('tecnico_id');
             $table->string('categoria_id');
             $table->string('prioridad_id');
@@ -26,8 +26,10 @@ return new class extends Migration
             $table->timestamp('tiempo_resolucion')->nullable();
             $table->timestamps();
 
-            $table->foreign('usuario_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('tecnico_id')->references('id')->on('support')->onDelete('cascade');
+            // $table->foreignId('usuario_id')->nullable()->constrained('users')->onDelete('cascade');
+            // $table->foreign('tecnico_id')->references('id')->on('support')->onDelete('cascade');
+            // $table->foreign('categoria_id')->references('id')->on('option')->onDelete('cascade');
+            
         });
     }
 
