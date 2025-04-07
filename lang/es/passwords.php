@@ -16,7 +16,7 @@ return [
     'reset' => 'Tu contraseña ah sido restaurada.',
     'sent' => 'Hemos enviado el link de restauracion de contraseña.',
     'throttled' => 'Por favor espere antes de volver a intentar.',
-    'token' => 'This password reset token is invalid.',
+    'token' => 'Este token de restablecimiento de contraseña no es válido.',
     'user' => "No encontramos un usuario con esa dirección de correo",
 
 ];

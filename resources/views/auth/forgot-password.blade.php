@@ -28,7 +28,7 @@
 
             <div class="flex items-center justify-center mt-4">
                 <x-button>
-                    GUARDAR
+                    ENVIAR
                 </x-button>
             </div>
         </form>
