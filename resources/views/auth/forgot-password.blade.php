@@ -2,7 +2,7 @@
 
     <x-authentication-card>
         <x-slot name="logo">
-            <h1 class="mb-10">Solicitud de Recuperación de Contraseña</h1>
+            <h1 class="mb-10 font-bold">Solicitud de Recuperación de Contraseña</h1>
             <x-authentication-card-logo />
         </x-slot>
 

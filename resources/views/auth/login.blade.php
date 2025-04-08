@@ -36,7 +36,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="flex justify-center flex-col">
+                <div class="flex justify-center flex-col text-center">
     <div class="my-4 p-4 mt-1">
         @if (Route::has('password.request'))
             <p class="mb-2">
