@@ -17,7 +17,7 @@ class CustomVerifyEmail extends BaseVerifyEmail
             ->subject('Verifica tu correo electrónico')
             ->markdown('emails.verify', [
                 'url' => $verificationUrl,
-                'name' => $notifiable->name ?? $notifiable->name,
+                'names' => $notifiable->name ?? $notifiable->name,
                 'email' => $notifiable->email,
             ]);
     }

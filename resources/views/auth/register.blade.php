@@ -5,19 +5,19 @@
             @csrf
                 <div>
                     <x-label for="name" value="{{ __('Nombre(s)*') }}" />
-                    <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
+                    <x-input maxlength="50" id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
                         required autofocus autocomplete="name" />
                 </div>
 
                 <div>
                     <x-label for="last_name_p" value="{{ __('Apellido Paterno*') }}" />
-                    <x-input id="last_name_p" class="block mt-1 w-full" type="text" name="last_name_p"
+                    <x-input maxlength="30" id="last_name_p" class="block mt-1 w-full" type="text" name="last_name_p"
                         :value="old('last_name_p')" required autofocus autocomplete="last_name_p" />
                 </div>
 
                 <div>
                     <x-label for="last_name_m" value="{{ __('Apellido Materno') }}" />
-                    <x-input id="last_name_m" class="block mt-1 w-full" type="text" name="last_name_m"
+                    <x-input maxlength="30" id="last_name_m" class="block mt-1 w-full" type="text" name="last_name_m"
                         :value="old('last_name_m')" autofocus autocomplete="last_name_m" />
                 </div>
 
@@ -27,19 +27,19 @@
 
                 <div>
                     <x-label for="employer_number" value="{{ __('N° empleado*') }}" />
-                    <x-input id="employer_number" class="block mt-1 w-full" type="text" name="employer_number"
+                    <x-input maxlength="7" id="employer_number" class="block mt-1 w-full" type="text" name="employer_number"
                         :value="old('employer_number')" required autofocus autocomplete="employer_number" />
                 </div>
 
                 <div>
                     <x-label for="email" value="{{ __('Correo institucional*') }}" />
-                    <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
+                    <x-input maxlength="35" id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
                         required autocomplete="username" />
                 </div>
 
                 <div>
                     <x-label for="email_confirmation" value="{{ __('Confirmar Correo') }}" />
-                    <x-input id="email_confirmation" class="block mt-1 w-full" type="text" name="email_confirmation"
+                    <x-input maxlength="35" id="email_confirmation" class="block mt-1 w-full" type="text" name="email_confirmation"
                         :value="old('email_confirmation')" required autofocus autocomplete="email_confirmation" />
                 </div>
 
@@ -47,13 +47,13 @@
 
                 <div>
                     <x-label for="password" value="{{ __('Contraseña*') }}" />
-                    <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                    <x-input minlength="8" maxlength="15" id="password" class="block mt-1 w-full" type="password" name="password" required
                         autocomplete="new-password" />
                 </div>
 
                 <div>
                     <x-label for="password_confirmation" value="{{ __('Confirmar Contraseña') }}" />
-                    <x-input id="password_confirmation" class="block mt-1 w-full" type="password"
+                    <x-input minlength="8" maxlength="15" id="password_confirmation" class="block mt-1 w-full" type="password"
                         name="password_confirmation" required autocomplete="new-password" />
                 </div>
 

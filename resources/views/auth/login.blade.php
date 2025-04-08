@@ -21,12 +21,12 @@
 
                         <div class="my-8 p-4 w-80">
                             <x-label for="email" value="{{ __('Correo electronico') }}" />
-                            <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                            <x-input maxlength="35" id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
                         </div>
 
                         <div  class="my-8 p-4 w-80">
                             <x-label for="password" value="{{ __('Contraseña') }}" />
-                            <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+                            <x-input minlength="8" maxlength="15" id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
                         </div>
 
                         <div class="flex items-center justify-center mt-4">

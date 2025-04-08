@@ -2,8 +2,6 @@
 
 namespace App\Actions\Fortify;
 
-use App\Models\Area;
-use App\Models\Location;
 use App\Models\User;
 use App\Models\UserFinal;
 use Illuminate\Support\Facades\Hash;

@@ -23,7 +23,7 @@
 
             <div class="block">
                 <x-label for="email" value="Ingrese su Correo" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                <x-input maxlength="35" id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             </div>
 
             <div class="flex items-center justify-center mt-4">
