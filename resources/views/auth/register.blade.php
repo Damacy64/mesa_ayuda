@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-header>REGISTRO USUARIO</x-header>
 
-        <form method="POST" action="{{ route('register') }}" class="grid grid-cols-1 md:grid-cols-3 grid-rows-4 gap-4 w-4/6 m-auto mt-20">
+        <form method="POST" action="{{ route('register') }}" class="grid grid-cols-1 md:grid-cols-3 grid-rows-5 gap-4 w-4/6 m-auto mt-20">
             @csrf
                 <div>
                     <x-label for="name" value="{{ __('Nombre(s)*') }}" />
@@ -84,15 +84,23 @@
                     </div>
                 @endif
                 <x-validation-errors class="mb-4" />
-                <div class="md:col-span-3 flex justify-center items-center gap-6 mt-6">
+                <div class="col-start-1 col-end-4 ">
                     {{-- <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         href="{{ route('login') }}">
                         {{ __('¿Ya estas registrado?') }}
                     </a> --}}
 
-                    <x-button class="ms-4">
-                        {{ __('Registrar') }}
-                    </x-button>
-                </div>
+                    <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert ">
+                        <p class="font-bold">RECUERDA</p>
+                        <p class="text-sm">INTRODUCE UNA CONTRASEÑA PARA ESTE SISTEMA. RECUERDA QUE DEBE TENER AL MENOS 8 CARACTERES, INCLUYENDO AL MENOS UNA MAYÚSCULA, UNA MINÚSCULA, UN NÚMERO Y UN CARÁCTER ESPECIAL (#, *, !, @, $, %).</p>
+                      </div>
+                    </div>
+
+                    <div class= "col-start-2">
+                        <x-button class="m-auto ">
+                            {{ __('Registrar') }}
+                        </x-button>
+                    </div>
+            
         </form>
 </x-guest-layout>

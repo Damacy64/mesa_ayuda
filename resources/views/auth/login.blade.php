@@ -15,7 +15,7 @@
                 <div class="flex flex-col justify-center items-center lg:mb-0 lg:w-1/3">
                     <h2 class="lg:text-6xl sm:text-4xl font-semibold text-afac-golden text-center lg:m-auto">BIENVENIDO</h2>
                 </div>
-                <div class="flex justify-center">
+                <div class="flex items-center justify-center">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
