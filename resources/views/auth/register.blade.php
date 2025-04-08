@@ -96,7 +96,7 @@
                       </div>
                     </div>
 
-                    <div class= "col-start-2">
+                    <div class= "col-start-2 grid place-items:center">
                         <x-button class="m-auto ">
                             {{ __('Registrar') }}
                         </x-button>
