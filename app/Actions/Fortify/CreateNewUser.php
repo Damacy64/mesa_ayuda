@@ -28,7 +28,7 @@ class CreateNewUser implements CreatesNewUsers
             'last_name_p' => ['required', 'string', 'max:50'],
             'last_name_m' => ['string', 'max:50'],
             'employer_number' => ['required', 'string', 'min:4', 'max:4'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users', 'regex:/^[a-zA-Z]+\.([a-zA-Z]+)@afac\.gob.mx$/'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
