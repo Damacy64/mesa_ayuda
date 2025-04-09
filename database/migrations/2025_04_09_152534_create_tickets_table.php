@@ -13,9 +13,6 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id('folio');
-            //$table->unsignedBigInteger('usuario_id');
-            $table->string('tecnico_id');
-            $table->string('categoria_id');
             $table->string('prioridad_id');
             $table->string('estatus_id');
             $table->string('equipo_id');
@@ -26,9 +23,12 @@ return new class extends Migration
             $table->timestamp('tiempo_resolucion')->nullable();
             $table->timestamps();
 
-            // $table->foreignId('usuario_id')->nullable()->constrained('users')->onDelete('cascade');
-            // $table->foreign('tecnico_id')->references('id')->on('support')->onDelete('cascade');
-            // $table->foreign('categoria_id')->references('id')->on('option')->onDelete('cascade');
+            $table->foreignId('usuario_id')->nullable()->constrained('users')->onDelete('cascade');
+            $table->foreignId('tecnico_id')->nullable()->constrained('support')->onDelete('cascade');
+            $table->foreignId('categoria_id')->nullable()->constrained('option')->onDelete('cascade');
+            $table->foreign('prioridad_id')->references('nombre')->on('priority')->onDelete('cascade');
+            $table->foreign('estatus_id')->references('nombre')->on('status')->onDelete('cascade');
+            $table->foreign('equipo_id')->references('numero_serie')->on('computer')->onDelete('cascade');
             
         });
     }

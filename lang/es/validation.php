@@ -44,7 +44,7 @@ return [
     'declined_if' => 'The :attribute field must be declined when :other is :value.',
     'different' => 'The :attribute field and :other must be different.',
     'digits' => 'The :attribute field must be :digits digits.',
-    'digits_between' => 'The :attribute field must be between :min and :max digits.',
+    'digits_between' => 'El campo :attribute debe tener entre :min y :max digitos.',
     'dimensions' => 'The :attribute field has invalid image dimensions.',
     'distinct' => 'The :attribute field has a duplicate value.',
     'doesnt_end_with' => 'The :attribute field must not end with one of the following: :values.',
@@ -95,8 +95,8 @@ return [
     'max' => [
         'array' => 'The :attribute field must not have more than :max items.',
         'file' => 'The :attribute field must not be greater than :max kilobytes.',
-        'numeric' => 'The :attribute field must not be greater than :max.',
-        'string' => 'The :attribute field must not be greater than :max characters.',
+        'numeric' => 'El campo :attribute no debe ser mayor a :max.',
+        'string' => 'El campo :attribute no debe ser mayor a :max caracteres.',
     ],
     'max_digits' => 'The :attribute field must not have more than :max digits.',
     'mimes' => 'The :attribute field must be a file of type: :values.',
@@ -119,9 +119,9 @@ return [
     'numeric' => 'El campo :attribute debe ser un número.',
     'password' => [
         'letters' => 'The :attribute field must contain at least one letter.',
-        'mixed' => 'The :attribute field must contain at least one uppercase and one lowercase letter.',
-        'numbers' => 'The :attribute field must contain at least one number.',
-        'symbols' => 'The :attribute field must contain at least one symbol.',
+        'mixed' => 'La :attribute debe contener al menos una letra mayuscula y una minuscula.',
+        'numbers' => 'La :attribute debe contener al menos un numero.',
+        'symbols' => 'La :attribute debe contener al menos un simbolo.',
         'uncompromised' => 'The given :attribute has appeared in a data leak. Please choose a different :attribute.',
     ],
     'present' => 'The :attribute field must be present.',
@@ -135,8 +135,8 @@ return [
     'prohibited_if_declined' => 'The :attribute field is prohibited when :other is declined.',
     'prohibited_unless' => 'The :attribute field is prohibited unless :other is in :values.',
     'prohibits' => 'The :attribute field prohibits :other from being present.',
-    'regex' => 'The :attribute field format is invalid.',
-    'required' => 'The :attribute field is required.',
+    'regex' => 'El formato de :attribute no es valido.',
+    'required' => 'El campo :attribute es requerido.',
     'required_array_keys' => 'The :attribute field must contain entries for: :values.',
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_if_accepted' => 'The :attribute field is required when :other is accepted.',
@@ -154,7 +154,7 @@ return [
         'string' => 'The :attribute field must be :size characters.',
     ],
     'starts_with' => 'The :attribute field must start with one of the following: :values.',
-    'string' => 'The :attribute field must be a string.',
+    'string' => 'El campo :attribute debe ser un string.',
     'timezone' => 'The :attribute field must be a valid timezone.',
     'unique' => 'El :attribute ya existe',
     'uploaded' => 'The :attribute failed to upload.',
@@ -191,6 +191,13 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'names' => 'Nombre(s)',
+        'last_name_p' => 'Apellido Paterno',
+        'last_name_m' => 'Apellido Materno',
+        'password' => 'contraseña',
+        'employer_number' => 'Numero Empleado',
+        'email' => 'Correo',
+    ],
 
 ];

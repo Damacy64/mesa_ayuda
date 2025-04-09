@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('especialidad');
             $table->integer('carga_trabajo');
             $table->string('disponibilidad');
+            $table->string('estado');
             $table->timestamps();
 
             $table->foreignId('empleado_id')->nullable()->constrained('users')->onDelete('cascade');
