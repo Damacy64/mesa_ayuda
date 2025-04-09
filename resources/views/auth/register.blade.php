@@ -5,19 +5,19 @@
             @csrf
                 <div>
                     <x-label for="name" value="{{ __('Nombre(s)*') }}" />
-                    <x-input maxlength="50" id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
+                    <x-input maxlength="30" id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
                         required autofocus autocomplete="name" />
                 </div>
 
                 <div>
                     <x-label for="last_name_p" value="{{ __('Apellido Paterno*') }}" />
-                    <x-input maxlength="30" id="last_name_p" class="block mt-1 w-full" type="text" name="last_name_p"
+                    <x-input maxlength="20" id="last_name_p" class="block mt-1 w-full" type="text" name="last_name_p"
                         :value="old('last_name_p')" required autofocus autocomplete="last_name_p" />
                 </div>
 
                 <div>
                     <x-label for="last_name_m" value="{{ __('Apellido Materno') }}" />
-                    <x-input maxlength="30" id="last_name_m" class="block mt-1 w-full" type="text" name="last_name_m"
+                    <x-input maxlength="20" id="last_name_m" class="block mt-1 w-full" type="text" name="last_name_m"
                         :value="old('last_name_m')" autofocus autocomplete="last_name_m" />
                 </div>
 
@@ -33,13 +33,13 @@
 
                 <div>
                     <x-label for="email" value="{{ __('Correo institucional*') }}" />
-                    <x-input maxlength="35" id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
+                    <x-input maxlength="50" id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
                         required autocomplete="username" />
                 </div>
 
                 <div>
                     <x-label for="email_confirmation" value="{{ __('Confirmar Correo') }}" />
-                    <x-input maxlength="35" id="email_confirmation" class="block mt-1 w-full" type="text" name="email_confirmation"
+                    <x-input maxlength="50" id="email_confirmation" class="block mt-1 w-full" type="text" name="email_confirmation"
                         :value="old('email_confirmation')" required autofocus autocomplete="email_confirmation" />
                 </div>
 
@@ -92,7 +92,7 @@
 
                     <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert ">
                         <p class="font-bold">RECUERDA</p>
-                        <p class="text-sm">INTRODUCE UNA CONTRASEÑA PARA ESTE SISTEMA. RECUERDA QUE DEBE TENER AL MENOS 8 CARACTERES, INCLUYENDO AL MENOS UNA MAYÚSCULA, UNA MINÚSCULA, UN NÚMERO Y UN CARÁCTER ESPECIAL (#, *, !, @, $, %).</p>
+                        <p class="text-sm">INTRODUCE UNA CONTRASEÑA PARA ESTE SISTEMA. RECUERDA QUE DEBE TENER AL MENOS 8 CARACTERES,INCLUYENDO AL MENOS UNA MAYÚSCULA, UNA MINÚSCULA, UN NÚMERO Y UN CARÁCTER ESPECIAL (#, *, !, @, $, %).</p>
                       </div>
                     </div>
 
