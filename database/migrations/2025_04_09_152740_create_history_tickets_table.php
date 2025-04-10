@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('history_tickets', function (Blueprint $table) {
             $table->id();
-            $table->string('ticket_id');
+            $table->unsignedBigInteger('ticket_id');
             $table->timestamp('fecha_actualizacion');
             $table->string('campo_modificado');
             $table->string('estado_anterior');
             $table->string('estado_nuevo');
             $table->timestamps();
+
+            $table->foreign('ticket_id')->references('folio')->on('tickets')->onDelete('cascade');
         });
     }
 

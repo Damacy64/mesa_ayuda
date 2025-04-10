@@ -14,7 +14,7 @@
             <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
             <div class="block">
-                <x-label for="email" value="{{ __('Email') }}" />
+                <x-label for="email" value="{{ __('Correo Institucional') }}" />
                 <x-input maxlength="35" id="email" class="block mt-1 w-full" :value="old('email', $request->email)" type="email" name="email"  required autofocus autocomplete="username" />
             </div>
 

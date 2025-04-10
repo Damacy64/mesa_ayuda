@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('computer', function (Blueprint $table) {
             $table->string('numero_serie')->primary();
             $table->string('direccion_ip', 11);
+            $table->string('estado');
             $table->timestamps();
         });
     }
