@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-header>REGISTRO USUARIO</x-header>
 
-        <form method="POST" action="{{ route('register') }}" class="grid grid-cols-1 md:grid-cols-3 grid-rows-5 gap-4 w-4/6 m-auto mt-20">
+        <form method="POST" action="{{ route('register') }}" class="container mx-auto p-6 grid grid-cols-1 md:grid-cols-3 grid-rows-5 gap-4 w-4/6 mt-20">
             @csrf
                 <div>
                     <x-label for="name" value="{{ __('Nombre(s)*') }}" />

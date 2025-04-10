@@ -2,7 +2,7 @@
     <x-header>MESA DE AYUDA</x-header>
 
     @session('status')
-        <div class="flex p-4 mb-4 mt-2 text-smounded-lg bg-green-50 text-green-900" role="alert">
+        <div class="flex p-4 mb-4 mt-2 text-sm rounded-lg bg-green-50 text-green-900" role="alert">
             <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd"
@@ -16,63 +16,51 @@
         </div>
     @endsession
 
-    <div class="h-screen flex flex-col bg-white">
-        <div class="p-8 mt-40 grid grid-cols-3 lg:flex-row">
-            <div class="flex flex-col justify-center items-center lg:mb-0 lg:w-1/3">
-                <h2 class="text-base xs:text-sm sm:text-lg md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-afac-golden text-center lg:m-auto">BIENVENIDO
+    <div class="min-h-screen flex flex-col bg-white">
+        <div class="container mx-auto p-6 grid grid-cols-1 gap-8 lg:grid-cols-3">
+            <div class="flex flex-col justify-center items-center">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-afac-golden text-center">
+                    BIENVENIDO
                 </h2>
             </div>
+
             <div class="flex items-center justify-center">
-                <form method="POST" action="{{ route('login') }}">
+                <form method="POST" action="{{ route('login') }}" class="max-w-md space-y-6">
                     @csrf
 
-                    <div class="my-8 p-4 ">
-                        <x-label for="email" value="{{ __('Correo electronico') }}" />
-                        <x-input maxlength="35" id="email" class="block mt-1 max-w-md sm:max-w-lg md:max-w-x2 lg:max-w-3xl xl:max-w-4xl px-2" type="email"
+                    <div>
+                        <x-label for="email" value="{{ __('Correo electrónico') }}" />
+                        <x-input maxlength="35" id="email" class="block mt-1 w-full px-8 py-2" type="email"
                             name="email" :value="old('email')" required autofocus autocomplete="username" />
                     </div>
 
-                    <div class="my-8 p-4 ">
+                    <div>
                         <x-label for="password" value="{{ __('Contraseña') }}" />
-                        <x-input minlength="8" maxlength="15" id="password" class="block mt-1 max-w-md sm:max-w-md md:max-w-lg lg:max-w-3xl xl:max-w-4xl px-2"
+                        <x-input minlength="8" maxlength="15" id="password" class="block mt-1 w-full px-8 py-2"
                             type="password" name="password" required autocomplete="current-password" />
                     </div>
 
-                    <div class="flex items-center justify-center mt-4">
-                        <x-button class="ms-4">
+                    <div class="flex items-center justify-center">
+                        <x-button class="flex items-center justify-center">
                             {{ __('INGRESAR') }}
                         </x-button>
                     </div>
                 </form>
             </div>
 
-            <div class="flex justify-center flex-col text-center text-xs sm:text-sm md:text-base lg:text-lg ">
-                <div class="my-4 p-4 mt-1">
-                    @if (Route::has('password.request'))
-                        <p class="mb-2">
-                            ¿Eres usuario nuevo?
-                        </p>
-                        <div>
-                            <a class="underline text-afac-link hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                href="{{ route('register') }}">
-                                {{ __('Registrate') }}
-                            </a>
-                        </div>
-                    @endif
+            <div class="flex flex-col justify-center items-center text-center text-sm sm:text-base space-y-8">
+                <div>
+                    <p class="mb-2">¿Eres usuario nuevo?</p>
+                    <a class="underline text-afac-link hover:text-gray-900" href="{{ route('register') }}">
+                        {{ __('Regístrate') }}
+                    </a>
                 </div>
 
-                <div class="my-8 p-4 mt-1">
-                    @if (Route::has('password.request'))
-                        <p class="mb-2">
-                            ¿Olvidaste tu contraseña?
-                        </p>
-                        <div>
-                            <a class="underline text-afac-link hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                href="{{ route('password.request') }}">
-                                {{ __('Recuperar') }}
-                            </a>
-                        </div>
-                    @endif
+                <div>
+                    <p class="mb-2">¿Olvidaste tu contraseña?</p>
+                    <a class="underline text-afac-link hover:text-gray-900" href="{{ route('password.request') }}">
+                        {{ __('Recuperar') }}
+                    </a>
                 </div>
             </div>
         </div>

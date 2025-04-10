@@ -1,14 +1,15 @@
 <x-guest-layout>
-
     <x-authentication-card>
         <x-slot name="logo">
-            <h1 class="mb-10 font-bold">Solicitud de Recuperación de Contraseña</h1>
+            <h1 class="mb-6 text-center text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
+                Solicitud de Recuperación de Contraseña
+            </h1>
             <x-authentication-card-logo />
         </x-slot>
 
-        <div class="mb-4 text-sm text-gray-600 text-justify">
+        <div class="mb-4 text-sm text-gray-600 text-justify sm:text-base">
             ¿Olvidaste tu contraseña? No hay problema. Simplemente indícanos tu correo electrónico y te enviaremos un
-            enlace para restablecer tu contraseña y podrás elegir una nueva.
+            enlace para restablecerla y podrás elegir una nueva.
         </div>
 
         @session('status')
@@ -21,25 +22,24 @@
                 </svg>
                 <span class="sr-only">Info</span>
                 <div class="ms-3">
-                    <span class="uppercase">{{ $value }}
-                    </span>
+                    <span class="uppercase">{{ $value }}</span>
                 </div>
             </div>
         @endsession
 
         <x-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('password.email') }}">
+        <form method="POST" action="{{ route('password.email') }}" class="space-y-6">
             @csrf
 
-            <div class="block">
+            <div>
                 <x-label for="email" value="Ingrese su Correo" />
-                <x-input maxlength="35" id="email" class="block mt-1 w-full" type="email" name="email"
-                    :value="old('email')" required autofocus autocomplete="username" />
+                <x-input maxlength="35" id="email" class="block mt-1 w-full max-w-full sm:max-w-md" type="email"
+                    name="email" :value="old('email')" required autofocus autocomplete="username" />
             </div>
 
-            <div class="flex items-center justify-center mt-4">
-                <x-button>
+            <div class="flex items-center justify-center">
+                <x-button class="flex items-center justify-center sm:w-auto">
                     ENVIAR
                 </x-button>
             </div>
