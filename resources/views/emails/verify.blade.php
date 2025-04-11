@@ -2,7 +2,7 @@
     <img src="https://citas-medicina.afac-avciv.com/images/logoafac.png" class="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';max-width:100%;margin:auto;"><br>
 # ¡Bienvenido(a) al Sistema de Mesa de Ayuda AFAC!
 
-Estimado(a)! {{ $name }}!
+Estimado(a)! {{ $names }}!
 
 Para acceder al sistema, recuerda que deberas ingresar tu correo institucional,<br>
 {{ $email }}
