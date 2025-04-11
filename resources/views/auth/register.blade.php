@@ -1,26 +1,25 @@
 <x-guest-layout>
     <x-header>REGISTRO USUARIO</x-header>
 
-    <form method="POST" action="{{ route('register') }}"
-        class="grid grid-cols-1 md:grid-cols-3 grid-rows-5 gap-4 w-4/6 m-auto mt-20">
-        @csrf
-        <div>
-            <x-label for="name" value="{{ __('Nombre(s)*') }}" />
-            <x-input maxlength="50" id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
-                required autofocus autocomplete="name" />
-        </div>
+        <form method="POST" action="{{ route('register') }}" class="container mx-auto p-6 grid grid-cols-1 md:grid-cols-3 grid-rows-5 gap-4 w-4/6 mt-20">
+            @csrf
+                <div>
+                    <x-label for="name" value="{{ __('Nombre(s)*') }}" />
+                    <x-input maxlength="50" id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
+                        required autofocus autocomplete="name" />
+                </div>
 
-        <div>
-            <x-label for="last_name_p" value="{{ __('Apellido Paterno*') }}" />
-            <x-input maxlength="30" id="last_name_p" class="block mt-1 w-full" type="text" name="last_name_p"
-                :value="old('last_name_p')" required autofocus autocomplete="last_name_p" />
-        </div>
+                <div>
+                    <x-label for="last_name_p" value="{{ __('Apellido Paterno*') }}" />
+                    <x-input maxlength="30" id="last_name_p" class="block mt-1 w-full" type="text" name="last_name_p"
+                        :value="old('last_name_p')" required autofocus autocomplete="last_name_p" />
+                </div>
 
-        <div>
-            <x-label for="last_name_m" value="{{ __('Apellido Materno') }}" />
-            <x-input maxlength="30" id="last_name_m" class="block mt-1 w-full" type="text" name="last_name_m"
-                :value="old('last_name_m')" autofocus autocomplete="last_name_m" />
-        </div>
+                <div>
+                    <x-label for="last_name_m" value="{{ __('Apellido Materno') }}" />
+                    <x-input maxlength="30" id="last_name_m" class="block mt-1 w-full" type="text" name="last_name_m"
+                        :value="old('last_name_m')" autofocus autocomplete="last_name_m" />
+                </div>
 
         <livewire:register-select-location />
 
@@ -32,17 +31,17 @@
                 :value="old('employer_number')" required autofocus autocomplete="employer_number" />
         </div>
 
-        <div>
-            <x-label for="email" value="{{ __('Correo institucional*') }}" />
-            <x-input maxlength="35" id="email" class="block mt-1 w-full" type="email" name="email"
-                :value="old('email')" required autocomplete="username" />
-        </div>
+                <div>
+                    <x-label for="email" value="{{ __('Correo institucional*') }}" />
+                    <x-input maxlength="35" id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
+                        required autocomplete="username" />
+                </div>
 
-        <div>
-            <x-label for="email_confirmation" value="{{ __('Confirmar Correo') }}" />
-            <x-input maxlength="35" id="email_confirmation" class="block mt-1 w-full" type="text"
-                name="email_confirmation" :value="old('email_confirmation')" required autofocus autocomplete="email_confirmation" />
-        </div>
+                <div>
+                    <x-label for="email_confirmation" value="{{ __('Confirmar Correo') }}" />
+                    <x-input maxlength="35" id="email_confirmation" class="block mt-1 w-full" type="text" name="email_confirmation"
+                        :value="old('email_confirmation')" required autofocus autocomplete="email_confirmation" />
+                </div>
 
         <livewire:register-select-sex />
 
@@ -90,17 +89,11 @@
                         {{ __('¿Ya estas registrado?') }}
                     </a> --}}
 
-            <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert ">
-                <p class="font-bold">RECUERDA</p>
-                <p class="text-sm">INTRODUCE UNA CONTRASEÑA PARA ESTE SISTEMA. RECUERDA QUE DEBE TENER AL MENOS 8
-                    CARACTERES,INCLUYENDO AL MENOS UNA MAYÚSCULA, UNA MINÚSCULA, UN NÚMERO Y UN CARÁCTER ESPECIAL (#, *,
-                    !, @, $, %).</p>
-            </div>
-        </div>
-
-        <div class="col-start-1 col-end-4">
-            <x-validation-errors class="mb-4"/>  
-        </div>
+                    <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert ">
+                        <p class="font-bold">RECUERDA</p>
+                        <p class="text-sm">INTRODUCE UNA CONTRASEÑA PARA ESTE SISTEMA. RECUERDA QUE DEBE TENER AL MENOS 8 CARACTERES,INCLUYENDO AL MENOS UNA MAYÚSCULA, UNA MINÚSCULA, UN NÚMERO Y UN CARÁCTER ESPECIAL (#, *, !, @, $, %).</p>
+                      </div>
+                    </div>
 
         <div class= "col-start-2 grid place-items:center">
             <x-button class="m-auto ">
