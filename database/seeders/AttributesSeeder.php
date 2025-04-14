@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class AttributesSeeder extends Seeder
 {
@@ -54,5 +55,7 @@ class AttributesSeeder extends Seeder
             ['tipo' => 'Tipo de equipo', 'valor' => 'All-in-One'],
             ['tipo' => 'Tipo de equipo', 'valor' => 'Tablet'],
         ];
+
+        DB::table('attributes')->insert($attributes);
     }
 }
