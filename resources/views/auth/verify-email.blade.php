@@ -20,12 +20,12 @@
                 <div class="ms-3">
                     {{ __('Se ha enviado un nuevo enlace de verificación a la dirección de correo electrónico que proporcionaste en la configuración de tu perfil.') }}
                 </div>
+            </div>
         @endif
 
         <div class="mt-4 flex items-center justify-between">
             <form method="POST" action="{{ route('verification.send') }}">
                 @csrf
-
                 <div>
                     <x-button type="submit">
                         {{ __('Reenviar correo electrónico de verificación') }}
