@@ -39,6 +39,8 @@
                         <x-input minlength="8" maxlength="15" id="password" class="block mt-1 w-full px-8 py-2"
                             type="password" name="password" required autocomplete="current-password" />
                     </div>
+                    
+                    <x-validation-errors />
 
                     <div class="flex items-center justify-center">
                         <x-button class="flex items-center justify-center">
