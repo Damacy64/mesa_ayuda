@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('equipos', function (Blueprint $table) {
+        Schema::create('computer', function (Blueprint $table) {
             $table->unsignedBigInteger('numero_serie')->primary();
             $table->string('modelo');
             $table->string('direccion_ip', 15);

@@ -9,7 +9,15 @@ class Gender extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'sexo',
-    ];
+    protected $primaryKey = 'sexo';
+    public $incrementing = false;
+    public $timestamps = false;
+    protected $keyType = 'string';
+
+    protected $fillable = ['sexo'];
+
+    public function users()
+    {
+        return $this->hasMany(User::class, 'sex_id', 'sexo');
+    }
 }

@@ -25,8 +25,5 @@ class DatabaseSeeder extends Seeder
         // Gender::factory(3)->create();
         // Area::factory(6)->create();
         // Location::factory(8)->create();
-        DB::table('roles')->insert([
-            'rol' => 'USUARIO'
-        ]);
     }
 }

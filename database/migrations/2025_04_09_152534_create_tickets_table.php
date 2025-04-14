@@ -27,7 +27,7 @@ return new class extends Migration
 
             $table->foreign('prioridad_id')->references('nombre')->on('priority');
             $table->foreign('estatus_id')->references('nombre')->on('status');
-            $table->foreign('equipo_id')->references('numero_serie')->on('equipos');
+            $table->foreign('equipo_id')->references('numero_serie')->on('computer');
             $table->foreign('usuario_id')->references('id')->on('user_finals');
             $table->foreign('tecnico_id')->references('id')->on('support');
             

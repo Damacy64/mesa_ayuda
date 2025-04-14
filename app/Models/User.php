@@ -39,15 +39,30 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
     ];
-
-    public function sexo(): BelongsTo
-    {
-        return $this->belongsTo(Gender::class);
-    }
     
-    public function area(): BelongsTo
+    // public function area(): BelongsTo
+    // {
+    //     return $this->belongsTo(Area::class);
+    // }
+
+    public function role()
     {
-        return $this->belongsTo(Area::class);
+        return $this->belongsTo(Role::class, 'rol_id', 'rol');
+    }
+
+    public function gender()
+    {
+        return $this->belongsTo(Gender::class, 'sex_id', 'sexo');
+    }
+
+    public function userFinal()
+    {
+        return $this->hasOne(UserFinal::class, 'user_id');
+    }
+
+    public function support()
+    {
+        return $this->hasOne(Support::class, 'empleado_id');
     }
     /**
      * The attributes that should be hidden for serialization.
