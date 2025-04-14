@@ -9,7 +9,15 @@ class Location extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'piso',
-    ];
+    protected $primaryKey = 'piso';
+    public $incrementing = false;
+    public $timestamps = false;
+    protected $keyType = 'string';
+
+    protected $fillable = ['piso'];
+
+    public function userFinals()
+    {
+        return $this->hasMany(UserFinal::class, 'ubicacion_id', 'piso');
+    }
 }

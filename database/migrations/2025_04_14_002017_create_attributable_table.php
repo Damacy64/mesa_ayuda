@@ -21,11 +21,11 @@ return new class extends Migration
             $table->primary(['atributo_tipo', 'atributo_valor', 'attributable_type', 'attributable_id']);
         
             $table->foreign(['atributo_tipo', 'atributo_valor'])
-                  ->references(['tipo', 'valor'])->on('atributos')
+                  ->references(['tipo', 'valor'])->on('attributes')
                   ->onDelete('cascade');
         
             $table->foreign('attributable_id')
-                  ->references('numero_serie')->on('equipos')
+                  ->references('numero_serie')->on('computer')
                   ->onDelete('cascade');
         });
         
