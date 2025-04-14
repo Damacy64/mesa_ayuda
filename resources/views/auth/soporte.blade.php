@@ -11,11 +11,16 @@
                 <thead class="bg-afac-golden text-white">
                     <tr>
                         <th class="p-2">Folio</th>
-                        <th class="p-2">Título</th>
-                        <th class="p-2">Dispositivo</th>
-                        <th class="p-2">Fecha de creación</th>
-                        <th class="p-2">Descripción</th>
+                        <th class="p-2">Nombre</th>
+                        <th class="p-2">Area</th>
+                        <th class="p-2">Ubicación</th>
+                        <th class="p-2">Fecha de Creacion</th>
+                        <th class="p-2">Prioridad</th>
                         <th class="p-2">Estado</th>
+                        <th class="p-2">Descripción<nav></nav></th>
+                        <th class="p-2">Acción</th>
+
+
                     </tr>
                 </thead>
                 <tbody class="text-black">
@@ -24,6 +29,8 @@
                         <td class="p-2">Falla en Laptop</td>
                         <td class="p-2">Laptop HP</td>
                         <td class="p-2">2025-04-12</td>
+                        <td class="p-2">No enciende</td>
+                        <td class="p-2">Abierto</td>
                         <td class="p-2">No enciende</td>
                         <td class="p-2">Abierto</td>
                     </tr>
@@ -80,11 +87,6 @@
         </div>
     </div>
     </span>
-    </div>
-    <div class="flex items-center justify-center p-4">
-        <x-button>
-            CREAR TICKET
-        </x-button>
     </div>
     </form>
     </div>
