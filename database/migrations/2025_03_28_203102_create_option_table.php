@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('option', function (Blueprint $table) {
+        Schema::create('opciones', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->morphs('opcion');
+            $table->string('nivel', 50);
+            $table->string('valor', 100);
+            $table->unsignedBigInteger('parent_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('parent_id')->references('id')->on('opciones');
         });
     }
 

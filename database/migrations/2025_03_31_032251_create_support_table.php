@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('support', function (Blueprint $table) {
             $table->id();
-            $table->string('especialidad');
             $table->integer('carga_trabajo');
-            $table->string('disponibilidad');
-            $table->string('estado');
+            $table->string('disponibilidad', 50);
+            $table->string('estado', 50);
             $table->timestamps();
 
             $table->foreignId('empleado_id')->nullable()->constrained('users')->onDelete('cascade');

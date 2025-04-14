@@ -4,8 +4,6 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use function Laravel\Prompts\table;
-
 return new class extends Migration
 {
     /**
@@ -13,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('attributes_computer', function (Blueprint $table) {
+        Schema::create('ticket_opcion', function (Blueprint $table) {
             $table->id();
-            $table->morphs('equipo');
-            $table->string('valor');
+            $table->foreignId('ticket_id')->constrained('tickets', 'folio');
+            $table->foreignId('opcion_id')->constrained('opciones');
             $table->timestamps();
-            
-            $table->foreignId('atributo_id')->nullable()->constrained('attributes')->onDelete('cascade');
         });
     }
 
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('attributes_computer');
+        Schema::dropIfExists('ticket_opcion');
     }
 };

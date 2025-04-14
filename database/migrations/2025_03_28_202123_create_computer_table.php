@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('computer', function (Blueprint $table) {
-            $table->string('numero_serie')->primary();
-            $table->string('direccion_ip', 11);
-            $table->string('estado');
-            $table->timestamps();
+        Schema::create('equipos', function (Blueprint $table) {
+            $table->unsignedBigInteger('numero_serie')->primary();
+            $table->string('modelo');
+            $table->string('direccion_ip', 15);
+            $table->string('estado'); // ACTIVO, INACTIVO
         });
+        
     }
 
     /**

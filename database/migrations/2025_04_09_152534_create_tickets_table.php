@@ -13,22 +13,23 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id('folio');
-            $table->string('prioridad_id');
-            $table->string('estatus_id');
-            $table->string('equipo_id');
+            $table->string('prioridad_id', 50);
+            $table->string('estatus_id', 50);
+            $table->unsignedBigInteger('equipo_id');
             $table->string('titulo');
-            $table->string('descripcion');
-            $table->timestamp('fecha_inicio');
+            $table->text('descripcion');
+            $table->timestamp('created_at')->useCurrent();
             $table->timestamp('fecha_termino')->nullable();
-            $table->timestamp('tiempo_resolucion')->nullable();
-            $table->timestamps();
+            $table->timestamp('tiempo_solucion')->nullable();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+            $table->unsignedBigInteger('usuario_id');
+            $table->unsignedBigInteger('tecnico_id');
 
-            $table->foreignId('usuario_id')->nullable()->constrained('users')->onDelete('cascade');
-            $table->foreignId('tecnico_id')->nullable()->constrained('support')->onDelete('cascade');
-            $table->foreignId('categoria_id')->nullable()->constrained('option')->onDelete('cascade');
-            $table->foreign('prioridad_id')->references('nombre')->on('priority')->onDelete('cascade');
-            $table->foreign('estatus_id')->references('nombre')->on('status')->onDelete('cascade');
-            $table->foreign('equipo_id')->references('numero_serie')->on('computer')->onDelete('cascade');
+            $table->foreign('prioridad_id')->references('nombre')->on('priority');
+            $table->foreign('estatus_id')->references('nombre')->on('status');
+            $table->foreign('equipo_id')->references('numero_serie')->on('equipos');
+            $table->foreign('usuario_id')->references('id')->on('user_finals');
+            $table->foreign('tecnico_id')->references('id')->on('support');
             
         });
     }
