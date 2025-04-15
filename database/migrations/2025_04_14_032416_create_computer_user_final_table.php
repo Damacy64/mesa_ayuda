@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('equipo_user_final', function (Blueprint $table) {
+        Schema::create('computer_user_final', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_final_id')
                   ->constrained('user_finals')
                   ->onDelete('cascade');
-            $table->unsignedInteger('equipo_id');
+            $table->unsignedBigInteger('equipo_id');
             $table->foreign('equipo_id')
                   ->references('numero_serie')
-                  ->on('equipos')
+                  ->on('computer')
                   ->onDelete('cascade');
             $table->timestamp('fecha_asignacion')->useCurrent();
             $table->timestamp('fecha_liberacion')->nullable();
