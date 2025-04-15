@@ -1,5 +1,7 @@
 <x-guest-layout>
-    <x-header>MESA DE AYUDA</x-header>
+    <x-header>
+        MESA DE AYUDA
+    </x-header>
 
     @session('status')
         <div class="flex p-4 mb-4 mt-2 text-sm rounded-lg bg-green-50 text-green-900" role="alert">

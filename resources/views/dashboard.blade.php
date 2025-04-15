@@ -1,5 +1,35 @@
 <x-guest-layout>
-    <x-header>MESA DE AYUDA</x-header>
+    <x-header>
+        <x-slot name="logout">
+            <x-dropdown align="right" width="48">
+                <x-slot name="trigger">
+                    <span class="inline-flex rounded-md">
+                        <button type="button"
+                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-afac-blue hover:text-white focus:outline-none focus:bg-afac-golden active:bg-afac-golden transition ease-in-out duration-150">
+                            {{-- {{ Auth::user()->name }} --}}
+
+                            <svg class="ms-2 -me-0.5 size-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </button>
+                    </span>
+                </x-slot>
+
+                <x-slot name="content">
+                    <!-- Authentication -->
+                    <form method="POST" action="{{ route('logout') }}" x-data>
+                        @csrf
+
+                        <x-dropdown-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
+                            {{ __('Cerrar sesión') }}
+                        </x-dropdown-link>
+                    </form>
+                </x-slot>
+            </x-dropdown>
+        </x-slot>
+        MESA DE AYUDA
+    </x-header>
 
     <div>
         <div class="flex items-center mb-4 p-4">
@@ -77,19 +107,18 @@
                         </a>
                     </nav>
                 </div>
+            </span>
         </div>
-        </div>
-        </span>
-        </div>
-        <div class="flex items-center justify-center p-4">
-            <x-button>
-                CREAR TICKET
-            </x-button>
-        </div>
-        </form>
+    </div>
+    <div class="flex items-center justify-center p-4">
+        <x-button>
+            CREAR TICKET
+        </x-button>
+    </div>
+    </form>
 
-        <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-            <!--
+    <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <!--
               Background backdrop, show/hide based on modal state.
           
               Entering: "ease-out duration-300"
@@ -99,10 +128,10 @@
                 From: "opacity-100"
                 To: "opacity-0"
             -->
-            <div class="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
-          
-            <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
-              <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+        <div class="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
+
+        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
                 <!--
                   Modal panel, show/hide based on modal state.
           
@@ -113,54 +142,51 @@
                     From: "opacity-100 translate-y-0 sm:scale-100"
                     To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 -->
-                <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                  <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                    <div class="sm:flex sm:items-start">
-                      <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                        <h3 class="text-base font-semibold text-gray-900" id="modal-title"></h3>
-                        <div class="flex items-center mb-8 p-8">
-                            <h1 class="text-2xl font-bold text-black">CREAR TICKET</h1>
-                        </div>
-                            <div class="container mx-auto px-4 py-6">
-                                <table class="w-full text-sm text-left bg-white border">
-                                    <thead class="bg-afac-golden text-white">
-                                        <tr>
-                                            <th class="p-2">Folio</th>
-                                            <th class="p-2">Título</th>
-                                            <th class="p-2">Dispositivo</th>
-                                            <th class="p-2">Fecha de creación</th>
-                                            <th class="p-2">Descripción</th>
-                                            <th class="p-2">Estado</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="text-black">
-                                        <tr class="border-t">
-                                            <td class="p-2">001</td>
-                                            <td class="p-2">Falla en Laptop</td>
-                                            <td class="p-2">Laptop HP</td>
-                                            <td class="p-2">2025-04-12</td>
-                                            <td class="p-2">No enciende</td>
-                                            <td class="p-2">Abierto</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                <div
+                    class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                        <div class="sm:flex sm:items-start">
+                            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                <h3 class="text-base font-semibold text-gray-900" id="modal-title"></h3>
+                                <div class="flex items-center mb-8 p-8">
+                                    <h1 class="text-2xl font-bold text-black">CREAR TICKET</h1>
+                                </div>
+                                <div class="container mx-auto px-4 py-6">
+                                    <table class="w-full text-sm text-left bg-white border">
+                                        <thead class="bg-afac-golden text-white">
+                                            <tr>
+                                                <th class="p-2">Folio</th>
+                                                <th class="p-2">Título</th>
+                                                <th class="p-2">Dispositivo</th>
+                                                <th class="p-2">Fecha de creación</th>
+                                                <th class="p-2">Descripción</th>
+                                                <th class="p-2">Estado</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-black">
+                                            <tr class="border-t">
+                                                <td class="p-2">001</td>
+                                                <td class="p-2">Falla en Laptop</td>
+                                                <td class="p-2">Laptop HP</td>
+                                                <td class="p-2">2025-04-12</td>
+                                                <td class="p-2">No enciende</td>
+                                                <td class="p-2">Abierto</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                      </div>
                     </div>
-                  
-                  <div class="flex items-center justify-center p-4">
-                    <x-button-cerrar type="button" class="m-auto">Cerrar</x-button-cerrar>
-                    <x-button type="button" class="m-auto">Guardar</x-button>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
 
+                    <div class="flex items-center justify-center p-4">
+                        <x-button-cerrar type="button" class="m-auto">Cerrar</x-button-cerrar>
+                        <x-button type="button" class="m-auto">Guardar</x-button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 
 </x-guest-layout>
