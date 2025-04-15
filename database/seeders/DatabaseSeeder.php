@@ -18,12 +18,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        
         $this->call(AreaSeeder::class);
+        $this->call(AttributesSeeder::class);
         $this->call(GendersSeeder::class);
         $this->call(LocationSeeder::class);
-        // Gender::factory(3)->create();
-        // Area::factory(6)->create();
-        // Location::factory(8)->create();
+        $this->call(OptionSeeder::class);
+        $this->call(PrioritySeeder::class);
+        $this->call(RolSeeder::class);
+        $this->call(StatusSeeder::class);
     }
 }
