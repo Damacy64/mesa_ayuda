@@ -10,11 +10,11 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-//Route::get('/registro', [RegisterController::class, 'show']);
-//Route::post('/registro', [RegisterController::class, 'create']);
+// Route::get('/registro', [RegisterController::class, 'show']);
+// Route::post('/registro', [RegisterController::class, 'create']);
 
-//Route::get('/forgot-password', [ForgotPasswordController::class, 'show']);
-//Route::get('/reset-password', [ResetPasswordController::class, 'show']);
+// Route::get('/forgot-password', [ForgotPasswordController::class, 'show']);
+// Route::get('/reset-password', [ResetPasswordController::class, 'show']);
 
 
 
