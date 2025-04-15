@@ -1,4 +1,4 @@
-<x-guest-layout>
+<div>
     <x-header>MESA DE AYUDA</x-header>
 
     @session('status')
@@ -67,4 +67,4 @@
             </div>
         </div>
     </div>
-</x-guest-layout>
+</div>
