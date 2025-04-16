@@ -1,4 +1,5 @@
-<x-header class="uppercase">REGISTRO USUARIO</x-header>
+<div>
+    <x-header class="uppercase">REGISTRO USUARIO</x-header>
     <form method="POST" action="{{ route('register') }}">
         @csrf
         <div class="space-y-12">
@@ -32,22 +33,25 @@
                     <div class="sm:col-span-2">
 
                         <div class="mt-2 grid grid-cols-1">
-                                <x-label for="location" value="{{ __('Ubicacion*') }}" />
-                                <x-select id="location" class="block mt-1 w-full bg-afac-gray border rounded-lg" type="text" name="location" :value="old('location')" required autofocus autocomplete="location">
-                                    @foreach ($ubicaciones as $ubicacion)
-                                        <option value="{{ $ubicacion->piso }}">{{ $ubicacion->piso}}</option>
-                                    @endforeach
-                                </x-select>
+                            <x-label for="location" value="{{ __('Ubicacion*') }}" />
+                            <x-select id="location" class="block mt-1 w-full bg-afac-gray border rounded-lg"
+                                type="text" name="location" :value="old('location')" required autofocus
+                                autocomplete="location">
+                                @foreach ($ubicaciones as $ubicacion)
+                                    <option value="{{ $ubicacion->piso }}">{{ $ubicacion->piso }}</option>
+                                @endforeach
+                            </x-select>
                         </div>
                     </div>
 
                     <div class="sm:col-span-2">
-                            <x-label for="area" value="{{ __('Area*') }}" />
-                            <x-select id="area" class="block mt-1 w-full bg-afac-gray border rounded-lg" type="text" name="area" :value="old('area')" required autofocus autocomplete="area">
-                                @foreach ($areas as $area)
-                                    <option value="{{ $area->departamento }}">{{ $area->departamento}}</option>
-                                @endforeach
-                            </x-select>
+                        <x-label for="area" value="{{ __('Area*') }}" />
+                        <x-select id="area" class="block mt-1 w-full bg-afac-gray border rounded-lg" type="text"
+                            name="area" :value="old('area')" required autofocus autocomplete="area">
+                            @foreach ($areas as $area)
+                                <option value="{{ $area->departamento }}">{{ $area->departamento }}</option>
+                            @endforeach
+                        </x-select>
                     </div>
 
                     <div class="sm:col-span-2">
@@ -78,12 +82,13 @@
 
                     <div class="sm:col-span-2">
                         <div class="mt-2 grid grid-cols-1">
-                                <x-label for="sex" value="{{ __('Sexo*') }}" />
-                                <x-select id="sex" class="block mt-1 w-full bg-afac-gray border rounded-lg" type="text" name="sex" :value="old('sex')" required autofocus autocomplete="sex">
-                                    @foreach ($generos as $genero)
-                                        <option value="{{ $genero->sexo }}"> {{ $genero->sexo }}</option>
-                                    @endforeach
-                                </x-select>
+                            <x-label for="sex" value="{{ __('Sexo*') }}" />
+                            <x-select id="sex" class="block mt-1 w-full bg-afac-gray border rounded-lg"
+                                type="text" name="sex" :value="old('sex')" required autofocus autocomplete="sex">
+                                @foreach ($generos as $genero)
+                                    <option value="{{ $genero->sexo }}"> {{ $genero->sexo }}</option>
+                                @endforeach
+                            </x-select>
                         </div>
                     </div>
 
@@ -98,8 +103,9 @@
                     <div class="sm:col-span-2">
                         <x-label for="password_confirmation" value="{{ __('Confirmar Contraseña') }}" />
                         <div class="mt-2">
-                            <x-input minlength="8" maxlength="15" id="password_confirmation" class="block mt-1 w-full"
-                                type="password" name="password_confirmation" required autocomplete="new-password" />
+                            <x-input minlength="8" maxlength="15" id="password_confirmation"
+                                class="block mt-1 w-full" type="password" name="password_confirmation" required
+                                autocomplete="new-password" />
                         </div>
                     </div>
 
@@ -127,3 +133,4 @@
         </div>
 
     </form>
+</div>

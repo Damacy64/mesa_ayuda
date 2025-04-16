@@ -5,17 +5,17 @@ namespace App\Livewire;
 use App\Models\Ticket;
 use Livewire\Component;
 
-class TicketsTable extends Component
+class Dashboard extends Component
 {
-
     public $tickets;
 
-    public function mount(){
+    public function mount()
+    {
         $this->tickets = Ticket::latest()->get();
     }
 
     public function render()
     {
-        return view('livewire.tickets-table');
+        return view('livewire.dashboard');
     }
 }

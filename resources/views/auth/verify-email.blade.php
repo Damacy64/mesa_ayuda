@@ -1,3 +1,3 @@
 <x-guest-layout>
- @livewire('verify-email');
+    @livewire('verify-email');
 </x-guest-layout>

@@ -1,5 +1,10 @@
-<x-guest-layout>
-    <x-header>MESA DE AYUDA</x-header>
+<div>
+    <x-header>
+        <x-slot name="logout">
+            <x-dropdown align="right" width="48" />
+        </x-slot>
+        MESA DE AYUDA
+    </x-header>
 
     <div>
         <div class="flex items-center mb-4 p-4">
@@ -11,34 +16,33 @@
                 <thead class="bg-afac-golden text-white">
                     <tr>
                         <th class="p-2">Folio</th>
-                        <th class="p-2">Nombre</th>
-                        <th class="p-2">Area</th>
-                        <th class="p-2">Ubicación</th>
-                        <th class="p-2">Fecha de Creacion</th>
-                        <th class="p-2">Prioridad</th>
+                        <th class="p-2">Título</th>
+                        <th class="p-2">Dispositivo</th>
+                        <th class="p-2">Fecha de creación</th>
+                        <th class="p-2">Descripción</th>
                         <th class="p-2">Estado</th>
-                        <th class="p-2">Descripción<nav></nav></th>
-                        <th class="p-2">Acción</th>
-
-
                     </tr>
                 </thead>
                 <tbody class="text-black">
+                    @forelse ($tickets as $ticket)
                     <tr class="border-t">
-                        <td class="p-2">001</td>
-                        <td class="p-2">Falla en Laptop</td>
-                        <td class="p-2">Laptop HP</td>
-                        <td class="p-2">2025-04-12</td>
-                        <td class="p-2">No enciende</td>
-                        <td class="p-2">Abierto</td>
-                        <td class="p-2">No enciende</td>
-                        <td class="p-2">Abierto</td>
+                        <td class="p-2">{{ $ticket->folio }}</td>
+                        <td class="p-2">{{ $ticket->titulo}}</td>
+                        <td class="p-2">{{ $ticket->equipo_id}}</td>
+                        <td class="p-2">{{ $ticket->created_at}}</td>
+                        <td class="p-2">{{ $ticket->descripcion}}</td>
+                        <td class="p-2">{{ $ticket->estatus_id}}</td>
                     </tr>
+                    @empty
+                        <tr class="text-black">
+                            <td colspan="6" class="text-center py-4">No hay tickets disponibles.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
 
-        <div class="mt-4 text-center text-black">
+        {{-- <div class="mt-4 text-center text-black">
             <span>
                 <div class="container mx-auto border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
                     <div class="flex flex-1 justify-between sm:hidden">
@@ -84,12 +88,13 @@
                         </a>
                     </nav>
                 </div>
-        </div>
+            </span>
+        </div> --}}
     </div>
-    </span>
+    <div class="flex items-center justify-center p-4">
+        <x-button>
+            CREAR TICKET
+        </x-button>
     </div>
     </form>
-    </div>
-    </div>
-
-</x-guest-layout>
+</div>
