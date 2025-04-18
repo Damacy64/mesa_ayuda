@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('ubicacion_id');
             $table->string('area_id');
+            //$table->string('departamento_id');
             $table->timestamps();
 
             $table->foreign('ubicacion_id')->references('piso')->on('locations')->onDelete('cascade');
-            $table->foreign('area_id')->references('departamento')->on('areas')->onDelete('cascade');
+            $table->foreign('area_id')->references('nombre')->on('areas')->onDelete('cascade');
+            //$table->foreign('departamento_id')->references('nombre')->on('departamentos')->onDelete('cascade');
             $table->foreignId('empleado_id')->nullable()->constrained('users')->onDelete('cascade');
         });
     }
