@@ -1,6 +1,6 @@
 <div>
     <x-header class="uppercase">REGISTRO USUARIO</x-header>
-    <form method="POST" action="{{ route('register') }}">
+    <form class="container mx-auto p-6 " method="POST" action="{{ route('register') }}">
         @csrf
         <div class="space-y-12">
             <div class="border-b border-gray-900/10 pb-12">
@@ -52,19 +52,20 @@
                     </div>
 
                     <div class="sm:col-span-2">
-                        <x-label for="employer_number" value="{{ __('N° empleado*') }}" />
-                        <div class="mt-2">
-                            <x-input maxlength="7" id="employer_number" class="block mt-1 w-full" type="text"
-                                name="employer_number" :value="old('employer_number')" required autofocus
-                                autocomplete="employer_number" />
-                        </div>
+                        <x-label for="departamento" value="{{ __('Departamento*') }}" />
+                        <x-select id="departamento" class="block mt-1 w-full bg-afac-gray border rounded-lg" type="text"
+                            name="departamento" :value="old('departamento')" required autofocus autocomplete="departamento">
+                            @foreach ($areas as $area)
+                                <option value="{{ $area->departamento }}">{{ $area->departamento }}</option>
+                            @endforeach
+                        </x-select>
                     </div>
 
                     <div class="sm:col-span-2">
                         <x-label for="email" value="{{ __('Correo institucional*') }}" />
                         <div class="mt-2">
                             <x-input maxlength="35" id="email" class="block mt-1 w-full" type="email"
-                                name="email" :value="old('email')" required autocomplete="username" />
+                            name="email" :value="old('email')" required autocomplete="username" />
                         </div>
                     </div>
 
@@ -72,7 +73,7 @@
                         <x-label for="email_confirmation" value="{{ __('Confirmar Correo') }}" />
                         <div class="mt-2">
                             <x-input maxlength="35" id="email_confirmation" class="block mt-1 w-full" type="text"
-                                name="email_confirmation" :value="old('email_confirmation')" required autofocus
+                            name="email_confirmation" :value="old('email_confirmation')" required autofocus
                                 autocomplete="email_confirmation" />
                         </div>
                     </div>
@@ -104,13 +105,20 @@
                         </div>
                     </div>
 
+                    <div class="sm:col-span-2">
+                        <x-label for="employer_number" value="{{ __('N° empleado*') }}" />
+                        <div class="mt-2">
+                            <x-input maxlength="7" id="employer_number" class="block mt-1 w-full" type="text"
+                                name="employer_number" :value="old('employer_number')" required autofocus
+                                autocomplete="employer_number" />
+                        </div>
+                    </div>
                 </div>
             </div>
 
         </div>
 
         <div class="col-start-1 col-end-4 mb-2">
-
             <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert ">
                 <p class="font-bold">RECUERDA</p>
                 <p class="text-sm">INTRODUCE UNA CONTRASEÑA PARA ESTE SISTEMA. RECUERDA QUE DEBE TENER AL MENOS 8
