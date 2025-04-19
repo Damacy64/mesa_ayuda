@@ -44,20 +44,24 @@
                     <div class="sm:col-span-2">
                         <x-label for="area" value="{{ __('Area*') }}" />
                         <x-select id="area" class="block mt-1 w-full bg-afac-gray border rounded-lg" type="text"
-                            name="area" :value="old('area')" required autofocus autocomplete="area">
+                            name="area" required autofocus autocomplete="area" wire:model.live="area">
                             @foreach ($areas as $area)
-                                <option value="{{ $area->departamento }}">{{ $area->departamento }}</option>
+                                <option value="{{ $area->nombre }}">{{ $area->nombre }}</option>
                             @endforeach
                         </x-select>
                     </div>
 
                     <div class="sm:col-span-2">
                         <x-label for="departamento" value="{{ __('Departamento*') }}" />
-                        <x-select id="departamento" class="block mt-1 w-full bg-afac-gray border rounded-lg" type="text"
-                            name="departamento" :value="old('departamento')" required autofocus autocomplete="departamento">
-                            @foreach ($areas as $area)
-                                <option value="{{ $area->departamento }}">{{ $area->departamento }}</option>
-                            @endforeach
+                        <x-select id="departamento" class="block mt-1 w-full bg-afac-gray border rounded-lg"
+                            type="text" name="departamento" required autofocus
+                            autocomplete="departamento" wire:model="departamento">
+                            @if ($departamentos->count() == 0)
+                            <option value="">Selecciona un area antes</option>    
+                            @endif
+                                @foreach ($departamentos as $departamento)
+                                    <option value="{{ $departamento->nombre }}">{{ $departamento->nombre }}</option>
+                                @endforeach
                         </x-select>
                     </div>
 
@@ -65,7 +69,7 @@
                         <x-label for="email" value="{{ __('Correo institucional*') }}" />
                         <div class="mt-2">
                             <x-input maxlength="35" id="email" class="block mt-1 w-full" type="email"
-                            name="email" :value="old('email')" required autocomplete="username" />
+                                name="email" :value="old('email')" required autocomplete="username" />
                         </div>
                     </div>
 
@@ -73,7 +77,7 @@
                         <x-label for="email_confirmation" value="{{ __('Confirmar Correo') }}" />
                         <div class="mt-2">
                             <x-input maxlength="35" id="email_confirmation" class="block mt-1 w-full" type="text"
-                            name="email_confirmation" :value="old('email_confirmation')" required autofocus
+                                name="email_confirmation" :value="old('email_confirmation')" required autofocus
                                 autocomplete="email_confirmation" />
                         </div>
                     </div>
