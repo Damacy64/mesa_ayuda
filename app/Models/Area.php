@@ -9,15 +9,20 @@ class Area extends Model
 {
     use HasFactory;
     
-    protected $primaryKey = 'departamento';
+    protected $primaryKey = 'nombre';
     public $incrementing = false;
     public $timestamps = false;
     protected $keyType = 'string';
 
-    protected $fillable = ['departamento'];
+    protected $fillable = ['nombre'];
 
     public function userFinals()
     {
-        return $this->hasMany(UserFinal::class, 'area_id', 'departamento');
+        return $this->hasMany(UserFinal::class, 'area_id', 'nombre');
+    }
+
+    public function department()
+    {
+        return $this->hasmany(Department::class);
     }
 }

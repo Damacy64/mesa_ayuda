@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('areas', function (Blueprint $table) {
-            $table->string('nombre', 100)->primary();
+        Schema::create('departments', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre');
+            $table->string('area_id', 100);
+
+            $table->foreign('area_id')->references('nombre')->on('areas')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('areas');
+        Schema::dropIfExists('departments');
     }
 };
