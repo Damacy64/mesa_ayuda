@@ -21,7 +21,7 @@
     <div class="min-h-screen flex flex-col bg-white">
         <div class="container mx-auto p-6 grid grid-cols-1 gap-8 lg:grid-cols-3">
             <div class="flex flex-col justify-center items-center">
-                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-afac-golden text-center">
+                <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-afac-golden text-center">
                     BIENVENIDO
                 </h2>
             </div>
