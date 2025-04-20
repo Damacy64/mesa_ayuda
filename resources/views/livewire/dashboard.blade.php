@@ -1,7 +1,5 @@
 <div>
-    @if ($open)
-        @include('livewire/modal')
-    @endif
+    @livewire('modal')
 
     <x-header>
         <x-slot name="logout">
@@ -16,11 +14,13 @@
         </div>
 
         @livewire('tickets-user');
+        
     </div>
 
     <div class="flex items-center justify-center p-4">
-        <x-button wire:click="$set('open', true)">
-            CREAR TICKET
+        <x-button wire:click="$dispatch('abrir-modal')">
+                    CREAR TICKET
         </x-button>
     </div>
+    </form>
 </div>
