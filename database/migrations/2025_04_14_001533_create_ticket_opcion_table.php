@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('ticket_opcion', function (Blueprint $table) {
             $table->id();
             $table->foreignId('ticket_id')->constrained('tickets', 'folio');
-            $table->foreignId('opcion_id')->constrained('option');
+            $table->foreignId('opcion_id')->constrained('options');
             $table->timestamps();
         });
     }

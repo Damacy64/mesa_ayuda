@@ -11,25 +11,52 @@
 
                             <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
                                 <div>
-                                    <x-label>Seleccione Tipo *</x-label>
-                                    <x-select>
+                                    <x-label>Seleccione Categoria *</x-label>
+                                    <x-select id="categoria" name="categoria" wire:model.live="categoria">
+                                        @foreach ($categorias as $categoria)
+                                            <option value="{{ $categoria->id }}"> {{ $categoria->valor }} </option>
+                                        @endforeach
                                     </x-select>
                                 </div>
-                                <div>
-                                    <x-label>Seleccione *</x-label>
-                                    <x-select>
-                                    </x-select>
-                                </div>
-                                <div>
-                                    <x-label>Seleccione *</x-label>
-                                    <x-select>
-                                    </x-select>
-                                </div>
-                                <div>
-                                    <x-label>Seleccione Falla *</x-label>
-                                    <x-select>
-                                    </x-select>
-                                </div>
+
+                                @if ($mostraropciones >= 2)
+                                    <div>
+                                        <x-label>Seleccione *</x-label>
+                                        <x-select id="tipo" name="tipo" wire:model.live="tipo">
+                                            @foreach ($tipos as $tipo)
+                                                <option value="{{ $tipo->id }}">
+                                                    {{ $tipo->valor }}
+                                                </option>
+                                            @endforeach
+                                        </x-select>
+                                    </div>
+                                @endif
+
+                                @if ($mostraropciones >= 3)
+                                    <div>
+                                        <x-label>Seleccione *</x-label>
+                                        <x-select id="componente" name="componente" wire:model.live="componente">
+                                            @foreach ($componentes as $componente)
+                                                <option value="{{ $componente->id }}">
+                                                    {{ $componente->valor }}
+                                                </option>
+                                            @endforeach
+                                        </x-select>
+                                    </div>
+                                @endif
+
+                                @if ($mostraropciones >= 4)
+                                    <div>
+                                        <x-label>Seleccione Falla *</x-label>
+                                        <x-select id="falla" name="falla" wire:modal="falla">
+                                            @foreach ($fallas as $falla)
+                                                <option value="{{ $falla->id }}">
+                                                    {{ $falla->valor }}
+                                                </option>
+                                            @endforeach
+                                        </x-select>
+                                    </div>
+                                @endif
                             </div>
 
                             @livewire('device-user')
@@ -44,8 +71,8 @@
                                     class="bg-gray-300 hover:bg-gray-400 text-white font-semibold py-2 px-4 rounded">
                                     CERRAR
                                 </x-button-cerrar>
-                                
-                                <x-button>
+
+                                <x-button wire:click="guardarTicket">
                                     ENVIAR
                                 </x-button>
                             </div>

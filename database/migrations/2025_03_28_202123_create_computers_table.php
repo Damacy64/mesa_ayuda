@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('computer', function (Blueprint $table) {
+        Schema::create('computers', function (Blueprint $table) {
             $table->unsignedBigInteger('numero_serie')->primary();
             $table->string('modelo');
             $table->string('direccion_ip', 15);
             $table->string('estado'); // ACTIVO, INACTIVO
+            $table->timestamps();
         });
         
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('computer');
+        Schema::dropIfExists('computers');
     }
 };

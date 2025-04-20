@@ -1,6 +1,6 @@
 <div>
     @if ($open)
-        @include('livewire/modal')
+        @livewire('modal')
     @endif
 
     <x-header>
@@ -19,7 +19,7 @@
     </div>
 
     <div class="flex items-center justify-center p-4">
-        <x-button wire:click="$set('open', true)">
+        <x-button wire:click="openmodal" type="button">
             CREAR TICKET
         </x-button>
     </div>
