@@ -63,7 +63,8 @@
 
                             <div class="mb-6">
                                 <x-label for="descripcion">Escriba una descripción del problema </x-label>
-                                <textarea wire:model="descripcion" id="descripcion" maxlength="250" rows="4" class="w-full border border-black rounded-md p-2"></textarea>
+                                <textarea wire:model="descripcion" id="descripcion" maxlength="250" rows="4"
+                                    class="w-full border border-black rounded-md p-2"></textarea>
                             </div>
 
                             @if ($errors->any())

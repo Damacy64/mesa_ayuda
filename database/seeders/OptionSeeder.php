@@ -17,18 +17,18 @@ class OptionSeeder extends Seeder
         $computoId     = DB::table('options')->insertGetId(['nivel' => 'categoria', 'valor' => 'CÓMPUTO']);
         $impresionId   = DB::table('options')->insertGetId(['nivel' => 'categoria', 'valor' => 'IMPRESIÓN']);
         $eventosId     = DB::table('options')->insertGetId(['nivel' => 'categoria', 'valor' => 'PROGRAMACIÓN DE EVENTOS']);
-        $sistemasId    = DB::table('options')->insertGetId(['nivel' => 'categoria', 'valor' => 'SISTEMAS']);
+        //$sistemasId    = DB::table('options')->insertGetId(['nivel' => 'categoria', 'valor' => 'SISTEMAS']);
 
         // Tipos (bajo sistemas)
-        DB::table('options')->insert([
-            ['nivel' => 'tipo', 'valor' => 'AFAC', 'parent_id' => $sistemasId],
-            ['nivel' => 'tipo', 'valor' => 'CASS', 'parent_id' => $sistemasId],
-            ['nivel' => 'tipo', 'valor' => 'E-LICENCIAS', 'parent_id' => $sistemasId],
-            ['nivel' => 'tipo', 'valor' => 'SIAC', 'parent_id' => $sistemasId],
-            ['nivel' => 'tipo', 'valor' => 'SIAR', 'parent_id' => $sistemasId],
-            ['nivel' => 'tipo', 'valor' => 'COMPETENCIA LINGüISTICA', 'parent_id' => $sistemasId],
-            ['nivel' => 'tipo', 'valor' => 'CAPACITACION AFAC', 'parent_id' => $sistemasId],
-        ]);
+        // DB::table('options')->insert([
+        //     ['nivel' => 'tipo', 'valor' => 'AFAC', 'parent_id' => $sistemasId],
+        //     ['nivel' => 'tipo', 'valor' => 'CASS', 'parent_id' => $sistemasId],
+        //     ['nivel' => 'tipo', 'valor' => 'E-LICENCIAS', 'parent_id' => $sistemasId],
+        //     ['nivel' => 'tipo', 'valor' => 'SIAC', 'parent_id' => $sistemasId],
+        //     ['nivel' => 'tipo', 'valor' => 'SIAR', 'parent_id' => $sistemasId],
+        //     ['nivel' => 'tipo', 'valor' => 'COMPETENCIA LINGüISTICA', 'parent_id' => $sistemasId],
+        //     ['nivel' => 'tipo', 'valor' => 'CAPACITACION AFAC', 'parent_id' => $sistemasId],
+        // ]);
 
         // Tipos (bajo Cómputo)
         $laptopId      = DB::table('options')->insertGetId(['nivel' => 'tipo', 'valor' => 'LAPTOP', 'parent_id' => $computoId]);

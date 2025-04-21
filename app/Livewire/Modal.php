@@ -2,9 +2,11 @@
 
 namespace App\Livewire;
 
+use App\Mail\TicketCreado;
 use App\Models\Option;
 use App\Models\Ticket;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -26,13 +28,6 @@ class Modal extends Component
     public $descripcion = '';
 
     public $mostraropciones = 1;
-    
-    public function getListeners()
-    {
-        return [
-            'equipo-seleccionado' => 'setEquipoSeleccionado',
-        ];
-    }
 
     protected $rules = [
         'categoria' => ['required', 'exists:options,id'],
@@ -43,6 +38,13 @@ class Modal extends Component
         'descripcion' => ['required', 'string', 'max:255'],
     ];
 
+    public function getListeners()
+    {
+        return [
+            'equipo-seleccionado' => 'setEquipoSeleccionado',
+        ];
+    }
+
     public function mount($equipos)
     {
         $this->categorias = Option::where('nivel', 'categoria')->get();
@@ -50,7 +52,8 @@ class Modal extends Component
     }
 
     #[On('abrir-modal')]
-    public function abrir(){
+    public function abrir()
+    {
         $this->open = true;
     }
 
@@ -105,12 +108,19 @@ class Modal extends Component
 
     public function closemodal()
     {
-        $this->open = false;  
+        $this->open = false;
     }
 
     public function guardarTicket()
     {
         $rules = $this->rules;
+
+        $categoriaSeleccionada = Option::find($this->categoria);
+        if (strtoupper($categoriaSeleccionada->valor) === 'PROGRAMACIÓN DE EVENTOS') {
+            $rules['equipoSeleccionado'] = ['nullable'];
+        } else {
+            $rules['equipoSeleccionado'] = ['required'];
+        }
 
         if ($this->mostraropciones >= 3) {
             $rules['componente'] = ['required', 'exists:options,id'];
@@ -126,21 +136,33 @@ class Modal extends Component
 
         $this->validate($rules);
 
+        // Crear el ticket
         $ticket = Ticket::create([
             'usuario_id' => Auth::user()->id,
             'tecnico_id' => 1,
             'prioridad_id' => 'BAJA',
             'estatus_id' => 'ABIERTO',
-            'equipo_id' => $this->equipoSeleccionado['numero_serie'],
+            'equipo_id' => $this->equipoSeleccionado['numero_serie'] ?? null,
             'titulo' => Option::find($this->categoria)->valor,
             'descripcion' => $this->descripcion,
         ]);
 
-        
+        // Guardar las opciones seleccionadas
+        $opciones = collect([
+            $this->categoria,
+            $this->tipo,
+            $this->componente,
+            $this->falla,
+        ])->filter();
 
-        session()->flash('success','Ticket creado.');
+        $ticket->opciones()->attach($opciones);
+
+        // Enviar correo al usuario
+        Mail::to(Auth::user()->email)->send(new TicketCreado($ticket));
+
+        // Resetear los campos
         $this->open = false;
-        $this->reset(['categoria','tipo','componente','falla','mostraropciones','descripcion']);
-        $this->dispatch('ticketCreated',$ticket->id);
+        $this->reset(['categoria', 'tipo', 'componente', 'falla', 'mostraropciones', 'descripcion']);
+        $this->dispatch('ticketCreated', $ticket->id);
     }
 }
