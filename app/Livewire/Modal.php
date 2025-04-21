@@ -4,27 +4,59 @@ namespace App\Livewire;
 
 use App\Models\Option;
 use App\Models\Ticket;
+use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Modal extends Component
 {
 
-    public $open = true;
+    public $open = false;
     public $categorias = [];
     public $tipos = [];
     public $componentes = [];
     public $fallas = [];
+    public $equipos = [];
 
     public $categoria = null;
     public $tipo = null;
     public $componente = null;
     public $falla = null;
+    public $equipoSeleccionado;
+    public $descripcion = '';
 
     public $mostraropciones = 1;
+    
+    public function getListeners()
+    {
+        return [
+            'equipo-seleccionado' => 'setEquipoSeleccionado',
+        ];
+    }
 
-    public function mount()
+    protected $rules = [
+        'categoria' => ['required', 'exists:options,id'],
+        'tipo' => ['required', 'exists:options,id'],
+        'componente' => [],
+        'falla' => [],
+        'equipoSeleccionado' => ['required'],
+        'descripcion' => ['required', 'string', 'max:255'],
+    ];
+
+    public function mount($equipos)
     {
         $this->categorias = Option::where('nivel', 'categoria')->get();
+        $this->equipos = $equipos;
+    }
+
+    #[On('abrir-modal')]
+    public function abrir(){
+        $this->open = true;
+    }
+
+    public function setEquipoSeleccionado(array $value)
+    {
+        $this->equipoSeleccionado = $value;
     }
 
     public function updatedCategoria($value)
@@ -76,16 +108,10 @@ class Modal extends Component
         $this->open = false;  
     }
 
-    protected $rules = [
-        'categoria' => ['required', 'exists:options,id'],
-        'tipo' => ['required', 'exists:options,id'],
-        'componente' => [],
-        'falla' => [],
-    ];
-
     public function guardarTicket()
     {
         $rules = $this->rules;
+
         if ($this->mostraropciones >= 3) {
             $rules['componente'] = ['required', 'exists:options,id'];
         } else {
@@ -93,19 +119,28 @@ class Modal extends Component
         }
 
         if ($this->mostraropciones >= 4) {
-            $rules['falla'] = ['required', 'exists:option,id'];
+            $rules['falla'] = ['required', 'exists:options,id'];
         } else {
             $rules['falla'] = ['nullable'];
         }
 
-        $validar = $this->validate($rules);
+        $this->validate($rules);
 
         $ticket = Ticket::create([
-            'user_id' => auth()->id,
-            'categoria' => $validar['categoria'],
-            'tipo' => $validar['tipo'],
-            'componente' => $validar['componente'],
-            'falla' => $validar['falla'],
+            'usuario_id' => Auth::user()->id,
+            'tecnico_id' => 1,
+            'prioridad_id' => 'BAJA',
+            'estatus_id' => 'ABIERTO',
+            'equipo_id' => $this->equipoSeleccionado['numero_serie'],
+            'titulo' => Option::find($this->categoria)->valor,
+            'descripcion' => $this->descripcion,
         ]);
+
+        
+
+        session()->flash('success','Ticket creado.');
+        $this->open = false;
+        $this->reset(['categoria','tipo','componente','falla','mostraropciones','descripcion']);
+        $this->dispatch('ticketCreated',$ticket->id);
     }
 }

@@ -14,6 +14,18 @@ class TicketsUser extends Component
         $this->tickets = Ticket::latest()->get();
     }
 
+    public function getListeners()
+    {
+        return [
+            'ticketCreated' => 'refreshTickets',
+        ];
+    }
+
+    public function refreshTickets()
+    {
+        $this->tickets = Ticket::latest()->get();
+    }
+
     public function render()
     {
         return view('livewire.tickets-user');

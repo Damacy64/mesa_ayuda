@@ -18,7 +18,7 @@
                         <td class="p-2">{{ $item->marca ?? 'N/A' }}</td>
                         <td class="p-2">{{ $item->numero_serie }}</td>
                         <td class="p-2">{{ $item->version_windows }}</td>
-                        <td class="p-2"><input type="radio" name="equipo" class="accent-blue-500" id=""></td>
+                        <td class="p-2"><input type="radio" wire:model.live="equipo" name="equipo" class="accent-blue-500"  value="{{ $item->numero_serie }}"/></td>
                     </tr>
             @empty
                 <tr class="text-black">

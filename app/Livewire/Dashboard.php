@@ -7,7 +7,10 @@ use Livewire\Component;
 class Dashboard extends Component
 {
 
-    public $open;
+    public $open = false;
+    public $equipos = [];
+
+    
 
     public function render()
     {

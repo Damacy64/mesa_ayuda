@@ -8,6 +8,8 @@ use Livewire\Component;
 class DeviceUser extends Component
 {
     public $datos;
+    public $datosEquipo;
+    public $equipo;
 
     public function mount()
     {
@@ -34,6 +36,19 @@ class DeviceUser extends Component
                 'a_win.atributo_valor as version_windows'
             )
             ->get();
+    }
+
+    public function updatedEquipo($value)
+    {
+        $dispositivo = $this->datos->firstWhere('numero_serie', $value);
+
+        $payload = [
+            'numero_serie' => $dispositivo->numero_serie,
+            'marca' => $dispositivo->marca,
+            'version_windows' => $dispositivo->version_windows,
+        ];
+        //llama al padre, es decir modal
+        $this->dispatch('equipo-seleccionado', $payload);
     }
 
     public function render()

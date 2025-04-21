@@ -48,7 +48,7 @@
                                 @if ($mostraropciones >= 4)
                                     <div>
                                         <x-label>Seleccione Falla *</x-label>
-                                        <x-select id="falla" name="falla" wire:modal="falla">
+                                        <x-select id="falla" name="falla" wire:model="falla">
                                             @foreach ($fallas as $falla)
                                                 <option value="{{ $falla->id }}">
                                                     {{ $falla->valor }}
@@ -62,9 +62,19 @@
                             @livewire('device-user')
 
                             <div class="mb-6">
-                                <x-label>Escriba una descripción del problema </x-label>
-                                <textarea maxlength="250" rows="4" class="w-full border border-black rounded-md p-2"></textarea>
+                                <x-label for="descripcion">Escriba una descripción del problema </x-label>
+                                <textarea wire:model="descripcion" id="descripcion" maxlength="250" rows="4" class="w-full border border-black rounded-md p-2"></textarea>
                             </div>
+
+                            @if ($errors->any())
+                                <div class="mb-4 p-2 bg-red-100 text-red-700 rounded">
+                                    <ul class="list-disc list-inside">
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
 
                             <div class="flex justify-end space-x-3">
                                 <x-button-cerrar wire:click="closemodal" type="button"
@@ -72,7 +82,7 @@
                                     CERRAR
                                 </x-button-cerrar>
 
-                                <x-button wire:click="guardarTicket">
+                                <x-button wire:click="guardarTicket" type="button">
                                     ENVIAR
                                 </x-button>
                             </div>
