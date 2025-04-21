@@ -2,32 +2,21 @@
 
 namespace App\Livewire;
 
-use App\Models\Ticket;
 use Livewire\Component;
+use Livewire\WithPagination;
+use App\Models\Ticket;
+use Livewire\Attributes\On;
 
 class TicketsUser extends Component
 {
-    public $tickets;
+    use WithPagination;
 
-    public function mount()
-    {
-        $this->tickets = Ticket::latest()->get();
-    }
-
-    public function getListeners()
-    {
-        return [
-            'ticketCreated' => 'refreshTickets',
-        ];
-    }
-
-    public function refreshTickets()
-    {
-        $this->tickets = Ticket::latest()->get();
-    }
-
+    #[On('ticketCreated')] 
+    
     public function render()
     {
-        return view('livewire.tickets-user');
+        return view('livewire.tickets-user', [
+            'tickets' => Ticket::orderBy('folio', 'desc')->paginate(5),
+        ]);
     }
 }

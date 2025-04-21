@@ -27,4 +27,7 @@
             @endforelse
         </tbody>
     </table>
+    <div class="mt-4 p-4 items-center">
+        {{ $tickets->links('components.pagination') }}
+    </div>
 </div>
