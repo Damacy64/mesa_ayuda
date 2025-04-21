@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('atributo_valor');
             $table->unsignedBigInteger('attributable_id');
             $table->string('attributable_type');
+            $table->timestamps();
             $table->primary(['atributo_tipo', 'atributo_valor', 'attributable_type', 'attributable_id']);
         
             $table->foreign(['atributo_tipo', 'atributo_valor'])
@@ -25,7 +26,7 @@ return new class extends Migration
                   ->onDelete('cascade');
         
             $table->foreign('attributable_id')
-                  ->references('numero_serie')->on('computer')
+                  ->references('numero_serie')->on('computers')
                   ->onDelete('cascade');
         });
         

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('equipo_id');
             $table->foreign('equipo_id')
                   ->references('numero_serie')
-                  ->on('computer')
+                  ->on('computers')
                   ->onDelete('cascade');
             $table->timestamp('fecha_asignacion')->useCurrent();
             $table->timestamp('fecha_liberacion')->nullable();

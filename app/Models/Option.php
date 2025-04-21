@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Option extends Model
 {
-    protected $table = 'option';
+    protected $table = 'options';
 
     protected $fillable = ['nivel', 'valor', 'parent_id'];
 

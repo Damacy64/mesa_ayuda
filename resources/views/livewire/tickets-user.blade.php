@@ -7,7 +7,7 @@
                 <th class="p-2">Dispositivo</th>
                 <th class="p-2">Fecha de creación</th>
                 <th class="p-2">Descripción</th>
-                <th class="p-2">Estado</th>
+                <th class="p-2">Estatus</th>
             </tr>
         </thead>
         <tbody class="text-black">

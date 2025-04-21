@@ -44,7 +44,7 @@ class UserFinal extends Model
     {
         return $this->belongsToMany(
             Computer::class,
-            'equipo_user_final',
+            'computer_user_final',
             'user_final_id',
             'equipo_id'
         )

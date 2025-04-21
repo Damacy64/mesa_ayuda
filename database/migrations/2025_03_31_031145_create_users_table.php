@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('last_name_m')->nullable();
             $table->string('sex_id');
             $table->string('rol_id')->default('USUARIO');
-            $table->string('employer_number');
+            $table->string('employer_number', 7);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
