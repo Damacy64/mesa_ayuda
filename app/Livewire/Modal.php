@@ -38,13 +38,6 @@ class Modal extends Component
         'descripcion' => ['required', 'string', 'max:255'],
     ];
 
-    public function getListeners()
-    {
-        return [
-            'equipo-seleccionado' => 'setEquipoSeleccionado',
-        ];
-    }
-
     public function mount($equipos)
     {
         $this->categorias = Option::where('nivel', 'categoria')->get();
@@ -57,6 +50,7 @@ class Modal extends Component
         $this->open = true;
     }
 
+    #[On('equipo-seleccionado')]
     public function setEquipoSeleccionado(array $value)
     {
         $this->equipoSeleccionado = $value;
@@ -71,7 +65,7 @@ class Modal extends Component
         $this->fallas = [];
         $this->falla = '';
 
-        $mostrar = Option::find($value)->valor;
+        $mostrar = Option::find($value)->valor ?? '';
 
         switch (strtoupper($mostrar)) {
             case 'CÓMPUTO':
@@ -94,6 +88,15 @@ class Modal extends Component
         $this->componente = null;
         $this->fallas = [];
         $this->falla = null;
+
+        $mostrar = Option::find($value)->valor ?? '';
+        switch (strtoupper($mostrar)){
+            case 'TABLET':
+                $this->mostraropciones = 3;
+                break;
+            default:
+                $this->mostraropciones = 4;
+        }
     }
     public function updatedComponente($value)
     {
@@ -116,7 +119,7 @@ class Modal extends Component
         $rules = $this->rules;
 
         $categoriaSeleccionada = Option::find($this->categoria);
-        if (strtoupper($categoriaSeleccionada->valor) === 'PROGRAMACIÓN DE EVENTOS') {
+        if (strtoupper($categoriaSeleccionada->valor ?? '') === 'PROGRAMACIÓN DE EVENTOS') {
             $rules['equipoSeleccionado'] = ['nullable'];
         } else {
             $rules['equipoSeleccionado'] = ['required'];

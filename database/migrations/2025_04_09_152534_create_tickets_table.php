@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('folio');
             $table->string('prioridad_id', 50);
             $table->string('estatus_id', 50);
-            $table->unsignedBigInteger('equipo_id');
+            $table->unsignedBigInteger('equipo_id')->nullable();
             $table->string('titulo');
             $table->text('descripcion');
             $table->timestamp('created_at')->useCurrent();

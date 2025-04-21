@@ -11,8 +11,8 @@
 
                             <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
                                 <div>
-                                    <x-label>Seleccione Categoria *</x-label>
                                     <x-select id="categoria" name="categoria" wire:model.live="categoria">
+                                        <option value="">SELECCIONE CATEGORIA</option>
                                         @foreach ($categorias as $categoria)
                                             <option value="{{ $categoria->id }}"> {{ $categoria->valor }} </option>
                                         @endforeach
@@ -21,8 +21,8 @@
 
                                 @if ($mostraropciones >= 2)
                                     <div>
-                                        <x-label>Seleccione *</x-label>
                                         <x-select id="tipo" name="tipo" wire:model.live="tipo">
+                                            <option value="">SELECCIONE</option>
                                             @foreach ($tipos as $tipo)
                                                 <option value="{{ $tipo->id }}">
                                                     {{ $tipo->valor }}
@@ -34,8 +34,8 @@
 
                                 @if ($mostraropciones >= 3)
                                     <div>
-                                        <x-label>Seleccione *</x-label>
                                         <x-select id="componente" name="componente" wire:model.live="componente">
+                                            <option value="">SELECCIONE</option>
                                             @foreach ($componentes as $componente)
                                                 <option value="{{ $componente->id }}">
                                                     {{ $componente->valor }}
@@ -47,8 +47,8 @@
 
                                 @if ($mostraropciones >= 4)
                                     <div>
-                                        <x-label>Seleccione Falla *</x-label>
                                         <x-select id="falla" name="falla" wire:model="falla">
+                                            <option value="">SELECCIONE</option>
                                             @foreach ($fallas as $falla)
                                                 <option value="{{ $falla->id }}">
                                                     {{ $falla->valor }}
@@ -67,15 +67,7 @@
                                     class="w-full border border-black rounded-md p-2"></textarea>
                             </div>
 
-                            @if ($errors->any())
-                                <div class="mb-4 p-2 bg-red-100 text-red-700 rounded">
-                                    <ul class="list-disc list-inside">
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
+                            <x-validation-errors/>
 
                             <div class="flex justify-end space-x-3">
                                 <x-button-cerrar wire:click="closemodal" type="button"

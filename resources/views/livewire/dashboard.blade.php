@@ -13,7 +13,7 @@
             <h1 class="text-2xl font-bold text-black">Historial de tickets</h1>
         </div>
 
-        @livewire('tickets-user');
+        @livewire('tickets-user')
     </div>
 
     <div class="flex items-center justify-center p-4">
