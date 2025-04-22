@@ -27,7 +27,6 @@
             @endforelse
         </tbody>
     </table>
-    <div>
         {{ $tickets->links('components.pagination') }}
     </div>
 </div>
