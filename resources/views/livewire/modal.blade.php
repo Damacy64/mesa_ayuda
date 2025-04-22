@@ -21,7 +21,8 @@
 
                                 @if ($mostraropciones >= 2)
                                     <div>
-
+                                        <x-select id="tipo" name="tipo" wire:model.live="tipo">
+                                            <option value="">SELECCIONE</option>
                                             @foreach ($tipos as $tipo)
                                                 <option value="{{ $tipo->id }}">
                                                     {{ $tipo->valor }}
