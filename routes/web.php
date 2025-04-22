@@ -10,7 +10,10 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-// Route::get('/registro', [RegisterController::class, 'show']);
+Route::get('/dashboard-soporte', function () {
+    return view('livewire.support.dashboard-support');
+})->name('dashboard-soporte');
+
 // Route::post('/registro', [RegisterController::class, 'create']);
 
 // Route::get('/forgot-password', [ForgotPasswordController::class, 'show']);
@@ -22,7 +25,7 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
-])->group(function () { 
+])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');

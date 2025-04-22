@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Ticket;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
 use Livewire\Component;
@@ -25,7 +26,8 @@ class TicketsUser extends Component
     public function render()
     {
         return view('livewire.tickets-user', [
-            'tickets' => Ticket::orderBy('folio', 'asc')->paginate(5),
+            'tickets' => Ticket::where('usuario_id', Auth::user()->id)->paginate(5),
         ]);
+        
     }
 }
