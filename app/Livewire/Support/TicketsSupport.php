@@ -3,23 +3,13 @@
 namespace App\Livewire\Support;
 
 use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class TicketsSupport extends Component
 {
     use WithPagination;
-
-    public $tickets;
-
-    // Configuración para que funcione con Tailwind CSS
-    protected $paginationTheme = 'tailwind';
-
-    public function mount()
-    {
-        // Puedes eliminar esta propiedad si no la necesitas
-        $this->tickets = [];
-    }
 
     public function render()
     {
@@ -38,8 +28,14 @@ class TicketsSupport extends Component
                 't.estatus_id as estatus'
             )
             ->orderByDesc('t.created_at')
-            ->paginate(10); // Cambia el número de elementos por página según lo necesites
+            ->paginate(15);
 
         return view('livewire.support.tickets-support', compact('tickets'));
+    }
+
+    #[On('abrir-modal')]
+    public function abrirModal()
+    {
+        return view('auth.login');
     }
 }

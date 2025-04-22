@@ -94,8 +94,6 @@ class Modal extends Component
             case 'TABLET':
                 $this->mostraropciones = 3;
                 break;
-            default:
-                $this->mostraropciones = 4;
         }
     }
     public function updatedComponente($value)

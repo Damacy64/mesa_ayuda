@@ -9,6 +9,7 @@
                 <th class="p-2">Fecha de Creación</th>
                 <th class="p-2">Descripción</th>
                 <th class="p-2">Estatus</th>
+                <th class="p-2">Acción</th>
             </tr>
         </thead>
         <tbody class="text-black">
@@ -21,6 +22,9 @@
                     <td class="p-2">{{ $item->fecha_creacion }}</td>
                     <td class="p-2">{{ $item->prioridad }}</td>
                     <td class="p-2">{{ $item->estatus }}</td>
+                    <td class="p-2">
+                        <a href="" wire:click.prevent="$dispatch('abrir-modal')" class="text-blue-500 hover:text-blue-700">Actualizar</a>
+                    </td>
                 </tr>
             @empty
                 <tr class="text-black">
