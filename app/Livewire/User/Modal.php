@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\User;
 
 use App\Mail\TicketCreado;
 use App\Models\Option;
@@ -104,7 +104,7 @@ class Modal extends Component
 
     public function render()
     {
-        return view('livewire.modal');
+        return view('livewire.user.modal');
     }
 
     public function closemodal()

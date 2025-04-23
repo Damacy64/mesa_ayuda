@@ -59,7 +59,7 @@
                                 @endif
                             </div>
 
-                            @livewire('device-user')
+                            @livewire('user.device-user')
 
                             <div class="mb-6">
                                 <x-label for="descripcion">Escriba una descripción del problema </x-label>
