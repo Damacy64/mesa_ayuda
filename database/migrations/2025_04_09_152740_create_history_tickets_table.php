@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('estado_anterior', 50);
             $table->string('estado_nuevo', 50);
             $table->string('comentario', 255);
-            $table->foreignId('usuario_responsable_id')->constrained('user_finals');
+            $table->foreignId('usuario_responsable_id')->constrained('user_finals')->onDelete('cascade');
             $table->timestamps();
 
             $table->foreign('ticket_id')->references('folio')->on('tickets')->onDelete('cascade');

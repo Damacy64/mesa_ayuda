@@ -1,13 +1,16 @@
 <div class="container mx-auto px-4 py-6">
+    <div class="mb-4">
+        <x-input type="text" wire:model.live="search" placeholder="Buscar"/>
+    </div>
     <table class="w-full text-sm text-left bg-white border">
         <thead class="bg-afac-golden text-white">
             <tr>
                 <th class="p-2">Folio</th>
                 <th class="p-2">Nombre</th>
-                <th class="p-2">Titulo</th>
-                <th class="p-2">Dispositivo</th>
+                <th class="p-2">Área</th>
+                <th class="p-2">Ubicación</th>
                 <th class="p-2">Fecha de Creación</th>
-                <th class="p-2">Descripción</th>
+                <th class="p-2">Prioridad</th>
                 <th class="p-2">Estatus</th>
                 <th class="p-2">Acción</th>
             </tr>
@@ -28,7 +31,7 @@
                 </tr>
             @empty
                 <tr class="text-black">
-                    <td colspan="7" class="text-center py-4">No tiene tickets asignados.</td>
+                    <td colspan="7" class="text-center py-4">No hay tickets.</td>
                 </tr>
             @endforelse
         </tbody>

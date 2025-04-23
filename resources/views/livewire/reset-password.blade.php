@@ -1,5 +1,5 @@
 <div>
-    <x-header>RESTAURAR ONTRASEÑA</x-header>
+    <x-header>RESTABLECER CONTRASEÑA</x-header>
     <x-authentication-card>
         <x-slot name="logo">
             <x-authentication-card-logo />

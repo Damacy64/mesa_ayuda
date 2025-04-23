@@ -25,11 +25,11 @@ return new class extends Migration
             $table->unsignedBigInteger('usuario_id');
             $table->unsignedBigInteger('tecnico_id');
 
-            $table->foreign('prioridad_id')->references('nombre')->on('priority');
-            $table->foreign('estatus_id')->references('nombre')->on('status');
-            $table->foreign('equipo_id')->references('numero_serie')->on('computers');
-            $table->foreign('usuario_id')->references('id')->on('user_finals');
-            $table->foreign('tecnico_id')->references('id')->on('support');
+            $table->foreign('prioridad_id')->references('nombre')->on('priority')->onDelete('cascade');
+            $table->foreign('estatus_id')->references('nombre')->on('status')->onDelete('cascade');
+            $table->foreign('equipo_id')->references('numero_serie')->on('computers')->onDelete('cascade');
+            $table->foreign('usuario_id')->references('id')->on('user_finals')->onDelete('cascade');
+            $table->foreign('tecnico_id')->references('id')->on('support')->onDelete('cascade');
             
         });
     }

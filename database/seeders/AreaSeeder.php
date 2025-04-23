@@ -14,11 +14,11 @@ class AreaSeeder extends Seeder
             ['nombre' => 'Dirección Ejecutiva de Aviación'],
             ['nombre' => 'Dirección Ejecutiva Técnica'],
             ['nombre' => 'Dirección Ejecutiva de Transporte y Control Aeronáutico'],
-            ['nombre' => 'Dirección de Control'],
-            ['nombre' => 'Dirección del Centro Internacional de Adiestramiento en Aviación Civil'],
             ['nombre' => 'Dirección del Programa de Seguridad Operacional del Estado Mexicano - SSP'],
             ['nombre' => 'Dirección de Desarrollo Estratégico'],
-            ['nombre' => 'Dirección de Administracion de la AFAC'],
+            ['nombre' => 'Dirección de Administración y Finanzas'],
+            ['nombre' => 'Dirección de Regulación Económica y Estadistica'],
+            ['nombre' => 'Unidad de Gestión y Trámite'],
         ];
 
         DB::table('areas')->insert($areas);
