@@ -4,15 +4,20 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/dashboard-soporte', function () {
-    return view('livewire.support.dashboard-support');
-})->name('dashboard-soporte');
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
 
 // Route::post('/registro', [RegisterController::class, 'create']);
 
@@ -21,12 +26,12 @@ Route::get('/dashboard-soporte', function () {
 
 
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+//Route::middleware([
+  //  'auth:sanctum',
+    //config('jetstream.auth_session'),
+//    //'verified',
+//])->group(function () {
+  //  Route::get('/dashboard', function () {
+    //    return view('dashboard');
+    //})->name('dashboard');
+//});
