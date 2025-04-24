@@ -26,7 +26,7 @@
                     <td class="p-2">{{ $item->prioridad }}</td>
                     <td class="p-2">{{ $item->estatus }}</td>
                     <td class="p-2">
-                        <a href="" wire:click.prevent="$dispatch('abrir-modal')" class="text-blue-500 hover:text-blue-700">Actualizar</a>
+                        <a href="" wire:click.prevent="abrirModal( {{$item->folio}} )" class="text-blue-500 hover:text-blue-700">Actualizar</a>
                     </td>
                 </tr>
             @empty

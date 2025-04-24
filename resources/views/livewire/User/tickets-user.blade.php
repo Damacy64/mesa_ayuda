@@ -7,6 +7,7 @@
                 <th class="p-2">Dispositivo</th>
                 <th class="p-2">Fecha de creación</th>
                 <th class="p-2">Descripción</th>
+                <th class="p-2">Solución</th>
                 <th class="p-2">Estatus</th>
             </tr>
         </thead>
@@ -18,6 +19,7 @@
                     <td class="p-2">{{ $ticket->equipo_id }}</td>
                     <td class="p-2">{{ $ticket->created_at }}</td>
                     <td class="p-2">{{ $ticket->descripcion }}</td>
+                    <td class="p-2">{{ $ticket->solucion }}</td>
                     <td class="p-2">{{ $ticket->estatus_id }}</td>
                 </tr>
             @empty

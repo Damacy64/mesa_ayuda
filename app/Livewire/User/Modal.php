@@ -122,7 +122,7 @@ class Modal extends Component
         $rules = $this->rules;
 
         $categoriaSeleccionada = Option::find($this->categoria);
-        if (strtoupper($categoriaSeleccionada->valor ?? '') === 'PROGRAMACIÓN DE EVENTOS') {
+        if (strtoupper($categoriaSeleccionada->valor ?? '') === 'PROGRAMACIÓN DE EVENTOS' || strtoupper($categoriaSeleccionada->valor ?? '') === 'IMPRESIÓN') {
             $rules['equipoSeleccionado'] = ['nullable'];
         } else {
             $rules['equipoSeleccionado'] = ['required'];

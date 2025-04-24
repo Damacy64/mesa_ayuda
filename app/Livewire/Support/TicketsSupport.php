@@ -18,6 +18,7 @@ class TicketsSupport extends Component
         $this->resetPage();
     }
 
+    #[On('ticketActualizado')]
     public function render()
     {
         $tickets = DB::table('tickets as t')
@@ -48,9 +49,8 @@ class TicketsSupport extends Component
         return view('livewire.support.tickets-support', compact('tickets'));
     }
 
-    #[On('abrir-modal')]
-    public function abrirModal()
+    public function abrirModal($ticket)
     {
-        return view('auth.login');//esto borrarlo
+        $this->dispatch('abrir-modal', $ticket);
     }
 }

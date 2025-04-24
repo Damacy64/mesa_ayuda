@@ -13,13 +13,6 @@ class TicketsUser extends Component
 
     use WithPagination;
 
-    // public function getListeners()
-    // {
-    //     return [
-    //         'ticketCreated' => 'refreshTickets',
-    //     ];
-    // }
-
     #[On('ticketCreated')]
 
 
@@ -28,6 +21,5 @@ class TicketsUser extends Component
         return view('livewire.user.tickets-user', [
             'tickets' => Ticket::where('usuario_id', Auth::user()->id)->orderBy('folio', 'desc')->paginate(15),
         ]);
-        
     }
 }

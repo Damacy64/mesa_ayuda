@@ -17,7 +17,7 @@ class UserFinal extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'empleado_id');
     }
 
     public function location()

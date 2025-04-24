@@ -12,5 +12,6 @@
         </div>
 
         @livewire('support.tickets-support')
+        @livewire('support.update-ticket-modal')
     </div>
 </div>

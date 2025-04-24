@@ -7,14 +7,14 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class TicketCreado extends Mailable
+class TicketActualizado extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-
+    
     public $ticket;
 
     public function __construct(Ticket $ticket)
@@ -24,7 +24,7 @@ class TicketCreado extends Mailable
 
     public function build(): self
     {
-        return $this->subject('Tu ticket ha sido creado')
-            ->markdown('emails.ticket-creado');
+        return $this->subject('Tu ticket ha sido actualizado')
+            ->markdown('emails.ticket-actualizado');
     }
 }

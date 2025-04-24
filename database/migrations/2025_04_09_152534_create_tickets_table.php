@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('equipo_id')->nullable();
             $table->string('titulo');
             $table->text('descripcion');
+            $table->text('solucion')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('fecha_termino')->nullable();
             $table->timestamp('tiempo_solucion')->nullable();

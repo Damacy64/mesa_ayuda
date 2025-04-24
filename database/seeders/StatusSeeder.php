@@ -16,7 +16,7 @@ class StatusSeeder extends Seeder
         $status = [
             ['nombre' => 'ABIERTO'],
             ['nombre' => 'CERRADO'],
-            ['nombre' => 'SIN SOLUCION'],
+            ['nombre' => 'EN REVISIÓN'],
         ];
 
         DB::table('status')->insert($status);
