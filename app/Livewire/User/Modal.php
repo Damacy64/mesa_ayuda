@@ -28,6 +28,7 @@ class Modal extends Component
     public $descripcion = '';
 
     public $mostraropciones = 1;
+    public $mostrarDispositivos = false;
 
     protected $rules = [
         'categoria' => ['required', 'exists:options,id'],
@@ -70,15 +71,19 @@ class Modal extends Component
         switch (strtoupper($mostrar)) {
             case 'CÓMPUTO':
                 $this->mostraropciones = 4; // categoría → tipo → componente → falla
+                $this->mostrarDispositivos = ($value == 1);
                 break;
             case 'IMPRESIÓN':
                 $this->mostraropciones = 3; // categoría → tipo → falla
+                $this->mostrarDispositivos = false;
                 break;
             case 'PROGRAMACIÓN DE EVENTOS':
                 $this->mostraropciones = 2; // categoría → tipo
+                $this->mostrarDispositivos = false;
                 break;
             default:
-                $this->mostraropciones = 4;
+                $this->mostraropciones = 1;
+                $this->mostrarDispositivos = false;
         }
     }
 
@@ -136,6 +141,16 @@ class Modal extends Component
         }
 
         $this->validate($rules);
+
+        // Validar que dispositivo no tenga un ticket abierto
+        $ticketAbierto = Ticket::where('equipo_id', $this->equipoSeleccionado)
+            ->where('estatus_id', 'ABIERTO')
+            ->exists();
+
+        if ($ticketAbierto) {
+            $this->addError('equipo', 'El dispositivo ya tiene un ticket abierto.');
+            return;
+        }
 
         // Crear el ticket
         $ticket = Ticket::create([

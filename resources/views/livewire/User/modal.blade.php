@@ -59,7 +59,9 @@
                                 @endif
                             </div>
 
-                            @livewire('user.device-user')
+                            @if ($mostrarDispositivos)
+                                @livewire('user.device-user')
+                            @endif
 
                             <div class="mb-6">
                                 <x-label for="descripcion">Escriba una descripción del problema </x-label>
