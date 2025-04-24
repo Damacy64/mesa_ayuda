@@ -1,21 +1,21 @@
 <div class="container mx-auto px-4 py-6">
     <div class="flex items-center justify-between mb-4 p-4">
-        <h1 class="text-2xl font-bold text-black">Resumen de tickets</h1>
+        <h1 class="text-2xl font-bold text-black">Historial de tickets</h1>
         <x-search-input >
             <x-input type="text"  wire:model.live="search" placeholder="Buscar"/>
         </x-search-input>
     </div>
-
     <table class="w-full text-sm text-left bg-white border">
         <thead class="bg-afac-golden text-white">
             <tr>
-                <th class="p-2">Folio</th>
+                <th class="p-2">#Empleado</th>
                 <th class="p-2">Nombre</th>
-                <th class="p-2">Área</th>
-                <th class="p-2">Ubicación</th>
+                <th class="p-2">Titulo de Ticket</th>
+                <th class="p-2">Titulo de Falla</th>
                 <th class="p-2">Fecha de Creación</th>
                 <th class="p-2">Prioridad</th>
                 <th class="p-2">Estatus</th>
+                <th class="p-2">Técnico Asignado</th>
                 <th class="p-2">Acción</th>
             </tr>
         </thead>
