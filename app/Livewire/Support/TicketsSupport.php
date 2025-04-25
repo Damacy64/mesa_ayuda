@@ -22,8 +22,12 @@ class TicketsSupport extends Component
     #[On('ticketActualizado')]
     public function render()
     {
-        $userId = Auth::id();
+        // Obtener el ID del técnico autenticado
+        $userId = DB::table('support')
+            ->where('empleado_id', Auth::id())
+            ->value('id');
 
+        // Obtener los tickets asignados al técnico autenticado
         $tickets = DB::table('tickets as t')
             ->join('user_finals as uf', 't.usuario_id', '=', 'uf.id')
             ->join('users as u', 'uf.empleado_id', '=', 'u.id')
@@ -38,18 +42,21 @@ class TicketsSupport extends Component
                 't.prioridad_id as prioridad',
                 't.estatus_id as estatus'
             )
-            ->where('u.id', $userId)
+            ->where('t.tecnico_id', $userId) // Filtrar por técnico autenticado
             ->when($this->search, function ($query) {
-                $query->where('t.folio', 'like', '%' . $this->search . '%')
-                    ->orWhere('u.name', 'like', '%' . $this->search . '%')
-                    ->orWhere('a.nombre', 'like', '%' . $this->search . '%')
-                    ->orWhere('l.piso', 'like', '%' . $this->search . '%')
-                    ->orWhere('t.prioridad_id', 'like', '%' . $this->search . '%')
-                    ->orWhere('t.estatus_id', 'like', '%' . $this->search . '%');
+                $query->where(function ($subQuery) {
+                    $subQuery->where('t.folio', 'like', '%' . $this->search . '%')
+                        ->orWhere('u.name', 'like', '%' . $this->search . '%')
+                        ->orWhere('a.nombre', 'like', '%' . $this->search . '%')
+                        ->orWhere('l.piso', 'like', '%' . $this->search . '%')
+                        ->orWhere('t.prioridad_id', 'like', '%' . $this->search . '%')
+                        ->orWhere('t.estatus_id', 'like', '%' . $this->search . '%');
+                });
             })
             ->orderByDesc('t.created_at')
             ->paginate(5);
 
+        // Retornar la vista con los tickets filtrados
         return view('livewire.support.tickets-support', compact('tickets'));
     }
 

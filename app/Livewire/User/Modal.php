@@ -4,6 +4,7 @@ namespace App\Livewire\User;
 
 use App\Mail\TicketCreado;
 use App\Models\Option;
+use App\Models\Support;
 use App\Models\Ticket;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -147,15 +148,16 @@ class Modal extends Component
             ->where('estatus_id', 'ABIERTO')
             ->exists();
 
-        if ($ticketAbierto) {
+        if ($ticketAbierto == false || $ticketAbierto == null) {
+            
+        } else{
             $this->addError('equipo', 'El dispositivo ya tiene un ticket abierto.');
-            return;
         }
 
         // Crear el ticket
         $ticket = Ticket::create([
             'usuario_id' => Auth::user()->id,
-            'tecnico_id' => 1,
+            'tecnico_id' => $this->asignarTecnico(),
             'prioridad_id' => 'BAJA',
             'estatus_id' => 'ABIERTO',
             'equipo_id' => $this->equipoSeleccionado['numero_serie'] ?? null,
@@ -178,7 +180,16 @@ class Modal extends Component
 
         // Resetear los campos
         $this->open = false;
-        $this->reset(['categoria', 'tipo', 'componente', 'falla', 'mostraropciones', 'descripcion']);
+        $this->reset(['categoria', 'tipo', 'componente', 'falla', 'mostraropciones', 'descripcion', 'equipoSeleccionado']);
         $this->dispatch('ticketCreated', $ticket->id);
+    }
+
+    public function asignarTecnico()
+    {
+        $tecnicos = Support::all();
+        
+        $tecnico = $tecnicos->random();
+
+        return $tecnico->id;
     }
 }

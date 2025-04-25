@@ -5,14 +5,17 @@
 
 Solicitud de soporte a cliente
 
-Hola, {{ $ticket->usuario->name }},<br>
+Hola, {{ $ticket->usuario->user->name }},<br>
 
 Hemos resuelto tu folio {{ $ticket->folio }} por el incidente reportado en la categoría
 {{ $ticket->titulo }}.<br>
 
 Consulta aqui los detalles:<br>
 
-Categoría del incidente: {{ $ticket->titulo }} {{-- {{ $ticket->op}} --}}<br>
+Categoría del incidente:
+@foreach ($ticket->opciones as $opcion)
+    - {{ $opcion->valor }}
+@endforeach
 
 Comentario de resolución: {{ $ticket->solucion }}<br>
 
