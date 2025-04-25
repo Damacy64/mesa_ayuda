@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Support;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -21,6 +22,8 @@ class TicketsSupport extends Component
     #[On('ticketActualizado')]
     public function render()
     {
+        $userId = Auth::id();
+
         $tickets = DB::table('tickets as t')
             ->join('user_finals as uf', 't.usuario_id', '=', 'uf.id')
             ->join('users as u', 'uf.empleado_id', '=', 'u.id')
@@ -35,6 +38,7 @@ class TicketsSupport extends Component
                 't.prioridad_id as prioridad',
                 't.estatus_id as estatus'
             )
+            ->where('support.empleado_id', $userId)
             ->when($this->search, function ($query) {
                 $query->where('t.folio', 'like', '%' . $this->search . '%')
                     ->orWhere('u.name', 'like', '%' . $this->search . '%')

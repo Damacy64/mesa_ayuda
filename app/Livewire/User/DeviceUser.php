@@ -2,6 +2,7 @@
 
 namespace App\Livewire\User;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -13,6 +14,8 @@ class DeviceUser extends Component
 
     public function mount()
     {
+        $userId = Auth::id();
+
         $this->datos = DB::table('computer_user_final as cuf')
             ->join('user_finals as uf', 'cuf.user_final_id', '=', 'uf.id')
             ->join('computers as c', 'cuf.equipo_id', '=', 'c.numero_serie')
@@ -35,6 +38,7 @@ class DeviceUser extends Component
                 'a_marca.atributo_valor as marca',
                 'a_win.atributo_valor as version_windows'
             )
+            ->where('uf.empleado_id', $userId)
             ->get();
     }
 

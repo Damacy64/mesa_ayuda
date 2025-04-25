@@ -27,6 +27,16 @@ class UsersSeeder extends Seeder
                 'password' => Hash::make('password'),
             ],
             [
+                'name' => 'SAMANTA ABIGAIL',
+                'email' => 'samanta.valdovinos@afac.gob.mx',
+                'last_name_p' => 'VALDOVINOS',
+                'last_name_m' => 'GARCIA',
+                'sex_id' => 'FEMENINO',
+                'rol_id' => 'USUARIO',
+                'employer_number' => '0000004',
+                'password' => Hash::make('password'),
+            ],
+            [
                 'name' => 'BRENDA CITLALI',
                 'email' => 'brenda.lobaton@afac.gob.mx',
                 'last_name_p' => 'LOBATON',
@@ -34,6 +44,16 @@ class UsersSeeder extends Seeder
                 'sex_id' => 'FEMENINO',
                 'rol_id' => 'SOPORTE',
                 'employer_number' => '0000002',
+                'password' => Hash::make('password'),
+            ],
+            [
+                'name' =>'SALVADOR',
+                'email' => 'salvador.gonzales@afac.gob.mx',
+                'last_name_p' => 'GONZALES',
+                'last_name_m' => 'GARCIA',
+                'sex_id' => 'MASCULINO',
+                'rol_id' => 'SOPORTE',
+                'employer_number' => '0000005',
                 'password' => Hash::make('password'),
             ],
             [
@@ -50,17 +70,32 @@ class UsersSeeder extends Seeder
         DB::table('users')->insert($users);
 
         $userFinal = [
-            'ubicacion_id' => 'Piso 3',
-            'area_id' => 'Dirección de Desarrollo Estratégico',
-            'empleado_id' => 1,
+            [
+                'ubicacion_id' => 'Piso 3',
+                'area_id' => 'Dirección de Desarrollo Estratégico',
+                'empleado_id' => 1,
+            ],
+            [
+                'ubicacion_id' => 'Piso 2',
+                'area_id' => 'Dirección Ejecutiva Técnica',
+                'empleado_id' => 2,
+            ]
         ];
         DB::table('user_finals')->insert($userFinal);
 
         $soporte = [
-            'carga_trabajo' => 1,
-            'disponibilidad' => 'DESOCUPADO',
-            'estado' => 'ACTIVO',
-            'empleado_id' => 2,
+            [
+                'carga_trabajo' => 1,
+                'disponibilidad' => 'DESOCUPADO',
+                'estado' => 'ACTIVO',
+                'empleado_id' => 3,
+            ],
+            [
+                'carga_trabajo' => 1,
+                'disponibilidad' => 'DESOCUPADO',
+                'estado' => 'ACTIVO',
+                'empleado_id' => 4,
+            ]
         ];
         DB::table('support')->insert($soporte);
     }
