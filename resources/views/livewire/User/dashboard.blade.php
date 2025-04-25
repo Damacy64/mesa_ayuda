@@ -6,7 +6,7 @@
             <x-dropdown align="right" width="48" />
         </x-slot>
         <x-slot name="title">
-        MESA DE AYUDA
+            MESA DE AYUDA
         </x-slot>
     </x-header>
 
