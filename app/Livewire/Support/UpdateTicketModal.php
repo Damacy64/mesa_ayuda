@@ -28,19 +28,20 @@ class UpdateTicketModal extends Component
     public function abrirModal($folio)
     {
         $ticket = DB::table('tickets as t')
-        ->leftJoin('computers as c', 't.equipo_id', '=', 'c.numero_serie')
-        ->leftJoin('ticket_opcion as to', 't.folio', '=', 'to.ticket_id')
-        ->leftJoin('options as o', 'to.opcion_id', '=', 'o.id')
-        ->select(
-        't.folio',
-        't.titulo',
-        DB::raw("MAX(CASE WHEN o.nivel = 'tipo' THEN o.valor END) as equipo"),
-        DB::raw("MAX(CASE WHEN o.nivel = 'falla' THEN o.valor END) as tipo_falla"),
-        'c.numero_serie',
-        't.descripcion')
-        ->where('t.folio', $folio)
-        ->groupBy('t.folio', 't.titulo', 'c.modelo', 'c.numero_serie', 't.descripcion')
-        ->first();
+            ->leftJoin('computers as c', 't.equipo_id', '=', 'c.numero_serie')
+            ->leftJoin('ticket_opcion as to', 't.folio', '=', 'to.ticket_id')
+            ->leftJoin('options as o', 'to.opcion_id', '=', 'o.id')
+            ->select(
+                't.folio',
+                't.titulo',
+                DB::raw("MAX(CASE WHEN o.nivel = 'tipo' THEN o.valor END) as equipo"),
+                DB::raw("MAX(CASE WHEN o.nivel = 'falla' THEN o.valor END) as tipo_falla"),
+                'c.numero_serie',
+                't.descripcion'
+            )
+            ->where('t.folio', $folio)
+            ->groupBy('t.folio', 't.titulo', 'c.modelo', 'c.numero_serie', 't.descripcion')
+            ->first();
 
         $this->ticket = $ticket;
         $this->estatus = $ticket->estatus_id ?? null;
@@ -52,23 +53,36 @@ class UpdateTicketModal extends Component
         $this->open = false;
     }
 
-    public function actualizarTicket(){
-        
+    public function actualizarTicket()
+    {
+
         $this->validate();
 
         // Obtenemos el ticket por su folio
         $ticket = Ticket::where('folio', $this->ticket->folio)->first();
 
+
+
         // Actualizamos el estado del ticket
-        if ($ticket){
-            $ticket->update([
-                'estatus_id' => $this->estatus,
-                'solucion' => $this->descripcion,
-            ]);
-
-            $this->reset(['open', 'ticket', 'estatus', 'descripcion']);
+        if ($this->estatus == 'CERRADO') {
+            if ($ticket) {
+                $ticket->update([
+                    'estatus_id' => $this->estatus,
+                    'solucion' => $this->descripcion,
+                    'fecha_termino' => now(),
+                ]);
+            }
+        } else {
+            if ($ticket) {
+                $ticket->update([
+                    'estatus_id' => $this->estatus,
+                    'solucion' => $this->descripcion,
+                ]);
+            }
         }
+        $this->reset(['open', 'ticket', 'estatus', 'descripcion']);
 
+        $ticket = $ticket = Ticket::with('opciones')->find($ticket->folio);
         // Enviamos un correo al usuario
         Mail::to($ticket->usuario->user->email)->send(new TicketActualizado($ticket));
 
@@ -83,16 +97,17 @@ class UpdateTicketModal extends Component
     public function render()
     {
         $tickets = DB::table('tickets as t')
-        ->leftJoin('computers as c', 't.equipo_id', '=', 'c.numero_serie')
-        ->leftJoin('ticket_opcion as to', 't.folio', '=', 'to.ticket_id')
-        ->leftJoin('options as o', 'to.opcion_id', '=', 'o.id')
-        ->select('t.folio',
-        DB::raw("MAX(CASE WHEN o.nivel = 'tipo_ticket' THEN o.valor END) as tipo_ticket"),
-        DB::raw("MAX(CASE WHEN o.nivel = 'tipo_falla' THEN o.valor END) as tipo_falla"),
-        'c.modelo as equipo',
-        'c.numero_serie',
-        't.descripcion'
-        )->groupBy('t.folio', 'c.modelo', 'c.numero_serie', 't.descripcion')->get();
+            ->leftJoin('computers as c', 't.equipo_id', '=', 'c.numero_serie')
+            ->leftJoin('ticket_opcion as to', 't.folio', '=', 'to.ticket_id')
+            ->leftJoin('options as o', 'to.opcion_id', '=', 'o.id')
+            ->select(
+                't.folio',
+                DB::raw("MAX(CASE WHEN o.nivel = 'tipo_ticket' THEN o.valor END) as tipo_ticket"),
+                DB::raw("MAX(CASE WHEN o.nivel = 'tipo_falla' THEN o.valor END) as tipo_falla"),
+                'c.modelo as equipo',
+                'c.numero_serie',
+                't.descripcion'
+            )->groupBy('t.folio', 'c.modelo', 'c.numero_serie', 't.descripcion')->get();
 
         return view('livewire.support.update-ticket-modal', compact('tickets'));
     }

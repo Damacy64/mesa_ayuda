@@ -13,7 +13,7 @@
         <tbody class="text-black">
             @forelse ($datos as $item)
                     <tr class="border-t">
-                        <td class="p-2">{{ $item->user_id }}</td>
+                        <td class="p-2">{{ $loop->iteration }}</td>
                         <td class="p-2">{{ $item->tipo_equipo ?? 'N/A' }}</td>
                         <td class="p-2">{{ $item->marca ?? 'N/A' }}</td>
                         <td class="p-2">{{ $item->numero_serie }}</td>
