@@ -8,7 +8,6 @@
                         class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-5xl">
                         <div class="bg-white px-6 py-6">
                             <h3 class="text-lg font-bold text-gray-900 mb-4" id="modal-title">Crear Ticket</h3>
-
                             <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
                                 <div>
                                     <x-select id="categoria" name="categoria" wire:model.live="categoria">
@@ -69,11 +68,10 @@
                                     class="w-full border border-black rounded-md p-2"></textarea>
                             </div>
 
-                            <x-validation-errors/>
+                            <x-validation-errors />
 
-                            <div class="flex justify-end space-x-3">
-                                <x-button-cerrar wire:click="closemodal" type="button"
-                                    class="bg-gray-300 hover:bg-gray-400 text-white font-semibold py-2 px-4 rounded">
+                            <div class="flex justify-center space-x-3">
+                                <x-button-cerrar wire:click="closemodal" type="button">
                                     CERRAR
                                 </x-button-cerrar>
 

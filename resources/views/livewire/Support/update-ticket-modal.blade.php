@@ -8,53 +8,55 @@
                         class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-5xl">
                         <div class="bg-white px-6 py-6">
                             <h2 class="text-lg font-bold mb-4">Actualizar Ticket</h2>
-
-                            <table class="w-full text-sm text-left bg-white border">
-                                <thead class="bg-afac-golden text-white">
-                                    <tr>
-                                        <th class="p-2">Folio</th>
-                                        <th class="p-2">Tipo de Ticket</th>
-                                        <th class="p-2">Equipo</th>
-                                        <th class="p-2">Tipo de Falla</th>
-                                        <th class="p-2">Numero de serie</th>
-                                        <th class="p-2">Descripción del problema</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="text-black">
-                                    
-                                    @if ($ticket)
-                                        <tr class="border-t">
-                                            <td class="p-2">{{ $ticket->folio }}</td>
-                                            <td class="p-2">{{ $ticket->titulo }}</td>
-                                            <td class="p-2">{{ $ticket->equipo }}</td>
-                                            <td class="p-2">{{ $ticket->tipo_falla }}</td>
-                                            <td class="p-2">{{ $ticket->numero_serie }}</td>
-                                            <td class="p-2">{{ $ticket->descripcion }}</td>
-                                        </tr>
-                                    @else
+                            <div class="grid grid-cols-1 md:grid-cols-6 gap-4 mb-6">
+                                <table class="w-full text-sm text-left bg-white border">
+                                    <thead class="bg-afac-golden text-white">
                                         <tr>
-                                            <td colspan="6" class="p-2 text-center">No hay datos disponibles.</td>
+                                            <th class="p-2">Folio</th>
+                                            <th class="p-2">Tipo de Ticket</th>
+                                            <th class="p-2">Equipo</th>
+                                            <th class="p-2">Tipo de Falla</th>
+                                            <th class="p-2">Numero de serie</th>
+                                            <th class="p-2">Descripción del problema</th>
                                         </tr>
-                                    @endif
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody class="text-black">
 
-                            <div class="mb-4">
-                                <x-label for="descripcion">Escriba una descripcion de la solución *</x-label>
-                                <textarea wire:model="descripcion" id="descripcion" maxlength="250" rows="4"
-                                    class="w-full border border-black rounded-md p-2"></textarea>
-                            </div>
+                                        @if ($ticket)
+                                            <tr class="border-t">
+                                                <td class="p-2">{{ $ticket->folio }}</td>
+                                                <td class="p-2">{{ $ticket->titulo }}</td>
+                                                <td class="p-2">{{ $ticket->equipo }}</td>
+                                                <td class="p-2">{{ $ticket->tipo_falla }}</td>
+                                                <td class="p-2">{{ $ticket->numero_serie }}</td>
+                                                <td class="p-2">{{ $ticket->descripcion }}</td>
+                                            </tr>
+                                        @else
+                                            <tr>
+                                                <td colspan="6" class="p-2 text-center">No hay datos disponibles.
+                                                </td>
+                                            </tr>
+                                        @endif
+                                    </tbody>
+                                </table>
 
-                            <div class="mb-4">
-                                <x-label for="estatus" value="Estatus" />
-                                <x-select id="estatus" wire:model="estatus">
-                                    @foreach ($status as $statu)
-                                        <option value="{{ $statu->nombre }}">{{ $statu->nombre }}</option>
-                                    @endforeach
-                                </x-select>
+                                <div class="mb-4">
+                                    <x-label for="descripcion">Escriba una descripcion de la solución *</x-label>
+                                    <textarea wire:model="descripcion" id="descripcion" maxlength="250" rows="4"
+                                        class="w-full border border-black rounded-md p-2"></textarea>
+                                </div>
+
+                                <div class="mb-4">
+                                    <x-label for="estatus" value="Estatus" />
+                                    <x-select id="estatus" wire:model="estatus">
+                                        @foreach ($status as $statu)
+                                            <option value="{{ $statu->nombre }}">{{ $statu->nombre }}</option>
+                                        @endforeach
+                                    </x-select>
+                                </div>
                             </div>
                             <x-validation-errors class="mb-4" />
-                            <div class="flex justify-end space-x-4">
+                            <div class="flex justify-center space-x-3">
                                 <x-button-cerrar wire:click="cerrarModal" type="button"
                                     class="bg-gray-300">Cerrar</x-button-cerrar>
                                 <x-button wire:click="actualizarTicket">Enviar</x-button>
