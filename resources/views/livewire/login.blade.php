@@ -35,19 +35,19 @@
 
                     <div>
                         <x-label for="email" value="{{ __('Correo electrónico') }}" />
-                        <x-input maxlength="35" id="email"  type="email"
-                            name="email" :value="old('email')" required autofocus autocomplete="username" />
+                        <x-input class="w-full" maxlength="35" id="email" type="email" name="email"
+                            :value="old('email')" required autofocus autocomplete="username" />
                     </div>
 
                     <div>
                         <x-label for="password" value="{{ __('Contraseña') }}" />
-                        <x-input minlength="8" maxlength="15" id="password" 
-                            type="password" name="password" required autocomplete="current-password" />
+                        <x-input class="w-full" minlength="8" maxlength="15" id="password" type="password"
+                            name="password" required autocomplete="current-password" />
                     </div>
 
-                    <x-validation-errors />
+                    <x-validation-errors class="text-sm" />
 
-                    <div class="flex items-center justify-center">
+                    <div class="flex items-center justify-center ">
                         <x-button class="flex items-center justify-center">
                             {{ __('INGRESAR') }}
                         </x-button>

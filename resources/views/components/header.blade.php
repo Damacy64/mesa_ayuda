@@ -9,7 +9,7 @@
 
     @isset($links)
         <div
-            class="flex flex-wrap gap-4 container mx-auto justify-center w-full  sm:text-xs md:text-xs lg:text-2x1  font-semibold text-afac-golden">
+            class="flex flex-wrap gap-4 container mx-auto justify-center w-full  font-semibold text-afac-golden">
             {{ $links }}
         </div>
     @endisset

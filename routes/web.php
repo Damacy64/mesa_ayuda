@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
-use App\Livewire\Admin\Dispositivos;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Admin\Dispositivos;
 
 
 Route::get('/', function () {
@@ -14,9 +14,11 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');   
+    Route::get('/dispositivos', [DashboardController::class, 'dispositivos'])->name('dispositivos');   
+    Route::get('/usuarios', [DashboardController::class, 'usuarios'])->name('usuarios');   
+    Route::get('/tecnicos', [DashboardController::class, 'tecnicos'])->name('tecnicos');   
+    Route::get('/areas', [DashboardController::class, 'areas'])->name('areas');   
+
    
-    Route::get('/dispositivos', Dispositivos::class)->name('dispositivos');
-   
-    
 });

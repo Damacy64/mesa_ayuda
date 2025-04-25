@@ -2,12 +2,14 @@
     @if ($open)
         <div class="relative z-10">
             <div class="fixed inset-0 bg-afac-gray-low/75 transition-opacity"></div>
+            
             <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
                 <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                    <div
-                        class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-5xl">
-                        <div class="bg-white px-6 py-6">
+                    <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-5xl">
+                        
+                        <div class="bg-white px-6 py-6 sm:px-6">
                             <h3 class="text-lg font-bold text-gray-900 mb-4" id="modal-title">Crear Ticket</h3>
+                           
                             <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
                                 <div>
                                     <x-select id="categoria" name="categoria" wire:model.live="categoria">
