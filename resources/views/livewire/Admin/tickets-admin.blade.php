@@ -10,8 +10,8 @@
             <tr>
                 <th class="p-2">#Empleado</th>
                 <th class="p-2">Nombre</th>
-                <th class="p-2">Titulo de Ticket</th>
-                <th class="p-2">Titulo de Falla</th>
+                <th class="p-2">Tipo de Ticket</th>
+                <th class="p-2">Tipo de Falla</th>
                 <th class="p-2">Fecha de Creación</th>
                 <th class="p-2">Prioridad</th>
                 <th class="p-2">Estatus</th>
@@ -24,11 +24,12 @@
                 <tr class="border-t">
                     <td class="p-2">{{ $item->folio }}</td>
                     <td class="p-2">{{ $item->nombre_usuario }}</td>
-                    <td class="p-2">{{ $item->area }}</td>
-                    <td class="p-2">{{ $item->ubicacion }}</td>
+                    <td class="p-2">{{ $item->tipo_ticket }}</td>
+                    <td class="p-2">{{ $item->tipo_falla }}</td>
                     <td class="p-2">{{ $item->fecha_creacion }}</td>
                     <td class="p-2">{{ $item->prioridad }}</td>
                     <td class="p-2">{{ $item->estatus }}</td>
+                    <td class="p-2">{{ $item->tecnico }}</td>
                     <td class="p-2">
                         <a href="" wire:click.prevent="$dispatch('abrir-modal')" class="text-blue-500 hover:text-blue-700">Actualizar</a>
                     </td>
