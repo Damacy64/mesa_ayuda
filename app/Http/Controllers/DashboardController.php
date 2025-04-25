@@ -8,7 +8,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $user = Auth::user()->load('role');
+        $user = Auth::user();
        
         switch ($user->role->rol) {
             case 'ADMIN':

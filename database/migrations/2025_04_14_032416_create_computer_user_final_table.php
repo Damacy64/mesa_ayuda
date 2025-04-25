@@ -13,14 +13,9 @@ return new class extends Migration
     {
         Schema::create('computer_user_final', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_final_id')
-                  ->constrained('user_finals')
-                  ->onDelete('cascade');
+            $table->foreignId('user_final_id')->constrained('user_finals')->onDelete('cascade');
             $table->unsignedBigInteger('equipo_id');
-            $table->foreign('equipo_id')
-                  ->references('numero_serie')
-                  ->on('computers')
-                  ->onDelete('cascade');
+            $table->foreign('equipo_id')->references('numero_serie')->on('computers')->onDelete('cascade');
             $table->timestamp('fecha_asignacion')->useCurrent();
             $table->timestamp('fecha_liberacion')->nullable();
             $table->timestamps();

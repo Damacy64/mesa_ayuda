@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\User;
 
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -53,6 +53,6 @@ class DeviceUser extends Component
 
     public function render()
     {
-        return view('livewire.device-user');
+        return view('livewire.user.device-user');
     }
 }

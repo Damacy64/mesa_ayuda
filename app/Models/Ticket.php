@@ -15,6 +15,7 @@ class Ticket extends Model
         'equipo_id',
         'titulo',
         'descripcion',
+        'solucion',
         'fecha_termino',
         'tiempo_solucion',
         'usuario_id',

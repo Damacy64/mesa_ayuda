@@ -11,6 +11,14 @@ class TicketsSupport extends Component
 {
     use WithPagination;
 
+    public $search = '';
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    #[On('ticketActualizado')]
     public function render()
     {
         $tickets = DB::table('tickets as t')
@@ -27,15 +35,22 @@ class TicketsSupport extends Component
                 't.prioridad_id as prioridad',
                 't.estatus_id as estatus'
             )
+            ->when($this->search, function ($query) {
+                $query->where('t.folio', 'like', '%' . $this->search . '%')
+                    ->orWhere('u.name', 'like', '%' . $this->search . '%')
+                    ->orWhere('a.nombre', 'like', '%' . $this->search . '%')
+                    ->orWhere('l.piso', 'like', '%' . $this->search . '%')
+                    ->orWhere('t.prioridad_id', 'like', '%' . $this->search . '%')
+                    ->orWhere('t.estatus_id', 'like', '%' . $this->search . '%');
+            })
             ->orderByDesc('t.created_at')
-            ->paginate(15);
+            ->paginate(5);
 
         return view('livewire.support.tickets-support', compact('tickets'));
     }
 
-    #[On('abrir-modal')]
-    public function abrirModal()
+    public function abrirModal($ticket)
     {
-        return view('auth.login');
+        $this->dispatch('abrir-modal', $ticket);
     }
 }

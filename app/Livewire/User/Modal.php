@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\User;
 
 use App\Mail\TicketCreado;
 use App\Models\Option;
@@ -28,6 +28,7 @@ class Modal extends Component
     public $descripcion = '';
 
     public $mostraropciones = 1;
+    public $mostrarDispositivos = false;
 
     protected $rules = [
         'categoria' => ['required', 'exists:options,id'],
@@ -70,15 +71,19 @@ class Modal extends Component
         switch (strtoupper($mostrar)) {
             case 'CÓMPUTO':
                 $this->mostraropciones = 4; // categoría → tipo → componente → falla
+                $this->mostrarDispositivos = ($value == 1);
                 break;
             case 'IMPRESIÓN':
                 $this->mostraropciones = 3; // categoría → tipo → falla
+                $this->mostrarDispositivos = false;
                 break;
             case 'PROGRAMACIÓN DE EVENTOS':
                 $this->mostraropciones = 2; // categoría → tipo
+                $this->mostrarDispositivos = false;
                 break;
             default:
-                $this->mostraropciones = 4;
+                $this->mostraropciones = 1;
+                $this->mostrarDispositivos = false;
         }
     }
 
@@ -104,7 +109,7 @@ class Modal extends Component
 
     public function render()
     {
-        return view('livewire.modal');
+        return view('livewire.user.modal');
     }
 
     public function closemodal()
@@ -117,7 +122,7 @@ class Modal extends Component
         $rules = $this->rules;
 
         $categoriaSeleccionada = Option::find($this->categoria);
-        if (strtoupper($categoriaSeleccionada->valor ?? '') === 'PROGRAMACIÓN DE EVENTOS') {
+        if (strtoupper($categoriaSeleccionada->valor ?? '') === 'PROGRAMACIÓN DE EVENTOS' || strtoupper($categoriaSeleccionada->valor ?? '') === 'IMPRESIÓN') {
             $rules['equipoSeleccionado'] = ['nullable'];
         } else {
             $rules['equipoSeleccionado'] = ['required'];
@@ -136,6 +141,16 @@ class Modal extends Component
         }
 
         $this->validate($rules);
+
+        // Validar que dispositivo no tenga un ticket abierto
+        $ticketAbierto = Ticket::where('equipo_id', $this->equipoSeleccionado)
+            ->where('estatus_id', 'ABIERTO')
+            ->exists();
+
+        if ($ticketAbierto) {
+            $this->addError('equipo', 'El dispositivo ya tiene un ticket abierto.');
+            return;
+        }
 
         // Crear el ticket
         $ticket = Ticket::create([

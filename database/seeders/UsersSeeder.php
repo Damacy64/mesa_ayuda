@@ -36,6 +36,16 @@ class UsersSeeder extends Seeder
                 'employer_number' => '0000002',
                 'password' => Hash::make('password'),
             ],
+            [
+                'name' => 'JAVIER ALBERTO',
+                'email' => 'javier.hernandez@afac.gob.mx',
+                'last_name_p' => 'HERNANDEZ',
+                'last_name_m' => 'GARCIA',
+                'sex_id' => 'MASCULINO',
+                'rol_id' => 'ADMIN',
+                'employer_number' => '0000003',
+                'password' => Hash::make('password'),
+            ]
         ];
         DB::table('users')->insert($users);
 

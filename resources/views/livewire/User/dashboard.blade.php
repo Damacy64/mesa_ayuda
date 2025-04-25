@@ -1,5 +1,5 @@
 <div>
-    @livewire('modal', ['equipos' => $equipos])
+    @livewire('user.modal', ['equipos' => $equipos])
 
     <x-header>
         <x-slot name="logout">
@@ -8,12 +8,12 @@
         MESA DE AYUDA
     </x-header>
 
-    <div>
+    <div class="container mx-auto px-4 py-6">
         <div class="flex items-center mb-4 p-4">
-            <h1 class="text-2xl font-bold text-black">Historial de tickets</h1>
+            <h1 class="text-2xl font-bold text-black">Resumen de tickets</h1>
         </div>
 
-        @livewire('tickets-user')
+        @livewire('user.tickets-user')
     </div>
 
     <div class="flex items-center justify-center p-4">

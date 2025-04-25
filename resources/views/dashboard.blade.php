@@ -1,3 +1,3 @@
 <x-guest-layout>
-    @livewire('dashboard')
+    @livewire('user.dashboard')
 </x-guest-layout>

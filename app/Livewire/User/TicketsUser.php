@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\User;
 
 use App\Models\Ticket;
 use Illuminate\Support\Facades\Auth;
@@ -13,21 +13,13 @@ class TicketsUser extends Component
 
     use WithPagination;
 
-    // public function getListeners()
-    // {
-    //     return [
-    //         'ticketCreated' => 'refreshTickets',
-    //     ];
-    // }
-
     #[On('ticketCreated')]
 
 
     public function render()
     {
-        return view('livewire.tickets-user', [
+        return view('livewire.user.tickets-user', [
             'tickets' => Ticket::where('usuario_id', Auth::user()->id)->orderBy('folio', 'desc')->paginate(15),
         ]);
-        
     }
 }

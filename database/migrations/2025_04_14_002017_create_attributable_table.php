@@ -21,13 +21,9 @@ return new class extends Migration
             $table->timestamps();
             $table->primary(['atributo_tipo', 'atributo_valor', 'attributable_type', 'attributable_id']);
         
-            $table->foreign(['atributo_tipo', 'atributo_valor'])
-                  ->references(['tipo', 'valor'])->on('attributes')
-                  ->onDelete('cascade');
+            $table->foreign(['atributo_tipo', 'atributo_valor'])->references(['tipo', 'valor'])->on('attributes')->onDelete('cascade');
         
-            $table->foreign('attributable_id')
-                  ->references('numero_serie')->on('computers')
-                  ->onDelete('cascade');
+            $table->foreign('attributable_id')->references('numero_serie')->on('computers')->onDelete('cascade');
         });
         
     }
