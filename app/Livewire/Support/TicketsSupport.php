@@ -38,7 +38,7 @@ class TicketsSupport extends Component
                 't.prioridad_id as prioridad',
                 't.estatus_id as estatus'
             )
-            ->where('support.empleado_id', $userId)
+            ->where('u.id', $userId)
             ->when($this->search, function ($query) {
                 $query->where('t.folio', 'like', '%' . $this->search . '%')
                     ->orWhere('u.name', 'like', '%' . $this->search . '%')

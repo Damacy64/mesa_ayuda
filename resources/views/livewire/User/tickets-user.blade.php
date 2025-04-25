@@ -1,4 +1,4 @@
-<div class="container mx-auto px-4 py-6">
+<div class="overflow-x-auto mb-6">
     <table class="w-full text-sm text-left bg-white border">
         <thead class="bg-afac-golden text-white">
             <tr>
