@@ -1,6 +1,8 @@
 <div>
     <x-header>
-        MESA DE AYUDA
+        <x-slot name="title">
+            MESA DE AYUDA
+        </x-slot>
     </x-header>
 
     @session('status')
@@ -33,13 +35,13 @@
 
                     <div>
                         <x-label for="email" value="{{ __('Correo electrónico') }}" />
-                        <x-input maxlength="35" id="email" class="block mt-1 w-full px-8 py-2" type="email"
+                        <x-input maxlength="35" id="email"  type="email"
                             name="email" :value="old('email')" required autofocus autocomplete="username" />
                     </div>
 
                     <div>
                         <x-label for="password" value="{{ __('Contraseña') }}" />
-                        <x-input minlength="8" maxlength="15" id="password" class="block mt-1 w-full px-8 py-2"
+                        <x-input minlength="8" maxlength="15" id="password" 
                             type="password" name="password" required autocomplete="current-password" />
                     </div>
 

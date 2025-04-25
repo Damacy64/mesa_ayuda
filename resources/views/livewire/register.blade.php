@@ -1,5 +1,11 @@
 <div>
-    <x-header class="uppercase">REGISTRO USUARIO</x-header>
+    {{-- <x-header class="uppercase">REGISTRO USUARIO</x-header> --}}
+    <x-header>
+        <x-slot name="title">
+            REGISTRO USUARIO
+        </x-slot>
+    </x-header>
+
     <form class="container mx-auto p-6 " method="POST" action="{{ route('register') }}">
         @csrf
         <div class="space-y-12">
