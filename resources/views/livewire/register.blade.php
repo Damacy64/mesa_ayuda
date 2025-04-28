@@ -141,7 +141,7 @@
 
         <div class= "col-start-2 grid place-items:center">
             <x-button class="m-auto ">
-                {{ __('Registrar') }}
+                {{ __('REGISTRAR') }}
             </x-button>
         </div>
 

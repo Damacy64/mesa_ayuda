@@ -9,6 +9,7 @@
                 <th class="p-2">Descripción</th>
                 <th class="p-2">Solución</th>
                 <th class="p-2">Estatus</th>
+                <th class="p-2">Acción</th>
             </tr>
         </thead>
         <tbody class="text-black">
@@ -21,6 +22,10 @@
                     <td class="p-2">{{ $ticket->descripcion }}</td>
                     <td class="p-2">{{ $ticket->solucion }}</td>
                     <td class="p-2">{{ $ticket->estatus_id }}</td>
+                    <td class="p-2">
+                        <a href="" wire:click.prevent="reabrirTicket( {{ $ticket->folio }} )"
+                            class="text-blue-500 hover:text-blue-700">Reabrir</a>
+                    </td>
                 </tr>
             @empty
                 <tr class="text-black">

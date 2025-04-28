@@ -156,7 +156,7 @@ return [
     'starts_with' => 'The :attribute field must start with one of the following: :values.',
     'string' => 'El campo :attribute debe ser un string.',
     'timezone' => 'The :attribute field must be a valid timezone.',
-    'unique' => 'El :attribute ya existe',
+    'unique' => 'Este :attribute ya está asociado a una cuenta',
     'uploaded' => 'The :attribute failed to upload.',
     'uppercase' => 'The :attribute field must be uppercase.',
     'url' => 'The :attribute field must be a valid URL.',

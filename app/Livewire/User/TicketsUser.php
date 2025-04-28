@@ -15,11 +15,15 @@ class TicketsUser extends Component
 
     #[On('ticketCreated')]
 
-
     public function render()
     {
         return view('livewire.user.tickets-user', [
             'tickets' => Ticket::where('usuario_id', Auth::user()->id)->orderBy('folio', 'desc')->paginate(15),
         ]);
+    }
+ 
+    public function reabrirTicket($folio)
+    {
+        $this->dispatch('reabrir-modal', $folio);
     }
 }
