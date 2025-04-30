@@ -17,9 +17,8 @@ class OptionSeeder extends Seeder
         $computoId     = DB::table('options')->insertGetId(['nivel' => 'categoria', 'valor' => 'CÓMPUTO']);
         $impresionId   = DB::table('options')->insertGetId(['nivel' => 'categoria', 'valor' => 'IMPRESIÓN']);
         $eventosId     = DB::table('options')->insertGetId(['nivel' => 'categoria', 'valor' => 'PROGRAMACIÓN DE EVENTOS']);
-        //$sistemasId    = DB::table('options')->insertGetId(['nivel' => 'categoria', 'valor' => 'SISTEMAS']);
+        $sistemasId    = DB::table('options')->insertGetId(['nivel' => 'categoria', 'valor' => 'OFIMATICA']);
 
-        // Tipos (bajo sistemas)
         // DB::table('options')->insert([
         //     ['nivel' => 'tipo', 'valor' => 'AFAC', 'parent_id' => $sistemasId],
         //     ['nivel' => 'tipo', 'valor' => 'CASS', 'parent_id' => $sistemasId],
@@ -37,12 +36,12 @@ class OptionSeeder extends Seeder
 
         // Fallas (bajo Tablet)
         DB::table('options')->insert([
-            ['nivel' => 'falla', 'valor' => 'No enciende', 'parent_id' => $tabletId],
-            ['nivel' => 'falla', 'valor' => 'Pantalla no responde', 'parent_id' => $tabletId],
-            ['nivel' => 'falla', 'valor' => 'Problemas con Wi-Fi', 'parent_id' => $tabletId],
-            ['nivel' => 'falla', 'valor' => 'Bluetooth no funciona', 'parent_id' => $tabletId],
-            ['nivel' => 'falla', 'valor' => 'No carga', 'parent_id' => $tabletId],
-            ['nivel' => 'falla', 'valor' => 'Sin sonido', 'parent_id' => $tabletId],
+            ['nivel' => 'falla', 'valor' => 'NO ENCIENDE', 'parent_id' => $tabletId],
+            ['nivel' => 'falla', 'valor' => 'PANTALLA NO RESPONDE', 'parent_id' => $tabletId],
+            ['nivel' => 'falla', 'valor' => 'PROBLEMAS CON EL INTERNET', 'parent_id' => $tabletId],
+            ['nivel' => 'falla', 'valor' => 'BLUETOOOTH NO SE CONECTA', 'parent_id' => $tabletId],
+            ['nivel' => 'falla', 'valor' => 'NO CARGA', 'parent_id' => $tabletId],
+            ['nivel' => 'falla', 'valor' => 'SIN SONIDO', 'parent_id' => $tabletId],
         ]);
 
         // Tipos (bajo Impresión)
@@ -52,26 +51,26 @@ class OptionSeeder extends Seeder
 
         //Fallas (bajo Multifuncional)
         DB::table('options')->insert([
-            ['nivel' => 'falla', 'valor' => 'No imprime', 'parent_id' => $multifuncionalId],
-            ['nivel' => 'falla', 'valor' => 'Atasco de papel', 'parent_id' => $multifuncionalId],
-            ['nivel' => 'falla', 'valor' => 'Problema con el escáner', 'parent_id' => $multifuncionalId],
-            ['nivel' => 'falla', 'valor' => 'Problema con el fax', 'parent_id' => $multifuncionalId],
+            ['nivel' => 'falla', 'valor' => 'NO IMPRIME', 'parent_id' => $multifuncionalId],
+            ['nivel' => 'falla', 'valor' => 'PAPEL ATASCADO', 'parent_id' => $multifuncionalId],
+            ['nivel' => 'falla', 'valor' => 'PROBLEMA CON EL ESCANER', 'parent_id' => $multifuncionalId],
+            ['nivel' => 'falla', 'valor' => 'PROBLEMA CON EL FAX', 'parent_id' => $multifuncionalId],
         ]);
 
         // Fallas (bajo Escaner)
         DB::table('options')->insert([
-            ['nivel' => 'falla', 'valor' => 'No escanea', 'parent_id' => $escanerId],
-            ['nivel' => 'falla', 'valor' => 'Imagen borrosa', 'parent_id' => $escanerId],
-            ['nivel' => 'falla', 'valor' => 'No detecta conexión', 'parent_id' => $escanerId],
+            ['nivel' => 'falla', 'valor' => 'NO ESCANEA', 'parent_id' => $escanerId],
+            ['nivel' => 'falla', 'valor' => 'CALIDAD DE IMPRESION  DEFICIENTE', 'parent_id' => $escanerId],
+            ['nivel' => 'falla', 'valor' => 'NO DETECTA CONEXION', 'parent_id' => $escanerId],
         ]);
 
         // Fallas (bajo Impresora)
         DB::table('options')->insert([
-            ['nivel' => 'falla', 'valor' => 'No imprime', 'parent_id' => $impresoraId],
-            ['nivel' => 'falla', 'valor' => 'Tinta o tóner agotado', 'parent_id' => $impresoraId],
-            ['nivel' => 'falla', 'valor' => 'Calidad de impresión deficiente', 'parent_id' => $impresoraId],
-            ['nivel' => 'falla', 'valor' => 'Atasco de papel', 'parent_id' => $impresoraId],
-            ['nivel' => 'falla', 'valor' => 'No detecta conexion', 'parent_id' => $impresoraId],
+            ['nivel' => 'falla', 'valor' => 'NO IMPRIME', 'parent_id' => $impresoraId],
+            ['nivel' => 'falla', 'valor' => 'TINTA O TONER AGOTADO', 'parent_id' => $impresoraId],
+            ['nivel' => 'falla', 'valor' => 'CALIDAD DE IMPRESION  DEFICIENTE', 'parent_id' => $impresoraId],
+            ['nivel' => 'falla', 'valor' => 'PAPEL ATASCADO', 'parent_id' => $impresoraId],
+            ['nivel' => 'falla', 'valor' => 'NO DETECTA CONEXION', 'parent_id' => $impresoraId],
         ]);
 
         // Tipos (bajo Programacion eventos)
@@ -88,40 +87,40 @@ class OptionSeeder extends Seeder
 
         // Fallas (bajo General)
         DB::table('options')->insert([
-            ['nivel' => 'falla', 'valor' => 'Sobrecalentamiento', 'parent_id' => $generalId],
-            ['nivel' => 'falla', 'valor' => 'Portátil lento', 'parent_id' => $generalId],
-            ['nivel' => 'falla', 'valor' => 'Problemas de Wi-Fi', 'parent_id' => $generalId],
+            ['nivel' => 'falla', 'valor' => 'SOBRECALIENTAMIENTO', 'parent_id' => $generalId],
+            ['nivel' => 'falla', 'valor' => 'PORTATIL LENTO', 'parent_id' => $generalId],
+            ['nivel' => 'falla', 'valor' => 'PROBLEMAS CON EL INTERNET', 'parent_id' => $generalId],
         ]);
 
         // Fallas (bajo Pantalla)
         DB::table('options')->insert([
-            ['nivel' => 'falla', 'valor' => 'Pantalla negra', 'parent_id' => $pantallaId],
-            ['nivel' => 'falla', 'valor' => 'Lineas en la pantalla', 'parent_id' => $pantallaId],
-            ['nivel' => 'falla', 'valor' => 'Imagen borrosa', 'parent_id' => $pantallaId],
-            ['nivel' => 'falla', 'valor' => 'Brillo/contraste defectuoso', 'parent_id' => $pantallaId],
+            ['nivel' => 'falla', 'valor' => 'PANTALLA NO RESPONDE', 'parent_id' => $pantallaId],
+            ['nivel' => 'falla', 'valor' => 'LINEAS EN LA PANTALLA', 'parent_id' => $pantallaId],
+            ['nivel' => 'falla', 'valor' => 'IMAGEN DEFICIENTE', 'parent_id' => $pantallaId],
+            ['nivel' => 'falla', 'valor' => 'PANTALLA AZUL', 'parent_id' => $pantallaId],
         ]);
 
         // Fallas (bajo Teclado Laptop)
         DB::table('options')->insert([
-            ['nivel' => 'falla', 'valor' => 'No funcionan las teclas numéricas', 'parent_id' => $tecladoLaptopId],
-            ['nivel' => 'falla', 'valor' => 'No funciona ninguna tecla', 'parent_id' => $tecladoLaptopId],
-            ['nivel' => 'falla', 'valor' => 'Teclas intercambiadas al escribir', 'parent_id' => $tecladoLaptopId],
-            ['nivel' => 'falla', 'valor' => 'No funcionan símbolos', 'parent_id' => $tecladoLaptopId],
-            ['nivel' => 'falla', 'valor' => 'Derrame de líquido', 'parent_id' => $tecladoLaptopId],
+            ['nivel' => 'falla', 'valor' => 'NO FUNCIONAN LAS TECLAS NUMERICAS', 'parent_id' => $tecladoLaptopId],
+            ['nivel' => 'falla', 'valor' => 'NO FUNCIONA NINGUNA TECLA', 'parent_id' => $tecladoLaptopId],
+            ['nivel' => 'falla', 'valor' => 'TECLAS INTERCAMBIADAS', 'parent_id' => $tecladoLaptopId],
+            ['nivel' => 'falla', 'valor' => 'NO FUNCIONAN SIMBOLOS', 'parent_id' => $tecladoLaptopId],
+            ['nivel' => 'falla', 'valor' => 'DERRAME DE LIQUIDO', 'parent_id' => $tecladoLaptopId],
         ]);
 
         // Fallas (bajo Panel Táctil)
         DB::table('options')->insert([
-            ['nivel' => 'falla', 'valor' => 'No responde', 'parent_id' => $panelTactilId],
-            ['nivel' => 'falla', 'valor' => 'Movimiento errático', 'parent_id' => $panelTactilId],
-            ['nivel' => 'falla', 'valor' => 'Gestos que no funcionan', 'parent_id' => $panelTactilId],
+            ['nivel' => 'falla', 'valor' => 'NO RESPONDE', 'parent_id' => $panelTactilId],
+            ['nivel' => 'falla', 'valor' => 'MOVIMIENTO ERRATICO', 'parent_id' => $panelTactilId],
+            ['nivel' => 'falla', 'valor' => 'GESTOS QUE NO FUNCIONAN', 'parent_id' => $panelTactilId],
         ]);
 
         // Fallas (bajo Bateria)
         DB::table('options')->insert([
-            ['nivel' => 'falla', 'valor' => 'No carga', 'parent_id' => $bateriaId],
-            ['nivel' => 'falla', 'valor' => 'Duración corta', 'parent_id' => $bateriaId],
-            ['nivel' => 'falla', 'valor' => 'Laptop no enciende', 'parent_id' => $bateriaId],
+            ['nivel' => 'falla', 'valor' => 'NO CARGA', 'parent_id' => $bateriaId],
+            ['nivel' => 'falla', 'valor' => 'DURACIÓN CORTA', 'parent_id' => $bateriaId],
+            ['nivel' => 'falla', 'valor' => 'NO ENCIENDE', 'parent_id' => $bateriaId],
         ]);
 
         // Componentes (bajo Escritorio)
@@ -133,43 +132,43 @@ class OptionSeeder extends Seeder
 
         // Fallas (bajo CPU)
         DB::table('options')->insert([
-            ['nivel' => 'falla', 'valor' => 'No enciende', 'parent_id' => $cpuId],
-            ['nivel' => 'falla', 'valor' => 'Pantalla azul', 'parent_id' => $cpuId],
-            ['nivel' => 'falla', 'valor' => 'Reinicios constantes', 'parent_id' => $cpuId],
-            ['nivel' => 'falla', 'valor' => 'Problema con la fuente de poder', 'parent_id' => $cpuId],
-            ['nivel' => 'falla', 'valor' => 'Problema con la tarjeta madre', 'parent_id' => $cpuId],
+            ['nivel' => 'falla', 'valor' => 'NO ENCIENDE', 'parent_id' => $cpuId],
+            ['nivel' => 'falla', 'valor' => 'PANTALLA AZUL', 'parent_id' => $cpuId],
+            ['nivel' => 'falla', 'valor' => 'REINICIOS CONSTANTES', 'parent_id' => $cpuId],
+            ['nivel' => 'falla', 'valor' => 'PROBLEMA CON LA FUENTE DE PODER', 'parent_id' => $cpuId],
+            ['nivel' => 'falla', 'valor' => 'PROBLEMA CON LA TARJETA MADRE', 'parent_id' => $cpuId],
         ]);
 
         // Fallas (bajo Monitor)
         DB::table('options')->insert([
-            ['nivel' => 'falla', 'valor' => 'No enciende', 'parent_id' => $monitorId],
-            ['nivel' => 'falla', 'valor' => 'Pantalla negra', 'parent_id' => $monitorId],
-            ['nivel' => 'falla', 'valor' => 'Lineas en la pantalla', 'parent_id' => $monitorId],
-            ['nivel' => 'falla', 'valor' => 'Imagen borrosa', 'parent_id' => $monitorId],
-            ['nivel' => 'falla', 'valor' => 'Brillo/contraste defectuoso', 'parent_id' => $monitorId],
+            ['nivel' => 'falla', 'valor' => 'NO ENCIENDE', 'parent_id' => $monitorId],
+            ['nivel' => 'falla', 'valor' => 'PANTALLA AZUL', 'parent_id' => $monitorId],
+            ['nivel' => 'falla', 'valor' => 'LINEAS EN LA PANTALLA', 'parent_id' => $monitorId],
+            ['nivel' => 'falla', 'valor' => 'IMAGEN DEFICIENTE', 'parent_id' => $monitorId],
+            ['nivel' => 'falla', 'valor' => 'PANTALLA NEGRA', 'parent_id' => $monitorId],
         ]);
 
         // Fallas (bajo Teclado)
         DB::table('options')->insert([
-            ['nivel' => 'falla', 'valor' => 'No funcionan las teclas numéricas', 'parent_id' => $tecladoId],
-            ['nivel' => 'falla', 'valor' => 'No funciona ninguna tecla', 'parent_id' => $tecladoId],
-            ['nivel' => 'falla', 'valor' => 'Teclas intercambiadas al escribir', 'parent_id' => $tecladoId],
-            ['nivel' => 'falla', 'valor' => 'No funcionan símbolos', 'parent_id' => $tecladoId],
-            ['nivel' => 'falla', 'valor' => 'Derrame de líquido', 'parent_id' => $tecladoId],
+            ['nivel' => 'falla', 'valor' => 'NO FUNCIONAN LAS TECLAS NUMERICAS', 'parent_id' => $tecladoId],
+            ['nivel' => 'falla', 'valor' => 'NO FUNCIONA NINGUNA TECLA', 'parent_id' => $tecladoId],
+            ['nivel' => 'falla', 'valor' => 'TECLAS INTERCAMBIADAS', 'parent_id' => $tecladoId],
+            ['nivel' => 'falla', 'valor' => 'NO FUNCIONAN SIMBOLOS', 'parent_id' => $tecladoId],
+            ['nivel' => 'falla', 'valor' => 'DERRAME DE LIQUIDO', 'parent_id' => $tecladoId],
         ]);
 
         // Fallas (bajo Raton)
         DB::table('options')->insert([
-            ['nivel' => 'falla', 'valor' => 'No responde', 'parent_id' => $ratonId],
-            ['nivel' => 'falla', 'valor' => 'Movimiento errático', 'parent_id' => $ratonId],
-            ['nivel' => 'falla', 'valor' => 'No funciona el botón izquierdo/derecho', 'parent_id' => $ratonId],
+            ['nivel' => 'falla', 'valor' => 'NO RESPONDE', 'parent_id' => $ratonId],
+            ['nivel' => 'falla', 'valor' => 'MOVIMIENTO ERRATICO', 'parent_id' => $ratonId],
+            ['nivel' => 'falla', 'valor' => 'NO FUNCIONA LOS BOTÓNES', 'parent_id' => $ratonId],
         ]);
 
         // Fallas (bajo Perifericos)
         DB::table('options')->insert([
-            ['nivel' => 'falla', 'valor' => 'No detecta conexión', 'parent_id' => $perifericoId],
-            ['nivel' => 'falla', 'valor' => 'No responde', 'parent_id' => $perifericoId],
-            ['nivel' => 'falla', 'valor' => 'Problema de compatibilidad', 'parent_id' => $perifericoId],
+            ['nivel' => 'falla', 'valor' => 'NO DETECTA CONEXION', 'parent_id' => $perifericoId],
+            ['nivel' => 'falla', 'valor' => 'NO RESPONDE', 'parent_id' => $perifericoId],
+            ['nivel' => 'falla', 'valor' => 'PROBLEMA DE COMPATIBILIDAD', 'parent_id' => $perifericoId],
         ]);
     }
 }
