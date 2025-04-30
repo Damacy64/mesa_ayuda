@@ -11,11 +11,8 @@
     </x-header>
 
     <div class="container mx-auto px-4 py-6">
-        <div class="flex items-center mb-4 p-4">
-            <h1 class="text-2xl font-bold text-black">Resumen de tickets</h1>
-        </div>
-
         @livewire('user.tickets-user')
+        @livewire('user.modal-reabrir')
     </div>
 
     <div class="flex items-center justify-center p-4">

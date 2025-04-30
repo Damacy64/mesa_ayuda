@@ -21,18 +21,21 @@ class TicketsAdmin extends Component
     {
         $tickets = DB::table('tickets as t')
         ->join('user_finals as uf', 't.usuario_id', '=', 'uf.id')
+        ->join('support as s', 't.tecnico_id', '=', 's.id')
         ->join('users as u', 'uf.empleado_id', '=', 'u.id')
-        ->join('areas as a', 'uf.area_id', '=', 'a.nombre')
-        ->join('locations as l', 'uf.ubicacion_id', '=', 'l.piso')
+        ->join('ticket_opcion as to', 't.folio', '=', 'to.ticket_id')
+        ->join('options as o', 'to.opcion_id', '=', 'o.id')
         ->select(
             't.folio',
             'u.name as nombre_usuario',
-            'a.nombre as area',
-            'l.piso as ubicacion',
+            DB::raw("MAX(CASE WHEN o.nivel = 'tipo_ticket' THEN o.valor END) as tipo_ticket"),
+            DB::raw("MAX(CASE WHEN o.nivel = 'tipo_falla' THEN o.valor END) as tipo_falla"),
             't.created_at as fecha_creacion',
             't.prioridad_id as prioridad',
-            't.estatus_id as estatus'
+            't.estatus_id as estatus',
+            's.empleado_id as tecnico'
         )
+        ->groupBy('t.folio', 'u.name', 't.created_at', 't.prioridad_id', 't.estatus_id', 's.empleado_id')
         ->when($this->search, function ($query) {
             $query->where('t.folio', 'like', '%' . $this->search . '%')
                 ->orWhere('u.name', 'like', '%' . $this->search . '%')
@@ -46,9 +49,5 @@ class TicketsAdmin extends Component
 
         return view('livewire.admin.tickets-admin', compact('tickets'));
     }
-    #[On('abrir-modal')]
-    public function abrirModal()
-    {
-        return view('auth.login');//esto borrarlo
-    }
+
 }
