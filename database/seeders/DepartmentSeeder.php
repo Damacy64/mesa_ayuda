@@ -42,7 +42,13 @@ class DepartmentSeeder extends Seeder
             
                 // Área: Dirección de Administración y Finanzas
                 ['nombre' => 'N/A', 'area_id' => 'Dirección de Administración y Finanzas'],
-        ];
+       
+                // Área: Dirección de Regulación Económica y Estadistica
+                ['nombre' => 'N/A', 'area_id' => 'Dirección de Regulación Económica y Estadistica'],
+                
+                 // Área: Unidad de Gestión y Trámite
+                ['nombre' => 'N/A', 'area_id' => 'Unidad de Gestión y Trámite'],
+            ];
 
         DB::table('departments')->insert($departamentos);
     }
