@@ -42,7 +42,9 @@
                     <div>
                         <x-label for="password" value="{{ __('Contraseña') }}" />
                         <x-input class="w-full" minlength="8" maxlength="15" id="password" type="password"
-                            name="password" required autocomplete="current-password" />
+                            name="password" :error="$errors->first('password')" 
+                            required 
+                            placeholder="Ingresa tu contraseña" />
                     </div>
 
                     <x-validation-errors class="text-sm" />

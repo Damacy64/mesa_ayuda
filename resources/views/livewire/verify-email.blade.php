@@ -1,9 +1,12 @@
 <x-authentication-card>
     <x-slot name="logo">
+        <h1 class="mb-6 text-center text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
+            Verificación de Contraseña
+        </h1>
         <x-authentication-card-logo />
     </x-slot>
 
-    <div class="mb-4 text-sm text-gray-600">
+    <div class="mb-4 text-sm text-gray-600 flex text-center justify-center">
         {{ __('Antes de continuar, ¿podría verificar su dirección de correo electrónico haciendo clic en el enlace que le acabamos de enviar? Si no lo recibió, con gusto le enviaremos otro.') }}
     </div>
 
@@ -22,7 +25,7 @@
         </div>
     @endif
 
-    <div class="mt-4 flex items-center justify-between">
+    <div class="flex items-center justify-center mt-4">
         <form method="POST" action="{{ route('verification.send') }}">
             @csrf
             <div>

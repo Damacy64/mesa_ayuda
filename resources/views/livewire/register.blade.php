@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="sm:col-span-2">
-                        <x-label for="area" value="{{ __('Area*') }}" />
+                        <x-label for="area" value="{{ __('Área Principal*') }}" />
                         <x-select id="area" class="block mt-1 w-full bg-afac-gray border rounded-lg" type="text"
                             name="area" required autofocus autocomplete="area" wire:model.live="area">
                             @foreach ($areas as $area)
@@ -58,7 +58,7 @@
                     </div>
 
                     <div class="sm:col-span-2">
-                        <x-label for="departamento" value="{{ __('Departamento*') }}" />
+                        <x-label for="departamento" value="{{ __('Área Dependiente*') }}" />
                         <x-select id="departamento" class="block mt-1 w-full bg-afac-gray border rounded-lg"
                             type="text" name="departamento" required autofocus
                             autocomplete="departamento" wire:model="departamento">
