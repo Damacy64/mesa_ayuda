@@ -5,6 +5,7 @@ namespace App\Livewire\User;
 use App\Mail\TicketCreado;
 use App\Models\Option;
 use App\Models\Support;
+use Illuminate\Support\Str;
 use App\Models\Ticket;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -156,15 +157,15 @@ class Modal extends Component
 
         // Crear el ticket
         $ticket = Ticket::create([
-            'usuario_id' => Auth::user()->id,
+            'usuario_id' => Auth::user()->userFinal->id,
             'tecnico_id' => $this->asignarTecnico(),
             'prioridad_id' => 'BAJA',
             'estatus_id' => 'ABIERTO',
             'equipo_id' => $this->equipoSeleccionado['numero_serie'] ?? null,
             'titulo' => Option::find($this->categoria)->valor,
-            'descripcion' => $this->descripcion,
+            'descripcion' => Str::upper($this->descripcion),
         ]);
-
+        
         // Guardar las opciones seleccionadas
         $opciones = collect([
             $this->categoria,

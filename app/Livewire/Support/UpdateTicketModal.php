@@ -4,6 +4,7 @@ namespace App\Livewire\Support;
 
 use App\Mail\TicketActualizado;
 use App\Models\Status;
+use Illuminate\Support\Str;
 use App\Models\Ticket;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -61,14 +62,12 @@ class UpdateTicketModal extends Component
         // Obtenemos el ticket por su folio
         $ticket = Ticket::where('folio', $this->ticket->folio)->first();
 
-
-
         // Actualizamos el estado del ticket
         if ($this->estatus == 'CERRADO') {
             if ($ticket) {
                 $ticket->update([
                     'estatus_id' => $this->estatus,
-                    'solucion' => $this->descripcion,
+                    'solucion' => Str::upper($this->descripcion),
                     'fecha_termino' => now(),
                 ]);
             }
@@ -76,13 +75,13 @@ class UpdateTicketModal extends Component
             if ($ticket) {
                 $ticket->update([
                     'estatus_id' => $this->estatus,
-                    'solucion' => $this->descripcion,
+                    'solucion' => Str::upper($this->descripcion),
                 ]);
             }
         }
         $this->reset(['open', 'ticket', 'estatus', 'descripcion']);
 
-        $ticket = $ticket = Ticket::with('opciones')->find($ticket->folio);
+        $ticket = Ticket::with('opciones')->find($ticket->folio);
         // Enviamos un correo al usuario
         Mail::to($ticket->usuario->user->email)->send(new TicketActualizado($ticket));
 
