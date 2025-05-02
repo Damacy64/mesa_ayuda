@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Attributable extends Model
 {
@@ -34,8 +35,8 @@ class Attributable extends Model
     /**
      * Relación polimórfica.
      */
-    // public function attributable(): MorphTo
-    // {
-    //     return $this->morphTo();
-    // }
+    public function attributable(): MorphTo
+    {
+        return $this->morphTo();
+    }
 }

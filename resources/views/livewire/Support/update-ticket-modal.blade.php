@@ -28,8 +28,8 @@
                                                 <td class="p-2">{{ $ticket->folio }}</td>
                                                 <td class="p-2">{{ $ticket->titulo }}</td>
                                                 <td class="p-2">{{ $ticket->equipo }}</td>
-                                                <td class="p-2">{{ $ticket->tipo_falla }}</td>
-                                                <td class="p-2">{{ $ticket->numero_serie }}</td>
+                                                <td class="p-2">{{ $ticket->tipo_falla ?? 'N/A' }}</td>
+                                                <td class="p-2">{{ $ticket->numero_serie ?? 'N/A' }}</td>
                                                 <td class="p-2">{{ $ticket->descripcion }}</td>
                                             </tr>
                                         @else

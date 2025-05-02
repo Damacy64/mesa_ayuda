@@ -61,4 +61,18 @@ class Ticket extends Model
     {
         return $this->hasMany(TicketHistory::class, 'ticket_id');
     }
+
+    public function getTipoTicketAttribute()
+    {
+        return optional(
+            $this->opciones->firstWhere('nivel', 'categoria')
+        )->valor;
+    }
+
+    public function getTipoFallaAttribute()
+    {
+        return optional(
+            $this->opciones->firstWhere('nivel', 'falla')
+        )->valor;
+    }
 }

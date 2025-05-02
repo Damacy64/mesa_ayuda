@@ -21,7 +21,7 @@ class Area extends Model
         return $this->hasMany(UserFinal::class, 'area_id', 'nombre');
     }
 
-    public function department()
+    public function departments()
     {
         return $this->hasmany(Department::class);
     }

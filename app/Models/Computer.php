@@ -28,7 +28,9 @@ class Computer extends Model
             'attributable',
             'attributable',
             'attributable_id',
-            'atributo_id'
+            'atributo_id',
+            'numero_serie',
+            'valor'
         );
     }
 

@@ -83,6 +83,10 @@ class Modal extends Component
                 $this->mostraropciones = 2; // categoría → tipo
                 $this->mostrarDispositivos = false;
                 break;
+            case 'OFIMATICA':
+                $this->mostraropciones = 2; // categoría → tipo
+                $this->mostrarDispositivos = false;
+                break;
             default:
                 $this->mostraropciones = 1;
                 $this->mostrarDispositivos = false;
@@ -124,10 +128,10 @@ class Modal extends Component
         $rules = $this->rules;
 
         $categoriaSeleccionada = Option::find($this->categoria);
-        if (strtoupper($categoriaSeleccionada->valor ?? '') === 'PROGRAMACIÓN DE EVENTOS' || strtoupper($categoriaSeleccionada->valor ?? '') === 'IMPRESIÓN') {
-            $rules['equipoSeleccionado'] = ['nullable'];
-        } else {
+        if (!strtoupper($categoriaSeleccionada->valor ?? '') === 'CÓMPUTO') {
             $rules['equipoSeleccionado'] = ['required'];
+        } else {
+            $rules['equipoSeleccionado'] = ['nullable'];
         }
 
         if ($this->mostraropciones >= 3) {

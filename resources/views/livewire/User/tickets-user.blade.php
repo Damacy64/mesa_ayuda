@@ -28,19 +28,23 @@
                         <td class="p-2">{{ $ticket->solucion }}</td>
                         <td class="p-2">{{ $ticket->estatus_id }}</td>
                         <td class="p-2">
-                            <a href="" wire:click.prevent="reabrirTicket( {{ $ticket->folio }} )"
-                                class="text-blue-500 hover:text-blue-700">Reabrir</a>
+                            @if ($ticket->estatus_id === 'CERRADO')
+                                <a href="" wire:click.prevent="reabrirTicket({{ $ticket->folio }})"
+                                    class="text-blue-500 hover:text-blue-700">Reabrir</a>
+                            @else
+                                <span class="text-gray-500 cursor-not-allowed">Reabrir</span>
+                            @endif
                         </td>
                     </tr>
                 @empty
                     <tr class="text-black">
-                        <td colspan="6" class="text-center py-4">No hay tickets disponibles.</td>
+                        <td colspan="8" class="text-center py-4">No hay tickets disponibles.</td>
                     </tr>
                 @endforelse
             </tbody>
         </table>
     </div>
-    
+
     <div class="mt-4">
         {{ $tickets->links('components.pagination') }}
     </div>
