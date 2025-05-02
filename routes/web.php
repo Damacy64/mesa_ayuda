@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
-use App\Livewire\Admin\Dispositivos;
+// use App\Livewire\Admin\Devices;
 
 
 Route::get('/', function () {
@@ -15,9 +15,9 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');   
-    Route::get('/dispositivos', [DashboardController::class, 'dispositivos'])->name('dispositivos');   
-    Route::get('/usuarios', [DashboardController::class, 'usuarios'])->name('usuarios');   
-    Route::get('/tecnicos', [DashboardController::class, 'tecnicos'])->name('tecnicos');   
+    Route::get('/devices', [DashboardController::class, 'devices'])->name('devices');   
+    Route::get('/users', [DashboardController::class, 'users'])->name('users');   
+    Route::get('/technical', [DashboardController::class, 'technical'])->name('technical');   
     Route::get('/areas', [DashboardController::class, 'areas'])->name('areas');   
 
    

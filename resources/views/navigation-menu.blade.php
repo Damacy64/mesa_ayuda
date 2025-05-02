@@ -15,13 +15,13 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('INICIO') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('dispositivos') }}" :active="request()->routeIs('dispositivos')">
+                    <x-nav-link href="{{ route('devices') }}" :active="request()->routeIs('devices')">
                         {{ __('DISPOSITIVOS') }}
                     </x-nav-link>                
-                    <x-nav-link href="{{ route('usuarios') }}" :active="request()->routeIs('usuarios')">
+                    <x-nav-link href="{{ route('users') }}" :active="request()->routeIs('users')">
                         {{ __('USUARIOS') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('tecnicos') }}" :active="request()->routeIs('tecnicos')">
+                    <x-nav-link href="{{ route('technical') }}" :active="request()->routeIs('technical')">
                         {{ __('TECNICOS') }}
                     </x-nav-link>
                     <x-nav-link href="{{ route('areas') }}" :active="request()->routeIs('areas')">

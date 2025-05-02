@@ -20,19 +20,19 @@ class DashboardController extends Controller
         }
     }
     
-    public function usuarios()
+    public function users()
     {
-        return view('Livewire.admin.usuarios');
+        return view('Livewire.admin.users');
     }
 
-    public function tecnicos()
+    public function technical()
     {
-        return view('Livewire.admin.tecnicos');
+        return view('Livewire.admin.technical');
     }
 
-    public function dispositivos()
+    public function devices()
     {
-        return view('Livewire.admin.dispositivos');
+        return view('Livewire.admin.devices');
     }
 
     public function areas()
