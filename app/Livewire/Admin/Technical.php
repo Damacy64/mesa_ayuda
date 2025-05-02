@@ -4,10 +4,10 @@ namespace App\Livewire\Admin;
 
 use Livewire\Component;
 
-class Usuarios extends Component
+class Tecnicos extends Component
 {
     public function render()
     {
-        return view('livewire.admin.usuarios');
+        return view('livewire.admin.technical');
     }
 }

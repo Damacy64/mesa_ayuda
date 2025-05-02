@@ -43,13 +43,13 @@
 
                             <div class="mb-4">
                                 <x-label for="descripcion">Escriba una descripcion de la solución *</x-label>
-                                <textarea wire:model="descripcion" id="descripcion" maxlength="250" rows="4"
-                                    class="w-full border border-black rounded-md p-2"></textarea>
+                                <x-textarea wire:model="descripcion" name="descripcion" id="descripcion" maxlength="250" rows="4"
+                                    class="w-full border border-black rounded-md p-2"></x-textarea>
                             </div>
                             
                             <div class="mb-4">
                                 <x-label for="estatus" value="Estatus" />
-                                <x-select id="estatus" wire:model="estatus">
+                                <x-select id="estatus" wire:model="estatus" name="estatus">
                                     @foreach ($status as $statu)
                                         <option value="{{ $statu->nombre }}">{{ $statu->nombre }}</option>
                                     @endforeach

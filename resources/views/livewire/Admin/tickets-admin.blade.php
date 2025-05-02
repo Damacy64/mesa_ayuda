@@ -2,7 +2,7 @@
     <div class="flex items-center justify-between mb-4 p-4">
         <h1 class="text-2xl font-bold text-black">Historial de tickets</h1>
         <x-search-input >
-            <x-input type="text"  wire:model.live="search" placeholder="Buscar"/>
+            <x-input type="text" id="text" name="text" wire:model.live="search" placeholder="Buscar"/>
         </x-search-input>
     </div>
     <table class="w-full text-sm text-left bg-white border">

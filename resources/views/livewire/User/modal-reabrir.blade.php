@@ -46,8 +46,8 @@
 
                             <div class="mb-4">
                                 <x-label for="descripcion">¿Por qué deseas reabrir este ticket?*</x-label>
-                                <textarea wire:model="descripcion" id="descripcion" maxlength="250" rows="4"
-                                    class="w-full border border-black rounded-md p-2"></textarea>
+                                <x-textarea wire:model="descripcion"  name="descripcion" id="descripcion" maxlength="250" rows="4"
+                                    class="w-full border border-black rounded-md p-2"></x-textarea>
                             </div>
 
                             <x-validation-errors class="mb-4" />

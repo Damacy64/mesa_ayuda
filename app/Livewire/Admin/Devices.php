@@ -8,6 +8,6 @@ class Dispositivos extends Component
 {
     public function render()
     {
-        return view('livewire.admin.dispositivos');
+        return view('livewire.admin.devices');
     }
 }
