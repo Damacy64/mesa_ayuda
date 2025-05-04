@@ -10,19 +10,23 @@ class RevisionModal extends Component
 {
     public $open = false;
     public $ticketEstatus = '';
+    public $ticket = null;
 
     #[On('abrir-revision-modal')]
     public function abrir($folio)
     {
         $this->open = true;
-        $ticket = Ticket::findOrFail($folio);
-        $this->ticketEstatus = $ticket->estatus_id;
+        $this->ticket = Ticket::with(['usuario.user', 'equipo', 'opciones'])
+            ->where('folio', $folio)
+            ->firstOrFail();
+        $this->ticketEstatus = $this->ticket->estatus_id;
     }
 
     public function close()
     {
         $this->open = false;
         $this->ticketEstatus = '';
+        $this->ticket = null;
     }
 
     public function getEstatusProperty()
