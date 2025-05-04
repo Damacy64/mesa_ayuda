@@ -1,66 +1,89 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Mesa de Ayuda - Sistema de Gestión de Tickets
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![Laravel](https://img.shields.io/badge/Laravel-12-red)
+![Livewire](https://img.shields.io/badge/Livewire-3-blue)
+![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-3-teal)
+![Jetstream](https://img.shields.io/badge/Jetstream-Enabled-purple)
 
-## About Laravel
+Mesa de Ayuda es un sistema en desarrollo diseñado para facilitar la gestión de incidencias técnicas en una organización. Permite a los usuarios reportar problemas mediante tickets y a los técnicos darles seguimiento eficiente, todo dentro de una interfaz limpia y moderna.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## ✨ Características principales
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* 🎫 Levantamiento de tickets por parte de los usuarios
+* 📊 Métricas clave como:
 
-## Learning Laravel
+  * Tiempo promedio de resolución
+  * Técnicos con mayor número de tickets resueltos
+* 👥 Tres tipos de usuarios con dashboards personalizados:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+  * **Administrador:** Gestión completa del sistema
+  * **Técnico:** Seguimiento y resolución de tickets
+  * **Usuario convencional:** Levantamiento y consulta de tickets propios
+* 🔐 Autenticación y registro utilizando **Jetstream** con Livewire
+* 📋 Panel de control intuitivo basado en componentes dinámicos
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🧰 Tecnologías utilizadas
 
-## Laravel Sponsors
+* **Laravel 12** – Framework backend robusto
+* **Livewire 3** – Interacción reactiva sin necesidad de escribir JavaScript
+* **Tailwind CSS** – Estilo moderno y altamente personalizable
+* **Jetstream** – Sistema de autenticación y manejo de sesiones
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## 🚀 Instalación local (entorno de desarrollo)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```bash
+# Clonar el repositorio
+https://github.com/Damacy64/mesa_ayuda.git
 
-## Contributing
+cd mesa_ayuda
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# Instalar dependencias PHP
+composer install
 
-## Code of Conduct
+# Instalar dependencias JS
+npm install && npm run dev
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# Crear archivo de entorno
+cp .env.example .env
 
-## Security Vulnerabilities
+# Generar clave de la aplicación
+php artisan key:generate
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# Migrar base de datos
+php artisan migrate
+```
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 🧑‍💻 Acceso al sistema
+
+1. Regístrate como nuevo usuario o inicia sesión si ya tienes cuenta.
+2. El sistema detecta tu rol y te redirige a tu dashboard correspondiente.
+
+---
+
+## 📌 Estado del proyecto
+
+🔧 **En desarrollo** – Se están agregando nuevas funcionalidades y refinando la experiencia de usuario.
+
+---
+
+## 📬 Contribuciones
+
+¡Las contribuciones son bienvenidas! Puedes crear un fork y enviar un pull request.
+
+---
+
+## 📄 Licencia
+
+Este proyecto se encuentra bajo la [licencia MIT](https://opensource.org/licenses/MIT).
+
+---
+
+Gracias por visitar este repositorio. ⭐ ¡Si te gusta el proyecto, considera darle una estrella!

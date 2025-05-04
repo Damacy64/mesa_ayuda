@@ -17,8 +17,4 @@ class Dashboard extends Component
         return view('livewire.user.dashboard');
     }
 
-    public function openmodal()
-    {
-        $this->open = true;  
-    }
 }

@@ -53,4 +53,16 @@ class TicketsAdmin extends Component
 
         return view('livewire.admin.tickets-admin', compact('tickets'));
     }
+
+    public function abrirModal($ticket)
+    {
+        $this->dispatch('abrir-revision-modal', $ticket);
+    }
+
+    public function cerrarTicket($folio){
+        $ticket = Ticket::findorFail($folio);
+        $ticket->update(['estatus_id' => 'CERRADO']);
+    }
+
+
 }
