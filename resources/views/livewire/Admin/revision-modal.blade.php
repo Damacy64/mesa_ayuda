@@ -49,6 +49,19 @@
                                 </tbody>
                             </table>
 
+                            @if (in_array($ticket->estatus_id, ['ABIERTO', 'EN REVISIÓN']))    
+                                <div class="mt-4 mb-4 w-1/2">
+                                    <x-label for="tecnico" value="{{ __('Reasignar Tecnico') }}" />
+                                    <x-select id="tecnico" class="block mt-1 bg-afac-gray border rounded-lg" type="text"
+                                        name="tecnico" required autofocus autocomplete="tecnico" wire:model.live="tecnico">
+                                        <option value="">SELECCIONE TÉCNICO</option>
+                                        @foreach ($tecnicos as $tecnico)
+                                            <option value="{{$tecnico->id}}">{{$tecnico->user->name}}</option>
+                                        @endforeach
+                                    </x-select>
+                                </div>
+                            @endif
+
                             <x-validation-errors />
 
                             <div class="flex justify-center space-x-3">
@@ -61,7 +74,7 @@
                                         CERRAR
                                     </x-button-cerrar>
 
-                                    <x-button wire:click="" type="button">
+                                    <x-button wire:click="reasignarTecnico" type="button">
                                         GUARDAR
                                     </x-button>
                                 @endif

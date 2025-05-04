@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Ticket;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -16,6 +17,7 @@ class TicketsAdmin extends Component
         $this->resetPage();
     }
 
+    #[On('reasignado')]
     public function render()
     {
         $tickets = Ticket::with(['usuario.user', 'tecnico', 'opciones'])

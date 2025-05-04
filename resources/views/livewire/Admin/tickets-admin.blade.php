@@ -48,16 +48,15 @@
                                 <!-- Dropdown -->
                                 <div x-show="open" @click.away="open = false"
                                     class="z-50 origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                                    <div class="py-1" role="menu" aria-orientation="vertical"
-                                        aria-labelledby="options-menu">
+                                    <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                                         <!-- Opción 1 -->
-                                        <button wire:click="abrirModal( {{ $item->folio }} )"
+                                        <button wire:click="abrirModal({{ $item->folio }})" @click="open = false"
                                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
                                             role="menuitem">
                                             Revisión
                                         </button>
                                         <!-- Opción 2 -->
-                                        <button wire:click="cerrarTicket({{ $item->folio }})"
+                                        <button wire:click="cerrarTicket({{ $item->folio }})" @click="open = false"
                                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
                                             role="menuitem">
                                             Cerrar
