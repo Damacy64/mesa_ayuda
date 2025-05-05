@@ -13,6 +13,7 @@ class UserFinal extends Model
         'ubicacion_id',
         'area_id',
         'empleado_id',
+        'estado',
     ];
 
     public function user()

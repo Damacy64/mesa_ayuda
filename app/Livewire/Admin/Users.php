@@ -2,12 +2,14 @@
 
 namespace App\Livewire\Admin;
 
+use App\Models\UserFinal;
 use Livewire\Component;
 
-class Usuarios extends Component
+class Users extends Component
 {
     public function render()
     {
-        return view('livewire.admin.users');
+        $usuarios = UserFinal::with(['user', 'location', 'area'])->get();
+        return view('livewire.admin.users', compact('usuarios'));
     }
 }

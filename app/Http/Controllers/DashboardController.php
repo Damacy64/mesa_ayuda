@@ -9,36 +9,42 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth::user();
-       
+
         switch ($user->role->rol) {
             case 'ADMIN':
                 return view('dashboard-admin');
             case 'SOPORTE':
                 return view('dashboard-support');
             default:
-                return view('dashboard'); 
+                return view('dashboard');
         }
     }
-    
+
     public function users()
     {
-        return view('Livewire.admin.users');
+        if (Auth::user()->role->rol == 'ADMIN') {
+            return view('admin.users');
+        }
     }
 
     public function technical()
     {
-        return view('Livewire.admin.technical');
+        if (Auth::user()->role->rol == 'ADMIN') {
+            return view('Livewire.admin.technical');
+        }
     }
 
     public function devices()
     {
-        return view('Livewire.admin.devices');
+        if (Auth::user()->role->rol == 'ADMIN') {
+            return view('Livewire.admin.devices');
+        }
     }
 
     public function areas()
     {
-        return view('Livewire.admin.areas');
+        if (Auth::user()->role->rol == 'ADMIN') {
+            return view('Livewire.admin.areas');
+        }
     }
-
-   
 }
