@@ -1,6 +1,6 @@
-<div class="bg-afac-blue text-white p-6 sm:p-08 md:p-10 lg:p-12 w-full flex items-center justify-center relative">
+<div class="bg-afac-blue text-white p-6 sm:p-8 md:p-10 lg:p-12 w-full flex items-center justify-center relative">
 
-    <img class="h-16 sm:h-18 md:h-24 left-6 absolute"
+    <img class="h-16 sm:h-18 md:h-24 left-6 static"
         src="https://testing-ventanillas.afac-avciv.com/images/isologo_AFAC_white.png" alt="Logo">
 
     @isset($title)
@@ -10,7 +10,7 @@
     @endisset
 
     @isset($links)
-        <div x-data="{ open: false }" class="w-full mt-6">
+        <div x-data="{ open: false }" class="w-full px-8 mt-6 ">
             <div class="flex justify-end sm:hidden">
                 <button @click="open = !open" class="text-afac-golden focus:outline-none">
                     <svg x-show="!open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"

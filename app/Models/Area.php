@@ -14,7 +14,7 @@ class Area extends Model
     public $timestamps = false;
     protected $keyType = 'string';
 
-    protected $fillable = ['nombre'];
+    protected $fillable = ['nombre','descripcion','visible'];
 
     public function userFinals()
     {
