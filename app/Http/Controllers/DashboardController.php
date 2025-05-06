@@ -21,13 +21,14 @@ class DashboardController extends Controller
                 return view('dashboard');
         }
     }
+
     public function users()
     {
         if (Auth::user()->role->rol !== 'ADMIN') {
             abort(403, 'Acceso no autorizado');
         }
 
-        return view('Livewire.admin.users');
+        return view('livewire.admin.users');
     }
 
     public function technical()
@@ -36,7 +37,7 @@ class DashboardController extends Controller
             abort(403, 'Acceso no autorizado');
         }
 
-        return view('Livewire.admin.technical');
+        return view('livewire.admin.technical');
     }
 
     public function devices()
@@ -45,7 +46,7 @@ class DashboardController extends Controller
             abort(403, 'Acceso no autorizado');
         }
 
-        return view('Livewire.admin.devices');
+        return view('livewire.admin.devices');
     }
 
     public function areas()

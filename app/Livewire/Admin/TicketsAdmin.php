@@ -23,11 +23,16 @@ class TicketsAdmin extends Component
         $tickets = Ticket::with(['usuario.user', 'tecnico', 'opciones'])
             ->when($this->search, function ($query, $search) {
                 $query->where(function ($q) use ($search) {
-                    $q->where('folio', 'like', "%{$search}%")
-                        ->orWhere('created_at', 'like', "%{$search}%")
+                    $q->Where('created_at', 'like', "%{$search}%")
                         ->orWhere('prioridad_id', 'like', "%{$search}%")
                         ->orWhere('estatus_id', 'like', "%{$search}%")
 
+                        // Buscar por numero de empleado
+                        ->orWhereHas(
+                            'usuario.user',
+                            fn($q2) =>
+                            $q2->where('employer_number', 'like', "%{$search}%")
+                        )
                         // Buscar por nombre de usuario final
                         ->orWhereHas(
                             'usuario.user',
