@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
 
 class DashboardController extends Controller
 {
@@ -22,29 +24,37 @@ class DashboardController extends Controller
 
     public function users()
     {
-        if (Auth::user()->role->rol == 'ADMIN') {
-            return view('admin.users');
+        if (Auth::user()->role->rol !== 'ADMIN') {
+            abort(403, 'Acceso no autorizado');
         }
+
+        return view('livewire.admin.users');
     }
 
     public function technical()
     {
-        if (Auth::user()->role->rol == 'ADMIN') {
-            return view('Livewire.admin.technical');
+        if (Auth::user()->role->rol !== 'ADMIN') {
+            abort(403, 'Acceso no autorizado');
         }
+
+        return view('livewire.admin.technical');
     }
 
     public function devices()
     {
-        if (Auth::user()->role->rol == 'ADMIN') {
-            return view('Livewire.admin.devices');
+        if (Auth::user()->role->rol !== 'ADMIN') {
+            abort(403, 'Acceso no autorizado');
         }
+
+        return view('livewire.admin.devices');
     }
 
     public function areas()
     {
-        if (Auth::user()->role->rol == 'ADMIN') {
-            return view('Livewire.admin.areas');
+        if (Auth::user()->role->rol !== 'ADMIN') {
+            abort(403, 'Acceso no autorizado');
         }
+
+        return view('Livewire.admin.areas');
     }
 }
