@@ -24,7 +24,7 @@
             <tbody class="text-black">
                 @forelse ($tickets as $item)
                     <tr class="border-t">
-                        <td class="p-2">{{ $item->folio }}</td>
+                        <td class="p-2">{{ $item->usuario->user->employer_number }}</td>
                         <td class="p-2">{{ $item->usuario->user->name }}</td>
                         <td class="p-2">{{ $item->tipo_ticket }}</td>
                         <td class="p-2">{{ $item->tipo_falla ?? 'N/A' }}</td>

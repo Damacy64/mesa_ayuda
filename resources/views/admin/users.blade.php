@@ -1,3 +1,3 @@
-<div>
+<x-guest-layout>
     @livewire('admin.users')
-</div>
+</x-guest-layout>
