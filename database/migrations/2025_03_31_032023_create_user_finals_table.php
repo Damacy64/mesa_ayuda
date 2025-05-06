@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('ubicacion_id');
             $table->string('area_id');
-            //$table->string('departamento_id');
+            $table->string('estado')->default('HABILITADO');
             $table->timestamps();
 
             $table->foreign('ubicacion_id')->references('piso')->on('locations')->onDelete('cascade');

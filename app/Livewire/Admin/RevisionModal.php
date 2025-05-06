@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class RevisionModal extends Component
 {
-    public $open = false;
+    public $open=false;
     public $ticketEstatus = '';
     public $ticket = null;
     public $tecnicos = [];
@@ -25,8 +25,8 @@ class RevisionModal extends Component
         $this->open = true;
         $this->ticket = Ticket::with(['usuario.user', 'equipo', 'opciones'])
             ->where('folio', $folio)
-            ->firstOrFail();
-        $this->ticketEstatus = $this->ticket->estatus_id;
+            ->first();
+            $this->ticketEstatus = $this->ticket->estatus_id;
     }
 
     public function close()
