@@ -181,7 +181,7 @@ class Modal extends Component
         $ticket->opciones()->attach($opciones);
 
         // Enviar correo al usuario
-        //Mail::to(Auth::user()->email)->send(new TicketCreado($ticket));
+        Mail::to(Auth::user()->email)->send(new TicketCreado($ticket));
 
         // Resetear los campos
         $this->open = false;

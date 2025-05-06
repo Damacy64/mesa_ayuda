@@ -195,9 +195,12 @@ return [
         'names' => 'Nombre(s)',
         'last_name_p' => 'Apellido Paterno',
         'last_name_m' => 'Apellido Materno',
-        'password' => 'contraseña',
+        'password' => 'Contraseña',
         'employer_number' => 'Numero Empleado',
         'email' => 'Correo',
+        'sex' => 'Sexo',
+        'name' => 'Nombre',
+        'email_confirmation' => 'Confirmar Correo',
     ],
 
 ];

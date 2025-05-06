@@ -18,6 +18,11 @@ class Technical extends Component
         $this->resetPage();
     }
 
+    public function agregarTecnicoModal()
+    {
+        $this->dispatch('agregarTecnicoModal');
+    }
+
     public function render()
     {
         $tecnicos = Support::with('user')->orderByDesc('empleado_id')->paginate(5);
