@@ -9,10 +9,7 @@
 
     <div class="container mx-auto px-4 py-6">
         @livewire('admin.devices-assigned')
-    </div>
-    <div class="flex items-center justify-center p-4">
-        <x-button wire:click="$dispatch('abrir-modal')" type="button">
-            ASIGNAR
-        </x-button>
+        @livewire('admin.asignar-modal')
+
     </div>
 </x-guest-layout>
