@@ -53,6 +53,7 @@ class AgregarTecnicoModal extends Component
             'password',
         ]);
         $this->open = false;
+        $this->resetValidation();
         $this->dispatch('tablaTecnicos');
     }
 

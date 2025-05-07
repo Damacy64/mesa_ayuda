@@ -29,33 +29,33 @@
                 </thead>
                 <tbody class="text-black">
                     @forelse ($usuarios as $usuario)
-                    <tr class="border-t">
-                        <td class="p-2">{{ $usuario->user->employer_number }}</td>
-                        <td class="p-2">{{ $usuario->user->name }}</td>
-                        <td class="p-2">{{ $usuario->user->email }}</td>
-                        <td class="p-2">{{ $usuario->location->piso }}</td>
-                        <td class="p-2">{{ $usuario->area->nombre }}</td>
-                        <td class="p-2">{{ $usuario->user->gender->sexo }}</td>
-                        <td class="p-2">
+                        <tr class="border-t">
                             @if ($usuario->estado === 'HABILITADO')
-                                <a href="" wire:click.prevent="eliminarUsuario({{ $usuario->id}})"
-                                    class="text-blue-500 hover:text-red-700">Eliminar</a>
-                            @else
-                                <span class="text-gray-500 cursor-not-allowed">Eliminado</span>
+                                <td class="p-2">{{ $usuario->user->employer_number }}</td>
+                                <td class="p-2">{{ $usuario->user->name }}</td>
+                                <td class="p-2">{{ $usuario->user->email }}</td>
+                                <td class="p-2">{{ $usuario->location->piso }}</td>
+                                <td class="p-2">{{ $usuario->area->nombre }}</td>
+                                <td class="p-2">{{ $usuario->user->gender->sexo }}</td>
+                                <td class="p-2">
+                                    <a href="" 
+                                        onclick="confirm('¿Estás seguro de eliminar este usuario?') || event.stopImmediatePropagation()"
+                                        wire:click.prevent="eliminarUsuario({{ $usuario->id }})"
+                                        class="text-blue-500 hover:text-red-700">Eliminar</a>
+                                </td>
                             @endif
-                        </td>
-                    </tr>
+                        </tr>
                     @empty
                         <tr>
                             <td colspan="7" class="text-center p-4">No se encontraron resultados.</td>
                         </tr>
-                    @endforelse   
+                    @endforelse
                 </tbody>
             </table>
         </div>
 
         <div class="flex items-center justify-between mb-4 p-4">
-            <h2 class="text-2xl font-bold text-black">Total de Usuarios: {{$totalUsuarios}}</h2>
+            <h2 class="text-2xl font-bold text-black">Total de Usuarios: {{ $totalUsuarios }}</h2>
         </div>
 
         <div class="mt-4">

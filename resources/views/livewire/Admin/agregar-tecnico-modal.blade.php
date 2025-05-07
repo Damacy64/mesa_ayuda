@@ -76,17 +76,17 @@
                                         autocomplete="email_confirmation" />
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="col-start-1 col-end-4 mb-4">
-                            <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert ">
-                                <p class="font-bold">RECUERDA</p>
-                                <p class="text-sm">INTRODUCE UNA CONTRASEÑA PARA ESTE SISTEMA. RECUERDA QUE DEBE TENER AL MENOS 8
-                                    CARACTERES,INCLUYENDO AL MENOS UNA MAYÚSCULA, UNA MINÚSCULA, UN NÚMERO Y UN CARÁCTER ESPECIAL (#, *,
-                                    !, @, $, %).</p>
+                            <div class="col-start-1 col-end-4 mb-4">
+                                <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert ">
+                                    <p class="font-bold">RECUERDA</p>
+                                    <p class="text-sm">INTRODUCE UNA CONTRASEÑA PARA ESTE SISTEMA. RECUERDA QUE DEBE TENER AL MENOS 8
+                                        CARACTERES,INCLUYENDO AL MENOS UNA MAYÚSCULA, UNA MINÚSCULA, UN NÚMERO Y UN CARÁCTER ESPECIAL (#, *,
+                                        !, @, $, %).</p>
+                                </div>
                             </div>
                         </div>
-                
+                        
                         <x-validation-errors />
 
                         <div class="flex justify-center space-x-3 mb-5">
