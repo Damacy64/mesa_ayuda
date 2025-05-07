@@ -20,6 +20,7 @@ class Register extends Component
     public function mount(){
         $this->generos = Gender::all();
         $this->areas = Area::all();
+        //$this->areas = Area::where('visible', true)->get();
         $this->ubicaciones = Location::all();
         $this->departamentos = collect();
     }
