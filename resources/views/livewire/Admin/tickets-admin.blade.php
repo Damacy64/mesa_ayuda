@@ -74,7 +74,11 @@
             </tbody>
         </table>
     </div>
-
+    <div class="flex items-center justify-center p-4">
+        <x-button wire:click="$dispatch('abrir-modal')" type="button">
+            ESTADISTICAS
+        </x-button>
+    </div>
     <div class="mt-4">
         {{ $tickets->withQueryString()->links('components.pagination') }}
     </div>

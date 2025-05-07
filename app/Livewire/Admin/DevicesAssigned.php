@@ -4,6 +4,8 @@ namespace App\Livewire\Admin;
 
 
 use App\Models\Ticket;
+use App\Models\Computer;
+use App\Models\ComputerUserFinal;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -55,16 +57,5 @@ class DevicesAssigned extends Component
             ->paginate(5);
 
         return view('livewire.admin.devices-assigned', compact('tickets'));
-    }
-
-    public function abrirModal($ticket)
-    {
-        $this->dispatch('abrir-revision-modal', $ticket);
-    }
-
-    public function cerrarTicket($folio)
-    {
-        $ticket = Ticket::findorFail($folio);
-        $ticket->update(['estatus_id' => 'CERRADO']);
     }
 }

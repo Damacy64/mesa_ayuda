@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ComputerUserFinal extends Model
 {
-    protected $table = 'equipo_user_final';
+    protected $table = 'computer_user_final';
 
     protected $fillable = [
         'user_final_id',
