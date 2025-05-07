@@ -4,7 +4,8 @@
             <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity"></div>
             <div class="fixed inset-0 z-10 overflow-y-auto">
                 <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                    <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-5xl">
+                    <div
+                        class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-5xl">
                         <div class="bg-white px-6 py-6 sm:px-6">
                             <h3 class="text-lg font-bold text-gray-900 mb-6" id="modal-title">
                                 Asignar Dispositivo
@@ -13,9 +14,10 @@
                             <div class="grid grid-cols-1 gap-6 sm:grid-cols-6">
                                 <div class="sm:col-span-2">
                                     <x-label for="usuario" value="SELECCIONE USUARIO*" />
-                                    <x-select name="usuario_id" label="Usuario" wire:model="equipoSeleccionado.usuario_id">
+                                    <x-select name="usuario_id" label="Usuario"
+                                        wire:model="equipoSeleccionado.usuario_id">
                                         <option value="">Seleccione Usuario</option>
-                                        @foreach($users as $user)
+                                        @foreach ($users as $user)
                                             <option value="{{ $user->id }}">{{ $user->name }}</option>
                                         @endforeach
                                     </x-select>
@@ -44,7 +46,8 @@
                                     <x-select id="marca" name="marca" wire:model="equipoSeleccionado.marca">
                                         <option value="">SELECCIONE MARCA</option>
                                         @foreach ($atributo_tipo as $atributo_tipo)
-                                            <option value="{{ $atributo_tipo->id }}">{{ $atributo_tipo->valor }}</option>
+                                            <option value="{{ $atributo_tipo->id }}">{{ $atributo_tipo->valor }}
+                                            </option>
                                         @endforeach
                                     </x-select>
                                 </div>
@@ -65,7 +68,7 @@
                                     <x-label for="dispositivo" value="SELECCIONE DISPOSITIVO*" />
                                     <x-select id="dispositivo" name="dispositivo" wire:model.live="mostraropciones">
                                         <option value="">SELECCIONE</option>
-                                        @foreach ($tiposDispositivo as $tipo)
+                                        @foreach ($tipo as $tipo)
                                             <option value="{{ $tipo->nivel }}">{{ $tipo->nombre }}</option>
                                         @endforeach
                                     </x-select>
@@ -75,35 +78,9 @@
                                     <div>
                                         <x-select id="tipo" name="tipo" wire:model.live="tipo">
                                             <option value="">SELECCIONE</option>
-                                            @foreach ($tipos as $tipo)
+                                            @foreach ($tipo as $tipo)
                                                 <option value="{{ $tipo->id }}">
                                                     {{ $tipo->valor }}
-                                                </option>
-                                            @endforeach
-                                        </x-select>
-                                    </div>
-                                @endif
-
-                                @if ($mostraropciones >= 3)
-                                    <div>
-                                        <x-select id="componente" name="componente_id" wire:model.live="componente">
-                                            <option value="">SELECCIONE</option>
-                                            @foreach ($componentes as $componente)
-                                                <option value="{{ $componente->id }}">
-                                                    {{ $componente->valor }}
-                                                </option>
-                                            @endforeach
-                                        </x-select>
-                                    </div>
-                                @endif
-
-                                @if ($mostraropciones >= 4)
-                                    <div>
-                                        <x-select id="falla" name="falla_id" wire:model.live="falla">
-                                            <option value="">SELECCIONE</option>
-                                            @foreach ($fallas as $falla)
-                                                <option value="{{ $falla->id }}">
-                                                    {{ $falla->valor }}
                                                 </option>
                                             @endforeach
                                         </x-select>
