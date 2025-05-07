@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
-// use App\Livewire\Admin\Devices;
 
 
 Route::get('/', function () {

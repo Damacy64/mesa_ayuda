@@ -25,7 +25,7 @@
             </div>
 
             <div :class="{ 'block': open, 'hidden': !open }"
-                class="flex flex-col sm:flex-row flex-wrap gap-6 sm:gap-4 justify-center w-full font-semibold text-afac-golden mt-4 sm:mt-0 hidden sm:flex sm:pl-24">
+                class="flex flex-col sm:flex-row flex-wrap gap-6 sm:gap-4 justify-center w-full font-semibold text-afac-golden mt-4 sm:mt-0 sm:flex sm:pl-24">
 
                 <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                     {{ __('INICIO') }}
