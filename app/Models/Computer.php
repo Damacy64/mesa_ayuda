@@ -36,7 +36,7 @@ class Computer extends Model
 
     public function usuarios()
     {
-        return $this->belongsToMany(UserFinal::class, 'equipo_user_final', 'equipo_id', 'user_final_id')
+        return $this->belongsToMany(UserFinal::class, 'computer_user_final', 'equipo_id', 'user_final_id')
             ->using(ComputerUserFinal::class)
             ->withPivot(['fecha_asignacion', 'fecha_liberacion'])
             ->withPivot(['fecha_asignacion', 'fecha_liberacion'])
