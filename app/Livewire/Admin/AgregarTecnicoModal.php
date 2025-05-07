@@ -52,8 +52,8 @@ class AgregarTecnicoModal extends Component
             'email_confirmation',
             'password',
         ]);
-        $this->resetValidation();
         $this->open = false;
+        $this->dispatch('tablaTecnicos');
     }
 
     public function agregarTecnico()

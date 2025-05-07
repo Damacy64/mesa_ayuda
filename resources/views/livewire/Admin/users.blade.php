@@ -39,7 +39,7 @@
                         <td class="p-2">
                             @if ($usuario->estado === 'HABILITADO')
                                 <a href="" wire:click.prevent="eliminarUsuario({{ $usuario->id}})"
-                                    class="text-blue-500 hover:text-blue-700">Eliminar</a>
+                                    class="text-blue-500 hover:text-red-700">Eliminar</a>
                             @else
                                 <span class="text-gray-500 cursor-not-allowed">Eliminado</span>
                             @endif
