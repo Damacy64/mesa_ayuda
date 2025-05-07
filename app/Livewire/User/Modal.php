@@ -121,6 +121,9 @@ class Modal extends Component
     public function closemodal()
     {
         $this->open = false;
+        $this->reset(['categoria', 'tipo', 'componente', 'falla', 'mostraropciones', 'descripcion', 'equipoSeleccionado']);
+        $this->resetValidation();
+
     }
 
     public function guardarTicket()
@@ -181,11 +184,10 @@ class Modal extends Component
         $ticket->opciones()->attach($opciones);
 
         // Enviar correo al usuario
-        //Mail::to(Auth::user()->email)->send(new TicketCreado($ticket));
+        Mail::to(Auth::user()->email)->send(new TicketCreado($ticket));
 
         // Resetear los campos
-        $this->open = false;
-        $this->reset(['categoria', 'tipo', 'componente', 'falla', 'mostraropciones', 'descripcion', 'equipoSeleccionado']);
+        $this->closemodal();
         $this->dispatch('ticketCreated', $ticket->id);
     }
 

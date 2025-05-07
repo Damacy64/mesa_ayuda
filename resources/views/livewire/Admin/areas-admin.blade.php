@@ -4,6 +4,8 @@
             <x-input name="busqueda" type="text" wire:model.live="search" placeholder="Buscar" />
         </x-search-input>
     </div>
+    
+    @livewire('admin.agregar-area')
     <div class="overflow-x-auto mb-6">
         <table class="w-full text-sm text-left bg-white border">
             <thead class="bg-afac-golden text-white">

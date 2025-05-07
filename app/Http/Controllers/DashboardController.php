@@ -37,7 +37,7 @@ class DashboardController extends Controller
             abort(403, 'Acceso no autorizado');
         }
 
-        return view('livewire.admin.technical');
+        return view('admin.technical');
     }
 
     public function devices()
