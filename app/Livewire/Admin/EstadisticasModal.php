@@ -25,7 +25,11 @@ class EstadisticasModal extends Component
     protected $rules = [
         'tecnico' => 'required',
     ];
+
+    public function pdf(){
     
+    }
+
     public function closemodal()
     {
         $this->open = false;
