@@ -25,16 +25,16 @@
             <tbody class="text-black">
                 @forelse ($computers as $item)
                     <tr class="border-t">
-                        <td class="p-2">{{ $item->folio }}</td>
-                        <td class="p-2">{{ $item->usuario->user->name }}</td>
-                        <td class="p-2">{{ $item->usuario->area->nombre }}</td>
-                        <td class="p-2">{{ $item->usuario->location->piso }}</td>
-                        <td class="p-2">{{ $item->computer->numero_serie }}</td>
-                        <td class="p-2">{{ $item->computer->numero_serie }}</td>
-                        <td class="p-2">{{ $item->computer->numero_serie }}</td>
-                        <td class="p-2">{{ $item->computer->modelo }}</td>
-                        <td class="p-2">{{ $item->computer->modelo }}</td>
-                        <td class="p-2">{{ $item->ComputerUserFinal->fecha_asignacion }}</td>
+                        <td class="p-2">{{ $item->userFinal->user->employer_number }}</td>
+                        <td class="p-2">{{ $item->userFinal->user->name }}</td>
+                        <td class="p-2">{{ $item->userFinal->area_id }}</td>
+                        <td class="p-2">{{ $item->userFinal->ubicacion_id }}</td>
+                        <td class="p-2">{{ $item->equipo->numero_inventario }}</td>
+                        <td class="p-2">{{ $item->equipo->numero_serie }}</td>
+                        <td class="p-2">{{ $item->equipo->atributos }}</td>{{-- dispositivo --}}
+                        <td class="p-2">{{ $item->equipo->modelo }}</td>
+                        <td class="p-2">{{ $item->equipo->modelo }}</td>{{-- marca --}}
+                        <td class="p-2">{{ $item->fecha_asignacion }}</td>
                     </tr>
                 @empty
                     <tr class="text-black">
@@ -50,7 +50,7 @@
         </x-button>
     </div>
     <div class="mt-4">
-        {{ $tickets->withQueryString()->links('components.pagination') }}
+        {{ $computers->withQueryString()->links('components.pagination') }}
     </div>
 </div>
 

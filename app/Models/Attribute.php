@@ -14,8 +14,8 @@ class Attribute extends Model
             Computer::class,
             'attributable',
             'attributable',
-            'atributo_id',
+            'atributo_valor',
             'attributable_id'
-        );
+        )->withPivot('atributo_tipo');
     }
 }

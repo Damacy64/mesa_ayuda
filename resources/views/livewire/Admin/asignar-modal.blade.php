@@ -17,9 +17,9 @@
                                     <x-select name="usuario_id" label="Usuario"
                                         wire:model="equipoSeleccionado.usuario_id">
                                         <option value="">Seleccione Usuario</option>
-                                        @foreach ($users as $user)
+                                        {{-- @foreach ($users as $user)
                                             <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                        @endforeach
+                                        @endforeach --}}
                                     </x-select>
                                 </div>
 
@@ -45,10 +45,10 @@
                                     <x-label for="marca" value="MARCA*" />
                                     <x-select id="marca" name="marca" wire:model="equipoSeleccionado.marca">
                                         <option value="">SELECCIONE MARCA</option>
-                                        @foreach ($atributo_tipo as $atributo_tipo)
+                                        {{-- @foreach ($atributo_tipo as $atributo_tipo)
                                             <option value="{{ $atributo_tipo->id }}">{{ $atributo_tipo->valor }}
                                             </option>
-                                        @endforeach
+                                        @endforeach --}}
                                     </x-select>
                                 </div>
 
@@ -68,9 +68,9 @@
                                     <x-label for="dispositivo" value="SELECCIONE DISPOSITIVO*" />
                                     <x-select id="dispositivo" name="dispositivo" wire:model.live="mostraropciones">
                                         <option value="">SELECCIONE</option>
-                                        @foreach ($tipo as $tipo)
+                                        {{-- @foreach ($tipo as $tipo)
                                             <option value="{{ $tipo->nivel }}">{{ $tipo->nombre }}</option>
-                                        @endforeach
+                                        @endforeach --}}
                                     </x-select>
                                 </div>
 
@@ -78,11 +78,11 @@
                                     <div>
                                         <x-select id="tipo" name="tipo" wire:model.live="tipo">
                                             <option value="">SELECCIONE</option>
-                                            @foreach ($tipo as $tipo)
+                                            {{-- @foreach ($tipo as $tipo)
                                                 <option value="{{ $tipo->id }}">
                                                     {{ $tipo->valor }}
                                                 </option>
-                                            @endforeach
+                                            @endforeach --}}
                                         </x-select>
                                     </div>
                                 @endif
