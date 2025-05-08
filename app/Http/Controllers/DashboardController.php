@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 
@@ -57,4 +58,16 @@ class DashboardController extends Controller
 
         return view('Livewire.admin.areas');
     }
+    
+    public function pdf(){
+        if (Auth::user()->role->rol !== 'ADMIN') {
+            abort(403, 'Acceso no autorizado');
+        }
+        $pdf = Pdf::loadView('livewire.admin.pdf');
+        return $pdf->stream();
+        // return view('livewire.admin.pdf');
+
+    
+    }
+
 }

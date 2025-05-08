@@ -38,6 +38,14 @@
                         <td class="p-2">{{ $item->equipo->modelo }}</td>
                         <td class="p-2">{{ $item->equipo->marca }}</td>{{-- marca --}}
                         <td class="p-2">{{ $item->fecha_asignacion }}</td>
+                        <td class="p-2">
+                            <a href="#" 
+                            onclick="confirm('¿Estás seguro de eliminar el dispositivo?') || event.stopImmediatePropagation()" 
+                            wire:click="ocultar('{{ $item->nombre }}')" 
+                            class="text-blue-500 hover:text-red-700">
+                            Eliminar
+                         </a>
+                        </td>
                     </tr>
                 @empty
                     <tr class="text-black">

@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 
+
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -18,6 +19,7 @@ Route::middleware([
     Route::get('/users', [DashboardController::class, 'users'])->name('users');   
     Route::get('/technical', [DashboardController::class, 'technical'])->name('technical');   
     Route::get('/areas', [DashboardController::class, 'areas'])->name('areas');   
+    Route::get('/pdf', [DashboardController::class, 'pdf'])->name('admin.pdf');   
 
    
 });
