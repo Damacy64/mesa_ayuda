@@ -20,24 +20,59 @@ class DevicesAssigned extends Component
         $this->resetPage();
     }
 
+    public function asignarModal()
+    {
+        $this->dispatch('asignar-modal');
+    }
+
     #[On('reasignado')]
     public function render()
     {
-        $computers = ComputerUserFinal::with(['equipo', 'userFinal'])
-            ->when($this->search, function ($query, $search) {
-                $query->where(function ($q) use ($search) {
-                    $q->where('numero_serie', 'like', "%{$search}%")
-                        ->orWhere('created_at', 'like', "%{$search}%")
-                        ->orWhere('updated_at', 'like', "%{$search}%")
+        $computers = ComputerUserFinal::with(['equipo.atributos', 'userFinal.user', 'userFinal.area', 'userFinal.location'])
+        ->when($this->search, function ($query, $search) {
+            $query->where(function ($q) use ($search) {
+                $q->Where('created_at', 'like', "%{$search}%") // Buscar por fecha de creación
+                    ->orWhere('updated_at', 'like', "%{$search}%") // Buscar por fecha de actualización
 
-                        // Buscar por nombre de usuario final
-                        ->orWhereHas(
-                            'userFinal.user',
-                            fn($q2) =>
-                            $q2->where('name', 'like', "%{$search}%")
-                        );
-                });
-            })
+                    // Buscar por nombre de usuario
+                    ->orWhereHas(
+                        'userFinal.user',
+                        fn($q2) =>
+                        $q2->where('name', 'like', "%{$search}%")
+                    )
+
+                    // Buscar por área del usuario
+                    ->orWhereHas(
+                        'userFinal.area',
+                        fn($q2) =>
+                        $q2->where('nombre', 'like', "%{$search}%")
+                    )
+
+                    // Buscar por ubicación del usuario
+                    ->orWhereHas(
+                        'userFinal.location',
+                        fn($q2) =>
+                        $q2->where('piso', 'like', "%{$search}%")
+                    )
+
+                    // Buscar por datos del equipo
+                    ->orWhereHas(
+                        'equipo',
+                        fn($q2) =>
+                        $q2->where('numero_inventario', 'like', "%{$search}%")
+                            ->orWhere('numero_serie', 'like', "%{$search}%")
+                            ->orWhere('modelo', 'like', "%{$search}%")
+                    )
+
+                    // Buscar por atributos del equipo
+                    ->orWhereHas(
+                        'equipo.atributos',
+                        fn($q2) =>
+                        $q2->where('atributo_tipo', 'like', "%{$search}%")
+                            ->orWhere('valor', 'like', "%{$search}%")
+                    );
+            });
+        })
             ->orderByDesc('created_at')
             ->paginate(5);
 

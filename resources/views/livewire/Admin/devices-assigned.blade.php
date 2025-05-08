@@ -5,6 +5,9 @@
         </x-search-input>
     </div>
 
+    
+    @livewire('admin.asignar-modal')
+
     <div class="overflow-x-auto mb-6">
         <table class="w-full text-sm text-left bg-white border">
             <thead class="bg-afac-golden text-white">
@@ -31,9 +34,9 @@
                         <td class="p-2">{{ $item->userFinal->ubicacion_id }}</td>
                         <td class="p-2">{{ $item->equipo->numero_inventario }}</td>
                         <td class="p-2">{{ $item->equipo->numero_serie }}</td>
-                        <td class="p-2">{{ $item->equipo->atributos }}</td>{{-- dispositivo --}}
+                        <td class="p-2">{{ $item->equipo->tipo_dispositivo }}</td>{{-- dispositivo --}}
                         <td class="p-2">{{ $item->equipo->modelo }}</td>
-                        <td class="p-2">{{ $item->equipo->modelo }}</td>{{-- marca --}}
+                        <td class="p-2">{{ $item->equipo->marca }}</td>{{-- marca --}}
                         <td class="p-2">{{ $item->fecha_asignacion }}</td>
                     </tr>
                 @empty
@@ -45,7 +48,7 @@
         </table>
     </div>
     <div class="flex items-center justify-center p-4">
-        <x-button wire:click="$dispatch('abrir-modal')" type="button">
+        <x-button wire:click="asignarModal" type="button">
             ASIGNAR
         </x-button>
     </div>

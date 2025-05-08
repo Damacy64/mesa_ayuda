@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('computers', function (Blueprint $table) {
             $table->unsignedBigInteger('numero_serie')->primary();
+            $table->string('numero_inventario');
             $table->string('modelo');
             $table->string('direccion_ip', 15);
             $table->string('estado'); // ACTIVO, INACTIVO

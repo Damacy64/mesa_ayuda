@@ -42,4 +42,14 @@ class Computer extends Model
             ->withPivot(['fecha_asignacion', 'fecha_liberacion'])
             ->withTimestamps();
     }
+
+    public function getMarcaAttribute()
+    {
+        return $this->atributos()->where('atributo_tipo', 'marca')->first()?->valor ?? 'N/A';
+    }
+
+    public function getTipoDispositivoAttribute()
+    {
+        return $this->atributos()->where('atributo_tipo', 'Tipo de equipo')->first()?->valor ?? 'N/A';
+    }
 }

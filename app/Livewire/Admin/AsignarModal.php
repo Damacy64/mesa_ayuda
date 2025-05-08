@@ -15,7 +15,7 @@ class AsignarModal extends Component
         {
             public $open = false;
         
-            #[On('abrir-modal')]
+            #[On('asignar-modal')]
             public function abrir()
             {
                 $this->open = true;
