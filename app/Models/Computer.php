@@ -10,6 +10,7 @@ class Computer extends Model
     public $incrementing = false;
 
     protected $fillable = [
+        'numero_inventario',
         'numero_serie',
         'modelo',
         'direccion_ip',
@@ -28,10 +29,10 @@ class Computer extends Model
             'attributable',
             'attributable',
             'attributable_id',
-            'atributo_id',
+            'atributo_valor',
             'numero_serie',
             'valor'
-        );
+        )->withPivot('atributo_tipo');
     }
 
     public function usuarios()
@@ -39,7 +40,16 @@ class Computer extends Model
         return $this->belongsToMany(UserFinal::class, 'computer_user_final', 'equipo_id', 'user_final_id')
             ->using(ComputerUserFinal::class)
             ->withPivot(['fecha_asignacion', 'fecha_liberacion'])
-            ->withPivot(['fecha_asignacion', 'fecha_liberacion'])
             ->withTimestamps();
+    }
+
+    public function getMarcaAttribute()
+    {
+        return $this->atributos()->where('atributo_tipo', 'marca')->first()?->valor ?? 'N/A';
+    }
+
+    public function getTipoDispositivoAttribute()
+    {
+        return $this->atributos()->where('atributo_tipo', 'Tipo de equipo')->first()?->valor ?? 'N/A';
     }
 }
