@@ -3,8 +3,6 @@
 namespace App\Livewire\Admin;
 
 
-use App\Models\Ticket;
-use App\Models\Computer;
 use App\Models\ComputerUserFinal;
 use Livewire\Attributes\On;
 use Livewire\Component;

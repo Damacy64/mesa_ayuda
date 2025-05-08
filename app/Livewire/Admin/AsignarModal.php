@@ -2,104 +2,84 @@
 
 namespace App\Livewire\Admin;
 
-use App\Models\User;
 use App\Models\Attribute;
 use Livewire\Component;
-use App\Models\Option;
-use App\Models\Attributable;
+use App\Models\User;
 use Livewire\Attributes\On;
-use App\Models\Computer;
-use Illuminate\Support\Facades\DB;
 
-class AsignarModal extends Component    
-        {
-            public $open = false;
-        
-            #[On('asignar-modal')]
-            public function abrir()
-            {
-                $this->open = true;
-            }        
-           
-                public $users;
-                public $atributo_marca;
-                public $tipoDispositivos;
-                public $atributo_tipo;
+class AsignarModal extends Component
+{
+    // Catalogos
+    public $open = false;
+    public $usuarios = [];
+    public $marcas = [];
+    public $dispositivos = [];
+    public $sistemas = [];
+    public $almacenamientos = [];
+    public $procesadores = [];
+    public $memorias = [];
+    public $versionesOffice = [];
 
-                public $opcionesNivel2 = [];
-            
-                public $equipoSeleccionado = [
-                    'usuario_id' => '',
-                    'inventario' => '',
-                    'serie' => '',
-                    'modelo' => '',
-                    'marca' => '',
-                    'direccion_ip' => '',
-                    'servicio_internet' => '',
-                ];
-            
-                public $mostraropciones = null;
-                public $tipo = null;
-            
-                public function mount()
-                {
-                    // $this->users = User::all();
-                    // $this->atributo_marca = Attribute::where('atributable_type', 'Computer')
-                    //     ->whereHas('tipo', function ($query) {
-                    //         $query->where('nombre', 'Marca');
-                    //     })->get();
-            
-                    // $this->tipoDispositivos = Option::where('nivel', 1)->get();
-                }
-            
-                public function updatedMostraropciones($nivel)
-                {
-                    $this->opcionesNivel2 = Option::where('nivel', 2)
-                        ->where('parent_id', $nivel)
-                        ->get();
-                }
-            
-                public function guardarTicket()
-                {
-                    // $this->validate([
-                    //     'equipoSeleccionado.usuario_id' => 'required|exists:users,id',
-                    //     'equipoSeleccionado.inventario' => 'required|max:10',
-                    //     'equipoSeleccionado.serie' => 'required|max:10',
-                    //     'equipoSeleccionado.modelo' => 'required|max:50',
-                    //     'equipoSeleccionado.marca' => 'required|exists:attributes,id',
-                    //     'equipoSeleccionado.direccion_ip' => 'required|ip',
-                    //     'equipoSeleccionado.servicio_internet' => 'required|max:35',
-                    // ]);
-            
-                    // $computadora = Computer::create([
-                    //     'user_final_id' => $this->equipoSeleccionado['usuario_id'],
-                    //     'numero_inventario' => $this->equipoSeleccionado['inventario'],
-                    //     'numero_serie' => $this->equipoSeleccionado['serie'],
-                    //     'modelo' => $this->equipoSeleccionado['modelo'],
-                    //     'direccion_ip' => $this->equipoSeleccionado['direccion_ip'],
-                    //     'servicio_internet' => $this->equipoSeleccionado['servicio_internet'],
-                    // ]);
-            
-                    // $computadora->attributes()->attach($this->equipoSeleccionado['marca']); // Marca
-            
-                    // session()->flash('message', 'Equipo asignado correctamente.');
-                    // $this->reset();
-                }
-                public function closemodal()
-                {
-                    $this->open = false;
-                    // $this->resetExcept('users', 'atributo_tipo', 'tipo_dispositivos');
-                }
-        
-                public function render()
-                {
-                    return view('livewire.admin.asignar-modal');
-                    // return view('livewire.admin.asignar-modal', [
-                    //     'users' => $this->users,
-                    //     'atributo_tipo' => $this->atributo_marca,
-                    //     'tipo' => $this->tipoDispositivos,
-                    //     'subtipos' => $this->opcionesNivel2,
-                    // ]);
-                }
-            }
-            
+    // Modelos wire.model
+    public $usuario = null;
+    public $marca = null;
+    public $dispositivo = null;
+    public $sistema = null;
+    public $almacenamiento = null;
+    public $procesador = null;
+    public $memoria = null;
+    public $versionOffice = null;
+
+    public $mostraropciones = 0;
+    
+    #[On('asignar-modal')]
+    public function abrir()
+    {
+        $this->open = true;
+    }
+
+    public function mount()
+    {
+        $this->usuarios = User::all();
+        $this->marcas = Attribute::where('tipo', 'marca')->pluck('valor', 'valor');
+        $this->dispositivos = Attribute::where('tipo', 'Tipo de equipo')->pluck('valor', 'valor');
+        $this->sistemas = Attribute::where('tipo', 'S.O.')->pluck('valor', 'valor');
+        $this->almacenamientos = Attribute::where('tipo', 'Almacenamiento')->pluck('valor', 'valor');
+        $this->procesadores = Attribute::where('tipo', 'Procesador')->pluck('valor', 'valor');
+        $this->memorias = Attribute::where('tipo', 'RAM')->pluck('valor', 'valor');
+        $this->versionesOffice = Attribute::where('tipo', 'Office')->pluck('valor', 'valor');
+    }
+
+    public function updatedDispositivo($value)
+    {
+        $mostrar = Attribute::where('tipo', 'Tipo de equipo')->where('valor', $value)->first();
+
+        switch (strtoupper($mostrar->valor ?? '')) {
+            case 'ALL-IN-ONE':
+                $this->mostraropciones = 1;
+                break;
+            case 'LAPTOP':
+                $this->mostraropciones = 2;
+                break;
+            case 'ESCRITORIO':
+                $this->mostraropciones = 3;
+                break;
+            case 'TABLET':
+                $this->mostraropciones = 4;
+                break;
+            default:
+                $this->mostraropciones = 0;
+                break;
+        }
+    }
+
+    public function closemodal()
+    {
+        $this->open = false;
+    }
+
+    public function render()
+    {
+        return view('livewire.admin.asignar-modal');
+    }
+}
