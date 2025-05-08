@@ -26,14 +26,22 @@ class EstadisticasModal extends Component
         'tecnico' => 'required',
     ];
 
-    public function pdf(){
-    
-    }
-
     public function closemodal()
     {
         $this->open = false;
     }
+
+    public function descargarEstadisticas()
+    {       
+        $pdf = Pdf::loadView('livewire.admin.pdf', [
+            'ticket' => $ticket,
+        ])->setPaper('a4', 'landscape');
+    
+        return response()->streamDownload(function () use ($pdf) {
+            echo $pdf->output();
+        }, 'admin.pdf');
+    }
+
     public function render()
     {
         return view('livewire.admin.estadisticas-modal');
