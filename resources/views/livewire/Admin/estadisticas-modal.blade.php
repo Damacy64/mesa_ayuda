@@ -67,7 +67,7 @@
                                     CERRAR
                                 </x-button-cerrar>
 
-                                <x-button wire:click="guardarArea" type="button">
+                                <x-button wire:click="descargarEstadisticas" type="button">
                                     DESCARGAR
                                 </x-button>
                             </div>

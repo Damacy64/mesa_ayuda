@@ -5,6 +5,9 @@
         </x-search-input>
     </div>
 
+    
+    @livewire('admin.asignar-modal')
+
     <div class="overflow-x-auto mb-6">
         <table class="w-full text-sm text-left bg-white border">
             <thead class="bg-afac-golden text-white">
@@ -25,16 +28,24 @@
             <tbody class="text-black">
                 @forelse ($computers as $item)
                     <tr class="border-t">
-                        <td class="p-2">{{ $item->folio }}</td>
-                        <td class="p-2">{{ $item->usuario->user->name }}</td>
-                        <td class="p-2">{{ $item->usuario->area->nombre }}</td>
-                        <td class="p-2">{{ $item->usuario->location->piso }}</td>
-                        <td class="p-2">{{ $item->computer->numero_serie }}</td>
-                        <td class="p-2">{{ $item->computer->numero_serie }}</td>
-                        <td class="p-2">{{ $item->computer->numero_serie }}</td>
-                        <td class="p-2">{{ $item->computer->modelo }}</td>
-                        <td class="p-2">{{ $item->computer->modelo }}</td>
-                        <td class="p-2">{{ $item->ComputerUserFinal->fecha_asignacion }}</td>
+                        <td class="p-2">{{ $item->userFinal->user->employer_number }}</td>
+                        <td class="p-2">{{ $item->userFinal->user->name }}</td>
+                        <td class="p-2">{{ $item->userFinal->area_id }}</td>
+                        <td class="p-2">{{ $item->userFinal->ubicacion_id }}</td>
+                        <td class="p-2">{{ $item->equipo->numero_inventario }}</td>
+                        <td class="p-2">{{ $item->equipo->numero_serie }}</td>
+                        <td class="p-2">{{ $item->equipo->tipo_dispositivo }}</td>{{-- dispositivo --}}
+                        <td class="p-2">{{ $item->equipo->modelo }}</td>
+                        <td class="p-2">{{ $item->equipo->marca }}</td>{{-- marca --}}
+                        <td class="p-2">{{ $item->fecha_asignacion }}</td>
+                        <td class="p-2">
+                            <a href="#" 
+                            onclick="confirm('¿Estás seguro de eliminar el dispositivo?') || event.stopImmediatePropagation()" 
+                            wire:click="ocultar('{{ $item->nombre }}')" 
+                            class="text-blue-500 hover:text-red-700">
+                            Eliminar
+                         </a>
+                        </td>
                     </tr>
                 @empty
                     <tr class="text-black">
@@ -45,12 +56,12 @@
         </table>
     </div>
     <div class="flex items-center justify-center p-4">
-        <x-button wire:click="$dispatch('abrir-modal')" type="button">
+        <x-button wire:click="asignarModal" type="button">
             ASIGNAR
         </x-button>
     </div>
     <div class="mt-4">
-        {{ $tickets->withQueryString()->links('components.pagination') }}
+        {{ $computers->withQueryString()->links('components.pagination') }}
     </div>
 </div>
 

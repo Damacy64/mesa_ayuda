@@ -10,7 +10,7 @@ class Attributable extends Model
     protected $table = 'attributable';
     public $timestamps = false;
 
-    protected $primaryKey = null;
+    protected $primaryKey = ['atributo_tipo', 'atributo_valor', 'attributable_id', 'attributable_type'];
     public $incrementing = false;
 
     protected $fillable = [
@@ -25,11 +25,8 @@ class Attributable extends Model
      */
     public function atributo()
     {
-        return $this->belongsTo(Attribute::class, [
-            'atributo_tipo', 'atributo_valor'
-        ], [
-            'tipo', 'valor'
-        ]);
+        return $this->belongsTo(Attribute::class, 'atributo_valor', 'valor')
+            ->where('attributes.tipo', $this->atributo_tipo);
     }
 
     /**

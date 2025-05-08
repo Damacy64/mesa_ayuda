@@ -17,9 +17,9 @@
                                     <x-select name="usuario_id" label="Usuario"
                                         wire:model="equipoSeleccionado.usuario_id">
                                         <option value="">Seleccione Usuario</option>
-                                        @foreach ($users as $user)
+                                        {{-- @foreach ($users as $user)
                                             <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                        @endforeach
+                                        @endforeach --}}
                                     </x-select>
                                 </div>
 
@@ -45,10 +45,10 @@
                                     <x-label for="marca" value="MARCA*" />
                                     <x-select id="marca" name="marca" wire:model="equipoSeleccionado.marca">
                                         <option value="">SELECCIONE MARCA</option>
-                                        @foreach ($atributo_tipo as $atributo_tipo)
+                                        {{-- @foreach ($atributo_tipo as $atributo_tipo)
                                             <option value="{{ $atributo_tipo->id }}">{{ $atributo_tipo->valor }}
                                             </option>
-                                        @endforeach
+                                        @endforeach --}}
                                     </x-select>
                                 </div>
 
@@ -64,41 +64,108 @@
                                         required autofocus autocomplete="servicio_internet" />
                                 </div>
 
-                                <div>
-                                    <x-label for="dispositivo" value="SELECCIONE DISPOSITIVO*" />
-                                    <x-select id="dispositivo" name="dispositivo" wire:model.live="mostraropciones">
+                                <div class="sm:col-span-2">
+                                    <x-label for="dispositivo" value="DISPOSITIVO*" />
+                                    <x-select id="dispositivo" name="dispositivo" wire:model.live="">
                                         <option value="">SELECCIONE</option>
-                                        @foreach ($tipo as $tipo)
+                                        {{-- @foreach ($tipo as $tipo)
                                             <option value="{{ $tipo->nivel }}">{{ $tipo->nombre }}</option>
-                                        @endforeach
+                                        @endforeach --}}
                                     </x-select>
                                 </div>
 
-                                @if ($mostraropciones >= 2)
-                                    <div>
-                                        <x-select id="tipo" name="tipo" wire:model.live="tipo">
-                                            <option value="">SELECCIONE</option>
-                                            @foreach ($tipo as $tipo)
-                                                <option value="{{ $tipo->id }}">
-                                                    {{ $tipo->valor }}
-                                                </option>
-                                            @endforeach
-                                        </x-select>
-                                    </div>
-                                @endif
+                                <div class="sm:col-span-2">
+                                    <x-label for="sistema_operativo" value="SISTEMA OPERATIVO*" />
+                                    <x-select id="sistema_operativo" name="sistema_operativo" wire:model.live="">
+                                        <option value="">SELECCIONE</option>
+                                        {{-- @foreach ($tipo as $tipo)
+                                            <option value="{{ $tipo->nivel }}">{{ $tipo->nombre }}</option>
+                                        @endforeach --}}
+                                    </x-select>
+                                </div>
+
+                                <div class="sm:col-span-2">
+                                    <x-label for="almacenamiento" value="ALMACENAMIENTO*" />
+                                    <x-select id="almacenamiento" name="almacenamiento" wire:model.live="">
+                                        <option value="">SELECCIONE</option>
+                                        {{-- @foreach ($tipo as $tipo)
+                                            <option value="{{ $tipo->nivel }}">{{ $tipo->nombre }}</option>
+                                        @endforeach --}}
+                                    </x-select>
+                                </div>
+
+                                <div class="sm:col-span-2">
+                                    <x-label for="memoria_ram" value="CAPACIDAD MEMORIA RAM*" />
+                                    <x-select id="memoria_ram" name="memoria_ram" wire:model.live="">
+                                        <option value="">SELECCIONE</option>
+                                        {{-- @foreach ($tipo as $tipo)
+                                            <option value="{{ $tipo->nivel }}">{{ $tipo->nombre }}</option>
+                                        @endforeach --}}
+                                    </x-select>
+                                </div>
+
+                                <div class="sm:col-span-2">
+                                    <x-label for="disco_flash" value="UNIDAD DISCO FLASH*" />
+                                    <x-input maxlength="16" id="disco_flash" name="disco_flash" type="text" required
+                                        autofocus autocomplete="disco_flash" placeholder="" />
+                                </div>
+
+                                <div class="sm:col-span-2">
+                                    <x-label for="serie_monitor" value="SERIE MONITOR*" />
+                                    <x-input maxlength="16" id="serie_monitor" name="serie_monitor" type="text" required
+                                        autofocus autocomplete="serie_monitor" placeholder="" />
+                                </div>
+
+                                <div class="sm:col-span-2">
+                                    <x-label for="serie_teclado" value="SERIE TECLADO*" />
+                                    <x-input maxlength="16" id="serie_teclado" name="serie_teclado" type="text" required
+                                        autofocus autocomplete="serie_teclado" placeholder="" />
+                                </div>
+
+                                <div class="sm:col-span-2">
+                                    <x-label for="serie_mouse" value="SERIE MOUSE*" />
+                                    <x-input maxlength="16" id="serie_mouse" name="serie_mouse" type="text" required
+                                        autofocus autocomplete="serie_mouse" placeholder="" />
+                                </div>
+
+                                <div class="sm:col-span-2">
+                                    <x-label for="version_office" value="VERSION OFFICE" />
+                                    <x-select id="version_office" name="version_office" wire:model.live="">
+                                        <option value="">SELECCIONE</option>
+                                        {{-- @foreach ($tipo as $tipo)
+                                            <option value="{{ $tipo->nivel }}">{{ $tipo->nombre }}</option>
+                                        @endforeach --}}
+                                    </x-select>
+                                </div>
+
+                                <div class="sm:col-span-2">
+                                    <x-label for="procesador" value="PROCESADOR" />
+                                    <x-select id="procesador" name="procesador" wire:model.live="">
+                                        <option value="">SELECCIONE</option>
+                                        {{-- @foreach ($tipo as $tipo)
+                                            <option value="{{ $tipo->nivel }}">{{ $tipo->nombre }}</option>
+                                        @endforeach --}}
+                                    </x-select>
+                                </div>
+
+                                <div class="sm:col-span-2">
+                                    <x-label for="version_procesador" value="VERSION PROCESADOR*" />
+                                    <x-input maxlength="16" id="version_procesador" name="version_procesador" type="text" required
+                                        autofocus autocomplete="version_procesador" placeholder="" />
+                                </div>
 
                                 <div class="mt-4">
                                     <x-validation-errors />
                                 </div>
 
-                                <div class="mt-6 flex justify-center space-x-4">
-                                    <x-button-cerrar wire:click="closemodal" type="button">
-                                        CERRAR
-                                    </x-button-cerrar>
-                                    <x-button wire:click="guardarTicket" type="button">
-                                        GUARDAR
-                                    </x-button>
-                                </div>
+                            </div>
+                            <div class="flex justify-center space-x-3">
+                                <x-button-cerrar wire:click="closemodal" type="button">
+                                    CERRAR
+                                </x-button-cerrar>
+                                <x-button wire:click="" type="button">
+                                    GUARDAR
+                                </x-button>
                             </div>
                         </div>
                     </div>
