@@ -107,6 +107,7 @@ class Modal extends Component
                 break;
         }
     }
+    
     public function updatedComponente($value)
     {
         $this->fallas = Option::where('parent_id', $value)->get();

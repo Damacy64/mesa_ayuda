@@ -34,9 +34,9 @@
                         <td class="p-2">{{ $item->userFinal->ubicacion_id }}</td>
                         <td class="p-2">{{ $item->equipo->numero_inventario }}</td>
                         <td class="p-2">{{ $item->equipo->numero_serie }}</td>
-                        <td class="p-2">{{ $item->equipo->tipo_dispositivo }}</td>{{-- dispositivo --}}
+                        <td class="p-2">{{ $item->equipo->tipo_dispositivo }}</td>
                         <td class="p-2">{{ $item->equipo->modelo }}</td>
-                        <td class="p-2">{{ $item->equipo->marca }}</td>{{-- marca --}}
+                        <td class="p-2">{{ $item->equipo->marca }}</td>
                         <td class="p-2">{{ $item->fecha_asignacion }}</td>
                         <td class="p-2">
                             <a href="#" 
