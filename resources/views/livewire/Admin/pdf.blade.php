@@ -2,34 +2,81 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Estadísticas</title>
+    <title>Estadísticas de Tickets</title>
     <style>
-        body { font-family: DejaVu Sans, sans-serif; font-size: 12px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #000; padding: 6px; text-align: left; }
-        th { background-color: #BC955C; color: #fff; }
+        body {
+            font-family: DejaVu Sans, sans-serif;
+            font-size: 12px;
+            margin: 40px;
+        }
+        header, footer {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        header img, footer img {
+            height: 60px;
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+        p.descripcion {
+            text-align: justify;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 6px;
+            text-align: center;
+        }
+        th {
+            background-color: #BC955C;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
-    <h2>Estadísticas de Tickets</h2>
+    <header>
+        <img src="{{ public_path('images/logo.png') }}" alt="Logo AFAC" style="height: 60px;">
+    </header>
+
+    <h2>Reporte de Estadísticas de la Mesa de Ayuda </h2>
+
+    <p class="descripcion">
+        El presente informe muestra las estadísticas generales del sistema Mesa de ayuda correspondiente al periodo seleccionado.
+        Se incluyen métricas clave como la cantidad total de tickets registrados, su estado actual (abiertos, en revisión y cerrados),
+        el tiempo promedio de resolución por estado, así como el técnico más activo en el sistema durante dicho periodo.
+    </p>
 
     <table>
         <thead>
             <tr>
                 <th>Total Tickets</th>
                 <th>Tickets Abiertos</th>
-                <th>Tiempo Promedio</th>
+                <th>Tiempo Promedio (Abiertos)</th>
                 <th>Tickets en Revisión</th>
-                <th>Tiempo Promedio</th>
+                <th>Tiempo Promedio (Revisión)</th>
                 <th>Tickets Cerrados</th>
                 <th>Técnico más Activo</th>
             </tr>
         </thead>
         <tbody>
+         
                 <tr>
-                    <td colspan="7">No hay información disponible.</td>
+                    <td colspan="7">No hay información disponible para el periodo seleccionado.</td>
                 </tr>
+        
         </tbody>
     </table>
+
+    <footer>
+        <img src="/images/logo.png" alt="Logo">
+        <p>Agencia Federal de Aviación Civil - Sistema de Mesa de Ayuda</p>
+    </footer>
 </body>
 </html>

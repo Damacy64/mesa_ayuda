@@ -7,7 +7,6 @@
                 <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
                     <div
                         class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-5xl">
-
                         <div class="bg-white px-6 py-6 sm:px-6">
                             <h3 class="text-lg font-bold text-gray-900 mb-4" id="modal-title">Estadisticas</h3>
 
@@ -15,11 +14,11 @@
                                 <x-label for="nombre">Ingrese la fecha para determinar las estadisticas*</x-label>
                             </div>
                             <div class="flex justify-items-between ">
-                                <x-input maxlength="50" id="fecha" class="mt-1 w-32" type="date"
-                                name="fecha" wire:model="fecha" required autofocus autocomplete="off" />
+                                <x-input maxlength="50" id="fechainicio" class="mt-1 w-32" type="date"
+                                name="fecha" wire:model="fechainicio" required autofocus autocomplete="off" />
                                 <x-label class="m-2" for="fecha">al</x-label>
-                                <x-input maxlength="50" id="fecha" class="mt-1 w-32" type="date"
-                                name="fecha" wire:model="fecha" required autofocus autocomplete="off" />
+                                <x-input maxlength="50" id="fechafin" class="mt-1 w-32" type="date"
+                                name="fecha" wire:model="fechafin" required autofocus autocomplete="off" />
                             </div>
 
                             <div class="overflow-x-auto mb-6">
@@ -38,16 +37,15 @@
                                         </tr>
                                     </thead>
                                     <tbody class="text-black">
-                                        @if ($ticket)
+                                        @if ($totalTickets !== null)
                                             <tr class="border-t">
-                                                <td class="p-2">{{ $ticket->folio }}</td>
-                                                <td class="p-2">{{ $ticket->titulo }}</td>
-                                                <td class="p-2">{{ $ticket->folio }}</td>
-                                                <td class="p-2">{{ $ticket->titulo }}</td>
-                                                <td class="p-2">{{ $ticket->equipo->modelo ?? 'N/A' }}</td>
-                                                <td class="p-2">{{ $ticket->equipo->numero_serie ?? 'N/A' }}</td>
-                                                <td class="p-2">{{ $ticket->descripcion ?? 'N/A' }}</td>
-                                            
+                                                <td class="p-2">{{ $totalTickets }}</td>
+                                                <td class="p-2">{{ $openTickets }}</td>
+                                                <td class="p-2">{{ number_format($avgOpenTime, 2) }} min</td>
+                                                <td class="p-2">{{ $inReviewTickets }}</td>
+                                                <td class="p-2">{{ number_format($avgReviewTime, 2) }} min</td>
+                                                <td class="p-2">{{ $closedTickets }}</td>
+                                                <td class="p-2">{{ $topTechnician }}</td>
                                             </tr>
                                         @else
                                             <tr>
@@ -55,6 +53,7 @@
                                             </tr>
                                         @endif
                                     </tbody>
+                                    
                                 </table>
                             </div>
                         </div>
@@ -66,10 +65,12 @@
                                 <x-button-cerrar wire:click="closemodal" type="button">
                                     CERRAR
                                 </x-button-cerrar>
-
-                                <x-button wire:click="descargarEstadisticas" type="button">
+                                <a href="{{ route('admin.pdf')}}" class"btn btn-primary" class="inline-block bg-afac-blue text-white py-2 px-4 rounded-lg hover:bg-afac-golden">DESCARGAR</a>
+                                   
+                                {{-- <x-button wire:click="download" type="button">
                                     DESCARGAR
-                                </x-button>
+                                </x-button> --}}
+
                             </div>
                         </div>
                     </div>
