@@ -14,6 +14,7 @@ class Computer extends Model
         'numero_serie',
         'modelo',
         'direccion_ip',
+        'internet',
         'estado',
     ];
 

@@ -19,6 +19,7 @@ class ComputerSeeder extends Seeder
                 'numero_inventario' => '1234567890',
                 'modelo' => 'HP PAVILION 15',
                 'direccion_ip' => '192.168.220',
+                'internet' => 'INALAMBRICO',
                 'estado' => 'HABILITADO',
             ],
             [
@@ -26,6 +27,7 @@ class ComputerSeeder extends Seeder
                 'numero_inventario' => '987654321',
                 'modelo' => 'DELL INSPIRON 15',
                 'direccion_ip' => '192.168.221',
+                'internet' => 'INALAMBRICO',
                 'estado' => 'HABILITADO',
             ],
             [
@@ -33,6 +35,7 @@ class ComputerSeeder extends Seeder
                 'numero_inventario' => '1122334455',
                 'modelo' => 'LENOVO THINKPAD X1',
                 'direccion_ip' => '192.168.222',
+                'internet' => 'INALAMBRICO',
                 'estado' => 'HABILITADO',
             ],
             [
@@ -40,6 +43,7 @@ class ComputerSeeder extends Seeder
                 'numero_inventario' => '2233445566',
                 'modelo' => 'ASUS ZENBOOK 14',
                 'direccion_ip' => '192.168.223',
+                'internet' => 'INALAMBRICO',
                 'estado' => 'HABILITADO',
             ],
         ];

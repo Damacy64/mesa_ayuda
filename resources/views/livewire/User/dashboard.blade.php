@@ -12,7 +12,6 @@
 
     <div class="container mx-auto px-4 py-6">
         @livewire('user.tickets-user')
-        @livewire('user.modal-reabrir')
     </div>
 
     <div class="flex items-center justify-center p-4">

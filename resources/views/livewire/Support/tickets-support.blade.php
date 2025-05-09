@@ -1,4 +1,5 @@
 <div>
+    @livewire('support.update-ticket-modal')
     <div class="flex items-center justify-between mb-4 p-4">
         <h1 class="text-2xl font-bold text-black">Resumen de tickets</h1>
         <x-search-input>

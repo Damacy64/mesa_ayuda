@@ -3,6 +3,8 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Attribute;
+use App\Models\Computer;
+use App\Models\ComputerUserFinal;
 use Livewire\Component;
 use App\Models\User;
 use Livewire\Attributes\On;
@@ -84,7 +86,6 @@ class AsignarModal extends Component
     public function updatedDispositivo($value)
     {
         $mostrar = Attribute::where('tipo', 'Tipo de equipo')->where('valor', strtoupper($value))->first();
-
         switch (strtoupper($mostrar->valor ?? '')) {
             case 'ALL-IN-ONE':
                 $this->mostraropciones = 1;
@@ -103,11 +104,6 @@ class AsignarModal extends Component
                 break;
         }
     }
-
-    // public function updated($propertyName)
-    // {
-    //     $this->validateOnly($propertyName, $this->validaciones());
-    // }
 
     public function validaciones()
     {
@@ -163,16 +159,84 @@ class AsignarModal extends Component
     {
         $this->open = false;
         $this->resetExcept(['usuarios', 'marcas', 'dispositivos', 'sistemas', 'almacenamientos', 'procesadores', 'memorias', 'versionesOffice']);
+        $this->resetValidation();
     }
 
     public function asignar()
     {
-        $this->validate();
+        $this->validate($this->validaciones());
 
-        $reglasDinamicas = $this->validaciones();
-        $this->validate($reglasDinamicas);
-        
+        // Guardar el equipo
+        $computadora = Computer::create([
+            'numero_serie' => $this->serie,
+            'numero_inventario' => $this->inventario,
+            'modelo' => $this->modelo,
+            'direccion_ip' => $this->direccionIp,
+            'internet' => $this->internet,
+        ]);
+
+        // Construir los atributos dinámicamente en función del dispositivo seleccionado
+        $atributos = collect();
+
+        // Atributos comunes
+        $atributos->push(['tipo' => 'marca', 'valor' => $this->marca]);
+        $atributos->push(['tipo' => 'Tipo de equipo', 'valor' => $this->dispositivo]);
+
+        // Atributos específicos según el dispositivo
+        switch ($this->mostraropciones) {
+            case 1: // ALL-IN-ONE
+                $atributos->push(['tipo' => 'S.O.', 'valor' => $this->sistema]);
+                $atributos->push(['tipo' => 'Almacenamiento', 'valor' => $this->almacenamiento]);
+                $atributos->push(['tipo' => 'Procesador', 'valor' => $this->procesador]);
+                $atributos->push(['tipo' => 'RAM', 'valor' => $this->memoria]);
+                $atributos->push(['tipo' => 'Office', 'valor' => $this->versionOffice]);
+                //$atributos->push(['tipo' => 'Teclado', 'valor' => $this->serieTeclado]);
+                //$atributos->push(['tipo' => 'Mouse', 'valor' => $this->serieMouse]);
+                //$atributos->push(['tipo' => 'Versión Procesador', 'valor' => $this->versionProcesador]);
+                break;
+
+            case 2: // LAPTOP
+                $atributos->push(['tipo' => 'S.O.', 'valor' => $this->sistema]);
+                $atributos->push(['tipo' => 'Almacenamiento', 'valor' => $this->almacenamiento]);
+                $atributos->push(['tipo' => 'Procesador', 'valor' => $this->procesador]);
+                $atributos->push(['tipo' => 'RAM', 'valor' => $this->memoria]);
+                $atributos->push(['tipo' => 'Office', 'valor' => $this->versionOffice]);
+                //$atributos->push(['tipo' => 'Versión Procesador', 'valor' => $this->versionProcesador]);
+                break;
+
+            case 3: // ESCRITORIO
+                $atributos->push(['tipo' => 'S.O.', 'valor' => $this->sistema]);
+                $atributos->push(['tipo' => 'Almacenamiento', 'valor' => $this->almacenamiento]);
+                $atributos->push(['tipo' => 'RAM', 'valor' => $this->memoria]);
+                //$atributos->push(['tipo' => 'Monitor', 'valor' => $this->serieMonitor]);
+                //$atributos->push(['tipo' => 'Teclado', 'valor' => $this->serieTeclado]);
+                //$atributos->push(['tipo' => 'Mouse', 'valor' => $this->serieMouse]);
+                $atributos->push(['tipo' => 'Office', 'valor' => $this->versionOffice]);
+                $atributos->push(['tipo' => 'Procesador', 'valor' => $this->procesador]);
+                //$atributos->push(['tipo' => 'Versión Procesador', 'valor' => $this->versionProcesador]);
+                break;
+
+            case 4: // TABLET
+                $atributos->push(['tipo' => 'Almacenamiento', 'valor' => $this->almacenamiento]);
+                $atributos->push(['tipo' => 'RAM', 'valor' => $this->memoria]);
+                $atributos->push(['tipo' => 'Flash', 'valor' => $this->flash]);
+                $atributos->push(['tipo' => 'Office', 'valor' => $this->versionOffice]);
+                break;
+        }
+
+        // Guardar los atributos en la tabla attributable
+        foreach ($atributos as $atributo) {
+            $computadora->atributos()->attach($atributo['valor'], ['atributo_tipo' => $atributo['tipo']]);
+        }
+
+        // Relacionar el equipo con el usuario
+        ComputerUserFinal::create([
+            'user_final_id' => $this->usuario,
+            'equipo_id' => $computadora->numero_serie,
+        ]);
+
         $this->closemodal();
+        $this->dispatch('reasignado');
     }
 
     public function render()

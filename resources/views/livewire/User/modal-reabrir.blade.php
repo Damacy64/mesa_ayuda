@@ -1,5 +1,8 @@
 <div>
     @if ($open)
+    
+        @livewire('user.modal-reabrir')
+        
         <div class="relative z-10">
             <div class="fixed inset-0 bg-afac-gray-low/75 transition-opacity"></div>
 

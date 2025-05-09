@@ -52,7 +52,7 @@
 
                                 <div class="sm:col-span-2">
                                     <x-label for="direccionIp" value="DIRECCIÓN IP*" />
-                                    <x-input maxlength="16" id="direccionIp" name="direccionIp" type="text" required
+                                    <x-input maxlength="15" id="direccionIp" name="direccionIp" type="text" required
                                         autofocus autocomplete="direccionIp" placeholder="192.168.0.100" wire:model="direccionIp"/>
                                 </div>
 

@@ -4,7 +4,6 @@
             <x-input type="text" id="text" name="text" wire:model.live="search" placeholder="Buscar" />
         </x-search-input>
     </div>
-
     
     @livewire('admin.asignar-modal')
 
@@ -28,10 +27,10 @@
             <tbody class="text-black">
                 @forelse ($computers as $item)
                     <tr class="border-t">
-                        <td class="p-2">{{ $item->userFinal->user->employer_number }}</td>
-                        <td class="p-2">{{ $item->userFinal->user->name }}</td>
-                        <td class="p-2">{{ $item->userFinal->area_id }}</td>
-                        <td class="p-2">{{ $item->userFinal->ubicacion_id }}</td>
+                        <td class="p-2">{{ $item->user->employer_number }}</td>
+                        <td class="p-2">{{ $item->user->name }}</td>
+                        <td class="p-2">{{ $item->userFinal->area_id ?? 'N/A'}}</td>
+                        <td class="p-2">{{ $item->userFinal->ubicacion_id ?? 'N/A'}}</td>
                         <td class="p-2">{{ $item->equipo->numero_inventario }}</td>
                         <td class="p-2">{{ $item->equipo->numero_serie }}</td>
                         <td class="p-2">{{ $item->equipo->tipo_dispositivo }}</td>

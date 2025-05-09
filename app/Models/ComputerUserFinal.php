@@ -15,8 +15,11 @@ class ComputerUserFinal extends Model
         'fecha_liberacion',
     ];
 
-    // Si no quieres timestamps automáticos en pivot, descomenta:
-    // public $timestamps = false;
+    // Relación inversa a User
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_final_id', 'employer_number');
+    }
 
     // Relación inversa a UserFinal
     public function userFinal()
