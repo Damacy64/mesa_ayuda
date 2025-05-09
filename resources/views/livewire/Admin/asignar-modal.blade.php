@@ -73,7 +73,7 @@
                                     </x-select>
                                 </div>
 
-                                @if ($mostraropciones == 1 || $mostraropciones == 3 )
+                                @if ($mostraropciones == 1 || $mostraropciones == 3 || $mostraropciones == 2)
                                     <div class="sm:col-span-2">
                                         <x-label for="sistema_operativo" value="SISTEMA OPERATIVO*" />
                                         <x-select id="sistema_operativo" name="sistema_operativo" wire:model.live="sistema">
@@ -85,7 +85,7 @@
                                     </div>
                                 @endif
 
-                                @if ($mostraropciones == 1 || $mostraropciones == 3 || $mostraropciones == 4)
+                                @if ($mostraropciones == 1 || $mostraropciones == 3 || $mostraropciones == 4 || $mostraropciones == 2 )
                                     <div class="sm:col-span-2">
                                         <x-label for="almacenamiento" value="ALMACENAMIENTO*" />
                                         <x-select id="almacenamiento" name="almacenamiento" wire:model.live="">
@@ -98,7 +98,7 @@
                                 @endif
                                 
                                 
-                                @if ($mostraropciones == 1 || $mostraropciones == 3 || $mostraropciones == 4)
+                                @if ($mostraropciones == 1 || $mostraropciones == 3 || $mostraropciones == 4 || $mostraropciones == 2)
                                     <div class="sm:col-span-2">
                                         <x-label for="memoria_ram" value="CAPACIDAD MEMORIA RAM*" />
                                         <x-select id="memoria_ram" name="memoria_ram" wire:model.live="">
@@ -142,7 +142,7 @@
                                     </div>
                                 @endif
                                 
-                                @if ($mostraropciones == 1 || $mostraropciones == 3 || $mostraropciones == 4)
+                                @if ($mostraropciones == 1 || $mostraropciones == 3 || $mostraropciones == 4 || $mostraropciones == 2)
                                     <div class="sm:col-span-2">
                                         <x-label for="version_office" value="VERSION OFFICE" />
                                         <x-select id="version_office" name="version_office" wire:model.live="">
@@ -154,7 +154,7 @@
                                     </div>
                                 @endif
 
-                                @if ($mostraropciones == 1 || $mostraropciones == 3)
+                                @if ($mostraropciones == 1 || $mostraropciones == 3 || $mostraropciones == 2)
                                     <div class="sm:col-span-2">
                                         <x-label for="procesador" value="PROCESADOR" />
                                         <x-select id="procesador" name="procesador" wire:model.live="">
@@ -166,7 +166,7 @@
                                     </div>
                                 @endif
 
-                                @if ($mostraropciones == 1 || $mostraropciones == 3)
+                                @if ($mostraropciones == 1 || $mostraropciones == 3 || $mostraropciones == 2)
                                     <div class="sm:col-span-2">
                                         <x-label for="version_procesador" value="VERSION PROCESADOR*" />
                                         <x-input maxlength="16" id="version_procesador" name="version_procesador" type="text" required

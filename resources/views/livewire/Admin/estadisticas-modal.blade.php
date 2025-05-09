@@ -14,11 +14,11 @@
                                 <x-label for="nombre">Ingrese la fecha para determinar las estadisticas*</x-label>
                             </div>
                             <div class="flex justify-items-between ">
-                                <x-input maxlength="50" id="fechainicio" class="mt-1 w-32" type="date"
-                                name="fecha" wire:model="fechainicio" required autofocus autocomplete="off" />
-                                <x-label class="m-2" for="fecha">al</x-label>
-                                <x-input maxlength="50" id="fechafin" class="mt-1 w-32" type="date"
-                                name="fecha" wire:model="fechafin" required autofocus autocomplete="off" />
+                                <x-input maxlength="50" id="startDate" class="mt-1 w-32" type="date"
+                                name="date" wire:model="startDate" required autofocus autocomplete="off" />
+                                <x-label class="m-2" for="date">al</x-label>
+                                <x-input maxlength="50" id="endDate" class="mt-1 w-32" type="date"
+                                name="date" wire:model="endDate" required autofocus autocomplete="off" />
                             </div>
 
                             <div class="overflow-x-auto mb-6">
@@ -29,11 +29,10 @@
                                         <tr>
                                             <th class="p-2">Total Tickets</th>
                                             <th class="p-2">Tickets Abiertos</th>
-                                            <th class="p-2">Tiempo Promedio</th>
                                             <th class="p-2">Tickets en Revisión</th>
-                                            <th class="p-2">Tiempo Promedio</th>
                                             <th class="p-2">Tickets Cerrados</th>
-                                            <th class="p-2">Tecnico mas Activo</th>
+                                            <th class="p-2">Tiempo Promedio de resolución</th>
+                                            <th class="p-2">Técnico más Activo</th>
                                         </tr>
                                     </thead>
                                     <tbody class="text-black">
@@ -41,10 +40,9 @@
                                             <tr class="border-t">
                                                 <td class="p-2">{{ $totalTickets }}</td>
                                                 <td class="p-2">{{ $openTickets }}</td>
-                                                <td class="p-2">{{ number_format($avgOpenTime, 2) }} min</td>
                                                 <td class="p-2">{{ $inReviewTickets }}</td>
-                                                <td class="p-2">{{ number_format($avgReviewTime, 2) }} min</td>
                                                 <td class="p-2">{{ $closedTickets }}</td>
+                                                <td class="p-2">{{ number_format($avgClosedTime) }} hrs</td>
                                                 <td class="p-2">{{ $topTechnician }}</td>
                                             </tr>
                                         @else

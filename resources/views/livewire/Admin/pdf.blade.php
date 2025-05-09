@@ -42,7 +42,7 @@
 </head>
 <body>
     <header>
-        <img src="{{ public_path('images/logo.png') }}" alt="Logo AFAC" style="height: 60px;">
+        {{-- <img src="{{ public_path('images/logo.png') }}" alt="Logo AFAC" style="height: 60px;"> --}}
     </header>
 
     <h2>Reporte de Estadísticas de la Mesa de Ayuda </h2>
@@ -58,24 +58,33 @@
             <tr>
                 <th>Total Tickets</th>
                 <th>Tickets Abiertos</th>
-                <th>Tiempo Promedio (Abiertos)</th>
                 <th>Tickets en Revisión</th>
-                <th>Tiempo Promedio (Revisión)</th>
                 <th>Tickets Cerrados</th>
+                <th>Tiempo Promedio de resolución</th>
                 <th>Técnico más Activo</th>
             </tr>
         </thead>
         <tbody>
-         
-                <tr>
-                    <td colspan="7">No hay información disponible para el periodo seleccionado.</td>
-                </tr>
-        
-        </tbody>
+            <tbody class="text-black">
+                @if ($totalTickets !== null)
+                    <tr class="border-t">
+                        <td class="p-2">{{ $totalTickets }}</td>
+                        <td class="p-2">{{ $openTickets }}</td>
+                        <td class="p-2">{{ $inReviewTickets }}</td>
+                        <td class="p-2">{{ $closedTickets }}</td>
+                        <td class="p-2">{{ number_format($avgReviewTime) }} hrs</td>
+                        <td class="p-2">{{ $topTechnician }}</td>
+                    </tr>
+                @else
+                    <tr>
+                        <td colspan="7" class="text-center p-2">No hay información disponible</td>
+                    </tr>
+                @endif
+            </tbody>
     </table>
 
     <footer>
-        <img src="/images/logo.png" alt="Logo">
+        {{-- <img src="/images/logo.png" alt="Logo"> --}}
         <p>Agencia Federal de Aviación Civil - Sistema de Mesa de Ayuda</p>
     </footer>
 </body>
