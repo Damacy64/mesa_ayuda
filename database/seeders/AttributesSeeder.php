@@ -50,10 +50,13 @@ class AttributesSeeder extends Seeder
             ['tipo' => 'RAM', 'valor' => '32 GB'],
 
             //Tipos de equipo
-            ['tipo' => 'Tipo de equipo', 'valor' => 'Laptop'],
-            ['tipo' => 'Tipo de equipo', 'valor' => 'Escritorio'],
-            ['tipo' => 'Tipo de equipo', 'valor' => 'All-in-One'],
-            ['tipo' => 'Tipo de equipo', 'valor' => 'Tablet'],
+            ['tipo' => 'Tipo de equipo', 'valor' => 'LAPTOP'],
+            ['tipo' => 'Tipo de equipo', 'valor' => 'ESCRITORIO'],
+            ['tipo' => 'Tipo de equipo', 'valor' => 'ALL-IN-ONE'],
+            ['tipo' => 'Tipo de equipo', 'valor' => 'TABLET'],
+            ['tipo' => 'Tipo de equipo', 'valor' => 'IMPRESORA'],
+            ['tipo' => 'Tipo de equipo', 'valor' => 'MULTIFUNCIONAL'],
+            ['tipo' => 'Tipo de equipo', 'valor' => 'ESCÁNER'],
         ];
 
         DB::table('attributes')->insert($attributes);

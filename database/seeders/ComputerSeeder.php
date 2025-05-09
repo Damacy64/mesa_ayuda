@@ -16,24 +16,28 @@ class ComputerSeeder extends Seeder
         $computadoras = [
             [
                 'numero_serie' => '1234567890',
+                'numero_inventario' => '1234567890',
                 'modelo' => 'HP PAVILION 15',
                 'direccion_ip' => '192.168.220',
                 'estado' => 'HABILITADO',
             ],
             [
                 'numero_serie' => '987654321',
+                'numero_inventario' => '987654321',
                 'modelo' => 'DELL INSPIRON 15',
                 'direccion_ip' => '192.168.221',
                 'estado' => 'HABILITADO',
             ],
             [
                 'numero_serie' => '1122334455',
+                'numero_inventario' => '1122334455',
                 'modelo' => 'LENOVO THINKPAD X1',
                 'direccion_ip' => '192.168.222',
                 'estado' => 'HABILITADO',
             ],
             [
                 'numero_serie' => '2233445566',
+                'numero_inventario' => '2233445566',
                 'modelo' => 'ASUS ZENBOOK 14',
                 'direccion_ip' => '192.168.223',
                 'estado' => 'HABILITADO',

@@ -14,8 +14,7 @@
                             <div class="grid grid-cols-1 gap-6 sm:grid-cols-6">
                                 <div class="sm:col-span-2">
                                     <x-label for="usuario" value="SELECCIONE USUARIO*" />
-                                    <x-select name="usuario_id" label="Usuario"
-                                        wire:model="">
+                                    <x-select name="usuario" id="usuario" wire:model.live="usuario">
                                         <option value="">SELECCIONE USUARIO</option>
                                         @foreach ($usuarios as $usuario)
                                             <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>
@@ -26,24 +25,24 @@
                                 <div class="sm:col-span-2">
                                     <x-label for="inventario" value="NÚMERO DE INVENTARIO*" />
                                     <x-input maxlength="10" id="inventario" name="inventario" type="text" required
-                                        autofocus autocomplete="inventario" />
+                                        autofocus autocomplete="inventario" wire:model="inventario"/>
                                 </div>
 
                                 <div class="sm:col-span-2">
                                     <x-label for="serie" value="NÚMERO DE SERIE*" />
                                     <x-input maxlength="10" id="serie" name="serie" type="text" required
-                                        autofocus autocomplete="serie" />
+                                        autofocus autocomplete="serie" wire:model="serie"/>
                                 </div>
 
                                 <div class="sm:col-span-2">
                                     <x-label for="modelo" value="MODELO*" />
                                     <x-input maxlength="50" id="modelo" name="modelo" type="text" required
-                                        autofocus autocomplete="modelo" />
+                                        autofocus autocomplete="modelo" wire:model="modelo"/>
                                 </div>
 
                                 <div class="sm:col-span-2">
                                     <x-label for="marca" value="MARCA*" />
-                                    <x-select id="marca" name="marca" wire:model="">
+                                    <x-select id="marca" name="marca" wire:model="marca">
                                         <option value="">SELECCIONE MARCA</option>
                                         @foreach ($marcas as $marca)
                                             <option value="{{ $marca }}">{{ $marca }}</option>
@@ -52,15 +51,15 @@
                                 </div>
 
                                 <div class="sm:col-span-2">
-                                    <x-label for="ip" value="DIRECCIÓN IP*" />
-                                    <x-input maxlength="16" id="ip" name="direccion_ip" type="text" required
-                                        autofocus autocomplete="direccion_ip" placeholder="192.168.0.100" />
+                                    <x-label for="direccionIp" value="DIRECCIÓN IP*" />
+                                    <x-input maxlength="16" id="direccionIp" name="direccionIp" type="text" required
+                                        autofocus autocomplete="direccionIp" placeholder="192.168.0.100" wire:model="direccionIp"/>
                                 </div>
 
                                 <div class="sm:col-span-2">
-                                    <x-label for="servicio" value="SERVICIO INTERNET*" />
-                                    <x-input maxlength="35" id="servicio" name="servicio_internet" type="text"
-                                        required autofocus autocomplete="servicio_internet" />
+                                    <x-label for="internet" value="SERVICIO INTERNET*" />
+                                    <x-input maxlength="35" id="internet" name="internet" type="text"
+                                        required autofocus autocomplete="internet" wire:model="internet"/>
                                 </div>
 
                                 <div class="sm:col-span-2">
@@ -73,10 +72,10 @@
                                     </x-select>
                                 </div>
 
-                                @if ($mostraropciones == 1 || $mostraropciones == 3 )
+                                @if ($mostraropciones == 1 || $mostraropciones == 2 || $mostraropciones == 3 )
                                     <div class="sm:col-span-2">
-                                        <x-label for="sistema_operativo" value="SISTEMA OPERATIVO*" />
-                                        <x-select id="sistema_operativo" name="sistema_operativo" wire:model.live="sistema">
+                                        <x-label for="sistema" value="SISTEMA OPERATIVO*" />
+                                        <x-select id="sistema" name="sistema" wire:model.live="sistema">
                                             <option value="">SELECCIONE S.O</option>
                                             @foreach ($sistemas as $sistema)
                                                 <option value="{{ $sistema }}">{{ $sistema }}</option>
@@ -85,10 +84,10 @@
                                     </div>
                                 @endif
 
-                                @if ($mostraropciones == 1 || $mostraropciones == 3 || $mostraropciones == 4)
+                                @if ($mostraropciones != 0)
                                     <div class="sm:col-span-2">
                                         <x-label for="almacenamiento" value="ALMACENAMIENTO*" />
-                                        <x-select id="almacenamiento" name="almacenamiento" wire:model.live="">
+                                        <x-select id="almacenamiento" name="almacenamiento" wire:model.live="almacenamiento">
                                             <option value="">SELECCIONE CAPACIDAD</option>
                                             @foreach ($almacenamientos as $almacenamiento)
                                                 <option value="{{ $almacenamiento }}">{{ $almacenamiento }}</option>
@@ -97,11 +96,10 @@
                                     </div>
                                 @endif
                                 
-                                
-                                @if ($mostraropciones == 1 || $mostraropciones == 3 || $mostraropciones == 4)
+                                @if ($mostraropciones != 0)
                                     <div class="sm:col-span-2">
-                                        <x-label for="memoria_ram" value="CAPACIDAD MEMORIA RAM*" />
-                                        <x-select id="memoria_ram" name="memoria_ram" wire:model.live="">
+                                        <x-label for="memoria" value="CAPACIDAD MEMORIA RAM*" />
+                                        <x-select id="memoria" name="memoria" wire:model.live="memoria">
                                             <option value="">SELECCIONE RAM</option>
                                             @foreach ($memorias as $memoria)
                                                 <option value="{{ $memoria }}">{{ $memoria }}</option>
@@ -112,40 +110,40 @@
 
                                 @if ($mostraropciones == 4 )
                                     <div class="sm:col-span-2">
-                                        <x-label for="disco_flash" value="UNIDAD DISCO FLASH*" />
-                                        <x-input maxlength="16" id="disco_flash" name="disco_flash" type="text" required
-                                            autofocus autocomplete="disco_flash" placeholder="" />
+                                        <x-label for="flash" value="UNIDAD DISCO FLASH*" />
+                                        <x-input maxlength="16" id="flash" name="flash" type="text" required
+                                            autofocus autocomplete="flash" placeholder="" wire:model="flash"/>
                                     </div>
                                 @endif
 
                                 @if ($mostraropciones == 3 || $mostraropciones == 3)
                                     <div class="sm:col-span-2">
-                                        <x-label for="serie_monitor" value="SERIE MONITOR*" />
-                                        <x-input maxlength="16" id="serie_monitor" name="serie_monitor" type="text" required
-                                            autofocus autocomplete="serie_monitor" placeholder="" />
+                                        <x-label for="serieMonitor" value="SERIE MONITOR*" />
+                                        <x-input maxlength="16" id="serieMonitor" name="serieMonitor" type="text" required
+                                            autofocus autocomplete="serieMonitor" placeholder="" wire:model="serieMonitor"/>
                                     </div>
                                 @endif
 
                                 @if ($mostraropciones == 1 || $mostraropciones == 3)
                                     <div class="sm:col-span-2">
-                                        <x-label for="serie_teclado" value="SERIE TECLADO*" />
-                                        <x-input maxlength="16" id="serie_teclado" name="serie_teclado" type="text" required
-                                            autofocus autocomplete="serie_teclado" placeholder="" />
+                                        <x-label for="serieTeclado" value="SERIE TECLADO*" />
+                                        <x-input maxlength="16" id="serieTeclado" name="serieTeclado" type="text" required
+                                            autofocus autocomplete="serieTeclado" placeholder="" wire:model="serieTeclado"/>
                                     </div>
                                 @endif
 
                                 @if ($mostraropciones == 1 || $mostraropciones == 3)
                                     <div class="sm:col-span-2">
-                                        <x-label for="serie_mouse" value="SERIE MOUSE*" />
-                                        <x-input maxlength="16" id="serie_mouse" name="serie_mouse" type="text" required
-                                            autofocus autocomplete="serie_mouse" placeholder="" />
+                                        <x-label for="serieMouse" value="SERIE MOUSE*" />
+                                        <x-input maxlength="16" id="serieMouse" name="serieMouse" type="text" required
+                                            autofocus autocomplete="serieMouse" placeholder="" wire:model="serieMouse"/>
                                     </div>
                                 @endif
                                 
-                                @if ($mostraropciones == 1 || $mostraropciones == 3 || $mostraropciones == 4)
+                                @if ($mostraropciones != 0)
                                     <div class="sm:col-span-2">
-                                        <x-label for="version_office" value="VERSION OFFICE" />
-                                        <x-select id="version_office" name="version_office" wire:model.live="">
+                                        <x-label for="versionOffice" value="VERSION OFFICE" />
+                                        <x-select id="versionOffice" name="versionOffice" wire:model.live="versionOffice">
                                             <option value="">SELECCIONE OFFICE</option>
                                             @foreach ($versionesOffice as $version)
                                                 <option value="{{ $version }}">{{ $version }}</option>
@@ -154,10 +152,10 @@
                                     </div>
                                 @endif
 
-                                @if ($mostraropciones == 1 || $mostraropciones == 3)
+                                @if ($mostraropciones == 1 || $mostraropciones == 3 || $mostraropciones == 2)
                                     <div class="sm:col-span-2">
                                         <x-label for="procesador" value="PROCESADOR" />
-                                        <x-select id="procesador" name="procesador" wire:model.live="">
+                                        <x-select id="procesador" name="procesador" wire:model.live="procesador">
                                             <option value="">SELECCIONE PROCESADOR</option>
                                             @foreach ($procesadores as $procesador)
                                                 <option value="{{ $procesador }}">{{ $procesador }}</option>
@@ -166,15 +164,15 @@
                                     </div>
                                 @endif
 
-                                @if ($mostraropciones == 1 || $mostraropciones == 3)
+                                @if ($mostraropciones == 1 || $mostraropciones == 3 || $mostraropciones == 2)
                                     <div class="sm:col-span-2">
-                                        <x-label for="version_procesador" value="VERSION PROCESADOR*" />
-                                        <x-input maxlength="16" id="version_procesador" name="version_procesador" type="text" required
-                                            autofocus autocomplete="version_procesador" placeholder="" />
+                                        <x-label for="versionProcesador" value="VERSION PROCESADOR*" />
+                                        <x-input maxlength="16" id="versionProcesador" name="versionProcesador" type="text" required
+                                            autofocus autocomplete="versionProcesador" placeholder="" wire:model="versionProcesador"/>
                                     </div>
                                 @endif
 
-                                <div class="mt-4">
+                                <div class="mt-4 sm:col-span-6 col-span-1">
                                     <x-validation-errors />
                                 </div>
 
@@ -183,7 +181,7 @@
                                 <x-button-cerrar wire:click="closemodal" type="button">
                                     CERRAR
                                 </x-button-cerrar>
-                                <x-button wire:click="" type="button">
+                                <x-button wire:click="asignar" type="button">
                                     GUARDAR
                                 </x-button>
                             </div>
