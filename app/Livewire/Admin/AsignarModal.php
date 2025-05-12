@@ -2,11 +2,13 @@
 
 namespace App\Livewire\Admin;
 
+use App\Mail\AsignacionEquipo;
 use App\Models\Attribute;
 use App\Models\Computer;
 use App\Models\ComputerUserFinal;
 use Livewire\Component;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\On;
 
 class AsignarModal extends Component
@@ -230,6 +232,10 @@ class AsignarModal extends Component
             'user_final_id' => $this->usuario,
             'equipo_id' => $computadora->numero_serie,
         ]);
+        
+        $usuario = User::find($this->usuario);
+        // Enviar correo al usuario
+        Mail::to($usuario->email)->send(new AsignacionEquipo($computadora, $usuario));
 
         $this->closemodal();
         $this->dispatch('reasignado');

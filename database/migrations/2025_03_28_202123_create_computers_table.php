@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('serie_mouse')->nullable();
             $table->string('serie_teclado')->nullable();
             $table->string('version_procesador')->nullable();
+            $table->string('flash')->nullable();
             $table->string('estado')->default('HABILITADO'); // HABILITADO, DESHABILITADO
             $table->timestamps();
         });

@@ -15,10 +15,10 @@ class AttributesSeeder extends Seeder
     {
         $attributes = [
             //Versiones de office
-            ['tipo' => 'Office','valor' => 'OFFICCE 2016'],
-            ['tipo' => 'Office','valor' => 'OFFICCE 2019'],
-            ['tipo' => 'Office', 'valor' => 'OFFICCE 2021'],
-            ['tipo' => 'Office', 'valor' => 'OFFICCE 365'],
+            ['tipo' => 'Office','valor' => 'OFFICE 2016'],
+            ['tipo' => 'Office','valor' => 'OFFICE 2019'],
+            ['tipo' => 'Office', 'valor' => 'OFFICE 2021'],
+            ['tipo' => 'Office', 'valor' => 'OFFICE 365'],
 
             //Marca de la computadora
             ['tipo' => 'Marca', 'valor' => 'HP'],

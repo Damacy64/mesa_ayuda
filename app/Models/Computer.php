@@ -19,6 +19,7 @@ class Computer extends Model
         'serie_teclado',
         'serie_mouse',
         'version_procesador',
+        'flash',
         'estado',
     ];
 
