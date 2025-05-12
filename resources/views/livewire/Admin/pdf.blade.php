@@ -49,8 +49,8 @@
 
     <p class="descripcion">
         El presente informe muestra las estadísticas generales del sistema Mesa de ayuda correspondiente al periodo seleccionado.
-        Se incluyen métricas clave como la cantidad total de tickets registrados, su estado actual (abiertos, en revisión y cerrados),
-        el tiempo promedio de resolución por estado, así como el técnico más activo en el sistema durante dicho periodo.
+        Este informe tiene como objetivo proporcionar una visión general del rendimiento del sistema ,se incluyen métricas clave como la cantidad total de tickets registrados, 
+        su estado actual (abiertos, en revisión y cerrados), el tiempo promedio de resolución por estado, así como el técnico más activo en el sistema durante dicho periodo.
     </p>
 
     <table>
@@ -61,26 +61,25 @@
                 <th>Tickets en Revisión</th>
                 <th>Tickets Cerrados</th>
                 <th>Tiempo Promedio de resolución</th>
-                <th>Técnico más Activo</th>
+                <th>Total de tickets por categoria</th>
             </tr>
         </thead>
         <tbody>
-            <tbody class="text-black">
-                @if ($totalTickets !== null)
-                    <tr class="border-t">
-                        <td class="p-2">{{ $totalTickets }}</td>
-                        <td class="p-2">{{ $openTickets }}</td>
-                        <td class="p-2">{{ $inReviewTickets }}</td>
-                        <td class="p-2">{{ $closedTickets }}</td>
-                        <td class="p-2">{{ number_format($avgReviewTime) }} hrs</td>
-                        <td class="p-2">{{ $topTechnician }}</td>
-                    </tr>
-                @else
-                    <tr>
-                        <td colspan="7" class="text-center p-2">No hay información disponible</td>
-                    </tr>
-                @endif
-            </tbody>
+            <tr>
+                <td>{{ $totalTickets }}</td>
+                <td>{{ $openTickets }}</td>
+                <td>{{ $inReviewTickets }}</td>
+                <td>{{ $closedTickets }}</td>
+                <td>{{ $avgClosedTime ? gmdate('H:i:s', $avgClosedTime * 60) : 'N/A' }}</td>
+                <td>
+                    <ul>
+                        @foreach ($ticketsByCategory as $category => $total)
+                            <li>{{ $category }}: {{ $total }}</li>
+                        @endforeach
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
     </table>
 
     <footer>

@@ -53,6 +53,7 @@ class UpdateTicketModal extends Component
 
     public function cerrarModal()
     {
+        $this->reset(['ticket', 'estatus', 'descripcion']);
         $this->open = false;
     }
 
@@ -88,7 +89,7 @@ class UpdateTicketModal extends Component
         
             if ($ticket) {
                 if ($this->estatus == 'CERRADO') {
-                    $tiempoSolucion = now()->diffInMinutes($ticket->created_at);
+                    $tiempoSolucion = now()->diffInSeconds($ticket->created_at);
         
                     $ticket->update([
                         'estatus_id' => $this->estatus,
