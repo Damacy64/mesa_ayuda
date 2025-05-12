@@ -173,6 +173,10 @@ class AsignarModal extends Component
             'modelo' => $this->modelo,
             'direccion_ip' => $this->direccionIp,
             'internet' => $this->internet,
+            'serie_monitor' => $this->serieMonitor,
+            'serie_teclado' => $this->serieTeclado,
+            'serie_mouse' => $this->serieMouse,
+            'version_procesador' => $this->versionProcesador,
         ]);
 
         // Construir los atributos dinámicamente en función del dispositivo seleccionado
@@ -190,9 +194,6 @@ class AsignarModal extends Component
                 $atributos->push(['tipo' => 'Procesador', 'valor' => $this->procesador]);
                 $atributos->push(['tipo' => 'RAM', 'valor' => $this->memoria]);
                 $atributos->push(['tipo' => 'Office', 'valor' => $this->versionOffice]);
-                //$atributos->push(['tipo' => 'Teclado', 'valor' => $this->serieTeclado]);
-                //$atributos->push(['tipo' => 'Mouse', 'valor' => $this->serieMouse]);
-                //$atributos->push(['tipo' => 'Versión Procesador', 'valor' => $this->versionProcesador]);
                 break;
 
             case 2: // LAPTOP
@@ -201,19 +202,14 @@ class AsignarModal extends Component
                 $atributos->push(['tipo' => 'Procesador', 'valor' => $this->procesador]);
                 $atributos->push(['tipo' => 'RAM', 'valor' => $this->memoria]);
                 $atributos->push(['tipo' => 'Office', 'valor' => $this->versionOffice]);
-                //$atributos->push(['tipo' => 'Versión Procesador', 'valor' => $this->versionProcesador]);
                 break;
 
             case 3: // ESCRITORIO
                 $atributos->push(['tipo' => 'S.O.', 'valor' => $this->sistema]);
                 $atributos->push(['tipo' => 'Almacenamiento', 'valor' => $this->almacenamiento]);
                 $atributos->push(['tipo' => 'RAM', 'valor' => $this->memoria]);
-                //$atributos->push(['tipo' => 'Monitor', 'valor' => $this->serieMonitor]);
-                //$atributos->push(['tipo' => 'Teclado', 'valor' => $this->serieTeclado]);
-                //$atributos->push(['tipo' => 'Mouse', 'valor' => $this->serieMouse]);
                 $atributos->push(['tipo' => 'Office', 'valor' => $this->versionOffice]);
                 $atributos->push(['tipo' => 'Procesador', 'valor' => $this->procesador]);
-                //$atributos->push(['tipo' => 'Versión Procesador', 'valor' => $this->versionProcesador]);
                 break;
 
             case 4: // TABLET

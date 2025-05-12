@@ -14,16 +14,16 @@ class LocationSeeder extends Seeder
     public function run(): void
     {
         $location = [
-            ['piso' => 'Piso 1'],
-            ['piso' => 'Piso 2'],
-            ['piso' => 'Piso 3'],
-            ['piso' => 'Piso 4'],
-            ['piso' => 'Piso 5'],
-            ['piso' => 'Piso 6'],
-            ['piso' => 'Piso 7'],
-            ['piso' => 'Piso 8'],
-            ['piso' => 'Piso PH'],
-            ['piso' => 'Piso PB'],
+            ['piso' => 'PISO 1'],
+            ['piso' => 'PISO 2'],
+            ['piso' => 'PISO 3'],
+            ['piso' => 'PISO 4'],
+            ['piso' => 'PISO 5'],
+            ['piso' => 'PISO 6'],
+            ['piso' => 'PISO 7'],
+            ['piso' => 'PISO 8'],
+            ['piso' => 'PISO PH'],
+            ['piso' => 'PISO PB'],
         ];
 
         DB::table('locations')->insert($location);

@@ -15,6 +15,10 @@ class Computer extends Model
         'modelo',
         'direccion_ip',
         'internet',
+        'serie_monitor',
+        'serie_teclado',
+        'serie_mouse',
+        'version_procesador',
         'estado',
     ];
 

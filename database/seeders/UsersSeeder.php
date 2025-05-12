@@ -87,13 +87,13 @@ class UsersSeeder extends Seeder
             [
                 'carga_trabajo' => 1,
                 'disponibilidad' => 'DESOCUPADO',
-                'estado' => 'ACTIVO',
+                'estado' => 'HABILITADO',
                 'empleado_id' => 3,
             ],
             [
                 'carga_trabajo' => 1,
                 'disponibilidad' => 'DESOCUPADO',
-                'estado' => 'ACTIVO',
+                'estado' => 'HABILITADO',
                 'empleado_id' => 4,
             ]
         ];

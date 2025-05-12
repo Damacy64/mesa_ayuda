@@ -18,7 +18,7 @@ class ComputerUserFinal extends Model
     // Relación inversa a User
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_final_id', 'employer_number');
+        return $this->belongsTo(User::class, 'user_final_id', 'id');
     }
 
     // Relación inversa a UserFinal
