@@ -57,7 +57,7 @@
                                         aria-labelledby="options-menu">
                                             <button
                                                 onclick="confirm('¿Estás seguro de eliminar el dispositivo?') || event.stopImmediatePropagation()"
-                                                wire:click=""
+                                                wire:click="eliminar({{ $item->equipo->numero_serie }})"
                                                 @click="open = false"
                                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
                                                 role="menuitem">

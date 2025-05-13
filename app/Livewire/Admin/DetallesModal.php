@@ -2,7 +2,9 @@
 
 namespace App\Livewire\Admin;
 
+use App\Models\Attribute;
 use App\Models\Computer;
+use App\Models\ComputerUserFinal;
 use App\Models\User;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -12,12 +14,13 @@ class DetallesModal extends Component
     public $open = false;
     public $id;
     public $equipo;
+    public $usuario;
     public $atributos = [];
     public $usuarios = [];
-    public $usuario;
+    public $ram = [];
 
     protected $rules = [
-        'usuario' => ['required', 'exists:users']
+        'usuario' => ['required', 'exists:users,id']
     ];
 
     #[On('detalles-modal')]
@@ -45,6 +48,7 @@ class DetallesModal extends Component
     {
         $this->open = false;
         $this->id = null;
+        $this->resetExcept('usuarios');
         $this->resetValidation();
     }
 
@@ -52,8 +56,12 @@ class DetallesModal extends Component
     {
         $this->validate();
 
-        // Asignar el usuario al equipo
-        $this->equipo->update(['user_id' => $this->usuario]);
+
+        $registro = ComputerUserFinal::where('equipo_id', $this->id)->first();
+        if ($registro) {
+            // Asignar el usuario al equipo
+            $registro->update(['user_final_id' => $this->usuario]);
+        }
 
         // Cerrar el modal
         $this->cerrar();
@@ -62,9 +70,12 @@ class DetallesModal extends Component
         $this->dispatch('reasignado');
     }
 
+    
+
     public function mount()
     {
         $this->usuarios = User::all();
+        $this->ram = Attribute::where('tipo', 'RAM')->pluck('valor', 'valor');
     }
 
     public function render()

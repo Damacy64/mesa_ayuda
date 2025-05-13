@@ -14,15 +14,15 @@
                             <div class="grid grid-cols-2 gap-4">
                                 <div class="mb-4">
                                     <h4 class="font-bold text-gray-700">Información General</h4>
-                                    <ul class="list-disc list-inside">
-                                        <li><strong>Modelo:</strong> {{ $equipo->modelo ?? 'N/A' }}</li>
-                                        <li><strong>Dirección IP:</strong> {{ $equipo->direccion_ip ?? 'N/A' }}</li>
-                                        <li><strong>Internet:</strong> {{ $equipo->internet ?? 'N/A' }}</li>
-                                        <li><strong>Serie Monitor:</strong> {{ $equipo->serie_monitor ?? 'N/A' }}</li>
-                                        <li><strong>Serie Mouse:</strong> {{ $equipo->serie_mouse ?? 'N/A' }}</li>
-                                        <li><strong>Serie Teclado:</strong> {{ $equipo->serie_teclado ?? 'N/A' }}</li>
-                                        <li><strong>Versión Procesador:</strong> {{ $equipo->version_procesador ?? 'N/A' }}</li>
-                                        <li><strong>Estado:</strong> {{ $equipo->estado ?? 'N/A' }}</li>
+                                    <ul class="list-disc list-inside space-y-2">
+                                        <li class="flex justify-start items-center"><strong>Modelo:</strong> {{ $equipo->modelo ?? 'N/A' }}</li>
+                                        <li class="flex justify-start items-center"><strong>Dirección IP:</strong> <x-input name="direccion_ip" placeholder="{{ $equipo->direccion_ip ?? 'N/A' }}" class="h-6 bg-white"/></li>
+                                        <li class="flex justify-start items-center"><strong>Internet:</strong> <x-input name="internet" placeholder="{{ $equipo->internet ?? 'N/A' }}" class="h-6 bg-white"/></li>
+                                        <li class="flex justify-start items-center"><strong>Serie Monitor:</strong> <x-input name="serie_monitor" placeholder="{{ $equipo->serie_monitor ?? 'N/A' }}" class="h-6 bg-white"/></li>
+                                        <li class="flex justify-start items-center"><strong>Serie Mouse:</strong> <x-input name="serie_mouse" placeholder="{{ $equipo->serie_mouse ?? 'N/A' }}" class="h-6 bg-white"/></li>
+                                        <li class="flex justify-start items-center"><strong>Serie Teclado:</strong> <x-input name="serie_teclado" placeholder="{{ $equipo->serie_teclado ?? 'N/A' }}" class="h-6 bg-white"/></li>
+                                        <li class="flex justify-start items-center"><strong>Versión Procesador:</strong> <x-input name="version_procesador" placeholder="{{ $equipo->version_procesador ?? 'N/A' }}" class="h-6 bg-white"/></li>
+                                        <li class="flex justify-start items-center"><strong>Estado:</strong> {{ $equipo->estado ?? 'N/A' }}</li>
                                     </ul>
                                 </div>
 
@@ -30,7 +30,14 @@
                                     <h4 class="font-bold text-gray-700">Atributos</h4>
                                     <ul class="list-disc list-inside">
                                         @forelse ($atributos as $atributo)
-                                            <li><strong>{{ $atributo['tipo'] }}:</strong> {{ $atributo['valor'] }}</li>
+                                            <li class="flex justify-start items-center"><strong>{{ $atributo['tipo'] }}:</strong>
+                                                <x-select >
+                                                    <option value="">{{ $atributo['valor'] }}</option>
+                                                    @foreach ($ram as $item)
+                                                        <option value="{{ $item }}">{{ $item }}</option>
+                                                    @endforeach
+                                                </x-select>
+                                            </li>
                                         @empty
                                             <li>No hay atributos disponibles.</li>
                                         @endforelse
