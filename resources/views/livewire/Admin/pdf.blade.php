@@ -48,7 +48,7 @@
     <h2>Reporte de Estadísticas de la Mesa de Ayuda </h2>
 
     <p class="descripcion">
-        El presente informe muestra las estadísticas generales del sistema Mesa de ayuda correspondiente al periodo seleccionado.
+        El presente informe muestra las estadísticas generales del sistema Mesa de ayuda correspondiente al periodo del  {{ $startDate }} al {{ $endDate }}
         Este informe tiene como objetivo proporcionar una visión general del rendimiento del sistema ,se incluyen métricas clave como la cantidad total de tickets registrados, 
         su estado actual (abiertos, en revisión y cerrados), el tiempo promedio de resolución por estado, así como el técnico más activo en el sistema durante dicho periodo.
     </p>

@@ -87,14 +87,35 @@ class UpdateTicketModal extends Component
      
             $ticket = Ticket::where('folio', $this->ticket->folio)->first();
         
+            // if ($ticket) {
+            //     if ($this->estatus == 'CERRADO') {
+            //         $tiempoSolucion = now()->diffInSeconds($ticket->created_at);
+        
+            //         $ticket->update([
+            //             'estatus_id' => $this->estatus,
+            //             'solucion' => Str::upper($this->descripcion),
+            //             'fecha_termino' => now(),
+            //             'tiempo_solucion' => $tiempoSolucion,
+            //         ]);
+            //     } else {
+            //         $ticket->update([
+            //             'estatus_id' => $this->estatus,
+            //             'solucion' => Str::upper($this->descripcion),
+            //         ]);
+            //     }
+            // }
             if ($ticket) {
                 if ($this->estatus == 'CERRADO') {
-                    $tiempoSolucion = now()->diffInSeconds($ticket->created_at);
-        
+                    $created_at = $ticket->created_at ?? now();
+                    $fecha_termino = now();
+            
+                    // Aseguramos que created_at no sea mayor a fechaTermino
+                    $tiempoSolucion = max(0, $fecha_termino->diffInSeconds($created_at));
+            
                     $ticket->update([
                         'estatus_id' => $this->estatus,
                         'solucion' => Str::upper($this->descripcion),
-                        'fecha_termino' => now(),
+                        'fecha_termino' => $fecha_termino,
                         'tiempo_solucion' => $tiempoSolucion,
                     ]);
                 } else {
@@ -104,6 +125,7 @@ class UpdateTicketModal extends Component
                     ]);
                 }
             }
+            
         
             $this->reset(['open', 'ticket', 'estatus', 'descripcion']);
 
