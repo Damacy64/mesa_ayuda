@@ -40,10 +40,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
     ];
     
-    // public function area(): BelongsTo
-    // {
-    //     return $this->belongsTo(Area::class);
-    // }
 
     public function role()
     {

@@ -1,6 +1,5 @@
 <div>
     @livewire('support.update-ticket-modal')
-
     <div class="flex items-center justify-between mb-4 p-4">
         <h1 class="text-2xl font-bold text-black">Resumen de tickets</h1>
         <x-search-input>
@@ -27,7 +26,7 @@
                         <td class="p-2">{{ $item->folio }}</td>
                         <td class="p-2">{{ $item->usuario->user->name }}</td>
                         <td class="p-2">{{ $item->usuario->area->nombre }}</td>
-                        <td class="p-2">{{ $item->usuario->location->piso }}</td>
+                        <td class="p-2">{{ $item->usuario->ubicacion_id }}</td>
                         <td class="p-2">{{ $item->created_at }}</td>
                         <td class="p-2">{{ $item->prioridad_id }}</td>
                         <td class="p-2">{{ $item->estatus_id }}</td>

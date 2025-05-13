@@ -15,26 +15,26 @@ class AttributesSeeder extends Seeder
     {
         $attributes = [
             //Versiones de office
-            ['tipo' => 'Office','valor' => 'Office 2016'],
-            ['tipo' => 'Office','valor' => 'Office 2019'],
-            ['tipo' => 'Office', 'valor' => 'Office 2021'],
-            ['tipo' => 'Office', 'valor' => 'Office 365'],
+            ['tipo' => 'Office','valor' => 'OFFICE 2016'],
+            ['tipo' => 'Office','valor' => 'OFFICE 2019'],
+            ['tipo' => 'Office', 'valor' => 'OFFICE 2021'],
+            ['tipo' => 'Office', 'valor' => 'OFFICE 365'],
 
             //Marca de la computadora
             ['tipo' => 'Marca', 'valor' => 'HP'],
-            ['tipo' => 'Marca', 'valor' => 'Dell'],
-            ['tipo' => 'Marca', 'valor' => 'Lenovo'],
-            ['tipo' => 'Marca', 'valor' => 'Asus'],
-            ['tipo' => 'Marca', 'valor' => 'Acer'],
+            ['tipo' => 'Marca', 'valor' => 'DELL'],
+            ['tipo' => 'Marca', 'valor' => 'LENOVO'],
+            ['tipo' => 'Marca', 'valor' => 'ASUS'],
+            ['tipo' => 'Marca', 'valor' => 'ACER'],
 
             //Sistema operativo
-            ['tipo' => 'S.O.', 'valor' => 'Windows 8'],
-            ['tipo' => 'S.O.', 'valor' => 'Windows 10'],
-            ['tipo' => 'S.O.', 'valor' => 'Windows 11'],
-            ['tipo' => 'S.O.', 'valor' => 'Linux'],
+            ['tipo' => 'S.O.', 'valor' => 'WINDOWS 8'],
+            ['tipo' => 'S.O.', 'valor' => 'WINDOWS 10'],
+            ['tipo' => 'S.O.', 'valor' => 'WINDOWS 11'],
+            ['tipo' => 'S.O.', 'valor' => 'LINUX'],
 
             //Marca de procesador
-            ['tipo' => 'Procesador', 'valor' => 'Intel'],
+            ['tipo' => 'Procesador', 'valor' => 'INTEL'],
             ['tipo' => 'Procesador', 'valor' => 'AMD'],
 
             //Disco duro
@@ -50,10 +50,13 @@ class AttributesSeeder extends Seeder
             ['tipo' => 'RAM', 'valor' => '32 GB'],
 
             //Tipos de equipo
-            ['tipo' => 'Tipo de equipo', 'valor' => 'Laptop'],
-            ['tipo' => 'Tipo de equipo', 'valor' => 'Escritorio'],
-            ['tipo' => 'Tipo de equipo', 'valor' => 'All-in-One'],
-            ['tipo' => 'Tipo de equipo', 'valor' => 'Tablet'],
+            ['tipo' => 'Tipo de equipo', 'valor' => 'LAPTOP'],
+            ['tipo' => 'Tipo de equipo', 'valor' => 'ESCRITORIO'],
+            ['tipo' => 'Tipo de equipo', 'valor' => 'ALL-IN-ONE'],
+            ['tipo' => 'Tipo de equipo', 'valor' => 'TABLET'],
+            ['tipo' => 'Tipo de equipo', 'valor' => 'IMPRESORA'],
+            ['tipo' => 'Tipo de equipo', 'valor' => 'MULTIFUNCIONAL'],
+            ['tipo' => 'Tipo de equipo', 'valor' => 'ESCÁNER'],            
         ];
 
         DB::table('attributes')->insert($attributes);

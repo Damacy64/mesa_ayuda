@@ -23,6 +23,11 @@ class DevicesAssigned extends Component
         $this->dispatch('asignar-modal');
     }
 
+    public function detalles($id)
+    {
+        $this->dispatch('detalles-modal', ['id' => $id]);
+    }
+
     #[On('reasignado')]
     public function render()
     {

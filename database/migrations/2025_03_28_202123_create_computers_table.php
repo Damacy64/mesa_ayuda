@@ -16,7 +16,13 @@ return new class extends Migration
             $table->string('numero_inventario');
             $table->string('modelo');
             $table->string('direccion_ip', 15);
-            $table->string('estado'); // ACTIVO, INACTIVO
+            $table->string('internet');
+            $table->string('serie_monitor')->nullable();
+            $table->string('serie_mouse')->nullable();
+            $table->string('serie_teclado')->nullable();
+            $table->string('version_procesador')->nullable();
+            $table->string('flash')->nullable();
+            $table->string('estado')->default('HABILITADO'); // HABILITADO, DESHABILITADO
             $table->timestamps();
         });
         

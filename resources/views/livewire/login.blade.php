@@ -36,7 +36,7 @@
                     <div>
                         <x-label for="email" value="{{ __('Correo electrónico') }}" />
                         <x-input class="w-full" maxlength="35" id="email" type="email" name="email"
-                            :value="old('email')" required autofocus autocomplete="username" />
+                            :value="old('email')" required autofocus autocomplete="email" placeholder="Ingresa tu correo" />
                     </div>
 
                     <div>
