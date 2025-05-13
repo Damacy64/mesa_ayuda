@@ -10,6 +10,7 @@ class Ticket extends Model
     public $incrementing = true;
 
     protected $fillable = [
+        'created_at',
         'prioridad_id',
         'estatus_id',
         'equipo_id',

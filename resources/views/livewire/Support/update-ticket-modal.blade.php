@@ -59,8 +59,8 @@
                             <x-validation-errors class="mb-4" />
 
                             <div class="flex justify-center space-x-3">
-                                <x-button-cerrar wire:click="cerrarModal" type="button">Cerrar</x-button-cerrar>
-                                <x-button wire:click="actualizarTicket">Enviar</x-button>
+                                <x-button-cerrar wire:click="cerrarModal" type="button">CERRAR</x-button-cerrar>
+                                <x-button wire:click="actualizarTicket">ENVIAR</x-button>
                             </div>
 
                         </div>
