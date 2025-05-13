@@ -72,7 +72,7 @@
                                     </x-select>
                                 </div>
 
-                                @if ($mostraropciones == 1 || $mostraropciones == 2 || $mostraropciones == 3 )
+                                @if ($mostraropciones == 1 || $mostraropciones == 3 || $mostraropciones == 2)
                                     <div class="sm:col-span-2">
                                         <x-label for="sistema" value="SISTEMA OPERATIVO*" />
                                         <x-select id="sistema" name="sistema" wire:model.live="sistema">
@@ -84,7 +84,8 @@
                                     </div>
                                 @endif
 
-                                @if ($mostraropciones != 0)
+                                @if ($mostraropciones == 1 || $mostraropciones == 3 || $mostraropciones == 4 || $mostraropciones == 2 )
+                      
                                     <div class="sm:col-span-2">
                                         <x-label for="almacenamiento" value="ALMACENAMIENTO*" />
                                         <x-select id="almacenamiento" name="almacenamiento" wire:model.live="almacenamiento">
@@ -96,7 +97,8 @@
                                     </div>
                                 @endif
                                 
-                                @if ($mostraropciones != 0)
+                                
+                                @if ($mostraropciones == 1 || $mostraropciones == 3 || $mostraropciones == 4 || $mostraropciones == 2)
                                     <div class="sm:col-span-2">
                                         <x-label for="memoria" value="CAPACIDAD MEMORIA RAM*" />
                                         <x-select id="memoria" name="memoria" wire:model.live="memoria">
@@ -139,8 +141,9 @@
                                             autofocus autocomplete="serieMouse" wire:model="serieMouse" placeholder="INGRESE NUMERO SERIE"/>
                                     </div>
                                 @endif
-                                
-                                @if ($mostraropciones != 0)
+                              
+                                @if ($mostraropciones == 1 || $mostraropciones == 3 || $mostraropciones == 4 || $mostraropciones == 2)
+                               
                                     <div class="sm:col-span-2">
                                         <x-label for="versionOffice" value="VERSION OFFICE" />
                                         <x-select id="versionOffice" name="versionOffice" wire:model.live="versionOffice">

@@ -2,7 +2,8 @@
     <div class="flex items-center mb-4 p-4">
         <h1 class="text-2xl font-bold text-black">Resumen de tickets</h1>
     </div>
-
+    
+    @livewire('user.modal-reabrir')
     <div class="overflow-x-auto mb-6">
         <table class="w-full text-sm text-left bg-white border">
             <thead class="bg-afac-golden text-white">
