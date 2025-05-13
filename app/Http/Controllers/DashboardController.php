@@ -60,68 +60,31 @@ class DashboardController extends Controller
         return view('Livewire.admin.areas');
     }
     
-    // public function pdf(request $request){
-    //      if (Auth::user()->role->rol !== 'ADMIN') {
-    //         abort(403, 'Acceso no autorizado');
-    //     }
-    //     $startDate = $request->query('startDate');
-    //     $endDate = $request->query('endDate');
-    
-    //     $pdf = Pdf::loadView('livewire.admin.pdf', [
-
-    //         'totalTickets' => Ticket::count(),
-    //         'openTickets' => Ticket::where('estatus_id', 'ABIERTO')->count(),
-    //         'inReviewTickets' => Ticket::where('estatus_id', 'EN REVISION')->count(),
-    //         'closedTickets' => Ticket::where('estatus_id', 'CERRADO')->count(),
-    //         'avgClosedTime' => Ticket::where('estatus_id', 'CERRADO')->avg('tiempo_solucion'),
-    //         'ticketsByCategory' => Ticket::with('opciones')
-    //             ->get()
-    //             ->flatMap(function ($ticket) {
-    //                 return $ticket->opciones->filter(fn ($opcion) => $opcion->nivel === 'categoria');
-    //             })
-    //             ->groupBy('valor')
-    //             ->map(fn ($items) => $items->count())
-    //             ->toArray(),
-    //     ]);
-    //     return $pdf->stream();
-    //     return $pdf->download('estadisticas.pdf');
-    //     return view('livewire.admin.pdf');
-    public function pdf(Request $request)
-    {
-        if (Auth::user()->role->rol !== 'ADMIN') {
-            abort(403, 'Acceso no autorizado');
-        }
-    
-        // Obtener las fechas del período seleccionado
+     public function pdf(request $request){
+     if (Auth::user()->role->rol !== 'ADMIN') {
+     abort(403, 'Acceso no autorizado');
+    }
+    // esto para ver la vista pdf
         $startDate = $request->query('startDate');
         $endDate = $request->query('endDate');
-    
-        // Filtrar los datos según las fechas seleccionadas
-        $query = Ticket::query();
-    
-        if ($startDate && $endDate) {
-            $query->whereBetween('created_at', [$startDate, $endDate]);
-        }
-    
-        // Calcular estadísticas
-        $totalTickets = $query->count();
-        $openTickets = $query->where('estatus_id', 'ABIERTO')->count();
-        $inReviewTickets = $query->where('estatus_id', 'EN REVISION')->count();
-        $closedTickets = $query->where('estatus_id', 'CERRADO')->count();
-        $avgClosedTime = $query->where('estatus_id', 'CERRADO')->avg('tiempo_solucion');
-    
-        // Calcular el total de tickets por categoría
-        $ticketsByCategory = $query->with('opciones')
+        $tickets = Ticket::whereBetween('created_at', [$startDate, $endDate])->get();
+        $totalTickets = Ticket::whereBetween('created_at', [$startDate, $endDate])->count();
+        $openTickets = Ticket::whereBetween('created_at', [$startDate, $endDate])->where('estatus_id', 'ABIERTO')->count();
+        $inReviewTickets = Ticket::whereBetween('created_at', [$startDate, $endDate])->where('estatus_id', 'EN REVISION')->count();
+        $closedTickets = Ticket::whereBetween('created_at', [$startDate, $endDate])->where('estatus_id', 'CERRADO')->count();
+        $avgClosedTime = Ticket::whereBetween('created_at', [$startDate, $endDate])->where('estatus_id', 'CERRADO')->avg('tiempo_solucion');
+        
+        $ticketsByCategory = Ticket::with('opciones')
+            ->whereBetween('created_at', [$startDate, $endDate])
             ->get()
             ->flatMap(function ($ticket) {
-                return $ticket->opciones->filter(fn ($opcion) => $opcion->nivel === 'categoria');
+                return $ticket->opciones->filter(fn($opcion) => $opcion->nivel === 'categoria');
             })
             ->groupBy('valor')
-            ->map(fn ($items) => $items->count())
+            ->map(fn($items) => $items->count())
             ->toArray();
-    
-        // Generar el PDF con los datos
-        $pdf = Pdf::loadView('livewire.admin.pdf', [
+        
+        $data = [
             'startDate' => $startDate,
             'endDate' => $endDate,
             'totalTickets' => $totalTickets,
@@ -130,10 +93,15 @@ class DashboardController extends Controller
             'closedTickets' => $closedTickets,
             'avgClosedTime' => $avgClosedTime,
             'ticketsByCategory' => $ticketsByCategory,
-        ]);
-    
-        return $pdf->stream('estadisticas.pdf');
-    
-    }
+        ];
+        
+        $pdf = Pdf::loadView('livewire.admin.pdf', $data);
+        return $pdf->stream("estadisticas_{$startDate}_{$endDate}.pdf");
+
+        // esto para descargar pdf 
+    //  return view('livewire.admin.pdf');
+
+
+}
 
 }

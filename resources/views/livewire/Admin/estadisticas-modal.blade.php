@@ -73,11 +73,18 @@
                                 <x-button-cerrar wire:click="closemodal" type="button">
                                     CERRAR
                                 </x-button-cerrar>
-                                {{-- <a href="{{ route('admin.pdf') }}" class"btn btn-primary"
-                                    class="inline-block bg-afac-blue text-white py-2 px-4 rounded-lg hover:bg-afac-golden">DESCARGAR</a> --}}
+
+                                    {{-- esto es para descargarlo --}}
+
+                                     {{-- <x-button wire:click="exportarPDF">
+                                     DESCARGAR
+                                    </x-button> --}}
+
+                                    {{--  esto es para ver la vista pdf --}}
                                     <a href="{{ route('admin.pdf', ['startDate' => $startDate, 'endDate' => $endDate]) }}" 
+                                        target="_blank"
                                         class="inline-block bg-afac-blue text-white py-2 px-4 rounded-lg hover:bg-afac-golden">
-                                         DESCARGAR
+                                        DESCARGAR
                                      </a>
                             </div>
                         </div>
