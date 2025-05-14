@@ -38,7 +38,7 @@ class Computer extends Model
             'atributo_valor',
             'numero_serie',
             'valor'
-        )->withPivot('atributo_tipo');
+        )->withPivot('atributo_tipo', 'atributo_valor');
     }
 
     public function usuarios()
@@ -51,7 +51,7 @@ class Computer extends Model
 
     public function getMarcaAttribute()
     {
-        return $this->atributos()->where('atributo_tipo', 'marca')->first()?->valor ?? 'N/A';
+        return $this->atributos()->where('atributo_tipo', 'Marca')->first()?->valor ?? 'N/A';
     }
 
     public function getTipoDispositivoAttribute()

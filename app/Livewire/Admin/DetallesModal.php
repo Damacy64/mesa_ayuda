@@ -6,6 +6,7 @@ use App\Models\Attribute;
 use App\Models\Computer;
 use App\Models\ComputerUserFinal;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -84,18 +85,15 @@ class DetallesModal extends Component
 
     public function asignarUsuario()
     {
-        //$this->validate();
-
         // Actualizar información general en la tabla `computers`
         $informacionGeneral = [
             'direccion_ip' => $this->direccion_ip,
-            'internet' => $this->internet,
+            'internet' => Str::upper($this->internet),
             'serie_monitor' => $this->serie_monitor,
             'serie_mouse' => $this->serie_mouse,
             'serie_teclado' => $this->serie_teclado,
-            'version_procesador' => $this->version_procesador,
+            'version_procesador' => Str::upper($this->version_procesador),
         ];
-        //dd($informacionGeneral);
 
         foreach ($informacionGeneral as $campo => $valor) {
             if ($this->equipo->$campo !== $valor) {
@@ -116,19 +114,29 @@ class DetallesModal extends Component
         ];
 
         foreach ($atributos as $tipo => $valor) {
-            $atributo = Attribute::where('tipo', $tipo)->first();
+            // Buscar o crear el atributo en la tabla `attributes`
+            $atributo = Attribute::firstOrCreate(['tipo' => $tipo], ['valor' => $valor]);
 
             if ($atributo) {
                 // Verificar si el registro ya existe en la tabla pivote
-                $registroPivote = $this->equipo->atributos()->where('atributo_tipo', $tipo)->first();
+                $registroPivote = $this->equipo->atributos()
+                    ->wherePivot('atributo_tipo', $tipo)
+                    ->wherePivot('atributo_valor', $atributo->valor)
+                    ->first();
 
                 if ($registroPivote) {
-                    // Actualizar el valor en la tabla pivote
+                    // Actualizar el valor en la tabla pivote si es diferente
                     if ($registroPivote->pivot->atributo_valor !== $valor) {
                         $this->equipo->atributos()->updateExistingPivot($atributo->id, [
                             'atributo_valor' => $valor,
                         ]);
                     }
+                } else {
+                    // Crear un nuevo registro en la tabla pivote
+                    $this->equipo->atributos()->attach($atributo->id, [
+                        'atributo_tipo' => $tipo,
+                        'atributo_valor' => $valor,
+                    ]);
                 }
             }
         }
