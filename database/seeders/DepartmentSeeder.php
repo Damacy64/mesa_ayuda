@@ -15,39 +15,39 @@ class DepartmentSeeder extends Seeder
     {
         $departamentos = [
                 // Área: Dirección Ejecutiva de Seguridad Aérea
-                ['nombre' => 'Dirección de Comandancia Central (AICM)', 'area_id' => 'Dirección Ejecutiva de Seguridad Aérea'],
-                ['nombre' => 'Dirección de Verificación Aeroportuaria', 'area_id' => 'Dirección Ejecutiva de Seguridad Aérea'],
-                ['nombre' => 'Dirección de Seguridad Aérea', 'area_id' => 'Dirección Ejecutiva de Seguridad Aérea'],
-                ['nombre' => 'Dirección de Seguridad de la Aviación Civil', 'area_id' => 'Dirección Ejecutiva de Seguridad Aérea'],
-                ['nombre' => 'Dirección de Aeropuertos', 'area_id' => 'Dirección Ejecutiva de Seguridad Aérea'],
-                ['nombre' => 'Dirección de Certificación de Licencias', 'area_id' => 'Dirección Ejecutiva de Seguridad Aérea'],
-                ['nombre' => 'Dirección de Medicina de Aviación', 'area_id' => 'Dirección Ejecutiva de Seguridad Aérea'],
+                ['nombre' => 'DIRECCIÓN DE COMANDANCIA CENTRAL (AICM)', 'area_id' => 'DIRECCIÓN EJECUTIVA DE SEGURIDAD AÉREA'],
+                ['nombre' => 'DIRECCIÓN DE VERIFICACIÓN AEROPORTUARIA', 'area_id' => 'DIRECCIÓN EJECUTIVA DE SEGURIDAD AÉREA'],
+                ['nombre' => 'DIRECCIÓN DE SEGURIDAD AÉREA', 'area_id' => 'DIRECCIÓN EJECUTIVA DE SEGURIDAD AÉREA'],
+                ['nombre' => 'DIRECCIÓN DE SEGURIDAD DE LA AVIACIÓN CIVIL', 'area_id' => 'DIRECCIÓN EJECUTIVA DE SEGURIDAD AÉREA'],
+                ['nombre' => 'DIRECCIÓN DE AEROPUERTOS', 'area_id' => 'DIRECCIÓN EJECUTIVA DE SEGURIDAD AÉREA'],
+                ['nombre' => 'DIRECCIÓN DE CERTIFICACIÓN DE LICENCIAS', 'area_id' => 'DIRECCIÓN EJECUTIVA DE SEGURIDAD AÉREA'],
+                ['nombre' => 'DIRECCIÓN DE MEDICINA DE AVICIÓN', 'area_id' => 'DIRECCIÓN EJECUTIVA DE SEGURIDAD AÉREA'],
             
                 // Área: Dirección Ejecutiva de Aviación
-                ['nombre' => 'Dirección de Aviación', 'area_id' => 'Dirección Ejecutiva de Aviación'],
-                ['nombre' => 'Dirección de Navegación Aérea', 'area_id' => 'Dirección Ejecutiva de Aviación'],
-                ['nombre' => 'Dirección de Ingeniería, Normas y Certificación', 'area_id' => 'Dirección Ejecutiva de Aviación'],
+                ['nombre' => 'DIRECCIÓN DE AVICIÓN', 'area_id' => 'DIRECCIÓN EJECUTIVA DE AVIACIÓN'],
+                ['nombre' => 'DIRECCIÓN DE NAVEGACIÓN AÉREA', 'area_id' => 'DIRECCIÓN EJECUTIVA DE AVIACIÓN'],
+                ['nombre' => 'DIRECCIÓN DE INGENIERA, NORMAS Y CERTIFICACIÓN', 'area_id' => 'DIRECCIÓN EJECUTIVA DE AVIACIÓN'],
             
                 // Área: Dirección Ejecutiva Técnica
-                ['nombre' => 'N/A', 'area_id' => 'Dirección Ejecutiva Técnica'],
+                ['nombre' => 'N/A', 'area_id' => 'DIRECCIÓN EJECUTIVA TÉCNICA'],
             
                 // Área: Dirección Ejecutiva de Transporte y Control Aeronáutico
-                ['nombre' => 'Dirección del Registro Aeronautico Mexicano', 'area_id' => 'Dirección Ejecutiva de Transporte y Control Aeronáutico'],
+                ['nombre' => 'DIRECCIÓN DEL REGISTRO AEROUNATICO MEXICANO', 'area_id' => 'DIRECCIÓN EJECUTIVA DE TRANSPORTE Y CONTROL AERONÁUTICO'],
         
                 // Área: Dirección del SSP
-                ['nombre' => 'N/A', 'area_id' => 'Dirección del Programa de Seguridad Operacional del Estado Mexicano - SSP'],
+                ['nombre' => 'N/A', 'area_id' => 'DIRECCIÓN DEL PROGRAMA DE SEGURIDAD OPERACIONAL DEL ESTADO MEXICANO - SSP'],
             
                 // Área: Dirección de Desarrollo Estratégico
-                ['nombre' => 'N/A', 'area_id' => 'Dirección de Desarrollo Estratégico'],
+                ['nombre' => 'N/A', 'area_id' => 'DIRECCIÓN DE DESARROLLO ESTRATÉGICO'],
             
                 // Área: Dirección de Administración y Finanzas
-                ['nombre' => 'N/A', 'area_id' => 'Dirección de Administración y Finanzas'],
+                ['nombre' => 'N/A', 'area_id' => 'DIRECCIÓN DE ADMINISTRACIÓN Y FINANZAS'],
        
                 // Área: Dirección de Regulación Económica y Estadistica
-                ['nombre' => 'N/A', 'area_id' => 'Dirección de Regulación Económica y Estadistica'],
+                ['nombre' => 'N/A', 'area_id' => 'DIRECCIÓN DE REGULACIÓN ECONÓMICA Y ESTADÍSTICAS'],
                 
                  // Área: Unidad de Gestión y Trámite
-                ['nombre' => 'N/A', 'area_id' => 'Unidad de Gestión y Trámite'],
+                ['nombre' => 'N/A', 'area_id' => 'UNIDAD DE GESTIÓN Y TRÁMITE'],
             ];
 
         DB::table('departments')->insert($departamentos);
