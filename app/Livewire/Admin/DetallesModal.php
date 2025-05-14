@@ -6,6 +6,7 @@ use App\Models\Attribute;
 use App\Models\Computer;
 use App\Models\ComputerUserFinal;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -40,6 +41,7 @@ class DetallesModal extends Component
     public $sistema_operativo;
     public $procesador;
     public $marca;
+    public $dispositivo;
 
     protected $rules = [
         'usuario' => ['exists:users,id']
@@ -62,6 +64,7 @@ class DetallesModal extends Component
             $this->serie_mouse = $this->equipo->serie_mouse;
             $this->serie_teclado = $this->equipo->serie_teclado;
             $this->version_procesador = $this->equipo->version_procesador;
+            $this->dispositivo = $this->equipo->tipo_equipo;
 
             // Cargar los valores de los atributos relacionados
             $this->almacenamiento = $this->equipo->atributos()->where('atributo_tipo', 'Almacenamiento')->first()?->pivot->atributo_valor ?? null;
@@ -70,6 +73,7 @@ class DetallesModal extends Component
             $this->procesador = $this->equipo->atributos()->where('atributo_tipo', 'Procesador')->first()?->pivot->atributo_valor ?? null;
             $this->memoria = $this->equipo->atributos()->where('atributo_tipo', 'RAM')->first()?->pivot->atributo_valor ?? null;
             $this->sistema_operativo = $this->equipo->atributos()->where('atributo_tipo', 'S.O.')->first()?->pivot->atributo_valor ?? null;
+            $this->dispositivo = $this->equipo->atributos()->where('atributo_tipo', 'Tipo de equipo')->first()?->pivot->atributo_valor ?? null;
         }
 
         $this->open = true;
@@ -111,33 +115,21 @@ class DetallesModal extends Component
             'Procesador' => $this->procesador,
             'RAM' => $this->memoria,
             'S.O.' => $this->sistema_operativo,
+            'Tipo de equipo' => $this->dispositivo,
         ];
 
         foreach ($atributos as $tipo => $valor) {
-            // Buscar o crear el atributo en la tabla `attributes`
-            $atributo = Attribute::firstOrCreate(['tipo' => $tipo], ['valor' => $valor]);
-
-            if ($atributo) {
-                // Verificar si el registro ya existe en la tabla pivote
-                $registroPivote = $this->equipo->atributos()
-                    ->wherePivot('atributo_tipo', $tipo)
-                    ->wherePivot('atributo_valor', $atributo->valor)
-                    ->first();
-
-                if ($registroPivote) {
-                    // Actualizar el valor en la tabla pivote si es diferente
-                    if ($registroPivote->pivot->atributo_valor !== $valor) {
-                        $this->equipo->atributos()->updateExistingPivot($atributo->id, [
-                            'atributo_valor' => $valor,
-                        ]);
-                    }
-                } else {
-                    // Crear un nuevo registro en la tabla pivote
-                    $this->equipo->atributos()->attach($atributo->id, [
+            if ($valor !== null && $valor !== '') {
+                DB::table('attributable')->updateOrInsert(
+                    [
                         'atributo_tipo' => $tipo,
+                        'attributable_id' => $this->equipo->numero_serie,
+                        'attributable_type' => Computer::class,
+                    ],
+                    [
                         'atributo_valor' => $valor,
-                    ]);
-                }
+                    ]
+                );
             }
         }
 
@@ -166,6 +158,7 @@ class DetallesModal extends Component
         $this->procesadores = Attribute::where('tipo', 'Procesador')->pluck('valor', 'valor');
         $this->memorias = Attribute::where('tipo', 'RAM')->pluck('valor', 'valor');
         $this->versionesOffice = Attribute::where('tipo', 'Office')->pluck('valor', 'valor');
+        $this->dispositivos = Attribute::where('tipo', 'Tipo de equipo')->pluck('valor', 'valor');
     }
 
     public function render()

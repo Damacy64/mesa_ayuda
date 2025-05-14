@@ -20,21 +20,23 @@
                                         <li class="flex justify-start items-center"><strong>Numero Serie:</strong>
                                             {{ $equipo->numero_serie ?? 'N/A' }}</li>
                                         <li class="flex justify-start items-center"><strong>Dirección IP:</strong>
-                                            <x-input name="direccion_ip" class="bg-white" wire:model="direccion_ip"/>
+                                            <x-input name="direccion_ip" class="bg-white" wire:model="direccion_ip" />
                                         </li>
                                         <li class="flex justify-start items-center"><strong>Internet:</strong> <x-input
-                                                name="internet" class="bg-white" wire:model="internet"/></li>
+                                                name="internet" class="bg-white" wire:model="internet" /></li>
                                         <li class="flex justify-start items-center"><strong>Serie Monitor:</strong>
-                                            <x-input name="serie_monitor" class="bg-white" wire:model="serie_monitor"/>
+                                            <x-input name="serie_monitor" class="bg-white" wire:model="serie_monitor" />
                                         </li>
                                         <li class="flex justify-start items-center"><strong>Serie Mouse:</strong>
-                                            <x-input name="serie_mouse" class="bg-white" wire:model="serie_mouse"/>
+                                            <x-input name="serie_mouse" class="bg-white" wire:model="serie_mouse" />
                                         </li>
                                         <li class="flex justify-start items-center"><strong>Serie Teclado:</strong>
-                                            <x-input name="serie_teclado" class="bg-white" wire:model="serie_teclado"/>
+                                            <x-input name="serie_teclado" class="bg-white" wire:model="serie_teclado" />
                                         </li>
                                         <li class="flex justify-start items-center"><strong>Versión Procesador:</strong>
-                                            <x-input name="version_procesador" class="bg-white" wire:model="version_procesador"/></li>
+                                            <x-input name="version_procesador" class="bg-white"
+                                                wire:model="version_procesador" />
+                                        </li>
                                         <li class="flex justify-start items-center"><strong>Estado:</strong>
                                             {{ $equipo->estado ?? 'N/A' }}</li>
                                     </ul>
@@ -44,12 +46,13 @@
                                     <h4 class="font-bold text-gray-700">Atributos</h4>
                                     <ul class="list-disc list-inside space-y-2">
                                         <li class="flex justify-start items-center"><strong>Almacenamiento:</strong>
-                                            <x-select name="almacenamiento" id="almacenamiento" class="bg-white" wire:model="almacenamiento">
+                                            <x-select name="almacenamiento" id="almacenamiento" class="bg-white"
+                                                wire:model="almacenamiento">
                                                 <option value="">Seleccione una opción</option>
                                                 @foreach ($almacenamientos as $almacenamiento)
                                                     <option value="{{ $almacenamiento }}">{{ $almacenamiento }}</option>
                                                 @endforeach
-                                            </x-select>   
+                                            </x-select>
                                         </li>
                                         <li class="flex justify-start items-center"><strong>Marca:</strong>
                                             <x-select name="marca" id="marca" class="bg-white" wire:model="marca">
@@ -57,40 +60,46 @@
                                                 @foreach ($marcas as $marca)
                                                     <option value="{{ $marca }}">{{ $marca }}</option>
                                                 @endforeach
-                                            </x-select>   
+                                            </x-select>
                                         </li>
                                         <li class="flex justify-start items-center"><strong>Office:</strong>
-                                            <x-select name="office" id="office" class="bg-white" wire:model="office">
+                                            <x-select name="office" id="office" class="bg-white"
+                                                wire:model="office">
                                                 <option value="">Seleccione una opción</option>
                                                 @foreach ($versionesOffice as $office)
                                                     <option value="{{ $office }}">{{ $office }}</option>
                                                 @endforeach
-                                            </x-select>   
+                                            </x-select>
                                         </li>
                                         <li class="flex justify-start items-center"><strong>Procesador:</strong>
-                                            <x-select name="procesador" id="procesador" class="bg-white" wire:model="procesador">
+                                            <x-select name="procesador" id="procesador" class="bg-white"
+                                                wire:model="procesador">
                                                 <option value="">Seleccione una opción</option>
                                                 @foreach ($procesadores as $procesador)
                                                     <option value="{{ $procesador }}">{{ $procesador }}</option>
                                                 @endforeach
-                                            </x-select>   
+                                            </x-select>
                                         </li>
                                         <li class="flex justify-start items-center"><strong>RAM:</strong>
-                                            <x-select name="ram" id="ram" class="bg-white" wire:model="memoria">
+                                            <x-select name="ram" id="ram" class="bg-white"
+                                                wire:model="memoria">
                                                 <option value="">Seleccione una opción</option>
                                                 @foreach ($memorias as $ram)
                                                     <option value="{{ $ram }}">{{ $ram }}</option>
                                                 @endforeach
-                                            </x-select>   
+                                            </x-select>
                                         </li>
                                         <li class="flex justify-start items-center"><strong>Sistema Operativo:</strong>
-                                            <x-select name="sistema" id="sistema" class="bg-white" wire:model="sistema_operativo">
+                                            <x-select name="sistema" id="sistema" class="bg-white"
+                                                wire:model="sistema_operativo">
                                                 <option value="">Seleccione una opción</option>
                                                 @foreach ($sistemas as $sistema)
                                                     <option value="{{ $sistema }}">{{ $sistema }}</option>
                                                 @endforeach
-                                            </x-select>   
+                                            </x-select>
                                         </li>
+                                        <li class="flex justify-start items-center">
+                                            <strong>Dispositivo:</strong>{{ $dispositivo }}</li>
                                     </ul>
                                 </div>
 
