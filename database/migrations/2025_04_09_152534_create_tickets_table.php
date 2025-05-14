@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('solucion')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('fecha_termino')->nullable();
-            $table->timestamp('tiempo_solucion')->nullable();
+            $table->time('tiempo_solucion')->nullable();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
             $table->unsignedBigInteger('usuario_id');
             $table->unsignedBigInteger('tecnico_id');

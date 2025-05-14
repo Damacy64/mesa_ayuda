@@ -6,6 +6,8 @@ namespace App\Livewire\Admin;
 use App\Models\Area;
 use Livewire\Component;
 use Livewire\Attributes\On;
+use Illuminate\Support\Str;
+
 
 class AgregarArea extends Component
 {
@@ -36,8 +38,8 @@ class AgregarArea extends Component
         $this->validate();
 
         Area::create([
-            'nombre' => $this->nombre,
-            'descripcion' => $this->descripcion,
+            'nombre' => Str::upper($this->nombre),
+            'descripcion' =>Str::upper($this->descripcion),
         ]);
 
         $this->closemodal();

@@ -10,15 +10,15 @@ class AreaSeeder extends Seeder
     public function run(): void
     {
         $areas = [
-            ['nombre' => 'Dirección Ejecutiva de Seguridad Aérea'],
-            ['nombre' => 'Dirección Ejecutiva de Aviación'],
-            ['nombre' => 'Dirección Ejecutiva Técnica'],
-            ['nombre' => 'Dirección Ejecutiva de Transporte y Control Aeronáutico'],
-            ['nombre' => 'Dirección del Programa de Seguridad Operacional del Estado Mexicano - SSP'],
-            ['nombre' => 'Dirección de Desarrollo Estratégico'],
-            ['nombre' => 'Dirección de Administración y Finanzas'],
-            ['nombre' => 'Dirección de Regulación Económica y Estadistica'],
-            ['nombre' => 'Unidad de Gestión y Trámite'],
+            ['nombre' => 'DIRECCIÓN EJECUTIVA DE SEGURIDAD AÉREA'],
+            ['nombre' => 'DIRECCIÓN EJECUTIVA DE AVIACIÓN'],
+            ['nombre' => 'DIRECCIÓN EJECUTIVA TÉCNICA'],
+            ['nombre' => 'DIRECCIÓN EJECUTIVA DE TRANSPORTE Y CONTROL AERONÁUTICO'],
+            ['nombre' => 'DIRECCIÓN DEL PROGRAMA DE SEGURIDAD OPERACIONAL DEL ESTADO MEXICANO - SSP'],
+            ['nombre' => 'DIRECCIÓN DE DESARROLLO ESTRATÉGICO'],
+            ['nombre' => 'DIRECCIÓN DE ADMINISTRACIÓN Y FINANZAS'],
+            ['nombre' => 'DIRECCIÓN DE REGULACIÓN ECONÓMICA Y ESTADÍSTICAS'],
+            ['nombre' => 'UNIDAD DE GESTIÓN Y TRÁMITE'],
         ];
 
         DB::table('areas')->insert($areas);

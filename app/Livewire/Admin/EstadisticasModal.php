@@ -57,8 +57,12 @@ class EstadisticasModal extends Component
         $this->openTickets = Ticket::where('estatus_id', 'ABIERTO')->count();
         $this->inReviewTickets = Ticket::where('estatus_id', 'EN REVISION')->count();
         $this->closedTickets = Ticket::where('estatus_id', 'CERRADO')->count();
-        $this->avgClosedTime = Ticket::where('estatus_id', 'CERRADO')->avg('tiempo_solucion');
-        $this->ticketsByCategory = Ticket::with('opciones')
+        $this->avgClosedTime = Ticket::where('estatus_id', 'CERRADO')
+        ->select(Ticket::raw("TIME_FORMAT(SEC_TO_TIME(AVG(TIME_TO_SEC(tiempo_solucion))), '%H:%i:%s') as avg_time"))
+        ->when($this->startDate && $this->endDate, function ($query) {
+            $query->whereBetween('created_at', [$this->startDate, $this->endDate]);
+        })
+        ->value('avg_time');        $this->ticketsByCategory = Ticket::with('opciones')
             ->when($this->startDate && $this->endDate, function ($query) {
                 $query->whereBetween('created_at', [$this->startDate, $this->endDate]);
             })
@@ -71,35 +75,35 @@ class EstadisticasModal extends Component
             ->toArray();
     }
     // esto es para cuando lo descargue pdf
-
-    // public function exportarPDF()
-    // {
-    //     $data = [
-    //         'totalTickets' => $this->totalTickets,
-    //         'openTickets' => $this->openTickets,
-    //         'inReviewTickets' => $this->inReviewTickets,
-    //         'closedTickets' => $this->closedTickets,
-    //         'avgClosedTime' => $this->avgClosedTime,
-    //         'ticketsByCategory' => $this->ticketsByCategory,
-    //         'startDate' => $this->startDate,
-    //         'endDate' => $this->endDate,
-    //     ];
-
-    //     $pdf = Pdf::loadView('livewire.admin.pdf', $data);
-    //    return response()->streamDownload(function () use ($pdf) {
-    //      echo $pdf->stream();
-    //     }, 'estadisticas.pdf');
-
-    // }
-
-    // esto es para mandarlo a  la vista del pdf 
+   
     public function exportarPDF()
     {
-        return redirect()->route('admin.pdf', [
+        $data = [
+            'totalTickets' => $this->totalTickets,
+            'openTickets' => $this->openTickets,
+            'inReviewTickets' => $this->inReviewTickets,
+            'closedTickets' => $this->closedTickets,
+            'avgClosedTime' => $this->avgClosedTime,
+            'ticketsByCategory' => $this->ticketsByCategory,
             'startDate' => $this->startDate,
             'endDate' => $this->endDate,
-        ]);
+        ];
+
+        $pdf = Pdf::loadView('livewire.admin.pdf', $data);
+       return response()->streamDownload(function () use ($pdf) {
+         echo $pdf->stream();
+        }, 'estadisticas.pdf');
+
     }
+
+    // esto es para mandarlo a  la vista del pdf 
+    // public function exportarPDF()
+    // {
+    //     return redirect()->route('admin.pdf', [
+    //         'startDate' => $this->startDate,
+    //         'endDate' => $this->endDate,
+    //     ]);
+    // }
 
     public function render()
     {

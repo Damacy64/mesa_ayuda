@@ -7,6 +7,7 @@ use App\Models\Ticket;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\On;
+use Illuminate\Support\Str;
 use Livewire\Component;
 use phpDocumentor\Reflection\Types\This;
 
@@ -70,7 +71,8 @@ class ModalReabrir extends Component
         if ($ticketAbrir){
             $ticketAbrir->update([
                 'estatus_id' => 'ABIERTO',
-                'descripcion' => $this->descripcion,
+                'descripcion' =>Str::upper($this->descripcion),
+                // 'created_at' => now(),
             ]);
         }
 

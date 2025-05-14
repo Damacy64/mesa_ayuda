@@ -45,14 +45,15 @@
                                                     <td class="p-2">{{ $inReviewTickets }}</td>
                                                     <td class="p-2">{{ $closedTickets }}</td>
                                                     <td class="p-2">
-                                                        {{ $avgClosedTime ? gmdate('H:i:s', $avgClosedTime * 60) : 'N/A' }}
+                                                        {{-- {{ $avgClosedTime ? gmdate('H:i:s', $avgClosedTime * 60) : 'N/A' }} --}}
+                                                         {{ $avgClosedTime ?? 'N/A' }}
                                                     </td>
                                                     <td class="p-2">
-                                                        <ul>
-                                                            @foreach ($ticketsByCategory as $category => $total)
-                                                                <li>{{ $category }}: {{ $total }}</li>
-                                                            @endforeach
-                                                        </ul>
+                                                    <ul>
+                                                        @foreach ($ticketsByCategory as $category => $total)
+                                                            <li>{{ $category }}: {{ $total }}</li>
+                                                        @endforeach
+                                                    </ul>
                                                     </td>
                                                 </tr>
                                             @else
@@ -74,18 +75,18 @@
                                     CERRAR
                                 </x-button-cerrar>
 
-                                    {{-- esto es para descargarlo --}}
+                                {{-- esto es para descargarlo --}}
 
-                                     {{-- <x-button wire:click="exportarPDF">
-                                     DESCARGAR
-                                    </x-button> --}}
+                                <x-button wire:click="exportarPDF">
+                                    DESCARGAR
+                                </x-button>
 
-                                    {{--  esto es para ver la vista pdf --}}
-                                    <a href="{{ route('admin.pdf', ['startDate' => $startDate, 'endDate' => $endDate]) }}" 
+                                {{--  esto es para ver la vista pdf --}}
+                                {{-- <a href="{{ route('admin.pdf', ['startDate' => $startDate, 'endDate' => $endDate]) }}" 
                                         target="_blank"
                                         class="inline-block bg-afac-blue text-white py-2 px-4 rounded-lg hover:bg-afac-golden">
                                         DESCARGAR
-                                     </a>
+                                     </a> --}}
                             </div>
                         </div>
                     </div>

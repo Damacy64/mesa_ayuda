@@ -70,7 +70,7 @@
                 <td>{{ $openTickets }}</td>
                 <td>{{ $inReviewTickets }}</td>
                 <td>{{ $closedTickets }}</td>
-                <td>{{ $avgClosedTime ? gmdate('H:i:s', $avgClosedTime * 60) : 'N/A' }}</td>
+                <td>{{ $avgClosedTime ?? 'N/A' }}</td>
                 <td>
                     <ul>
                         @foreach ($ticketsByCategory as $category => $total)
