@@ -16,6 +16,6 @@ class Attribute extends Model
             'attributable',
             'atributo_valor',
             'attributable_id'
-        )->withPivot('atributo_tipo');
+        )->withPivot('atributo_tipo', 'atributo_valor');
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Admin;
 
-
+use App\Models\Computer;
 use App\Models\ComputerUserFinal;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -26,6 +26,15 @@ class DevicesAssigned extends Component
     public function detalles($id)
     {
         $this->dispatch('detalles-modal', ['id' => $id]);
+    }
+
+    public function eliminar($id)
+    {
+        $equipo = Computer::find($id);
+        if ($equipo) {
+            $equipo->delete();
+        }
+        $this->dispatch('reasignado');
     }
 
     #[On('reasignado')]
