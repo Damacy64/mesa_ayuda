@@ -7,6 +7,7 @@ use App\Models\Attribute;
 use App\Models\Computer;
 use App\Models\ComputerUserFinal;
 use Livewire\Component;
+use Illuminate\Support\Str;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\On;
@@ -172,20 +173,20 @@ class AsignarModal extends Component
         $computadora = Computer::create([
             'numero_serie' => $this->serie,
             'numero_inventario' => $this->inventario,
-            'modelo' => $this->modelo,
+            'modelo' => Str::upper($this->modelo),
             'direccion_ip' => $this->direccionIp,
-            'internet' => $this->internet,
+            'internet' => Str::upper($this->internet),
             'serie_monitor' => $this->serieMonitor,
             'serie_teclado' => $this->serieTeclado,
             'serie_mouse' => $this->serieMouse,
-            'version_procesador' => $this->versionProcesador,
+            'version_procesador' => Str::upper($this->versionProcesador),
         ]);
 
         // Construir los atributos dinámicamente en función del dispositivo seleccionado
         $atributos = collect();
 
         // Atributos comunes
-        $atributos->push(['tipo' => 'marca', 'valor' => $this->marca]);
+        $atributos->push(['tipo' => 'Marca', 'valor' => $this->marca]);
         $atributos->push(['tipo' => 'Tipo de equipo', 'valor' => $this->dispositivo]);
 
         // Atributos específicos según el dispositivo
