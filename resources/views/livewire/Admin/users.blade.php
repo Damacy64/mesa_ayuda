@@ -35,7 +35,7 @@
                                 <td class="p-2">{{ $usuario->user->name }}</td>
                                 <td class="p-2">{{ $usuario->user->email }}</td>
                                 <td class="p-2">{{ $usuario->ubicacion_id }}</td>
-                                <td class="p-2">{{ $usuario->area->nombre }}</td>
+                                <td class="p-2">{{ $usuario->area }}</td>
                                 <td class="p-2">{{ $usuario->user->gender->sexo }}</td>
                                 <td class="p-2">
                                     <a href="" 

@@ -82,5 +82,7 @@ class ModalReabrir extends Component
         $this->dispatch('ticketCreated');
 
         $this->cerrarModal();
+        return redirect()->route('dashboard');
+
     }
 }

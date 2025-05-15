@@ -73,11 +73,11 @@
                             <x-validation-errors />
 
                             <div class="flex justify-center space-x-3">
-                                <x-button-cerrar wire:click="closemodal" type="button">
+                                <x-button-cerrar wire:click.prevent="closemodal" type="button">
                                     CERRAR
                                 </x-button-cerrar>
 
-                                <x-button wire:click="guardarTicket" type="button">
+                                <x-button wire:click.prevent="guardarTicket" type="button">
                                     ENVIAR
                                 </x-button>
                             </div>

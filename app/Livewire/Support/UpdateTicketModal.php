@@ -3,6 +3,7 @@
 namespace App\Livewire\Support;
 
 use App\Mail\TicketActualizado;
+use App\Models\Support;
 use App\Models\Status;
 use Illuminate\Support\Str;
 use App\Models\Ticket;
@@ -65,43 +66,24 @@ class UpdateTicketModal extends Component
         // // Obtenemos el ticket por su folio
         $ticket = Ticket::where('folio', $this->ticket->folio)->first();
 
-        // // Actualizamos el estado del ticket
-        // if ($this->estatus == 'CERRADO') {
-        //     if ($ticket) {
-        //         $ticket->update([
-        //             'estatus_id' => $this->estatus,
-        //             'solucion' => Str::upper($this->descripcion),
-        //             'fecha_termino' => now(),
-        //         ]);
-        //     }
-            
-        // } else {
-        //     if ($ticket) {
-        //         $ticket->update([
-        //             'estatus_id' => $this->estatus,
-        //             'solucion' => Str::upper($this->descripcion),
-        //         ]);
-        //     }
-        // }
-        // $this->reset(['open', 'ticket', 'estatus', 'descripcion']);
-     
-            if ($this->estatus == 'CERRADO') {
-                $created_at = $ticket->created_at;
-                $updated_at = now();
+            // if ($this->estatus == 'CERRADO') {
+            //     $created_at = $ticket->created_at;
+            //     $updated_at = now();
 
-                $diff = $created_at->diff($updated_at);
+            //     $diff = $created_at->diff($updated_at);
 
-                $horasTotales = ($diff->y * 365 * 24) + ($diff->m * 30 * 24) + ($diff->d * 24) + $diff->h;
+            //     $horasTotales = ($diff->y * 365 * 24) + ($diff->m * 30 * 24) + ($diff->d * 24) + $diff->h;
 
-                $tiempoSolucion = sprintf('%02d%02d%02d', $horasTotales, $diff->i, $diff->s);
+            //     $tiempoSolucion = sprintf('%02d%02d%02d', $horasTotales, $diff->i, $diff->s);
 
-                $ticket->update([
-                    'estatus_id' => $this->estatus,
-                    'solucion' => Str::upper($this->descripcion),
-                    'fecha_termino' => $updated_at,
-                    'tiempo_solucion' => $tiempoSolucion,
-                ]);
-            }
+            //     $ticket->update([
+            //         'estatus_id' => $this->estatus,
+            //         'solucion' => Str::upper($this->descripcion),
+            //         'fecha_termino' => $updated_at,
+            //         'tiempo_solucion' => $tiempoSolucion,
+            //     ]);
+            // }
+          
 
             $this->reset(['open', 'ticket', 'estatus', 'descripcion']);
 

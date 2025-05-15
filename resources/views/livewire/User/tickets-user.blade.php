@@ -47,6 +47,8 @@
     </div>
 
     <div class="mt-4">
+        <div wire:ignore>
         {{ $tickets->links('components.pagination') }}
+        </div>
     </div>
 </div>
