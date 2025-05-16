@@ -7,6 +7,7 @@
                     <div
                         class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-5xl">
                         <div class="bg-white px-6 py-6 sm:px-6">
+                            <h3 class="mb-2 font-bold">Historial de cambios</h3>
                             <div class="overflow-x-auto mb-6">
                                 <table class="w-full text-sm text-left bg-white border">
                                     <thead class="bg-afac-golden text-white">

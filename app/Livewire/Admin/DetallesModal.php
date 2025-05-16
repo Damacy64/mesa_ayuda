@@ -77,7 +77,6 @@ class DetallesModal extends Component
             $this->serie_teclado = $this->equipo->serie_teclado;
             $this->flash = $this->equipo->flash;
             $this->version_procesador = $this->equipo->version_procesador;
-            $this->dispositivo = $this->equipo->tipo_equipo;
 
             // Cargar los valores de los atributos relacionados
             $this->almacenamiento = $this->equipo->atributos()->where('atributo_tipo', 'Almacenamiento')->first()?->pivot->atributo_valor ?? null;

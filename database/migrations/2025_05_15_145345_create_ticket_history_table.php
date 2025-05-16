@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('valor_nuevo')->nullable();
             //$table->string('usuario')->nullable();
             $table->timestamp('fecha_cambio')->useCurrent();
-            $table->foreign('ticket_id')->references('id')->on('tickets')->onDelete('cascade');
+            $table->foreign('ticket_id')->references('folio')->on('tickets')->onDelete('cascade');
         });
     }
 

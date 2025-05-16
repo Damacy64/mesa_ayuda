@@ -32,7 +32,7 @@
                         <td class="p-2">{{ $item->user->employer_number }}</td>
                         <td class="p-2">{{ $item->user->name }}</td>
                         <td class="p-2">
-                            {{ $item->user->userFinal->area_id ?? 'Dirección de Desarrollo Estratégico' }}</td>
+                            {{ $item->user->userFinal->area_id ?? 'DIRECCIÓN DE DESARROLLO ESTRATÉGICO' }}</td>
                         <td class="p-2">{{ $item->user->userFinal->ubicacion_id ?? 'Piso 3' }}</td>
                         <td class="p-2">{{ $item->equipo->numero_inventario }}</td>
                         <td class="p-2">{{ $item->equipo->numero_serie }}</td>
@@ -98,7 +98,7 @@
             ASIGNAR
         </x-button>
     </div>
-    <div class="mt-4">
+    <div class="mt-4" wire:ignore>
         {{ $computers->withQueryString()->links('components.pagination') }}
     </div>
 </div>

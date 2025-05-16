@@ -72,12 +72,12 @@ class UsersSeeder extends Seeder
         $userFinal = [
             [
                 'ubicacion_id' => 'Piso 3',
-                'area_id' => 'Dirección de Desarrollo Estratégico',
+                'area_id' => 'DIRECCIÓN DE DESARROLLO ESTRATÉGICO',
                 'empleado_id' => 1,
             ],
             [
                 'ubicacion_id' => 'Piso 2',
-                'area_id' => 'Dirección Ejecutiva Técnica',
+                'area_id' => 'DIRECCIÓN EJECUTIVA TÉCNICA',
                 'empleado_id' => 2,
             ]
         ];
