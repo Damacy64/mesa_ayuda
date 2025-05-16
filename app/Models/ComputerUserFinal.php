@@ -10,7 +10,7 @@ class ComputerUserFinal extends Model
 
     protected $fillable = [
         'user_final_id',
-        'equipo_id',
+        'equipo_numero_serie',
         'fecha_asignacion',
         'fecha_liberacion',
     ];
@@ -30,6 +30,6 @@ class ComputerUserFinal extends Model
     // Relación inversa a Equipo
     public function equipo()
     {
-        return $this->belongsTo(Computer::class, 'equipo_id', 'numero_serie');
+        return $this->belongsTo(Computer::class, 'equipo_numero_serie', 'numero_serie');
     }
 }

@@ -40,7 +40,7 @@
                         <th class="p-2">#Empleado</th>
                         <th class="p-2">Nombre</th>
                         <th class="p-2">Correo</th>
-                        <th class="p-2">Disponibilidad</th>
+                        <th class="p-2">Horario</th>
                         <th class="p-2">Acción</th>
                     </tr>
                 </thead>
@@ -51,7 +51,7 @@
                                 <td class="p-2 text-red-600 font-black">{{ $tecnico->user->employer_number }}</td>
                                 <td class="p-2 text-red-600 font-black">{{ $tecnico->user->name }}</td>
                                 <td class="p-2 text-red-600 font-black">{{ $tecnico->user->email }}</td>
-                                <td class="p-2 text-red-600 font-black">{{ $tecnico->disponibilidad }}</td>
+                                <td class="p-2 text-red-600 font-black">{{ $tecnico->hora_entrada }}</td>
                                 <td class="p-2">
                                     <x-technician-actions :tecnico="$tecnico" />
                                 </td>
@@ -60,7 +60,7 @@
                                     <td class="p-2">{{ $tecnico->user->employer_number }}</td>
                                     <td class="p-2">{{ $tecnico->user->name }}</td>
                                     <td class="p-2">{{ $tecnico->user->email }}</td>
-                                    <td class="p-2">{{ $tecnico->disponibilidad }}</td>
+                                    <td class="p-2">{{ $tecnico->hora_entrada }} - {{$tecnico->hora_salida}}</td>
                                     <td class="p-2">
                                         <x-technician-actions :tecnico="$tecnico" />
                                     </td>

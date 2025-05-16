@@ -180,6 +180,7 @@ class AsignarModal extends Component
             'serie_teclado' => $this->serieTeclado,
             'serie_mouse' => $this->serieMouse,
             'version_procesador' => Str::upper($this->versionProcesador),
+            'flash' => Str::upper($this->flash),
         ]);
 
         // Construir los atributos dinámicamente en función del dispositivo seleccionado
@@ -218,7 +219,6 @@ class AsignarModal extends Component
             case 4: // TABLET
                 $atributos->push(['tipo' => 'Almacenamiento', 'valor' => $this->almacenamiento]);
                 $atributos->push(['tipo' => 'RAM', 'valor' => $this->memoria]);
-                $atributos->push(['tipo' => 'Flash', 'valor' => $this->flash]);
                 $atributos->push(['tipo' => 'Office', 'valor' => $this->versionOffice]);
                 break;
         }
@@ -231,7 +231,7 @@ class AsignarModal extends Component
         // Relacionar el equipo con el usuario
         ComputerUserFinal::create([
             'user_final_id' => $this->usuario,
-            'equipo_id' => $computadora->numero_serie,
+            'equipo_numero_serie' => $computadora->numero_serie,
         ]);
         
         $usuario = User::find($this->usuario);

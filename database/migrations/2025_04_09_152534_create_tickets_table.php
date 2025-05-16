@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('folio');
             $table->string('prioridad_id', 50);
             $table->string('estatus_id', 50);
-            $table->unsignedBigInteger('equipo_id')->nullable();
+            $table->unsignedBigInteger('equipo_numero_serie')->nullable();
             $table->string('titulo');
             $table->text('descripcion');
             $table->text('solucion')->nullable();
@@ -28,7 +28,7 @@ return new class extends Migration
 
             $table->foreign('prioridad_id')->references('nombre')->on('priority')->onDelete('cascade');
             $table->foreign('estatus_id')->references('nombre')->on('status')->onDelete('cascade');
-            $table->foreign('equipo_id')->references('numero_serie')->on('computers')->onDelete('cascade');
+            $table->foreign('equipo_numero_serie')->references('numero_serie')->on('computers')->onDelete('cascade');
             $table->foreign('usuario_id')->references('id')->on('user_finals')->onDelete('cascade');
             $table->foreign('tecnico_id')->references('id')->on('support')->onDelete('cascade');
             

@@ -19,6 +19,8 @@
                                             {{ $equipo->modelo ?? 'N/A' }}</li>
                                         <li class="flex justify-start items-center"><strong>Numero Serie:</strong>
                                             {{ $equipo->numero_serie ?? 'N/A' }}</li>
+                                        <li class="flex justify-start items-center"><strong>Numero Inventario:</strong>
+                                            {{ $equipo->numero_inventario ?? 'N/A'}}</li>
                                         <li class="flex justify-start items-center"><strong>Dirección IP:</strong>
                                             <x-input name="direccion_ip" class="bg-white" wire:model="direccion_ip" />
                                         </li>

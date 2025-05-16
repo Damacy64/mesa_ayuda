@@ -120,16 +120,38 @@ class DetallesModal extends Component
 
         foreach ($atributos as $tipo => $valor) {
             if ($valor !== null && $valor !== '') {
-                DB::table('attributable')->updateOrInsert(
-                    [
+                // Busca el registro actual
+                $registroActual = DB::table('attributable')
+                    ->where('atributo_tipo', $tipo)
+                    ->where('attributable_id', $this->equipo->numero_serie)
+                    ->where('attributable_type', Computer::class)
+                    ->first();
+
+                $valorAnterior = $registroActual->atributo_valor ?? null;
+
+                if ($valorAnterior !== $valor) {
+                    // Actualiza o inserta el atributo
+                    DB::table('attributable')->updateOrInsert(
+                        [
+                            'atributo_tipo' => $tipo,
+                            'attributable_id' => $this->equipo->numero_serie,
+                            'attributable_type' => Computer::class,
+                        ],
+                        [
+                            'atributo_valor' => $valor,
+                        ]
+                    );
+
+                    // Guardar el cambio en el historial
+                    DB::table('attributable_history')->insert([
                         'atributo_tipo' => $tipo,
+                        'atributo_valor_anterior' => $valorAnterior,
+                        'atributo_valor_nuevo' => $valor,
                         'attributable_id' => $this->equipo->numero_serie,
                         'attributable_type' => Computer::class,
-                    ],
-                    [
-                        'atributo_valor' => $valor,
-                    ]
-                );
+                        'fecha_cambio' => now()
+                    ]);
+                }
             }
         }
 

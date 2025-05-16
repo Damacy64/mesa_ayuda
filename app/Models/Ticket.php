@@ -13,7 +13,7 @@ class Ticket extends Model
         'created_at',
         'prioridad_id',
         'estatus_id',
-        'equipo_id',
+        'equipo_numero_serie',
         'titulo',
         'descripcion',
         'solucion',
@@ -35,7 +35,7 @@ class Ticket extends Model
 
     public function equipo()
     {
-        return $this->belongsTo(Computer::class, 'equipo_id', 'numero_serie');
+        return $this->belongsTo(Computer::class, 'equipo_numero_serie', 'numero_serie');
     }
 
     public function usuario()
