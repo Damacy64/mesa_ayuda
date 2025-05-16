@@ -13,6 +13,8 @@ class Support extends Model
         'hora_salida',
         'estado',
         'empleado_id',
+        'hora_entrada',
+        'hora_salida',
     ];
 
     public function user()
