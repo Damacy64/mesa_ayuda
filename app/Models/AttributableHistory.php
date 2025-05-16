@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class attributable_history extends Model
+class AttributableHistory extends Model
 {
     protected $table = 'attributable_history';
     public $timestamps = false;

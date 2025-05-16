@@ -7,6 +7,7 @@
 
     @livewire('admin.asignar-modal')
     @livewire('admin.detalles-modal')
+    @livewire('admin.historial-modal')
 
     <div class="overflow-x-auto mb-6">
         <table class="w-full text-sm text-left bg-white border">
@@ -69,7 +70,15 @@
                                                 @click="open = false"
                                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
                                                 role="menuitem">
-                                                Ver detalles
+                                                Ver Detalles
+                                            </button>
+
+                                            <button
+                                                wire:click="historial({{ $item->equipo->numero_serie }})"
+                                                @click="open = false"
+                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                                                role="menuitem">
+                                                Ver Historial
                                             </button>
                                     </div>
                                 </div>
