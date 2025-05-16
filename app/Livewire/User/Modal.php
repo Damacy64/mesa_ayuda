@@ -188,8 +188,8 @@ class Modal extends Component
         Mail::to(Auth::user()->email)->send(new TicketCreado($ticket));
 
         // Resetear los campos
-        $this->closemodal();
         $this->dispatch('ticketCreated', $ticket->id);
+        $this->closemodal();
     }
 
     public function asignarTecnico()

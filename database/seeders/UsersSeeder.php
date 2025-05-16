@@ -89,12 +89,14 @@ class UsersSeeder extends Seeder
                 'disponibilidad' => 'DESOCUPADO',
                 'estado' => 'HABILITADO',
                 'empleado_id' => 3,
+                
             ],
             [
                 'carga_trabajo' => 1,
                 'disponibilidad' => 'DESOCUPADO',
                 'estado' => 'HABILITADO',
                 'empleado_id' => 4,
+                
             ]
         ];
         DB::table('support')->insert($soporte);
