@@ -60,7 +60,6 @@ class Technical extends Component
                     ->orWhere('email', 'like', '%' . $this->search . '%')
                     ->orWhere('employer_number', 'like', '%' . $this->search . '%');
             })
-            ->orWhere('disponibilidad', 'like', '%' . $this->search . '%')
             ->where('estado', '!=', 'ELIMINADO')
             ->orderByDesc('empleado_id')
             ->paginate(5);

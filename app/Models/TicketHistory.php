@@ -4,25 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TicketHistory extends Model
+class ticketHistory extends Model
 {
-    protected $table = 'history_ticket';
-
+    protected $table = 'ticket_history';
     protected $fillable = [
         'ticket_id',
-        'estado_anterior',
-        'estado_nuevo',
-        'comentario',
-        'usuario_responsable_id',
+        'campo_modificado',
+        'valor_anterior',
+        'valor_nuevo',
+        'fecha_cambio'
     ];
 
     public function ticket()
     {
         return $this->belongsTo(Ticket::class, 'ticket_id');
-    }
-
-    public function responsable()
-    {
-        return $this->belongsTo(UserFinal::class, 'usuario_responsable_id');
     }
 }

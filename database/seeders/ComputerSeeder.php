@@ -104,19 +104,19 @@ class ComputerSeeder extends Seeder
         $computerUser = [
             [
                 'user_final_id' => 1,
-                'equipo_id' => 1234567890,
+                'equipo_numero_serie' => 1234567890,
             ],
             [
                 'user_final_id' => 1,
-                'equipo_id' => 987654321,
+                'equipo_numero_serie' => 987654321,
             ],
             [
                 'user_final_id' => 2,
-                'equipo_id' => 1122334455,
+                'equipo_numero_serie' => 1122334455,
             ],
             [
                 'user_final_id' => 2,
-                'equipo_id' => 2233445566,
+                'equipo_numero_serie' => 2233445566,
             ],
         ];
         DB::table('computer_user_final')->insert($computerUser);

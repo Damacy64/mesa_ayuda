@@ -9,8 +9,8 @@ class Support extends Model
     protected $table = 'support';
 
     protected $fillable = [
-        'carga_trabajo',
-        'disponibilidad',
+        'hora_entrada',
+        'hora_salida',
         'estado',
         'empleado_id',
         'hora_entrada',

@@ -25,7 +25,7 @@ class Computer extends Model
 
     public function tickets()
     {
-        return $this->hasMany(Ticket::class, 'equipo_id', 'numero_serie');
+        return $this->hasMany(Ticket::class, 'equipo_numero_serie', 'numero_serie');
     }
 
     public function atributos()
@@ -43,7 +43,7 @@ class Computer extends Model
 
     public function usuarios()
     {
-        return $this->belongsToMany(UserFinal::class, 'computer_user_final', 'equipo_id', 'user_final_id')
+        return $this->belongsToMany(UserFinal::class, 'computer_user_final', 'equipo_numero_serie', 'user_final_id')
             ->using(ComputerUserFinal::class)
             ->withPivot(['fecha_asignacion', 'fecha_liberacion'])
             ->withTimestamps();

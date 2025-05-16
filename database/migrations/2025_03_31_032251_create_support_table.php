@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('support', function (Blueprint $table) {
             $table->id();
-            $table->integer('carga_trabajo');
-            $table->string('disponibilidad', 50);
             $table->string('estado', 50);
+            $table->time('hora_entrada');
+            $table->time('hora_salida');
             $table->timestamps();
 
             $table->foreignId('empleado_id')->nullable()->constrained('users')->onDelete('cascade');

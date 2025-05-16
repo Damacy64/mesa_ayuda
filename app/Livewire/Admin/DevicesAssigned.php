@@ -28,6 +28,11 @@ class DevicesAssigned extends Component
         $this->dispatch('detalles-modal', ['id' => $id]);
     }
 
+    public function historial($id)
+    {
+        $this->dispatch('historial-modal', ['id' => $id]);
+    }
+    
     public function eliminar($id)
     {
         $equipo = Computer::find($id);

@@ -32,6 +32,7 @@ class DetallesModal extends Component
     public $direccion_ip;
     public $internet;
     public $serie_monitor;
+    public $flash;
     public $serie_mouse;
     public $serie_teclado;
     public $version_procesador;
@@ -42,6 +43,17 @@ class DetallesModal extends Component
     public $procesador;
     public $marca;
     public $dispositivo;
+
+    // Atributos por dispositivo
+    public $atributosPorDispositivo = [
+        'all-in-one' => ['sistema_operativo', 'almacenamiento', 'procesador', 'memoria', 'office', 'teclado', 'mouse', 'version_procesador'],
+        'escaner' => [''],
+        'escritorio' => ['sistema_operativo', 'almacenamiento', 'procesador', 'memoria', 'office', 'monitor', 'mouse', 'teclado', 'version_procesador'],
+        'impresora' => [''],
+        'laptop' => ['sistema_operativo', 'almacenamiento', 'procesador', 'memoria', 'office', 'version_procesador'],
+        'multifuncional' => [''],
+        'tablet' => ['almacenamiento', 'memoria', 'office', 'flash'],
+    ];
 
     protected $rules = [
         'usuario' => ['exists:users,id']
@@ -63,6 +75,7 @@ class DetallesModal extends Component
             $this->serie_monitor = $this->equipo->serie_monitor;
             $this->serie_mouse = $this->equipo->serie_mouse;
             $this->serie_teclado = $this->equipo->serie_teclado;
+            $this->flash = $this->equipo->flash;
             $this->version_procesador = $this->equipo->version_procesador;
             $this->dispositivo = $this->equipo->tipo_equipo;
 
@@ -85,6 +98,12 @@ class DetallesModal extends Component
         $this->id = null;
         $this->resetExcept('usuarios', 'marcas', 'dispositivos', 'sistemas', 'almacenamientos', 'procesadores', 'memorias', 'versionesOffice');
         $this->resetValidation();
+    }
+
+    public function getAtributosVisiblesProperty()
+    {
+        $tipo = strtolower($this->dispositivo);
+        return $this->atributosPorDispositivo[$tipo] ?? [];
     }
 
     public function asignarUsuario()
@@ -120,16 +139,38 @@ class DetallesModal extends Component
 
         foreach ($atributos as $tipo => $valor) {
             if ($valor !== null && $valor !== '') {
-                DB::table('attributable')->updateOrInsert(
-                    [
+                // Busca el registro actual
+                $registroActual = DB::table('attributable')
+                    ->where('atributo_tipo', $tipo)
+                    ->where('attributable_id', $this->equipo->numero_serie)
+                    ->where('attributable_type', Computer::class)
+                    ->first();
+
+                $valorAnterior = $registroActual->atributo_valor ?? null;
+
+                if ($valorAnterior !== $valor) {
+                    // Actualiza o inserta el atributo
+                    DB::table('attributable')->updateOrInsert(
+                        [
+                            'atributo_tipo' => $tipo,
+                            'attributable_id' => $this->equipo->numero_serie,
+                            'attributable_type' => Computer::class,
+                        ],
+                        [
+                            'atributo_valor' => $valor,
+                        ]
+                    );
+
+                    // Guardar el cambio en el historial
+                    DB::table('attributable_history')->insert([
                         'atributo_tipo' => $tipo,
+                        'atributo_valor_anterior' => $valorAnterior,
+                        'atributo_valor_nuevo' => $valor,
                         'attributable_id' => $this->equipo->numero_serie,
                         'attributable_type' => Computer::class,
-                    ],
-                    [
-                        'atributo_valor' => $valor,
-                    ]
-                );
+                        'fecha_cambio' => now()
+                    ]);
+                }
             }
         }
 

@@ -85,18 +85,16 @@ class UsersSeeder extends Seeder
 
         $soporte = [
             [
-                'carga_trabajo' => 1,
-                'disponibilidad' => 'DESOCUPADO',
                 'estado' => 'HABILITADO',
                 'empleado_id' => 3,
-                
+                'hora_entrada' => '09:00:00',
+                'hora_salida' => '18:00:00',
             ],
             [
-                'carga_trabajo' => 1,
-                'disponibilidad' => 'DESOCUPADO',
                 'estado' => 'HABILITADO',
                 'empleado_id' => 4,
-                
+                'hora_entrada' => '09:00:00',
+                'hora_salida' => '18:00:00',
             ]
         ];
         DB::table('support')->insert($soporte);
