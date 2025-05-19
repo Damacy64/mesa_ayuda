@@ -58,6 +58,7 @@ class UpdateTicketModal extends Component
         $this->reset(['ticket', 'estatus', 'descripcion']);
         $this->dispatch('ticketActualizado');
         $this->open = false;
+        $this->dispatch('ticketActualizado');
     }
 
     public function actualizarTicket()
@@ -77,7 +78,10 @@ class UpdateTicketModal extends Component
 
         if ($this->estatus === 'CERRADO') {
             $inicio = new \DateTime($ticket->created_at);
+     $fin = new \DateTime($fechaTermino); 
+          
             $fin = new \DateTime();
+
 
             $horaEntrada = explode(':', $ticket->tecnico->hora_entrada);
             $horaSalida = explode(':', $ticket->tecnico->hora_salida);
@@ -90,7 +94,9 @@ class UpdateTicketModal extends Component
             $periodo = new \DatePeriod((clone $inicio)->setTime(0, 0), new \DateInterval('P1D'), (clone $fin)->setTime(0, 0)->modify('+1 day'));
 
             foreach ($periodo as $dia) {
-                if (in_array($dia->format('N'), [6, 7])) continue;
+
+                if (in_array($dia->format('N'), [6, 7])) continue; 
+
 
                 $horaInicio = (clone $dia)->setTime($hEntrada, $mEntrada, $sEntrada);
                 $horaFin = (clone $dia)->setTime($hSalida, $mSalida, $sSalida);
@@ -102,6 +108,22 @@ class UpdateTicketModal extends Component
                     $minutosTotales += ($hasta->getTimestamp() - $desde->getTimestamp()) / 60;
                 }
             }
+
+            $tiempoSolucion = sprintf('%02d%02d%02d',
+                floor($minutosTotales / 60),
+                $minutosTotales % 60,
+                0
+            );
+
+            $ticket->update([
+                'estatus_id' => $this->estatus,
+                'solucion' => strtoupper($this->descripcion),
+                'fecha_termino' => $fin,
+                'tiempo_solucion' => $tiempoSolucion,
+            ]);
+    }
+        $this->reset(['open', 'ticket', 'estatus', 'descripcion']);
+
 
             $tiempoSolucion = sprintf(
                 '%02d%02d%02d',
@@ -131,9 +153,11 @@ class UpdateTicketModal extends Component
 
         $this->cerrarModal();
 
+
         $ticket = Ticket::with('opciones')->find($ticket->folio);
         // Enviamos un correo al usuario
         Mail::to($ticket->usuario->user->email)->send(new TicketActualizado($ticket));
+
     }
 
     public function mount()
