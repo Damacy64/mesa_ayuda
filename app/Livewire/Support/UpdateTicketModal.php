@@ -67,23 +67,94 @@ class UpdateTicketModal extends Component
         $ticket = Ticket::where('folio', $this->ticket->folio)->first();
 
             // if ($this->estatus == 'CERRADO') {
-            //     $created_at = $ticket->created_at;
-            //     $updated_at = now();
+            //     $inicio = new \DateTime($ticket->created_at);
+            //     $fin = new \DateTime();
+            //     $hora_entrada = $ticket->hora_entrada;
+            //     $hora_salida = $ticket->hora_salida;
 
-            //     $diff = $created_at->diff($updated_at);
+            //     $inicioDia = clone $inicio;
+            //     $inicioDia->setTime(0, 0, 0);
 
-            //     $horasTotales = ($diff->y * 365 * 24) + ($diff->m * 30 * 24) + ($diff->d * 24) + $diff->h;
+            //     $finDia = clone $fin;
+            //     $finDia->setTime(0, 0, 0);
 
-            //     $tiempoSolucion = sprintf('%02d%02d%02d', $horasTotales, $diff->i, $diff->s);
+            //     $minutosTotales = 0;
 
-            //     $ticket->update([
-            //         'estatus_id' => $this->estatus,
-            //         'solucion' => Str::upper($this->descripcion),
-            //         'fecha_termino' => $updated_at,
-            //         'tiempo_solucion' => $tiempoSolucion,
-            //     ]);
-            // }
-          
+            //     list($h, $m, $s) = array_pad(explode(':', $hora_entrada), 3, 0);
+            //         $inicioDia->setTime((int)$h, (int)$m, (int)$s);
+
+            //     list($h, $m, $s) = array_pad(explode(':', $hora_salida), 3, 0);
+            //         $finDia->setTime((int)$h, (int)$m, (int)$s);
+
+            //     $intervalo = new \DateInterval('P1D');
+            //      $rango = new \DatePeriod(clone $inicio, $intervalo, (clone $fin)->modify('+1 day'));
+
+            //     foreach ($rango as $fecha) {
+            //         if (in_array($fecha->format('N'), [6, 7])) continue;  
+            //         list($h, $m, $s) = array_pad(explode(':', $hora_entrada), 3, 0);
+            //             $inicioDia->setTime((int)$h, (int)$m, (int)$s);
+
+            //         list($h, $m, $s) = array_pad(explode(':', $hora_salida), 3, 0);
+            //             $finDia->setTime((int)$h, (int)$m, (int)$s);
+            //         $desde = max($inicioDia, $inicio);
+            //         $hasta = min($finDia, $fin);
+
+            //         if ($desde < $hasta) {
+            //             $minutos = ($hasta->getTimestamp() - $desde->getTimestamp()) / 60;
+            //             $minutosTotales += $minutos;
+            //         }
+                    
+            //         }
+            //         $horas = floor($minutosTotales / 60);
+            //         $minutos = $minutosTotales % 60;
+            //         $segundos = 0;
+            //         $tiempoSolucion = sprintf('%02d:%02d:%02d', $horas, $minutos, $segundos);
+
+            //         $ticket->update([
+            //             'estatus_id' => $this->estatus,
+            //             'solucion' => strtoupper($this->descripcion),
+            //             'fecha_termino' => $fin,
+            //             'tiempo_solucion' => $tiempoSolucion,
+            //         ]);
+            //     }
+
+
+         
+if ($this->estatus == 'CERRADO') {
+    $inicio = new \DateTime($ticket->created_at);
+    $fin = new \DateTime();
+    dd( $ticket->tecnico->hora_entrada);
+    $hora_entrada = $ticket->tecnico->hora_entrada;
+    $hora_salida = $ticket->tecnico->hora_salida;
+
+    $segundosTotales = 0;
+    $intervalo = new \DateInterval('P1D');
+    $rango = new \DatePeriod(clone $inicio, $intervalo, (clone $fin)->modify('+1 day'));
+
+    foreach ($rango as $fecha) {
+        if (in_array($fecha->format('N'), [6, 7])) continue;
+
+        $rangoInicio = ($fecha->format('Y-m-d') == $inicio->format('Y-m-d')) ? max($inicio, $laboralInicio) : $laboralInicio;
+        $rangoFin = ($fecha->format('Y-m-d') == $fin->format('Y-m-d')) ? min($fin, $laboralFin) : $laboralFin;
+
+        if ($rangoInicio < $rangoFin) {
+            $segundosTotales += $rangoFin->getTimestamp() - $rangoInicio->getTimestamp();
+        }
+    }
+
+    // Convertir a formato H:i:s para guardar en campo TIME
+    $horas = floor($segundosTotales / 3600);
+    $minutos = floor(($segundosTotales % 3600) / 60);
+    $segundos = $segundosTotales % 60;
+    $tiempoSolucion = sprintf('%02d:%02d:%02d', $horas, $minutos, $segundos);
+
+    $ticket->update([
+        'estatus_id' => $this->estatus,
+        'solucion' => strtoupper($this->descripcion),
+        'fecha_termino' => $fin,
+        'tiempo_solucion' => $tiempoSolucion,
+    ]);
+}
 
             $this->reset(['open', 'ticket', 'estatus', 'descripcion']);
 
