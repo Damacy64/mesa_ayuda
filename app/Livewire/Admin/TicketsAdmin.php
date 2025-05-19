@@ -3,7 +3,6 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Ticket;
-use App\Models\Status;
 use Livewire\Attributes\On;
 use App\Models\Support;
 use Livewire\Component;
@@ -69,11 +68,6 @@ class TicketsAdmin extends Component
         $this->dispatch('abrir-revision-modal', $ticket);
     }
 
-    // public function cerrarTicket($folio){
-    //     $ticket = Ticket::findorFail($folio);
-    //     $ticket->update(['estatus_id' => 'CERRADO']);
-        
-    // }
 public function cerrarTicket($folio){
  $ticket = Ticket::findorFail($folio);
  
@@ -94,6 +88,23 @@ if ($this->estatus === 'CERRADO') {
 
         foreach ($periodo as $dia) {
             if (in_array($dia->format('N'), [6, 7])) continue; 
+        $ticket = Ticket::findorFail($folio);
+        $valorAnterior = $ticket->estatus_id;
+        $ticket->update(['estatus_id' => 'CERRADO']);
+
+        DB::table('ticket_history')->insert([
+            'ticket_id' => $ticket->folio,
+            'campo_modificado' => 'estatus_id',
+            'valor_anterior' => $valorAnterior,
+            'valor_nuevo' => 'CERRADO',
+            'fecha_cambio' => now(),
+        ]);
+    }
+
+    public function abrirHistorial($ticket)
+    {
+        $this->dispatch('abrir-historial-modal', $ticket);
+    }
 
             $horaInicio = (clone $dia)->setTime($hEntrada, $mEntrada, $sEntrada);
             $horaFin = (clone $dia)->setTime($hSalida, $mSalida, $sSalida);
