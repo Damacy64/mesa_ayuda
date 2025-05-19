@@ -153,7 +153,7 @@ class Modal extends Component
         $this->validate($rules);
 
         // Validar que dispositivo no tenga un ticket abierto
-        $ticketAbierto = Ticket::where('equipo_id', $this->equipoSeleccionado)
+        $ticketAbierto = Ticket::where('equipo_numero_serie', $this->equipoSeleccionado)
             ->where('estatus_id', 'ABIERTO')
             ->exists();
 
@@ -169,7 +169,7 @@ class Modal extends Component
             'tecnico_id' => $this->asignarTecnico(),
             'prioridad_id' => 'BAJA',
             'estatus_id' => 'ABIERTO',
-            'equipo_id' => $this->equipoSeleccionado['numero_serie'] ?? null,
+            'equipo_numero_serie' => $this->equipoSeleccionado['numero_serie'] ?? null,
             'titulo' => Option::find($this->categoria)->valor,
             'descripcion' => Str::upper($this->descripcion),
         ]);

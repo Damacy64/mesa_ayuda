@@ -3,7 +3,9 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Ticket;
+use App\Models\Status;
 use Livewire\Attributes\On;
+use App\Models\Support;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -11,7 +13,8 @@ class TicketsAdmin extends Component
 {
     use WithPagination;
     public $search = '';
-
+    public $ticket;
+    public $estatus= 'CERRADO';
     public function updatingSearch()
     {
         $this->resetPage();
@@ -66,10 +69,57 @@ class TicketsAdmin extends Component
         $this->dispatch('abrir-revision-modal', $ticket);
     }
 
-    public function cerrarTicket($folio){
-        $ticket = Ticket::findorFail($folio);
-        $ticket->update(['estatus_id' => 'CERRADO']);
-    }
+    // public function cerrarTicket($folio){
+    //     $ticket = Ticket::findorFail($folio);
+    //     $ticket->update(['estatus_id' => 'CERRADO']);
+        
+    // }
+public function cerrarTicket($folio){
+ $ticket = Ticket::findorFail($folio);
+ 
+if ($this->estatus === 'CERRADO') {
+    
+        $inicio = new \DateTime($ticket->created_at);
+        $fin = new \DateTime(); 
 
+        $horaEntrada = explode(':', $ticket->tecnico->hora_entrada);
+        $horaSalida = explode(':', $ticket->tecnico->hora_salida);
 
+        list($hEntrada, $mEntrada, $sEntrada) = array_pad($horaEntrada, 3, 0);
+        list($hSalida, $mSalida, $sSalida) = array_pad($horaSalida, 3, 0);
+
+        $minutosTotales = 0;
+
+        $periodo = new \DatePeriod((clone $inicio)->setTime(0, 0), new \DateInterval('P1D'), (clone $fin)->setTime(0, 0)->modify('+1 day'));
+
+        foreach ($periodo as $dia) {
+            if (in_array($dia->format('N'), [6, 7])) continue; 
+
+            $horaInicio = (clone $dia)->setTime($hEntrada, $mEntrada, $sEntrada);
+            $horaFin = (clone $dia)->setTime($hSalida, $mSalida, $sSalida);
+
+            $desde = max($horaInicio, $inicio);
+            $hasta = min($horaFin, $fin);
+
+            if ($desde < $hasta) {
+                $minutosTotales += ($hasta->getTimestamp() - $desde->getTimestamp()) / 60;
+            }
+        }
+
+        $tiempoSolucion = sprintf('%02d%02d%02d',
+            floor($minutosTotales / 60),
+            $minutosTotales % 60,
+            0
+        );
+
+        $ticket->update([
+            'estatus_id' => $this->estatus,
+            'fecha_termino' => $fin,
+            'tiempo_solucion' => $tiempoSolucion,
+          
+        ]);
+        
+}
+
+}
 }

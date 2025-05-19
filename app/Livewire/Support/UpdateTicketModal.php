@@ -32,7 +32,7 @@ class UpdateTicketModal extends Component
     public function abrirModal($folio)
     {
         $ticket = DB::table('tickets as t')
-            ->leftJoin('computers as c', 't.equipo_id', '=', 'c.numero_serie')
+            ->leftJoin('computers as c', 't.equipo_numero_serie', '=', 'c.numero_serie')
             ->leftJoin('ticket_opcion as to', 't.folio', '=', 'to.ticket_id')
             ->leftJoin('options as o', 'to.opcion_id', '=', 'o.id')
             ->select(
@@ -56,6 +56,7 @@ class UpdateTicketModal extends Component
     {
         $this->reset(['ticket', 'estatus', 'descripcion']);
         $this->open = false;
+        $this->dispatch('ticketActualizado');
     }
 
     public function actualizarTicket()
@@ -67,53 +68,51 @@ class UpdateTicketModal extends Component
         $ticket = Ticket::where('folio', $this->ticket->folio)->first();
 
         if ($this->estatus === 'CERRADO') {
-        $inicio = new \DateTime($ticket->created_at);
-        $fin = new \DateTime(); 
+            $inicio = new \DateTime($ticket->created_at);
+            $fin = new \DateTime($fechaTermino); 
 
-        $horaEntrada = explode(':', $ticket->tecnico->hora_entrada);
-        $horaSalida = explode(':', $ticket->tecnico->hora_salida);
+            $horaEntrada = explode(':', $ticket->tecnico->hora_entrada);
+            $horaSalida = explode(':', $ticket->tecnico->hora_salida);
 
-        list($hEntrada, $mEntrada, $sEntrada) = array_pad($horaEntrada, 3, 0);
-        list($hSalida, $mSalida, $sSalida) = array_pad($horaSalida, 3, 0);
+            list($hEntrada, $mEntrada, $sEntrada) = array_pad($horaEntrada, 3, 0);
+            list($hSalida, $mSalida, $sSalida) = array_pad($horaSalida, 3, 0);
 
-        $minutosTotales = 0;
+            $minutosTotales = 0;
 
-        $periodo = new \DatePeriod((clone $inicio)->setTime(0, 0), new \DateInterval('P1D'), (clone $fin)->setTime(0, 0)->modify('+1 day'));
+            $periodo = new \DatePeriod((clone $inicio)->setTime(0, 0), new \DateInterval('P1D'), (clone $fin)->setTime(0, 0)->modify('+1 day'));
 
-        foreach ($periodo as $dia) {
-            if (in_array($dia->format('N'), [6, 7])) continue; 
+            foreach ($periodo as $dia) {
+                if (in_array($dia->format('N'), [6, 7])) continue; 
 
-            $horaInicio = (clone $dia)->setTime($hEntrada, $mEntrada, $sEntrada);
-            $horaFin = (clone $dia)->setTime($hSalida, $mSalida, $sSalida);
+                $horaInicio = (clone $dia)->setTime($hEntrada, $mEntrada, $sEntrada);
+                $horaFin = (clone $dia)->setTime($hSalida, $mSalida, $sSalida);
 
-            $desde = max($horaInicio, $inicio);
-            $hasta = min($horaFin, $fin);
+                $desde = max($horaInicio, $inicio);
+                $hasta = min($horaFin, $fin);
 
-            if ($desde < $hasta) {
-                $minutosTotales += ($hasta->getTimestamp() - $desde->getTimestamp()) / 60;
+                if ($desde < $hasta) {
+                    $minutosTotales += ($hasta->getTimestamp() - $desde->getTimestamp()) / 60;
+                }
             }
-        }
 
-        $tiempoSolucion = sprintf('%02d%02d%02d',
-            floor($minutosTotales / 60),
-            $minutosTotales % 60,
-            0
-        );
+            $tiempoSolucion = sprintf('%02d%02d%02d',
+                floor($minutosTotales / 60),
+                $minutosTotales % 60,
+                0
+            );
 
-        $ticket->update([
-            'estatus_id' => $this->estatus,
-            'solucion' => strtoupper($this->descripcion),
-            'fecha_termino' => $fin,
-            'tiempo_solucion' => $tiempoSolucion,
-        ]);
+            $ticket->update([
+                'estatus_id' => $this->estatus,
+                'solucion' => strtoupper($this->descripcion),
+                'fecha_termino' => $fin,
+                'tiempo_solucion' => $tiempoSolucion,
+            ]);
     }
-
-
         $this->reset(['open', 'ticket', 'estatus', 'descripcion']);
 
         $ticket = Ticket::with('opciones')->find($ticket->folio);
         // Enviamos un correo al usuario
-        // Mail::to($ticket->usuario->user->email)->send(new TicketActualizado($ticket));
+        Mail::to($ticket->usuario->user->email)->send(new TicketActualizado($ticket));
 
     }
 

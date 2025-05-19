@@ -30,7 +30,7 @@ class ModalReabrir extends Component
 
         // Cargar los datos del ticket seleccionado
         $this->ticket = DB::table('tickets as t')
-            ->leftJoin('computers as c', 't.equipo_id', '=', 'c.numero_serie')
+            ->leftJoin('computers as c', 't.equipo_numero_serie', '=', 'c.numero_serie')
             ->leftJoin('ticket_opcion as to', 't.folio', '=', 'to.ticket_id')
             ->leftJoin('options as o', 'to.opcion_id', '=', 'o.id')
             ->select(
@@ -40,9 +40,9 @@ class ModalReabrir extends Component
                 DB::raw("MAX(CASE WHEN o.nivel = 'falla' THEN o.valor END) as tipo_falla"),
                 't.descripcion',
                 't.solucion',
-                't.equipo_id'
+                't.equipo_numero_serie',
             )
-            ->groupBy('t.folio', 't.titulo', 'c.modelo', 't.descripcion', 't.solucion', 't.equipo_id')
+            ->groupBy('t.folio', 't.titulo', 'c.modelo', 't.descripcion', 't.solucion', 't.equipo_numero_serie')
             ->where('t.folio', $this->folio)
             ->first();
     }

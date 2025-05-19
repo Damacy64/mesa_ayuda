@@ -18,7 +18,7 @@ class DeviceUser extends Component
 
         $this->datos = DB::table('computer_user_final as cuf')
             ->join('user_finals as uf', 'cuf.user_final_id', '=', 'uf.id')
-            ->join('computers as c', 'cuf.equipo_id', '=', 'c.numero_serie')
+            ->join('computers as c', 'cuf.equipo_numero_serie', '=', 'c.numero_serie')
             ->leftJoin('attributable as a_tipo', function ($join) {
                 $join->on('a_tipo.attributable_id', '=', 'c.numero_serie')
                     ->where('a_tipo.atributo_tipo', '=', 'tipo_equipo');
