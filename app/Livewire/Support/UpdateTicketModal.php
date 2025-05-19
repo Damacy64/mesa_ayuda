@@ -7,6 +7,7 @@ use App\Models\Support;
 use App\Models\Status;
 use Illuminate\Support\Str;
 use App\Models\Ticket;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\On;
@@ -32,7 +33,7 @@ class UpdateTicketModal extends Component
     public function abrirModal($folio)
     {
         $ticket = DB::table('tickets as t')
-            ->leftJoin('computers as c', 't.equipo_id', '=', 'c.numero_serie')
+            ->leftJoin('computers as c', 't.equipo_numero_serie', '=', 'c.numero_serie')
             ->leftJoin('ticket_opcion as to', 't.folio', '=', 'to.ticket_id')
             ->leftJoin('options as o', 'to.opcion_id', '=', 'o.id')
             ->select(
@@ -55,6 +56,7 @@ class UpdateTicketModal extends Component
     public function cerrarModal()
     {
         $this->reset(['ticket', 'estatus', 'descripcion']);
+        $this->dispatch('ticketActualizado');
         $this->open = false;
     }
 
@@ -66,55 +68,72 @@ class UpdateTicketModal extends Component
         // // Obtenemos el ticket por su folio
         $ticket = Ticket::where('folio', $this->ticket->folio)->first();
 
+        $original = $ticket->getOriginal();
+
+        $campos = [
+            'estatus_id' => $this->estatus,
+            'solucion' => strtoupper($this->descripcion),
+        ];
+
         if ($this->estatus === 'CERRADO') {
-        $inicio = new \DateTime($ticket->created_at);
-        $fin = new \DateTime(); 
+            $inicio = new \DateTime($ticket->created_at);
+            $fin = new \DateTime();
 
-        $horaEntrada = explode(':', $ticket->tecnico->hora_entrada);
-        $horaSalida = explode(':', $ticket->tecnico->hora_salida);
+            $horaEntrada = explode(':', $ticket->tecnico->hora_entrada);
+            $horaSalida = explode(':', $ticket->tecnico->hora_salida);
 
-        list($hEntrada, $mEntrada, $sEntrada) = array_pad($horaEntrada, 3, 0);
-        list($hSalida, $mSalida, $sSalida) = array_pad($horaSalida, 3, 0);
+            list($hEntrada, $mEntrada, $sEntrada) = array_pad($horaEntrada, 3, 0);
+            list($hSalida, $mSalida, $sSalida) = array_pad($horaSalida, 3, 0);
 
-        $minutosTotales = 0;
+            $minutosTotales = 0;
 
-        $periodo = new \DatePeriod((clone $inicio)->setTime(0, 0), new \DateInterval('P1D'), (clone $fin)->setTime(0, 0)->modify('+1 day'));
+            $periodo = new \DatePeriod((clone $inicio)->setTime(0, 0), new \DateInterval('P1D'), (clone $fin)->setTime(0, 0)->modify('+1 day'));
 
-        foreach ($periodo as $dia) {
-            if (in_array($dia->format('N'), [6, 7])) continue; 
+            foreach ($periodo as $dia) {
+                if (in_array($dia->format('N'), [6, 7])) continue;
 
-            $horaInicio = (clone $dia)->setTime($hEntrada, $mEntrada, $sEntrada);
-            $horaFin = (clone $dia)->setTime($hSalida, $mSalida, $sSalida);
+                $horaInicio = (clone $dia)->setTime($hEntrada, $mEntrada, $sEntrada);
+                $horaFin = (clone $dia)->setTime($hSalida, $mSalida, $sSalida);
 
-            $desde = max($horaInicio, $inicio);
-            $hasta = min($horaFin, $fin);
+                $desde = max($horaInicio, $inicio);
+                $hasta = min($horaFin, $fin);
 
-            if ($desde < $hasta) {
-                $minutosTotales += ($hasta->getTimestamp() - $desde->getTimestamp()) / 60;
+                if ($desde < $hasta) {
+                    $minutosTotales += ($hasta->getTimestamp() - $desde->getTimestamp()) / 60;
+                }
+            }
+
+            $tiempoSolucion = sprintf(
+                '%02d%02d%02d',
+                floor($minutosTotales / 60),
+                $minutosTotales % 60,
+                0
+            );
+
+            $campos['fecha_termino'] = $fin;
+        }
+
+        // Guarda el historial de cambios
+        foreach ($campos as $campo => $valorNuevo) {
+            $valorAnterior = $ticket->$campo;
+            if ($valorAnterior != $valorNuevo) {
+                DB::table('ticket_history')->insert([
+                    'ticket_id' => $ticket->folio,
+                    'campo_modificado' => $campo,
+                    'valor_anterior' => $valorAnterior,
+                    'valor_nuevo' => $valorNuevo,
+                    'fecha_cambio' => now(),
+                ]);
             }
         }
 
-        $tiempoSolucion = sprintf('%02d%02d%02d',
-            floor($minutosTotales / 60),
-            $minutosTotales % 60,
-            0
-        );
+        $ticket->update($campos);
 
-        $ticket->update([
-            'estatus_id' => $this->estatus,
-            'solucion' => strtoupper($this->descripcion),
-            'fecha_termino' => $fin,
-            'tiempo_solucion' => $tiempoSolucion,
-        ]);
-    }
-
-
-        $this->reset(['open', 'ticket', 'estatus', 'descripcion']);
+        $this->cerrarModal();
 
         $ticket = Ticket::with('opciones')->find($ticket->folio);
         // Enviamos un correo al usuario
-        // Mail::to($ticket->usuario->user->email)->send(new TicketActualizado($ticket));
-
+        Mail::to($ticket->usuario->user->email)->send(new TicketActualizado($ticket));
     }
 
     public function mount()

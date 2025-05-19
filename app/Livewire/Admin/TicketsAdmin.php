@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Ticket;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -68,7 +69,21 @@ class TicketsAdmin extends Component
 
     public function cerrarTicket($folio){
         $ticket = Ticket::findorFail($folio);
+        $valorAnterior = $ticket->estatus_id;
         $ticket->update(['estatus_id' => 'CERRADO']);
+
+        DB::table('ticket_history')->insert([
+            'ticket_id' => $ticket->folio,
+            'campo_modificado' => 'estatus_id',
+            'valor_anterior' => $valorAnterior,
+            'valor_nuevo' => 'CERRADO',
+            'fecha_cambio' => now(),
+        ]);
+    }
+
+    public function abrirHistorial($ticket)
+    {
+        $this->dispatch('abrir-historial-modal', $ticket);
     }
 
 
