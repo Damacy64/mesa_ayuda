@@ -26,6 +26,7 @@
                 @forelse ($tickets as $item)
                     <tr class="border-t">
                         <td class="p-2">{{ $item->usuario->user->employer_number }}</td>
+                        
                         <td class="p-2">{{ $item->usuario->user->name }}</td>
                         <td class="p-2">{{ $item->tipo_ticket }}</td>
                         <td class="p-2">{{ $item->tipo_falla ?? 'N/A' }}</td>
@@ -62,6 +63,12 @@
                                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
                                             role="menuitem">
                                             Cerrar
+                                        </button>
+                                        <!-- Opción 3 -->
+                                        <button wire:click="abrirHistorial({{ $item->folio }})" @click="open = false"
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                                            role="menuitem">
+                                            Historial
                                         </button>
                                     </div>
                                 </div>

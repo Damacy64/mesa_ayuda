@@ -68,11 +68,20 @@ class ModalReabrir extends Component
         $ticketAbrir = Ticket::where('folio', $this->folio)->first();
 
         // Actualizamos el estado del ticket
-        if ($ticketAbrir){
+        if ($ticketAbrir) {
+            $valorAnterior = $ticketAbrir->estatus_id;
             $ticketAbrir->update([
                 'estatus_id' => 'ABIERTO',
-                'descripcion' =>Str::upper($this->descripcion),
-                // 'created_at' => now(),
+                'descripcion' => Str::upper($this->descripcion),
+            ]);
+
+            // Registrar el cambio en el historial
+            DB::table('ticket_history')->insert([
+                'ticket_id' => $ticketAbrir->folio,
+                'campo_modificado' => 'estatus_id',
+                'valor_anterior' => $valorAnterior,
+                'valor_nuevo' => 'ABIERTO',
+                'fecha_cambio' => now(),
             ]);
         }
 
@@ -83,6 +92,5 @@ class ModalReabrir extends Component
 
         $this->cerrarModal();
         return redirect()->route('dashboard');
-
     }
 }

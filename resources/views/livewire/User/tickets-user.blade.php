@@ -24,7 +24,7 @@
                     <tr class="border-t">
                         <td class="p-2">{{ $ticket->folio }}</td>
                         <td class="p-2">{{ $ticket->titulo }}</td>
-                        <td class="p-2">{{ $ticket->equipo_id }}</td>
+                        <td class="p-2">{{ $ticket->equipo_id ?? 'N/A'}}</td>
                         <td class="p-2">{{ $ticket->created_at }}</td>
                         <td class="p-2">{{ $ticket->descripcion }}</td>
                         <td class="p-2">{{ $ticket->solucion }}</td>

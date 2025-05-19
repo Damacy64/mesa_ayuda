@@ -96,15 +96,6 @@ class EstadisticasModal extends Component
 
     }
 
-    // esto es para mandarlo a  la vista del pdf 
-    // public function exportarPDF()
-    // {
-    //     return redirect()->route('admin.pdf', [
-    //         'startDate' => $this->startDate,
-    //         'endDate' => $this->endDate,
-    //     ]);
-    // }
-
     public function render()
     {
         return view('livewire.admin.estadisticas-modal');
