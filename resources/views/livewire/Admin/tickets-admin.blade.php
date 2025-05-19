@@ -17,6 +17,7 @@
                     <th class="p-2">Fecha de Creación</th>
                     <th class="p-2">Prioridad</th>
                     <th class="p-2">Estatus</th>
+                    <th class="p-2">Tiempo de Resolución</th>
                     <th class="p-2">Técnico Asignado</th>
                     <th class="p-2">Acción</th>
                 </tr>
@@ -31,6 +32,7 @@
                         <td class="p-2">{{ $item->created_at }}</td>
                         <td class="p-2">{{ $item->prioridad_id }}</td>
                         <td class="p-2">{{ $item->estatus_id }}</td>
+                        <td class="p-2">{{ $item->tiempo_solucion }}</td>
                         <td class="p-2">{{ $item->tecnico->user->name }}</td>
                         <td class="p-2">
                             <div x-data="{ open: false }" class="relative inline-block text-left">

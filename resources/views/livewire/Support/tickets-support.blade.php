@@ -17,6 +17,7 @@
                     <th class="p-2">Fecha de Creación</th>
                     <th class="p-2">Prioridad</th>
                     <th class="p-2">Estatus</th>
+                    <th class="p-2">Tiempo de Resolución</th>
                     <th class="p-2">Acción</th>
                 </tr>
             </thead>
@@ -30,6 +31,7 @@
                         <td class="p-2">{{ $item->created_at }}</td>
                         <td class="p-2">{{ $item->prioridad_id }}</td>
                         <td class="p-2">{{ $item->estatus_id }}</td>
+                        <td class="p-2">{{ $item->tiempo_solucion }}</td>
                         <td class="p-2">
                             @if ($item->estatus_id === 'ABIERTO' || $item->estatus_id === 'EN REVISIÓN')
                                 <a href="" wire:click.prevent="abrirModal( {{ $item->folio }} )"

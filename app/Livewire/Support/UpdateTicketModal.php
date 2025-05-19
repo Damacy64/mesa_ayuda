@@ -61,107 +61,60 @@ class UpdateTicketModal extends Component
     public function actualizarTicket()
     {
 
-         $this->validate();
+        $this->validate();
 
         // // Obtenemos el ticket por su folio
         $ticket = Ticket::where('folio', $this->ticket->folio)->first();
 
-            // if ($this->estatus == 'CERRADO') {
-            //     $inicio = new \DateTime($ticket->created_at);
-            //     $fin = new \DateTime();
-            //     $hora_entrada = $ticket->hora_entrada;
-            //     $hora_salida = $ticket->hora_salida;
+        if ($this->estatus === 'CERRADO') {
+        $inicio = new \DateTime($ticket->created_at);
+        $fin = new \DateTime(); 
 
-            //     $inicioDia = clone $inicio;
-            //     $inicioDia->setTime(0, 0, 0);
+        $horaEntrada = explode(':', $ticket->tecnico->hora_entrada);
+        $horaSalida = explode(':', $ticket->tecnico->hora_salida);
 
-            //     $finDia = clone $fin;
-            //     $finDia->setTime(0, 0, 0);
+        list($hEntrada, $mEntrada, $sEntrada) = array_pad($horaEntrada, 3, 0);
+        list($hSalida, $mSalida, $sSalida) = array_pad($horaSalida, 3, 0);
 
-            //     $minutosTotales = 0;
+        $minutosTotales = 0;
 
-            //     list($h, $m, $s) = array_pad(explode(':', $hora_entrada), 3, 0);
-            //         $inicioDia->setTime((int)$h, (int)$m, (int)$s);
+        $periodo = new \DatePeriod((clone $inicio)->setTime(0, 0), new \DateInterval('P1D'), (clone $fin)->setTime(0, 0)->modify('+1 day'));
 
-            //     list($h, $m, $s) = array_pad(explode(':', $hora_salida), 3, 0);
-            //         $finDia->setTime((int)$h, (int)$m, (int)$s);
+        foreach ($periodo as $dia) {
+            if (in_array($dia->format('N'), [6, 7])) continue; 
 
-            //     $intervalo = new \DateInterval('P1D');
-            //      $rango = new \DatePeriod(clone $inicio, $intervalo, (clone $fin)->modify('+1 day'));
+            $horaInicio = (clone $dia)->setTime($hEntrada, $mEntrada, $sEntrada);
+            $horaFin = (clone $dia)->setTime($hSalida, $mSalida, $sSalida);
 
-            //     foreach ($rango as $fecha) {
-            //         if (in_array($fecha->format('N'), [6, 7])) continue;  
-            //         list($h, $m, $s) = array_pad(explode(':', $hora_entrada), 3, 0);
-            //             $inicioDia->setTime((int)$h, (int)$m, (int)$s);
+            $desde = max($horaInicio, $inicio);
+            $hasta = min($horaFin, $fin);
 
-            //         list($h, $m, $s) = array_pad(explode(':', $hora_salida), 3, 0);
-            //             $finDia->setTime((int)$h, (int)$m, (int)$s);
-            //         $desde = max($inicioDia, $inicio);
-            //         $hasta = min($finDia, $fin);
-
-            //         if ($desde < $hasta) {
-            //             $minutos = ($hasta->getTimestamp() - $desde->getTimestamp()) / 60;
-            //             $minutosTotales += $minutos;
-            //         }
-                    
-            //         }
-            //         $horas = floor($minutosTotales / 60);
-            //         $minutos = $minutosTotales % 60;
-            //         $segundos = 0;
-            //         $tiempoSolucion = sprintf('%02d:%02d:%02d', $horas, $minutos, $segundos);
-
-            //         $ticket->update([
-            //             'estatus_id' => $this->estatus,
-            //             'solucion' => strtoupper($this->descripcion),
-            //             'fecha_termino' => $fin,
-            //             'tiempo_solucion' => $tiempoSolucion,
-            //         ]);
-            //     }
-
-
-         
-if ($this->estatus == 'CERRADO') {
-    $inicio = new \DateTime($ticket->created_at);
-    $fin = new \DateTime();
-    dd( $ticket->tecnico->hora_entrada);
-    $hora_entrada = $ticket->tecnico->hora_entrada;
-    $hora_salida = $ticket->tecnico->hora_salida;
-
-    $segundosTotales = 0;
-    $intervalo = new \DateInterval('P1D');
-    $rango = new \DatePeriod(clone $inicio, $intervalo, (clone $fin)->modify('+1 day'));
-
-    foreach ($rango as $fecha) {
-        if (in_array($fecha->format('N'), [6, 7])) continue;
-
-        $rangoInicio = ($fecha->format('Y-m-d') == $inicio->format('Y-m-d')) ? max($inicio, $laboralInicio) : $laboralInicio;
-        $rangoFin = ($fecha->format('Y-m-d') == $fin->format('Y-m-d')) ? min($fin, $laboralFin) : $laboralFin;
-
-        if ($rangoInicio < $rangoFin) {
-            $segundosTotales += $rangoFin->getTimestamp() - $rangoInicio->getTimestamp();
+            if ($desde < $hasta) {
+                $minutosTotales += ($hasta->getTimestamp() - $desde->getTimestamp()) / 60;
+            }
         }
+
+        $tiempoSolucion = sprintf('%02d%02d%02d',
+            floor($minutosTotales / 60),
+            $minutosTotales % 60,
+            0
+        );
+
+        $ticket->update([
+            'estatus_id' => $this->estatus,
+            'solucion' => strtoupper($this->descripcion),
+            'fecha_termino' => $fin,
+            'tiempo_solucion' => $tiempoSolucion,
+        ]);
     }
 
-    // Convertir a formato H:i:s para guardar en campo TIME
-    $horas = floor($segundosTotales / 3600);
-    $minutos = floor(($segundosTotales % 3600) / 60);
-    $segundos = $segundosTotales % 60;
-    $tiempoSolucion = sprintf('%02d:%02d:%02d', $horas, $minutos, $segundos);
 
-    $ticket->update([
-        'estatus_id' => $this->estatus,
-        'solucion' => strtoupper($this->descripcion),
-        'fecha_termino' => $fin,
-        'tiempo_solucion' => $tiempoSolucion,
-    ]);
-}
-
-            $this->reset(['open', 'ticket', 'estatus', 'descripcion']);
+        $this->reset(['open', 'ticket', 'estatus', 'descripcion']);
 
         $ticket = Ticket::with('opciones')->find($ticket->folio);
         // Enviamos un correo al usuario
         // Mail::to($ticket->usuario->user->email)->send(new TicketActualizado($ticket));
-        
+
     }
 
     public function mount()
@@ -181,7 +134,7 @@ if ($this->estatus == 'CERRADO') {
                     'descripcion' => $ticket->descripcion,
                 ];
             });
-        
+
         return view('livewire.support.update-ticket-modal', compact('tickets'));
     }
 }

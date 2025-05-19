@@ -14,6 +14,7 @@
                     <th class="p-2">Fecha de creación</th>
                     <th class="p-2">Descripción</th>
                     <th class="p-2">Solución</th>
+                    <th class="p-2">Tiempo de Resolución</th>
                     <th class="p-2">Estatus</th>
                     <th class="p-2">Acción</th>
                 </tr>
@@ -27,6 +28,7 @@
                         <td class="p-2">{{ $ticket->created_at }}</td>
                         <td class="p-2">{{ $ticket->descripcion }}</td>
                         <td class="p-2">{{ $ticket->solucion }}</td>
+                        <td class="p-2">{{ $ticket->tiempo_solucion }}</td>
                         <td class="p-2">{{ $ticket->estatus_id }}</td>
                         <td class="p-2">
                             @if ($ticket->estatus_id === 'CERRADO')
