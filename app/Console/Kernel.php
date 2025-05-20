@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('tickets:actualizar-prioridad')->hourly();
+        $schedule->command('app:actualizar-prioridad')->hourly();
     }
 
     /**

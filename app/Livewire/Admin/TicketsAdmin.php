@@ -5,6 +5,7 @@ namespace App\Livewire\Admin;
 use App\Models\Ticket;
 use Livewire\Attributes\On;
 use App\Models\Support;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -68,43 +69,39 @@ class TicketsAdmin extends Component
         $this->dispatch('abrir-revision-modal', $ticket);
     }
 
-public function cerrarTicket($folio){
- $ticket = Ticket::findorFail($folio);
- 
-if ($this->estatus === 'CERRADO') {
-    
-        $inicio = new \DateTime($ticket->created_at);
-        $fin = new \DateTime(); 
-
-        $horaEntrada = explode(':', $ticket->tecnico->hora_entrada);
-        $horaSalida = explode(':', $ticket->tecnico->hora_salida);
-
-        list($hEntrada, $mEntrada, $sEntrada) = array_pad($horaEntrada, 3, 0);
-        list($hSalida, $mSalida, $sSalida) = array_pad($horaSalida, 3, 0);
-
-        $minutosTotales = 0;
-
-        $periodo = new \DatePeriod((clone $inicio)->setTime(0, 0), new \DateInterval('P1D'), (clone $fin)->setTime(0, 0)->modify('+1 day'));
-
-        foreach ($periodo as $dia) {
-            if (in_array($dia->format('N'), [6, 7])) continue; 
-        $ticket = Ticket::findorFail($folio);
-        $valorAnterior = $ticket->estatus_id;
-        $ticket->update(['estatus_id' => 'CERRADO']);
-
-        DB::table('ticket_history')->insert([
-            'ticket_id' => $ticket->folio,
-            'campo_modificado' => 'estatus_id',
-            'valor_anterior' => $valorAnterior,
-            'valor_nuevo' => 'CERRADO',
-            'fecha_cambio' => now(),
-        ]);
-    }
-
-    public function abrirHistorial($ticket)
+public function cerrarTicket($folio)
     {
-        $this->dispatch('abrir-historial-modal', $ticket);
-    }
+        $ticket = Ticket::findorFail($folio);
+ 
+        if ($this->estatus === 'CERRADO') {
+        
+            $inicio = new \DateTime($ticket->created_at);
+            $fin = new \DateTime(); 
+
+            $horaEntrada = explode(':', $ticket->tecnico->hora_entrada);
+            $horaSalida = explode(':', $ticket->tecnico->hora_salida);
+
+            list($hEntrada, $mEntrada, $sEntrada) = array_pad($horaEntrada, 3, 0);
+            list($hSalida, $mSalida, $sSalida) = array_pad($horaSalida, 3, 0);
+
+            $minutosTotales = 0;
+
+            $periodo = new \DatePeriod((clone $inicio)->setTime(0, 0), new \DateInterval('P1D'), (clone $fin)->setTime(0, 0)->modify('+1 day'));
+
+            foreach ($periodo as $dia) {
+                if (in_array($dia->format('N'), [6, 7])) continue; 
+            $ticket = Ticket::findorFail($folio);
+            $valorAnterior = $ticket->estatus_id;
+            $ticket->update(['estatus_id' => 'CERRADO']);
+
+            DB::table('ticket_history')->insert([
+                'ticket_id' => $ticket->folio,
+                'campo_modificado' => 'estatus_id',
+                'valor_anterior' => $valorAnterior,
+                'valor_nuevo' => 'CERRADO',
+                'fecha_cambio' => now(),
+            ]);
+            }
 
             $horaInicio = (clone $dia)->setTime($hEntrada, $mEntrada, $sEntrada);
             $horaFin = (clone $dia)->setTime($hSalida, $mSalida, $sSalida);
@@ -129,8 +126,13 @@ if ($this->estatus === 'CERRADO') {
             'tiempo_solucion' => $tiempoSolucion,
           
         ]);
-        
-}
+    }
 
-}
+    public function abrirHistorial($ticket)
+    {
+        $this->dispatch('abrir-historial-modal', $ticket);
+    }
+
+        
+        
 }

@@ -27,15 +27,17 @@ class ActualizarPrioridadTickets extends Command
      */
     public function handle()
     {
-         $ahora = Carbon::now();
+        $ahora = Carbon::now();
 
-        // Cambiar a MEDIA si pasaron más de 24h y sigue siendo BAJA
+        // Cambiar a MEDIA si pasaron más de 24h y sigue siendo BAJA y está ABIERTO
         Ticket::where('prioridad_id', 'BAJA')
+            ->where('estatus_id', 'ABIERTO')
             ->where('created_at', '<=', $ahora->copy()->subHours(24))
             ->update(['prioridad_id' => 'MEDIA']);
 
-        // Cambiar a ALTA si pasaron más de 48h y sigue siendo MEDIA o BAJA
+        // Cambiar a ALTA si pasaron más de 48h y sigue siendo MEDIA o BAJA y está ABIERTO
         Ticket::whereIn('prioridad_id', ['BAJA', 'MEDIA'])
+            ->where('estatus_id', 'ABIERTO')
             ->where('created_at', '<=', $ahora->copy()->subHours(48))
             ->update(['prioridad_id' => 'ALTA']);
 
