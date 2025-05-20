@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 
 use function Pest\Laravel\get;
 
@@ -77,6 +79,7 @@ class UpdateTicketModal extends Component
         ];
 
         if ($this->estatus === 'CERRADO') {
+
             $inicio = new \DateTime($ticket->created_at);
             //$fin = new \DateTime($fechaTermino); 
 
@@ -114,6 +117,7 @@ class UpdateTicketModal extends Component
                 $minutosTotales % 60,
                 0
             );
+
 
             $ticket->update([
                 'estatus_id' => $this->estatus,
@@ -161,7 +165,7 @@ class UpdateTicketModal extends Component
 
         $ticket = Ticket::with('opciones')->find($ticket->folio);
         // Enviamos un correo al usuario
-        Mail::to($ticket->usuario->user->email)->send(new TicketActualizado($ticket));
+        //Mail::to($ticket->usuario->user->email)->send(new TicketActualizado($ticket));
     }
 
     public function mount()
