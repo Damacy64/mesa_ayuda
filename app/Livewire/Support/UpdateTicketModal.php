@@ -78,6 +78,8 @@ class UpdateTicketModal extends Component
 
         if ($this->estatus === 'CERRADO') {
             $inicio = new \DateTime($ticket->created_at);
+            //$fin = new \DateTime($fechaTermino); 
+
             $fin = new \DateTime();
 
             $horaEntrada = explode(':', $ticket->tecnico->hora_entrada);
@@ -91,7 +93,9 @@ class UpdateTicketModal extends Component
             $periodo = new \DatePeriod((clone $inicio)->setTime(0, 0), new \DateInterval('P1D'), (clone $fin)->setTime(0, 0)->modify('+1 day'));
 
             foreach ($periodo as $dia) {
+
                 if (in_array($dia->format('N'), [6, 7])) continue;
+
 
                 $horaInicio = (clone $dia)->setTime($hEntrada, $mEntrada, $sEntrada);
                 $horaFin = (clone $dia)->setTime($hSalida, $mSalida, $sSalida);
@@ -111,8 +115,17 @@ class UpdateTicketModal extends Component
                 0
             );
 
+            $ticket->update([
+                'estatus_id' => $this->estatus,
+                'solucion' => strtoupper($this->descripcion),
+                'fecha_termino' => $fin,
+                'tiempo_solucion' => $tiempoSolucion,
+            ]);
+
             $campos['fecha_termino'] = $fin;
         }
+
+        $this->reset(['open', 'ticket', 'estatus', 'descripcion']);
 
         // Guarda el historial de cambios
         foreach ($campos as $campo => $valorNuevo){
