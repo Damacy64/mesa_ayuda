@@ -23,6 +23,8 @@ class AgregarTecnicoModal extends Component
     public $email;
     public $email_confirmation;
     public $password;
+    public $entrada;
+    public $salida;
 
     protected $rules = [
         'name' => ['required'],
@@ -32,6 +34,8 @@ class AgregarTecnicoModal extends Component
         'email' => ['required', 'email'],
         'email_confirmation' => ['required', 'same:email'],
         'password' => ['required', 'min:8', 'max:15'],
+        'entrada' => ['required', 'date_format:H:i'],
+        'salida' => ['required', 'date_format:H:i'],
     ];
 
     #[On('agregarTecnicoModal')]
@@ -51,6 +55,8 @@ class AgregarTecnicoModal extends Component
             'email',
             'email_confirmation',
             'password',
+            'entrada',
+            'salida',
         ]);
         $this->open = false;
         $this->resetValidation();
@@ -74,12 +80,11 @@ class AgregarTecnicoModal extends Component
 
         Support::create([
             'empleado_id' => $tecnico->id,
-            'carga_trabajo' => 0,
-            'disponibilidad' => 'DESOCUPADO',
             'estado' => 'HABILITADO',
+            'hora_entrada' => $this->entrada,
+            'hora_salida' => $this->salida,
         ]);
 
-        //$this->emit('refreshTecnicos');
         $this->close();
     }
 
