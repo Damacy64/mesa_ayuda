@@ -59,16 +59,18 @@
                                             Revisión
                                         </button>
                                         <!-- Opción 2 -->
-                                        <button wire:click="cerrarTicket({{ $item->folio }})" @click="open = false"
-                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
-                                            role="menuitem">
-                                            Cerrar
-                                        </button>
+                                        @if($item->estatus_id !== 'CERRADO')
+                                            <button wire:click="cerrarTicket({{ $item->folio }})" @click="open = false"
+                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                                                role="menuitem">
+                                                Cerrar
+                                            </button>
+                                        @endif
                                         <!-- Opción 3 -->
                                         <button wire:click="abrirHistorial({{ $item->folio }})" @click="open = false"
                                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
                                             role="menuitem">
-                                            Historial
+                                            Ver Historial
                                         </button>
                                     </div>
                                 </div>
