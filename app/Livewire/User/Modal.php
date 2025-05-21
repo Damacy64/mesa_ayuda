@@ -190,6 +190,7 @@ class Modal extends Component
         // Resetear los campos
         $this->dispatch('ticketCreated', $ticket->id);
         $this->closemodal();
+        $browser->refresh();
     }
 
     public function asignarTecnico()

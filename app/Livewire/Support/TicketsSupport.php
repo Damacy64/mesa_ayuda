@@ -13,7 +13,18 @@ class TicketsSupport extends Component
     use WithPagination;
 
     public $search = '';
-
+    public $sortField = '';
+    public $sortDirection = 'asc';
+    public function sortBy($field)
+    {
+        if ($this->sortField === $field) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortField = $field;
+            $this->sortDirection = 'asc';
+        }   
+        $this->sortField = $field;
+    }
     public function updatingSearch()
     {
         $this->resetPage();
@@ -49,7 +60,7 @@ class TicketsSupport extends Component
                         ->orWhere('estatus_id',  'like', "%{$search}%");
                 });
             })
-            ->orderByDesc('created_at')
+            ->orderBy($this->sortField ?: 'created_at', $this->sortDirection)
             ->paginate(5);
         
         // Retornar la vista con los tickets filtrados

@@ -14,7 +14,15 @@
                     <th class="p-2">Nombre</th>
                     <th class="p-2">Área</th>
                     <th class="p-2">Ubicación</th>
-                    <th class="p-2">Fecha de Creación</th>
+                    <th class="p-2 cursor-pointer select-none" wire:click="sortBy('created_at')">Fecha de creación
+                        @if ($sortField === 'created_at')
+                            @if ($sortDirection === 'asc')
+                                ▲
+                            @else
+                                ▼
+                            @endif
+                        @endif
+                    </th>
                     <th class="p-2">Prioridad</th>
                     <th class="p-2">Estatus</th>
                     <th class="p-2">Tiempo de Resolución</th>
@@ -51,8 +59,8 @@
     </div>
 
     <div class="mt-4">
-       <div wire:ignore>
-        {{ $tickets->links('components.pagination') }}
+        <div wire:ignore>
+            {{ $tickets->links('components.pagination') }}
         </div>
     </div>
 </div>
