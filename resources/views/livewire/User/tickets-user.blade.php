@@ -2,13 +2,21 @@
     <div class="flex items-center mb-4 p-4">
         <h1 class="text-2xl font-bold text-black">Resumen de tickets</h1>
     </div>
-    
+
     @livewire('user.modal-reabrir')
     <div class="overflow-x-auto mb-6">
         <table class="w-full text-sm text-left bg-white border">
             <thead class="bg-afac-golden text-white">
                 <tr>
-                    <th class="p-2">Folio</th>
+                    <th class="p-2 cursor-pointer select-none" wire:click="sortBy('folio')">Folio
+                        @if ($sortField === 'folio')
+                            @if ($sortDirection === 'asc')
+                                ▲
+                            @else
+                                ▼
+                            @endif
+                        @endif
+                    </th>
                     <th class="p-2">Título</th>
                     <th class="p-2">Dispositivo</th>
                     <th class="p-2">Fecha de creación</th>
@@ -24,7 +32,7 @@
                     <tr class="border-t">
                         <td class="p-2">{{ $ticket->folio }}</td>
                         <td class="p-2">{{ $ticket->titulo }}</td>
-                        <td class="p-2">{{ $ticket->equipo_id ?? 'N/A'}}</td>
+                        <td class="p-2">{{ $ticket->equipo_id ?? 'N/A' }}</td>
                         <td class="p-2">{{ $ticket->created_at }}</td>
                         <td class="p-2">{{ $ticket->descripcion }}</td>
                         <td class="p-2">{{ $ticket->solucion }}</td>
@@ -49,8 +57,8 @@
     </div>
 
     <div class="mt-4">
-        <div wire:ignore>
+        {{-- <div wire:ignore> --}}
         {{ $tickets->links('components.pagination') }}
-        </div>
+        {{-- </div> --}}
     </div>
 </div>

@@ -40,9 +40,7 @@ class ModalReabrir extends Component
                 DB::raw("MAX(CASE WHEN o.nivel = 'falla' THEN o.valor END) as tipo_falla"),
                 't.descripcion',
                 't.solucion',
-
-                't.equipo_numero_serie'
-
+                't.equipo_numero_serie',
             )
             ->groupBy('t.folio', 't.titulo', 'c.modelo', 't.descripcion', 't.solucion', 't.equipo_numero_serie')
             ->where('t.folio', $this->folio)

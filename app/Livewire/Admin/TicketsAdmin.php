@@ -12,9 +12,25 @@ use Livewire\WithPagination;
 class TicketsAdmin extends Component
 {
     use WithPagination;
+    
     public $search = '';
     public $ticket;
     public $estatus= 'CERRADO';
+    public $fecha_termino;
+    public $sortField = '';
+    public $sortDirection = 'asc';
+
+    public function sortBy($field)
+    {
+        if ($this->sortField === $field) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortField = $field;
+            $this->sortDirection = 'asc';
+        }   
+        $this->sortField = $field;
+    }
+
     public function updatingSearch()
     {
         $this->resetPage();
@@ -58,7 +74,7 @@ class TicketsAdmin extends Component
                         );
                 });
             })
-            ->orderByDesc('created_at')
+            ->orderBy($this->sortField ?: 'created_at', $this->sortDirection)
             ->paginate(5);
 
         return view('livewire.admin.tickets-admin', compact('tickets'));
@@ -75,8 +91,8 @@ public function cerrarTicket($folio)
  
         if ($this->estatus === 'CERRADO') {
         
-            $inicio = new \DateTime($ticket->created_at);
-            $fin = new \DateTime(); 
+            $created_at = new \DateTime($ticket->created_at);
+            $fecha_termino = new \DateTime(); 
 
             $horaEntrada = explode(':', $ticket->tecnico->hora_entrada);
             $horaSalida = explode(':', $ticket->tecnico->hora_salida);
@@ -86,7 +102,7 @@ public function cerrarTicket($folio)
 
             $minutosTotales = 0;
 
-            $periodo = new \DatePeriod((clone $inicio)->setTime(0, 0), new \DateInterval('P1D'), (clone $fin)->setTime(0, 0)->modify('+1 day'));
+            $periodo = new \DatePeriod((clone $created_at)->setTime(0, 0), new \DateInterval('P1D'), (clone $fecha_termino)->setTime(0, 0)->modify('+1 day'));
 
             foreach ($periodo as $dia) {
                 if (in_array($dia->format('N'), [6, 7])) continue; 
@@ -101,18 +117,18 @@ public function cerrarTicket($folio)
                 'valor_nuevo' => 'CERRADO',
                 'fecha_cambio' => now(),
             ]);
-            }
-
             $horaInicio = (clone $dia)->setTime($hEntrada, $mEntrada, $sEntrada);
             $horaFin = (clone $dia)->setTime($hSalida, $mSalida, $sSalida);
 
-            $desde = max($horaInicio, $inicio);
-            $hasta = min($horaFin, $fin);
+            $desde = max($horaInicio, $created_at);
+            $hasta = min($horaFin, $fecha_termino);
 
             if ($desde < $hasta) {
                 $minutosTotales += ($hasta->getTimestamp() - $desde->getTimestamp()) / 60;
+                }
             }
         }
+        $fecha_termino = $fecha_termino->format('Y-m-d H:i:s');   
 
         $tiempoSolucion = sprintf('%02d%02d%02d',
             floor($minutosTotales / 60),
@@ -122,7 +138,7 @@ public function cerrarTicket($folio)
 
         $ticket->update([
             'estatus_id' => $this->estatus,
-            'fecha_termino' => $fin,
+            'fecha_termino' => $fecha_termino,
             'tiempo_solucion' => $tiempoSolucion,
           
         ]);

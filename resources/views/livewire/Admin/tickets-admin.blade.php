@@ -14,7 +14,15 @@
                     <th class="p-2">Nombre</th>
                     <th class="p-2">Tipo de Ticket</th>
                     <th class="p-2">Tipo de Falla</th>
-                    <th class="p-2">Fecha de Creación</th>
+                    <th class="p-2 cursor-pointer select-none" wire:click="sortBy('created_at')">Fecha de creación
+                        @if ($sortField === 'created_at')
+                            @if ($sortDirection === 'asc')
+                                ▲
+                            @else
+                                ▼
+                            @endif
+                        @endif
+                    </th>
                     <th class="p-2">Prioridad</th>
                     <th class="p-2">Estatus</th>
                     <th class="p-2">Tiempo de Resolución</th>
@@ -59,7 +67,8 @@
                                 <!-- Dropdown -->
                                 <div x-show="open" @click.away="open = false"
                                     class="z-50 origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                                    <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                                    <div class="py-1" role="menu" aria-orientation="vertical"
+                                        aria-labelledby="options-menu">
                                         <!-- Opción 1 -->
                                         <button wire:click="abrirModal({{ $item->folio }})" @click="open = false"
                                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
@@ -100,7 +109,7 @@
     </div>
     <div class="mt-4">
         <div wire:ignore>
-        {{ $tickets->withQueryString()->links('components.pagination') }}
+            {{ $tickets->withQueryString()->links('components.pagination') }}
         </div>
     </div>
 </div>
