@@ -104,7 +104,7 @@ class DevicesAssigned extends Component
             });
         })
             ->orderBy($this->sortField ?: 'fecha_asignacion', $this->sortDirection)
-            ->paginate(5);
+            ->paginate(15);
 
         return view('livewire.admin.devices-assigned', compact('computers'));
     }

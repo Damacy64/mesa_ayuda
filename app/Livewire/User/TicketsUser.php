@@ -32,8 +32,7 @@ class TicketsUser extends Component
     public function render()
     {
         return view('livewire.user.tickets-user', [
-            // 'tickets' => Ticket::where('usuario_id', Auth::user()->userFinal->id)->orderBy($this->sortField, $this->sortDirection)->paginate(5),
-                'tickets' => Ticket::where('usuario_id', Auth::user()->userFinal->id)->orderBy($this->sortField ?: 'folio', $this->sortDirection)->paginate(5),
+                'tickets' => Ticket::where('usuario_id', Auth::user()->userFinal->id)->orderBy($this->sortField ?: 'folio', $this->sortDirection)->paginate(15),
         ]);
     }
  
