@@ -34,12 +34,20 @@
                 @forelse ($tickets as $item)
                     <tr class="border-t">
                         <td class="p-2">{{ $item->usuario->user->employer_number }}</td>
-
                         <td class="p-2">{{ $item->usuario->user->name }}</td>
                         <td class="p-2">{{ $item->tipo_ticket }}</td>
                         <td class="p-2">{{ $item->tipo_falla ?? 'N/A' }}</td>
                         <td class="p-2">{{ $item->created_at }}</td>
-                        <td class="p-2">{{ $item->prioridad_id }}</td>
+                        <td class="p-2">
+                            <span class="
+                                px-2 py-1 rounded font-bold
+                                @if($item->prioridad_id === 'ALTA') bg-red-500 text-white
+                                @elseif($item->prioridad_id === 'MEDIA') bg-yellow-400 text-black
+                                @elseif($item->prioridad_id === 'BAJA') bg-green-500 text-white
+                                @endif">
+                                {{ $item->prioridad_id }}
+                            </span>
+                        </td>
                         <td class="p-2">{{ $item->estatus_id }}</td>
                         <td class="p-2">{{ $item->tiempo_solucion }}</td>
                         <td class="p-2">{{ $item->tecnico->user->name }}</td>
@@ -68,16 +76,18 @@
                                             Revisión
                                         </button>
                                         <!-- Opción 2 -->
-                                        <button wire:click="cerrarTicket({{ $item->folio }})" @click="open = false"
-                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
-                                            role="menuitem">
-                                            Cerrar
-                                        </button>
+                                        @if($item->estatus_id !== 'CERRADO')
+                                            <button wire:click="cerrarTicket({{ $item->folio }})" @click="open = false"
+                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                                                role="menuitem">
+                                                Cerrar
+                                            </button>
+                                        @endif
                                         <!-- Opción 3 -->
                                         <button wire:click="abrirHistorial({{ $item->folio }})" @click="open = false"
                                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
                                             role="menuitem">
-                                            Historial
+                                            Ver Historial
                                         </button>
                                     </div>
                                 </div>
@@ -86,7 +96,7 @@
                     </tr>
                 @empty
                     <tr class="text-black">
-                        <td colspan="9" class="text-center py-4">No hay tickets.</td>
+                        <td colspan="10" class="text-center py-4">No hay tickets.</td>
                     </tr>
                 @endforelse
             </tbody>
