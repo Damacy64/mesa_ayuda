@@ -131,8 +131,5 @@ public function cerrarTicket($folio)
     public function abrirHistorial($ticket)
     {
         $this->dispatch('abrir-historial-modal', $ticket);
-    }
-
-        
-        
+    }     
 }
