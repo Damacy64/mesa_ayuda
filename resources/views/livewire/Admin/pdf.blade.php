@@ -42,7 +42,7 @@
 </head>
 <body>
     <header>
-        {{-- <img src="{{ public_path('images/logo.png') }}" alt="Logo AFAC" style="height: 60px;"> --}}
+        <img src="images/logo.png" alt="LogoAFAC" style="height: 60px;">
     </header>
 
     <h2>Reporte de Estadísticas de la Mesa de Ayuda </h2>
