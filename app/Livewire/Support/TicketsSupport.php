@@ -19,7 +19,8 @@ class TicketsSupport extends Component
     {
         if ($this->sortField === $field) {
             $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
-        } else {
+        } 
+        else {
             $this->sortField = $field;
             $this->sortDirection = 'asc';
         }   
@@ -61,7 +62,7 @@ class TicketsSupport extends Component
                 });
             })
             ->orderBy($this->sortField ?: 'created_at', $this->sortDirection)
-            ->paginate(5);
+            ->paginate(15);
         
         // Retornar la vista con los tickets filtrados
         return view('livewire.support.tickets-support', compact('tickets'));

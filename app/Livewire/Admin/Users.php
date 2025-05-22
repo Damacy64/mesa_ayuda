@@ -51,8 +51,7 @@ class Users extends Component
                 });
             })
             ->orderByDesc('empleado_id')
-            ->paginate(5);
-        //dd($usuarios);
+            ->paginate(15);
         $this->totalUsuarios = UserFinal::where('estado', 'HABILITADO')->count();
         return view('livewire.admin.users', compact('usuarios'));
     }

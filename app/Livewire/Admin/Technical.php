@@ -62,7 +62,7 @@ class Technical extends Component
             })
             ->where('estado', '!=', 'ELIMINADO')
             ->orderByDesc('empleado_id')
-            ->paginate(5);
+            ->paginate(15);
         $this->totalTecnicos = Support::where('estado', '!=', 'ELIMINADO')->count();
         return view('livewire.admin.technical', compact('tecnicos'));
     }

@@ -71,8 +71,10 @@ class ModalReabrir extends Component
         if ($ticketAbrir) {
             $valorAnterior = $ticketAbrir->estatus_id;
             $ticketAbrir->update([
-                'estatus_id' => 'ABIERTO',
+                'estatus_id' => 'REABIERTO',
                 'descripcion' => Str::upper($this->descripcion),
+                'prioridad_id' => 'BAJA',
+                'created_at' => now(),
             ]);
 
             // Registrar el cambio en el historial

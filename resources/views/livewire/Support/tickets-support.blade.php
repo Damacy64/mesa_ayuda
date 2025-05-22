@@ -14,14 +14,7 @@
                     <th class="p-2">Nombre</th>
                     <th class="p-2">Área</th>
                     <th class="p-2">Ubicación</th>
-                    <th class="p-2 cursor-pointer select-none" wire:click="sortBy('created_at')">Fecha de creación
-                        @if ($sortField === 'created_at')
-                            @if ($sortDirection === 'asc')
-                                ▲
-                            @else
-                                ▼
-                            @endif
-                        @endif
+                    <th class="p-2 cursor-pointer select-none" wire:click="sortBy('created_at')">Fecha de creación ▲▼
                     </th>
                     <th class="p-2">Prioridad</th>
                     <th class="p-2">Estatus</th>
@@ -37,11 +30,18 @@
                         <td class="p-2">{{ $item->usuario->area->nombre }}</td>
                         <td class="p-2">{{ $item->usuario->ubicacion_id }}</td>
                         <td class="p-2">{{ $item->created_at }}</td>
-                        <td class="p-2">{{ $item->prioridad_id }}</td>
+                        <td class="p-2"><span class="
+                                px-2 py-1 rounded font-bold
+                                @if($item->prioridad_id === 'ALTA') bg-red-500 text-white
+                                @elseif($item->prioridad_id === 'MEDIA') bg-yellow-400 text-black
+                                @elseif($item->prioridad_id === 'BAJA') bg-green-500 text-white
+                                @endif">
+                                {{ $item->prioridad_id }}
+                            </span></td>
                         <td class="p-2">{{ $item->estatus_id }}</td>
                         <td class="p-2">{{ $item->tiempo_solucion }}</td>
                         <td class="p-2">
-                            @if ($item->estatus_id === 'ABIERTO' || $item->estatus_id === 'EN REVISIÓN')
+                            @if ($item->estatus_id !== 'CERRADO')
                                 <a href="" wire:click.prevent="abrirModal( {{ $item->folio }} )"
                                     class="text-blue-500 hover:text-blue-700">Actualizar</a>
                             @else

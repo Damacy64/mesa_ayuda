@@ -75,7 +75,7 @@ class TicketsAdmin extends Component
                 });
             })
             ->orderBy($this->sortField ?: 'created_at', $this->sortDirection)
-            ->paginate(5);
+            ->paginate(15);
 
         return view('livewire.admin.tickets-admin', compact('tickets'));
     }

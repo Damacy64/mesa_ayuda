@@ -8,14 +8,7 @@
         <table class="w-full text-sm text-left bg-white border">
             <thead class="bg-afac-golden text-white">
                 <tr>
-                    <th class="p-2 cursor-pointer select-none" wire:click="sortBy('folio')">Folio
-                        @if ($sortField === 'folio')
-                            @if ($sortDirection === 'asc')
-                                ▲
-                            @else
-                                ▼
-                            @endif
-                        @endif
+                    <th class="p-2 cursor-pointer select-none" wire:click="sortBy('folio')">Folio ▲▼
                     </th>
                     <th class="p-2">Título</th>
                     <th class="p-2">Dispositivo</th>
@@ -37,7 +30,12 @@
                         <td class="p-2">{{ $ticket->descripcion }}</td>
                         <td class="p-2">{{ $ticket->solucion }}</td>
                         <td class="p-2">{{ $ticket->tiempo_solucion }}</td>
-                        <td class="p-2">{{ $ticket->estatus_id }}</td>
+                        <td class="p-2">
+                            @if ($ticket->estatus_id !== 'REABIERTO')
+                                {{ $ticket->estatus_id }}</td>
+                            @else
+                                ABIERTO
+                            @endif
                         <td class="p-2">
                             @if ($ticket->estatus_id === 'CERRADO')
                                 <a href="" wire:click.prevent="reabrirTicket({{ $ticket->folio }})"

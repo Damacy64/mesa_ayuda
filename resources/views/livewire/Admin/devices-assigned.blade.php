@@ -22,15 +22,7 @@
                     <th class="p-2">Dispositivo</th>
                     <th class="p-2">Modelo</th>
                     <th class="p-2">Marca</th>
-                    <th class="p-2 cursor-pointer select-none" wire:click="sortBy('fecha_asignacion')">Fecha Asignación
-                        @if ($sortField === 'fecha_asignacion')
-                            @if ($sortDirection === 'asc')
-                                ▲
-                            @else
-                                ▼
-                            @endif
-                        @endif
-                    </th>
+                    <th class="p-1 cursor-pointer select-none" wire:click="sortBy('fecha_asignacion')">Fecha Asignación ▲▼</th>
                     <th class="p-2">Acción</th>
                 </tr>
             </thead>

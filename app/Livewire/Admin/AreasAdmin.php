@@ -33,7 +33,7 @@ class AreasAdmin extends Component
                     ->orWhere('descripcion', 'like', '%' . $this->search . '%');
             })
             ->orderBy('nombre')
-            ->paginate(5);
+            ->paginate(15);
 
         return view('livewire.admin.areas-admin', compact('areas'));
     }
