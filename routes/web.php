@@ -9,6 +9,13 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('reset-password/{token}', function ($token) {
+    return view('auth.reset-password', [
+        'token' => $token,
+        'email' => request('email')
+    ]);
+})->middleware('guest')->name('password.reset');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
