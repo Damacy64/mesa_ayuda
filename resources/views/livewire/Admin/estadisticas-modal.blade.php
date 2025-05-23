@@ -77,9 +77,9 @@
 
                                 {{-- esto es para descargarlo --}}
 
-                                <x-button wire:click="exportarPDF">
+                                {{-- <x-button wire:click="exportarPDF">
                                     DESCARGAR
-                                </x-button>
+                                </x-button> --}}
 
                                 {{--  esto es para ver la vista pdf --}}
                                 {{-- <a href="{{ route('admin.pdf', ['startDate' => $startDate, 'endDate' => $endDate]) }}" 

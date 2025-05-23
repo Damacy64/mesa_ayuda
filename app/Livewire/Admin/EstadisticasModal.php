@@ -74,27 +74,27 @@ class EstadisticasModal extends Component
             ->map(fn($items) => $items->count())
             ->toArray();
     }
-    // esto es para cuando lo descargue pdf
+    // // esto es para cuando lo descargue pdf
    
-    public function exportarPDF()
-    {
-        $data = [
-            'totalTickets' => $this->totalTickets,
-            'openTickets' => $this->openTickets,
-            'inReviewTickets' => $this->inReviewTickets,
-            'closedTickets' => $this->closedTickets,
-            'avgClosedTime' => $this->avgClosedTime,
-            'ticketsByCategory' => $this->ticketsByCategory,
-            'startDate' => $this->startDate,
-            'endDate' => $this->endDate,
-        ];
+    // public function exportarPDF()
+    // {
+    //     $data = [
+    //         'totalTickets' => $this->totalTickets,
+    //         'openTickets' => $this->openTickets,
+    //         'inReviewTickets' => $this->inReviewTickets,
+    //         'closedTickets' => $this->closedTickets,
+    //         'avgClosedTime' => $this->avgClosedTime,
+    //         'ticketsByCategory' => $this->ticketsByCategory,
+    //         'startDate' => $this->startDate,
+    //         'endDate' => $this->endDate,
+    //     ];
 
-        $pdf = Pdf::loadView('livewire.admin.pdf', $data);
-       return response()->streamDownload(function () use ($pdf) {
-         echo $pdf->stream();
-        }, 'estadisticas.pdf');
+    //     $pdf = Pdf::loadView('livewire.admin.pdf', $data);
+    //    return response()->streamDownload(function () use ($pdf) {
+    //      echo $pdf->stream();
+    //     }, 'estadisticas.pdf');
 
-    }
+    // }
 
     public function render()
     {

@@ -5,6 +5,8 @@ namespace App\Livewire\Admin;
 use App\Models\Computer;
 use App\Models\ComputerUserFinal;
 use Livewire\Attributes\On;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -53,6 +55,21 @@ class DevicesAssigned extends Component
             $equipo->delete();
         }
         $this->dispatch('reasignado');
+    }
+
+     // esto es para cuando lo descargue pdf
+   
+    public function exportarPDF()
+    {
+        $data = [
+           
+        ];
+
+        $pdf = Pdf::loadView('livewire.admin.formato', $data);
+       return response()->streamDownload(function () use ($pdf) {
+         echo $pdf->stream();
+        }, 'formato.pdf');
+
     }
 
     #[On('reasignado')]
