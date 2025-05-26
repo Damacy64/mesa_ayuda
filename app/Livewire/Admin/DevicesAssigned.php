@@ -59,17 +59,21 @@ class DevicesAssigned extends Component
 
      // esto es para cuando lo descargue pdf
    
-    public function exportarPDF()
-    {
-        $data = [
+    // public function exportarPDF()
+    // {
+    //     $data = [
            
-        ];
+    //     ];
 
-        $pdf = Pdf::loadView('livewire.admin.formato', $data);
-       return response()->streamDownload(function () use ($pdf) {
-         echo $pdf->stream();
-        }, 'formato.pdf');
+    //     $pdf = Pdf::loadView('livewire.admin.formato', $data);
+    //    return response()->streamDownload(function () use ($pdf) {
+    //      echo $pdf->stream();
+    //     }, 'formato.pdf');
 
+    // }
+     public function exportarPDF()
+    {
+        return redirect()->route('admin.formato');
     }
 
     #[On('reasignado')]

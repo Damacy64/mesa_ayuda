@@ -81,8 +81,14 @@
                                                 Ver Historial
                                             </button>
                                             
-                                            <button class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
-                                                role="menuitem" wire:click="exportarPDF">Descargar Formato</button>
+                                            {{-- <button class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                                                role="menuitem" wire:click="exportarPDF">Descargar Formato</button> --}}
+                                                                                    {{--  esto es para ver la vista pdf --}}
+                                    <a href="{{ route('admin.formato') }}" 
+                                        target="_blank"
+                                        class="inline-block bg-afac-blue text-white py-2 px-4 rounded-lg hover:bg-afac-golden">
+                                        DESCARGAR
+                                     </a>
 
                                     </div>
                                 </div>

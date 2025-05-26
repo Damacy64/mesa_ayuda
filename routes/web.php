@@ -19,7 +19,7 @@ Route::middleware([
     Route::get('/users', [DashboardController::class, 'users'])->name('users');   
     Route::get('/technical', [DashboardController::class, 'technical'])->name('technical');   
     Route::get('/areas', [DashboardController::class, 'areas'])->name('areas');   
-    Route::get('/pdf', [DashboardController::class, 'pdf'])->name('admin.pdf');   
+    Route::get('/formato', [DashboardController::class, 'pdf'])->name('admin.formato');   
 
    
 });

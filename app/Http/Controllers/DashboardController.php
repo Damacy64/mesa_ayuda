@@ -65,7 +65,9 @@ class DashboardController extends Controller
         if (Auth::user()->role->rol !== 'ADMIN') {
             abort(403, 'Acceso no autorizado');
         }
+        $pdf = Pdf::loadView('livewire.admin.formato');
+        return $pdf->stream("formato.pdf");
 
-        return view('livewire.admin.pdf');
+        // return view('livewire.admin.formato');
     }
 }
