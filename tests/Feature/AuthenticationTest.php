@@ -9,11 +9,12 @@ test('login screen can be rendered', function () {
 });
 
 test('users can authenticate using the login screen', function () {
-    $user = User::factory()->create();
+    $this->seeder();
 
     $response = $this->post('/login', [
-        'email' => $user->email,
+        'email' => 'samanta.valdovinos@afac.gob.mx',
         'password' => 'password',
+        'rol_id' => 'USUARIO',
     ]);
 
     $this->assertAuthenticated();
@@ -21,10 +22,10 @@ test('users can authenticate using the login screen', function () {
 });
 
 test('users cannot authenticate with invalid password', function () {
-    $user = User::factory()->create();
+    $this->seeder();
 
     $this->post('/login', [
-        'email' => $user->email,
+        'email' => 'luis.reyes@afac.gob.mx',
         'password' => 'wrong-password',
     ]);
 
