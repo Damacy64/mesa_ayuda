@@ -42,7 +42,10 @@
                 @csrf
 
                 <x-dropdown-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
-                    {{ __('Cerrar sesión') }}
+                    {{ __('Cerrar Sesión') }}
+                </x-dropdown-link>
+                <x-dropdown-link href="{{ asset('storage/manual.pdf') }}" target="_blank">
+                    {{ __('Ver Manual') }}
                 </x-dropdown-link>
             </form>
         </div>
