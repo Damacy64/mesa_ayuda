@@ -175,12 +175,13 @@ class DetallesModal extends Component
 
         // Asignar el usuario al equipo
         if (!empty($this->usuario)) {
-            $registro = ComputerUserFinal::where('equipo_id', $this->id)->first();
+            $registro = ComputerUserFinal::where('equipo_numero_serie', $this->id)->first();
             if ($registro && $registro->user_final_id !== $this->usuario) {
                 $registro->update(['user_final_id' => $this->usuario]);
             }
         }
 
+        // Guardar el cambio en el historial
         // Cerrar el modal
         $this->cerrar();
 
