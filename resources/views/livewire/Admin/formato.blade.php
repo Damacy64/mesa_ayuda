@@ -22,7 +22,7 @@
 
         .contenido {
             font-size: 11px;
-            line-height: 1.5;
+            line-height: 1.4;
             text-align: justify;
 
         }
@@ -31,6 +31,7 @@
         .firmas {
             width: 100%;
             margin: 0 60px;
+
 
         }
     </style>
@@ -56,25 +57,25 @@
             se detalla:</p>
 
         <p style="padding-left: 100px">
-            <strong>Tipo de Equipo:</strong> <br>
-            <strong>Marca:</strong>{{ $item->equipo->marca }} <br>
-            <strong>Modelo:</strong>{{ $item->equipo->modelo }} <br>
-            <strong>N.° de Computador:</strong><br>
-            <strong>N.° de Serie:</strong>{{ $equipo->numero_serie }} <br>
-            <strong>Procesador:</strong>{{ $this->atributosVisibles }} <br>
-            <strong>Memoria RAM:</strong>{{ $this->atributosVisibles }} <br>
-            <strong>Disco Duro:</strong>{{ $this->atributosVisibles }}
+            <strong>Tipo de Equipo:</strong>{{ $TipoDispositivo }} <br>
+            <strong>Marca:</strong>{{ $marca }} <br>
+            <strong>Modelo:</strong>{{ $modelo }} <br>
+            <strong>N.° de Computador:</strong>{{ $numero_inventario }}<br>
+            <strong>N.° de Serie:</strong>{{ $numero_serie }} <br>
+            <strong>Procesador:</strong>{{ $procesador }} <br>
+            <strong>Memoria RAM:</strong>{{ $RAM }} <br>
+            <strong>Disco Duro:</strong>{{ $almacenamiento }}
         </p>
-        
+
         <p>Cabe señalar que el usuario conoce y acepta que será responsable del resguardo y buen uso del bien
             informático descrito en el párrafo que antecede. </p>
 
         <table class="firmas">
             <tr>
-                <td style="vertical-align: top; ">
-                    <p style="text-align:center">
-                        <strong>Entrega:</strong><br>
-                        <br>__________________________ <br>
+                <td style="vertical-align: top; text-align:center;">
+                    <p> <strong>Entrega:</strong> </p>
+                    <p>
+                        __________________________ <br>
                         Daniel Mitchel Ramírez Cartas<br>
                         Departamento de Soporte<br>
                         Técnico y Redes
@@ -82,11 +83,9 @@
                 </td>
 
                 <td style="vertical-align: top;">
-                    <p style="padding-left: 50px;"><strong>Recibe:</strong><br>
-                        <br>________________________
-                    </p>
-                    <p>
-                        Nombre: {{ $usuario->user->name ?? '' }}<br>
+                    <p style="padding-left: 180px;"><strong>Recibe:</strong> </p>
+                    <p style="padding-left: 60px;">____________________________________<br>
+                        Nombre: {{ $usuario }} {{ $apellido_p }} {{ $apellido_m }}<br>
                         Puesto: <br>
                         Región: <br>
                         Estado: <br>
@@ -94,7 +93,6 @@
                     </p>
                 </td>
             </tr>
-
         </table>
 
         <table>
@@ -102,7 +100,7 @@
                 <td>
                     <p style="text-align: center;  padding-left: 250px"><strong>Vo. Bo. TI de la
                             Unidad:</strong><br>
-                        ____________________________<br>
+                        <br>____________________________<br>
                         Ing. Jesús Shiraky Beltrán Mora<br>
                         Director de Desarrollo Estrategico<br>
                     </p>
@@ -346,20 +344,15 @@
                         Usuario <br>
                         <br><strong>_____________________________________________ </strong><br>
                     </p>
-                    <p> Nombre:{{ $usuario->user->name ?? '' }}<br>
+                    <p> Nombre:{{ $usuario }} {{ $apellido_p }} {{ $apellido_m }}<br>
                         Puesto:<br>
-                        No. de empleado: {{ $usuario->numero_empleado ?? '' }}<br>
-                        Fecha(dd/mm/aaaa): {{ $fechaasignacion ?? '' }}<br>
+                        No. de empleado: {{ $empleado_id }}<br>
+                        Fecha(dd/mm/aaaa): {{ $fecha_asignacion }}<br>
                     </p>
-
                 </td>
             </tr>
         </table>
-
     </div>
-
-
-
 </body>
 
 </html>

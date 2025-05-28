@@ -1,3 +1,3 @@
 <x-guest-layout>
-    @livewire('login');
+    @livewire('login')
 </x-guest-layout>

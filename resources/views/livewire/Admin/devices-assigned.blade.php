@@ -82,7 +82,7 @@
                                             </button>
                                             
                                             <button 
-                                                wire:click="exportarPDF"
+                                                wire:click="exportarPDF({{ $item->equipo->numero_serie }})" 
                                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
                                                 role="menuitem">
                                                 Descargar Formato
