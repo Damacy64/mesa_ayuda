@@ -1,5 +1,4 @@
 <div>
-    {{-- <x-header>RESTABLECER CONTRASEÑA</x-header> --}}
     <x-header>
         <x-slot name="title">
             RESTABLECER CONTRASEÑA
@@ -13,12 +12,12 @@
         <form method="POST" action="{{ route('password.update') }}">
             @csrf
             
-            <x-input type="hidden" name="token" value="{{ $token }}">
+            <input type="hidden" name="token" value="{{ $token }}"/>
             
             <div class="block">
                 <x-label for="email" value="{{ __('Correo Institucional') }}" />
                 <x-input maxlength="35" id="email" class="block mt-1 w-full" :value="old('email', $email)" type="email"
-                name="email" required autofocus autocomplete="username" />
+                name="email" required autofocus autocomplete="email" :placeholder="old('email', $email)"/>
             </div>
             
             <div class="mt-4">
