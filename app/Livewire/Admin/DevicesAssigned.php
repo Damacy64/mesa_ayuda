@@ -5,6 +5,9 @@ namespace App\Livewire\Admin;
 use App\Models\Computer;
 use App\Models\ComputerUserFinal;
 use Livewire\Attributes\On;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -14,6 +17,9 @@ class DevicesAssigned extends Component
     public $search = '';
     public $sortField = '';
     public $sortDirection = 'asc';
+    public $id;
+    public $marca;
+
 
     public function sortBy($field)
     {
@@ -53,6 +59,37 @@ class DevicesAssigned extends Component
             $equipo->delete();
         }
         $this->dispatch('reasignado');
+    }
+
+     // esto es para cuando lo descargue pdf
+   
+    public function exportarPDF($id)
+    {
+        $equipo = Computer::with('atributos')->where('numero_serie', $id)->first();
+        $usuario = ComputerUserFinal::where('equipo_numero_serie', $id)->first();
+
+        $data = [
+            'TipoDispositivo' => $equipo->TipoDispositivo,
+            'marca' => $equipo->marca,
+            'modelo' => $equipo->modelo,
+            'numero_inventario' => $equipo->numero_inventario,
+            'numero_serie' => $equipo->numero_serie,    
+            'procesador' => $equipo->version_procesador,
+            'RAM' => $equipo->RAM,
+            'almacenamiento' => $equipo->almacenamiento,
+            'usuario' => Str::title($usuario->user->name),
+            'apellido_p' => Str::title($usuario->user->last_name_p),
+            'apellido_m' => Str::title($usuario->user->last_name_m),
+            'fecha_asignacion' => $usuario->fecha_asignacion,
+            'empleado_id' => $usuario->user->employer_number,
+
+        ];
+
+        $pdf = Pdf::loadView('livewire.admin.formato', $data);
+       return response()->streamDownload(function () use ($pdf) {
+         echo $pdf->stream();
+        }, 'Formato.pdf');
+
     }
 
     #[On('reasignado')]

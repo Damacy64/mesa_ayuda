@@ -40,5 +40,5 @@
                 </x-button>
             </div>
         </form>
-    </x-authentication-card>
+    {{-- </x-authentication-card> --}}
 </div>
