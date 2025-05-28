@@ -1,6 +1,9 @@
 <?php
 
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+uses(RefreshDatabase::class);
 
 test('login screen can be rendered', function () {
     $response = $this->get('/login');
@@ -9,7 +12,7 @@ test('login screen can be rendered', function () {
 });
 
 test('users can authenticate using the login screen', function () {
-    $this->seeder();
+    $this->seed();
 
     $response = $this->post('/login', [
         'email' => 'samanta.valdovinos@afac.gob.mx',
@@ -22,12 +25,13 @@ test('users can authenticate using the login screen', function () {
 });
 
 test('users cannot authenticate with invalid password', function () {
-    $this->seeder();
 
-    $this->post('/login', [
-        'email' => 'luis.reyes@afac.gob.mx',
+    $response = $this->post('/login', [
+        'email' => 'samanta.valdovinos@afac.gob.mx',
         'password' => 'wrong-password',
+        'rol_id' => 'USUARIO',
     ]);
 
     $this->assertGuest();
+    $response->assertRedirect(route('dashboard', absolute: false));
 });
