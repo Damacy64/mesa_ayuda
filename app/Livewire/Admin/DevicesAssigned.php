@@ -16,6 +16,8 @@ class DevicesAssigned extends Component
     public $search = '';
     public $sortField = '';
     public $sortDirection = 'asc';
+    public $id; 
+
 
     public function sortBy($field)
     {
@@ -59,22 +61,22 @@ class DevicesAssigned extends Component
 
      // esto es para cuando lo descargue pdf
    
-    // public function exportarPDF()
-    // {
-    //     $data = [
-           
-    //     ];
-
-    //     $pdf = Pdf::loadView('livewire.admin.formato', $data);
-    //    return response()->streamDownload(function () use ($pdf) {
-    //      echo $pdf->stream();
-    //     }, 'formato.pdf');
-
-    // }
-     public function exportarPDF()
+    public function exportarPDF()
     {
-        return redirect()->route('admin.formato');
+        $data = [
+           
+        ];
+
+        $pdf = Pdf::loadView('livewire.admin.formato', $data);
+       return response()->streamDownload(function () use ($pdf) {
+         echo $pdf->stream();
+        }, 'formato.pdf');
+
     }
+    //  public function exportarPDF()
+    // {
+    //     return redirect()->route('admin.formato');
+    // }
 
     #[On('reasignado')]
     public function render()
