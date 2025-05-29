@@ -2,12 +2,23 @@
 
 use App\Models\User;
 use Illuminate\Auth\Events\Verified;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\URL;
 use Laravel\Fortify\Features;
 
 test('email verification screen can be rendered', function () {
-    $user = User::factory()->withPersonalTeam()->create([
+    DB::table('genders')->insert(['sexo' => 'MASCULINO']);
+    Db::table('roles')->insert(['rol' => 'USUARIO']);
+
+    $user = User::create([
+        'name' => 'prueba',
+        'last_name_p' => 'prueba',
+        'sex_id' => 'MASCULINO',
+        'rol_id' => 'USUARIO',
+        'employer_number' => '0614735',
+        'email' => 'prueba.prueba@afac.gob.mx',
+        'password' => bcrypt('password'),
         'email_verified_at' => null,
     ]);
 
@@ -21,7 +32,17 @@ test('email verification screen can be rendered', function () {
 test('email can be verified', function () {
     Event::fake();
 
-    $user = User::factory()->create([
+    DB::table('genders')->insert(['sexo' => 'MASCULINO']);
+    Db::table('roles')->insert(['rol' => 'USUARIO']);
+
+    $user = User::create([
+        'name' => 'prueba',
+        'last_name_p' => 'prueba',
+        'sex_id' => 'MASCULINO',
+        'rol_id' => 'USUARIO',
+        'employer_number' => '0614735',
+        'email' => 'prueba.prueba@afac.gob.mx',
+        'password' => bcrypt('password'),
         'email_verified_at' => null,
     ]);
 
@@ -42,7 +63,17 @@ test('email can be verified', function () {
 }, 'Email verification not enabled.');
 
 test('email can not verified with invalid hash', function () {
-    $user = User::factory()->create([
+    DB::table('genders')->insert(['sexo' => 'MASCULINO']);
+    Db::table('roles')->insert(['rol' => 'USUARIO']);
+
+    $user = User::create([
+        'name' => 'prueba',
+        'last_name_p' => 'prueba',
+        'sex_id' => 'MASCULINO',
+        'rol_id' => 'USUARIO',
+        'employer_number' => '0614735',
+        'email' => 'prueba.prueba@afac.gob.mx',
+        'password' => bcrypt('password'),
         'email_verified_at' => null,
     ]);
 

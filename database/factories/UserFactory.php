@@ -28,13 +28,17 @@ class UserFactory extends Factory
     {
         return [
             'name' => fake()->name(),
+            'last_name_p' => fake()->lastName(),
+            'sex_id' => fake()->randomElement(['MASCULINO', 'FEMENINO', 'NO BINARIO']),
+            'rol_id' => fake()->randomElement(['ADMIN', 'USUARIO', 'SOPORTE']),
+            'employer_number' => fake()->unique()->randomNumber(7, true),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'two_factor_secret' => null,
             'two_factor_recovery_codes' => null,
             'remember_token' => Str::random(10),
-            'profile_photo_path' => null,
+            //'profile_photo_path' => null,
             'current_team_id' => null,
         ];
     }
