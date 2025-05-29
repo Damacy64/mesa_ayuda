@@ -47,7 +47,7 @@
     @endisset
 
     <a href="{{ asset('storage/manual.pdf') }}" target="_blank">
-        <img src="{{ asset('storage/images/informacion.png') }}" alt="icono de informacion" class="mr-3"
+        <img src="{{ asset('storage/informacion.png') }}" alt="icono de informacion" class="mr-3"
             style="cursor:pointer;">
     </a>
 
