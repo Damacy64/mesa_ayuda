@@ -12,7 +12,7 @@
         }
 
         body {
-            background: url('images/plantilla.png') no-repeat center center;
+            background: url('{{public_path('storage/plantilla.png')}}') no-repeat center center;
             background-size: cover;
             font-family: Arial, sans-serif;
             padding: 4.5cm 1.5cm;
@@ -29,7 +29,8 @@
 
         .firmas {
             width: 100%;
-            margin: 0 60px;
+            margin: 30px 60px;
+
 
 
         }
@@ -44,7 +45,7 @@
             Dirección de Recursos Materiales <br>
             <string style="font-size: 8.5px">Departamento de Soporte Técnico y Redes</string><br>
             <br>
-            Ciudad de México, 21 de diciembre de 2024.
+            Ciudad de México,{{ \Carbon\Carbon::parse($fecha_asignacion)->translatedFormat('j \d\e F \d\e Y') }}
         </div>
 
         <h3 style="text-align: left; margin-top: 30px;">RESGUARDO DE BIENES INFORMÁTICOS</h3>
@@ -346,7 +347,7 @@
                     <p> Nombre:{{ $usuario }} {{ $apellido_p }} {{ $apellido_m }}<br>
                         Puesto:<br>
                         No. de empleado: {{ $empleado_id }}<br>
-                        Fecha(dd/mm/aaaa): {{ $fecha_asignacion }}<br>
+                        Fecha(dd/mm/aaaa): {{ \Carbon\Carbon::parse($fecha_asignacion)->translatedFormat("j/n/Y")}}<br>
                     </p>
                 </td>
             </tr>

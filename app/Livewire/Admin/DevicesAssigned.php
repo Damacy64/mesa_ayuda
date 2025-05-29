@@ -5,6 +5,7 @@ namespace App\Livewire\Admin;
 use App\Models\Computer;
 use App\Models\ComputerUserFinal;
 use Livewire\Attributes\On;
+use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -65,6 +66,7 @@ class DevicesAssigned extends Component
    
     public function exportarPDF($id)
     {
+        \Carbon\Carbon::setLocale('es');
         $equipo = Computer::with('atributos')->where('numero_serie', $id)->first();
         $usuario = ComputerUserFinal::where('equipo_numero_serie', $id)->first();
 
@@ -80,7 +82,7 @@ class DevicesAssigned extends Component
             'usuario' => Str::title($usuario->user->name),
             'apellido_p' => Str::title($usuario->user->last_name_p),
             'apellido_m' => Str::title($usuario->user->last_name_m),
-            'fecha_asignacion' => $usuario->fecha_asignacion,
+            'fecha_asignacion' => ($usuario->fecha_asignacion),
             'empleado_id' => $usuario->user->employer_number,
 
         ];
