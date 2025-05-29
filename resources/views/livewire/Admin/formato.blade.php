@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <title>Resguardo de Bienes Informáticos</title>
     <style>
-        html,
-        body {
+        html {
             height: 100%;
             margin: 12px;
             padding: 0;
@@ -16,7 +15,7 @@
             background: url('images/plantilla.png') no-repeat center center;
             background-size: cover;
             font-family: Arial, sans-serif;
-            padding: 4.5cm 1.4cm;
+            padding: 4.5cm 1.5cm;
             box-sizing: border-box;
         }
 
@@ -83,8 +82,8 @@
                 </td>
 
                 <td style="vertical-align: top;">
-                    <p style="padding-left: 180px;"><strong>Recibe:</strong> </p>
-                    <p style="padding-left: 60px;">____________________________________<br>
+                    <p style="padding-left: 150px;"><strong>Recibe:</strong> </p>
+                    <p style="padding-left: 60px;">________________________________<br>
                         Nombre: {{ $usuario }} {{ $apellido_p }} {{ $apellido_m }}<br>
                         Puesto: <br>
                         Región: <br>
@@ -98,7 +97,7 @@
         <table>
             <tr>
                 <td>
-                    <p style="text-align: center;  padding-left: 250px"><strong>Vo. Bo. TI de la
+                    <p style="text-align: center;  padding-left: 240px"><strong>Vo. Bo. TI de la
                             Unidad:</strong><br>
                         <br>____________________________<br>
                         Ing. Jesús Shiraky Beltrán Mora<br>
@@ -107,13 +106,13 @@
                 </td>
             </tr>
         </table>
-        <p>
+       <br> <p>
             El bien informático se entrega completamente operativo (documentado), mismo que deberá ser montado y/o
             entregado
             debidamente identificado en el área de Soporte Técnico y Redes. En caso de falla, deberá informarse de
             inmediato
             al área correspondiente.
-        </p>
+        </p><br>
 
         <h3>CARTA RESPONSIVA DE ACCESO Y USO DE SERVICIOS DE TECNOLOGÍAS DE INFORMACIÓN Y COMUNICACIONES DE LA AGENCIA
             FEDERAL DE AVIACIÓN CIVIL.</h3>
