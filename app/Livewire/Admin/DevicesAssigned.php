@@ -4,6 +4,7 @@ namespace App\Livewire\Admin;
 
 use App\Models\Computer;
 use App\Models\ComputerUserFinal;
+use App\Models\UserFinal;
 use Livewire\Attributes\On;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -20,6 +21,8 @@ class DevicesAssigned extends Component
     public $sortDirection = 'asc';
     public $id;
     public $marca;
+    public $area;
+    public $ubicacion;
 
 
     public function sortBy($field)
@@ -84,6 +87,8 @@ class DevicesAssigned extends Component
             'apellido_m' => Str::title($usuario->user->last_name_m),
             'fecha_asignacion' => ($usuario->fecha_asignacion),
             'empleado_id' => $usuario->user->employer_number,
+            'area' => Str::title($usuario->userFinal->area->nombre),
+            'ubicacion' => $usuario->userFinal->location->piso,
 
         ];
 

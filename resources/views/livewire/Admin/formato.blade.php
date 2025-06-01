@@ -86,10 +86,9 @@
                     <p style="padding-left: 150px;"><strong>Recibe:</strong> </p>
                     <p style="padding-left: 60px;">________________________________<br>
                         Nombre: {{ $usuario }} {{ $apellido_p }} {{ $apellido_m }}<br>
-                        Puesto: <br>
-                        Región: <br>
-                        Estado: <br>
-                        Comandancia (código IATA):
+                        Numero de empleado: {{ $empleado_id }}<br>
+                        Piso: {{ $ubicacion }}<br>
+                        Área: {{ $area }}<br>
                     </p>
                 </td>
             </tr>
@@ -345,7 +344,6 @@
                         <br><strong>_____________________________________________ </strong><br>
                     </p>
                     <p> Nombre:{{ $usuario }} {{ $apellido_p }} {{ $apellido_m }}<br>
-                        Puesto:<br>
                         No. de empleado: {{ $empleado_id }}<br>
                         Fecha(dd/mm/aaaa): {{ \Carbon\Carbon::parse($fecha_asignacion)->translatedFormat("j/n/Y")}}<br>
                     </p>
